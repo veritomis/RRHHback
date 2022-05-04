@@ -20,3 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::resource('estados', App\Http\Controllers\API\EstadoAPIController::class);
+
+
+Route::resource('posts', App\Http\Controllers\API\PostAPIController::class);
