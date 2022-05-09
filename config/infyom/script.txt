@@ -1,2 +1,11 @@
+-------------------------
+clear cache
+-------------------------
+sail artisan cache:clear
+sail artisan config:cache
+sail artisan config:clear
+-------------------------
+Creation the CRUD
+-------------------------
 sail artisan infyom:api Estado --fromTable --tableName=estados  --skip=migrations
 sail artisan infyom:api Post   --fromTable --tableName=posts    --skip=migrations
