@@ -1,5 +1,5 @@
 -------------------------
-clear cache
+clear cache documentations 
 -------------------------
 sail artisan cache:clear
 sail artisan config:cache

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -21,7 +22,7 @@ class Post extends Model
     use HasFactory;
 
     public $table = 'posts';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -59,5 +60,10 @@ class Post extends Model
         'deleted_at' => 'nullable'
     ];
 
-    
+    public function scopeQuery(Builder $query, $filter)
+    {
+        $value = "%$filter%";
+
+        return $query->where('name', 'LIKE', $value);
+    }
 }

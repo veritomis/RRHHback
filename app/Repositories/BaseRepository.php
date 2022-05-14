@@ -2,8 +2,17 @@
 
 namespace App\Repositories;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Container\Container as Application;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
+use Illuminate\Support\Facades\Schema;
+use App\Exceptions\MySQLException;
+use App\Exceptions\ApiModelException;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\QueryException;
+
 
 
 abstract class BaseRepository
@@ -62,6 +71,42 @@ abstract class BaseRepository
     }
 
     /**
+     * Get the table columns from db schema
+     * @return array
+     */
+    private function getTableColumns()
+    {
+        return Schema::getColumnListing($this->model->getTable());
+    }
+
+    /**
+     * Get the includes relations from model
+     * @return array
+     */
+    public function getIncludes()
+    {
+        return [];
+    }
+
+    /**
+     * Get the scopes name
+     * @return array
+     */
+    public function getScopes()
+    {
+        return ['query'];
+    }
+
+    /**
+     * Get the exact filters
+     * @return array
+     */
+    public function getExactFilters()
+    {
+        return [];
+    }
+
+    /**
      * Paginate records for scaffold.
      *
      * @param int $perPage
@@ -76,6 +121,32 @@ abstract class BaseRepository
     }
 
     /**
+     * 
+     * @param Builder $newQuery
+     */
+    private function getQueryBuilder(Builder $newQuery)
+    {
+        $filters = [];
+        foreach ($this->getFieldsSearchable() as $field) {
+            $filters[] = $field;
+        }
+
+        foreach ($this->getScopes() as $scope) {
+            $filters[] = AllowedFilter::scope($scope);
+        }
+
+        foreach ($this->getExactFilters() as $filter) {
+            $filters[] = AllowedFilter::exact($filter);
+        }
+
+        return QueryBuilder::for($newQuery)
+            ->allowedFilters($filters)
+            ->allowedFields($this->getTableColumns())
+            ->allowedIncludes($this->getIncludes())
+            ->allowedSorts($this->getFieldsSearchable());
+    }
+
+    /**
      * Build a query for retrieving all records.
      *
      * @param array $search
@@ -85,25 +156,7 @@ abstract class BaseRepository
      */
     public function allQuery($search = [], $skip = null, $limit = null)
     {
-        $query = $this->model->newQuery();
-
-        if (count($search)) {
-            foreach($search as $key => $value) {
-                if (in_array($key, $this->getFieldsSearchable())) {
-                    $query->where($key, $value);
-                }
-            }
-        }
-
-        if (!is_null($skip)) {
-            $query->skip($skip);
-        }
-
-        if (!is_null($limit)) {
-            $query->limit($limit);
-        }
-
-        return $query;
+        return $this->getQueryBuilder($this->model->newQuery());
     }
 
     /**
@@ -119,8 +172,7 @@ abstract class BaseRepository
     public function all($search = [], $skip = null, $limit = null, $columns = ['*'])
     {
         $query = $this->allQuery($search, $skip, $limit);
-
-        return $query->get($columns);
+        return $query->paginate($limit);
     }
 
     /**
@@ -132,11 +184,16 @@ abstract class BaseRepository
      */
     public function create($input)
     {
-        $model = $this->model->newInstance($input);
-
-        $model->save();
-
-        return $model;
+        try {
+            DB::beginTransaction();
+            $model = $this->model->newInstance($input);
+            $model->save();
+            DB::commit();
+            return $model;
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $this->handleException($th);
+        }
     }
 
     /**
@@ -149,9 +206,13 @@ abstract class BaseRepository
      */
     public function find($id, $columns = ['*'])
     {
-        $query = $this->model->newQuery();
+        try {
+            $query = $this->getQueryBuilder($this->model->newQuery());
 
-        return $query->find($id, $columns);
+            return $query->find($id, $columns);
+        } catch (\Throwable $th) {
+            $this->handleException($th);
+        }
     }
 
     /**
@@ -164,15 +225,18 @@ abstract class BaseRepository
      */
     public function update($input, $id)
     {
-        $query = $this->model->newQuery();
-
-        $model = $query->findOrFail($id);
-
-        $model->fill($input);
-
-        $model->save();
-
-        return $model;
+        try {
+            DB::beginTransaction();
+            $query = $this->model->newQuery();
+            $model = $query->findOrFail($id);
+            $model->fill($input);
+            $model->save();
+            DB::commit();
+            return $model;
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $this->handleException($th);
+        }
     }
 
     /**
@@ -184,10 +248,21 @@ abstract class BaseRepository
      */
     public function delete($id)
     {
-        $query = $this->model->newQuery();
+        try {
+            $query = $this->model->newQuery();
+            $model = $query->findOrFail($id);
+            return $model->delete();
+        } catch (\Throwable $th) {
+            $this->handleException($th);
+        }
+    }
 
-        $model = $query->findOrFail($id);
-
-        return $model->delete();
+    protected function handleException(\Exception $e)
+    {
+        if ($e instanceof QueryException) {
+            throw new MySQLException($e->getMessage(), $e->getCode());
+        } else {
+            throw new ApiModelException($e->getMessage(), $e->getCode());
+        }
     }
 }
