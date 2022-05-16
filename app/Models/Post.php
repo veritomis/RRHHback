@@ -15,11 +15,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $name
  * @property string $description
  */
-class Post extends Model
+class Post extends BaseModel
 {
-    use SoftDeletes;
-
-    use HasFactory;
+    use HasFactory,SoftDeletes;
 
     public $table = 'posts';
 
