@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\AppBaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
@@ -19,9 +20,13 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
-        $request->session()->regenerate();
+        // $request->session()->regenerate();
 
-        return response()->noContent();
+        $token = $request->user()->createToken('token')->plainTextToken;
+
+        // return response()->noContent();
+        return response()->json(['token' => $token]);
+        // return $this->sendResponse(['token' => $token], 'Acceso satisfactorio');
     }
 
     /**
@@ -30,14 +35,12 @@ class AuthenticatedSessionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function logout(Request $request)
     {
         Auth::guard('web')->logout();
 
-        $request->session()->invalidate();
+        Auth::user()->tokens()->delete();
 
-        $request->session()->regenerateToken();
-
-        return response()->noContent();
+        return response()->json(['token' => 'Token Revocado']);
     }
 }
