@@ -8,7 +8,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AuthenticatedSessionController extends Controller
+class AuthenticatedSessionController extends AppBaseController
 {
     /**
      * Handle an incoming authentication request.
@@ -20,13 +20,10 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
-        // $request->session()->regenerate();
-
         $token = $request->user()->createToken('token')->plainTextToken;
-
-        // return response()->noContent();
-        return response()->json(['token' => $token]);
-        // return $this->sendResponse(['token' => $token], 'Acceso satisfactorio');
+        $user = Auth::user();
+        // return response()->json(['user'=> $user,'token' => $token]);
+        return $this->sendResponse(['Usuario' => $user,'Token' => $token], 'Acceso satisfactorio');
     }
 
     /**
