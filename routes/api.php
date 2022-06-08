@@ -29,6 +29,7 @@ require __DIR__.'/auth.php';
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::resource('posts', App\Http\Controllers\API\PostAPIController::class);
+    Route::resource('users', App\Http\Controllers\API\UserAPIController::class);
     
     Route::post('/logout', [AuthenticatedSessionController::class, 'logout'])
                 ->name('logout');

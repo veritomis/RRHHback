@@ -15,5 +15,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+        activity()->withoutLogs(function () {
+            $this->call([
+                PermissionsSeeder::class,
+            ]);
+        });
     }
 }
