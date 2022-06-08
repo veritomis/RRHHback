@@ -9,6 +9,7 @@ use App\Repositories\PostRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use App\Traits\VerificationRol;
 
 /**
  * Class PostController
@@ -39,6 +40,9 @@ class PostAPIController extends AppBaseController
             $request->get('skip'),
             $request->get('limit')
         );
+
+        // $test = $this->verifiedPermissions('show-post');
+        // var_dump($test);
 
         return $this->sendResponse($posts->toArray(), 'Posts retrieved successfully');
     }
