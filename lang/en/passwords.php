@@ -16,7 +16,7 @@ return [
     'reset' => 'Su clave ha sido actualizada!',
     'sent' => 'Le enviamos a su correo un enlace para resetear la clave!',
     'throttled' => 'Por favor espere antes de intentar de nuevo.',
-    'token' => 'Esta contraseña para resetar el token es invalida.',
+    'token' => 'Su cesión ha finalizado, ingrese nuevamente su correo',
     'user' => "No encontramos su usuario con este correo electrónico.",
 
 ];
