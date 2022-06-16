@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         activity()->withoutLogs(function () {
             $this->call([
                 PermissionsSeeder::class,
+                ModulesSeeder::class,
             ]);
         });
     }

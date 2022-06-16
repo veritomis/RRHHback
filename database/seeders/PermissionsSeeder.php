@@ -19,17 +19,16 @@ class PermissionsSeeder extends Seeder
         // Reset cached roles and permissions
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-        // create permissions
-        // Permission::create(['name' => 'edit post']);
-        // Permission::create(['name' => 'delete post']);
-        // Permission::create(['name' => 'create post']);
-
-
         $permisos = [
             ['name' => 'crear-post', 'guard_name' => 'sanctum'],
             ['name' => 'editar-post', 'guard_name' => 'sanctum'],
             ['name' => 'borrar-post', 'guard_name' => 'sanctum'],
-            ['name' => 'consultar-post', 'guard_name' => 'sanctum']
+            ['name' => 'consultar-post', 'guard_name' => 'sanctum'],
+            //Modulos
+            ['name' => 'crear-modulos', 'guard_name' => 'sanctum'],
+            ['name' => 'editar-modulos', 'guard_name' => 'sanctum'],
+            ['name' => 'borrar-modulos', 'guard_name' => 'sanctum'],
+            ['name' => 'consultar-modulos', 'guard_name' => 'sanctum']
         ];
 
         foreach ($permisos as $permiso) {
@@ -51,18 +50,21 @@ class PermissionsSeeder extends Seeder
         $user = \App\Models\User::factory()->create([
             'name' => 'Example User',
             'email' => 'test@example.com',
+            'password'=>'epidata01'
         ]);
         $user->assignRole($role1);
 
         $user = \App\Models\User::factory()->create([
             'name' => 'Example Admin User',
             'email' => 'admin@example.com',
+            'password'=>'epidata01'
         ]);
         $user->assignRole($role2);
 
         $user = \App\Models\User::factory()->create([
             'name' => 'Example Super-Admin User',
             'email' => 'superadmin@example.com',
+            'password'=>'epidata01'
         ]);
         $user->assignRole($role3);
     }
