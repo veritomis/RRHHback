@@ -24,6 +24,7 @@ class PermissionsSeeder extends Seeder
             ['name' => 'editar-post', 'guard_name' => 'sanctum'],
             ['name' => 'borrar-post', 'guard_name' => 'sanctum'],
             ['name' => 'consultar-post', 'guard_name' => 'sanctum'],
+            
             //Modulos
             ['name' => 'crear-modulos', 'guard_name' => 'sanctum'],
             ['name' => 'editar-modulos', 'guard_name' => 'sanctum'],
@@ -44,7 +45,7 @@ class PermissionsSeeder extends Seeder
         $role2->givePermissionTo(Permission::all());
 
         $role3 = Role::create(['name' => 'Super-Admin','guard_name' => 'sanctum']);
-        // gets all permissions via Gate::before rule; see AuthServiceProvider
+        $role3->givePermissionTo(Permission::all());
 
         // create demo users
         $user = \App\Models\User::factory()->create([
