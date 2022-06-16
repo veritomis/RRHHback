@@ -8,6 +8,7 @@ use App\Models\Module;
 use App\Repositories\ModuleRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use App\Traits\VerificationRol;
 use Response;
 
 /**
@@ -17,6 +18,8 @@ use Response;
 
 class ModuleAPIController extends AppBaseController
 {
+    use VerificationRol;
+
     /** @var  ModuleRepository */
     private $moduleRepository;
 
@@ -40,6 +43,10 @@ class ModuleAPIController extends AppBaseController
             $request->get('limit')
         );
 
+        if (!$this->verifiedPermissions('consultar-modulos')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         return $this->sendResponse($modules->toArray(), 'Modules retrieved successfully');
     }
 
@@ -53,6 +60,10 @@ class ModuleAPIController extends AppBaseController
      */
     public function store(CreateModuleAPIRequest $request)
     {
+        if (!$this->verifiedPermissions('crear-modulos')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         $input = $request->all();
 
         $module = $this->moduleRepository->create($input);
@@ -70,6 +81,10 @@ class ModuleAPIController extends AppBaseController
      */
     public function show($id)
     {
+        if (!$this->verifiedPermissions('consultar-modulos')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         /** @var Module $module */
         $module = $this->moduleRepository->find($id);
 
@@ -91,6 +106,10 @@ class ModuleAPIController extends AppBaseController
      */
     public function update($id, UpdateModuleAPIRequest $request)
     {
+        if (!$this->verifiedPermissions('editar-modulos')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         $input = $request->all();
 
         /** @var Module $module */
@@ -117,6 +136,10 @@ class ModuleAPIController extends AppBaseController
      */
     public function destroy($id)
     {
+        if (!$this->verifiedPermissions('borrar-modulos')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         /** @var Module $module */
         $module = $this->moduleRepository->find($id);
 
