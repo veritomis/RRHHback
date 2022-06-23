@@ -7,5 +7,7 @@ sail artisan config:clear
 -------------------------
 Creation the CRUD
 -------------------------
-sail artisan infyom:api Estado --fromTable --tableName=estados  --skip=migrations
-sail artisan infyom:api Post   --fromTable --tableName=posts    --skip=migrations
+sail artisan infyom:api Estado   --fromTable --tableName=estados   --skip=migrations
+sail artisan infyom:api Post     --fromTable --tableName=posts     --skip=migrations
+sail artisan infyom:api Rol      --fromTable --tableName=roles     --skip=migrations
+sail artisan infyom:api Module   --fromTable --tableName=modules   --skip=migrations

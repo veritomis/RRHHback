@@ -9,6 +9,7 @@ use App\Repositories\PostRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use App\Traits\VerificationRol;
 
 /**
  * Class PostController
@@ -17,6 +18,8 @@ use Response;
 
 class PostAPIController extends AppBaseController
 {
+    use VerificationRol;
+    
     /** @var  PostRepository */
     private $postRepository;
 
@@ -40,6 +43,10 @@ class PostAPIController extends AppBaseController
             $request->get('limit')
         );
 
+        if (!$this->verifiedPermissions('consultar-post')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         return $this->sendResponse($posts->toArray(), 'Posts retrieved successfully');
     }
 
@@ -53,6 +60,10 @@ class PostAPIController extends AppBaseController
      */
     public function store(CreatePostAPIRequest $request)
     {
+        if (!$this->verifiedPermissions('crear-post')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         $input = $request->all();
 
         $post = $this->postRepository->create($input);
@@ -75,6 +86,10 @@ class PostAPIController extends AppBaseController
 
         if (empty($post)) {
             return $this->sendError('Post not found');
+        }
+
+        if (!$this->verifiedPermissions('consultar-post')) {
+            return $this->sendError('Usuario no autorizado');
         }
 
         return $this->sendResponse($post->toArray(), 'Post retrieved successfully');
@@ -100,6 +115,10 @@ class PostAPIController extends AppBaseController
             return $this->sendError('Post not found');
         }
 
+        if (!$this->verifiedPermissions('editar-post')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         $post = $this->postRepository->update($input, $id);
 
         return $this->sendResponse($post->toArray(), 'Post updated successfully');
@@ -119,6 +138,10 @@ class PostAPIController extends AppBaseController
     {
         /** @var Post $post */
         $post = $this->postRepository->find($id);
+
+        if (!$this->verifiedPermissions('borrar-post')) {
+            return $this->sendError('Usuario no autorizado');
+        }
 
         if (empty($post)) {
             return $this->sendError('Post not found');
