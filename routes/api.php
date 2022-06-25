@@ -36,3 +36,6 @@ Route::middleware('auth:sanctum')->group(function () {
                 ->name('logout');
 });
 
+
+
+Route::resource('rols', App\Http\Controllers\API\RolAPIController::class);
