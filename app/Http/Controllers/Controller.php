@@ -8,7 +8,13 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
 /**
- * @OA\Info(title="My First API", version="0.1")
+ * @OA\Info(title="RRHH API", version="0.1")
+ *
+ * @OAS\SecurityScheme(
+ *      securityScheme="bearerAuth",
+ *      type="http",
+ *      scheme="bearer"
+ * )
  */
 class Controller extends BaseController
 {

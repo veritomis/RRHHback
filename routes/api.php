@@ -12,11 +12,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('posts', App\Http\Controllers\API\PostAPIController::class);
     Route::resource('users', App\Http\Controllers\API\UserAPIController::class);
     Route::resource('modulos', App\Http\Controllers\API\ModuleAPIController::class);
+    Route::resource('roles', App\Http\Controllers\API\RolAPIController::class);
 
     Route::post('/logout', [AuthenticatedSessionController::class, 'logout'])
                 ->name('logout');
 });
 
-Route::resource('roles', App\Http\Controllers\API\RolAPIController::class);
 
 

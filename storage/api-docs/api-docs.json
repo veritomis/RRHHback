@@ -1,14 +1,14 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "My First API",
+        "title": "RRHH API",
         "version": "0.1"
     },
     "paths": {
         "/api/roles": {
             "get": {
                 "tags": [
-                    "Rol"
+                    "Roles"
                 ],
                 "summary": "getRolList",
                 "description": "Get all Rols",
@@ -17,11 +17,16 @@
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
-                    "Rol"
+                    "Roles"
                 ],
                 "summary": "createRol",
                 "description": "Create Rol",
@@ -49,13 +54,18 @@
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
         "/api/roles/{id}": {
             "get": {
                 "tags": [
-                    "Rol"
+                    "Roles"
                 ],
                 "summary": "getRolItem",
                 "description": "Get Rol",
@@ -75,11 +85,16 @@
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "put": {
                 "tags": [
-                    "Rol"
+                    "Roles"
                 ],
                 "summary": "updateRol",
                 "description": "Update Rol",
@@ -118,11 +133,16 @@
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
-                    "Rol"
+                    "Roles"
                 ],
                 "summary": "deleteRol",
                 "description": "Delete Rol",
@@ -142,7 +162,12 @@
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         }
     },
@@ -189,6 +214,16 @@
                     }
                 },
                 "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "sanctum": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "scheme": "bearer",
+                "bearerFormat": "JWT",
+                "in": "header"
             }
         }
     }

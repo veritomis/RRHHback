@@ -32,8 +32,9 @@ class RolAPIController extends AppBaseController
      * @OA\Get(
      *      path="/api/roles",
      *      summary="getRolList",
-     *      tags={"Rol"},
+     *      tags={"Roles"},
      *      description="Get all Rols",
+     *      security={ {"sanctum": {} }},
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -74,8 +75,9 @@ class RolAPIController extends AppBaseController
      * @OA\Post(
      *      path="/api/roles",
      *      summary="createRol",
-     *      tags={"Rol"},
+     *      tags={"Roles"},
      *      description="Create Rol",
+     *      security={ {"sanctum": {} }},
      *      @OA\RequestBody(
      *        required=true,
      *        @OA\MediaType(
@@ -128,8 +130,9 @@ class RolAPIController extends AppBaseController
      * @OA\Get(
      *      path="/api/roles/{id}",
      *      summary="getRolItem",
-     *      tags={"Rol"},
+     *      tags={"Roles"},
      *      description="Get Rol",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of Rol",
@@ -180,8 +183,9 @@ class RolAPIController extends AppBaseController
      * @OA\Put(
      *      path="/api/roles/{id}",
      *      summary="updateRol",
-     *      tags={"Rol"},
+     *      tags={"Roles"},
      *      description="Update Rol",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of Rol",
@@ -250,8 +254,9 @@ class RolAPIController extends AppBaseController
      * @OA\Delete(
      *      path="/api/roles/{id}",
      *      summary="deleteRol",
-     *      tags={"Rol"},
+     *      tags={"Roles"},
      *      description="Delete Rol",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of Rol",
