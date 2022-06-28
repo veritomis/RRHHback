@@ -5,14 +5,14 @@
         "version": "0.1"
     },
     "paths": {
-        "/roles": {
+        "/api/roles": {
             "get": {
                 "tags": [
                     "Rol"
                 ],
                 "summary": "getRolList",
                 "description": "Get all Rols",
-                "operationId": "121cfb50141a2b7176e390f8bc4a748a",
+                "operationId": "1bbf3cc783ccf5c1e6797a0c7755937a",
                 "responses": {
                     "200": {
                         "description": "successful operation"
@@ -25,7 +25,7 @@
                 ],
                 "summary": "createRol",
                 "description": "Create Rol",
-                "operationId": "a595ef0a1487bc151763a773840a4382",
+                "operationId": "cbe66d4091c6dc526b94d9d584919491",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -52,14 +52,14 @@
                 }
             }
         },
-        "/roles/{id}": {
+        "/api/roles/{id}": {
             "get": {
                 "tags": [
                     "Rol"
                 ],
                 "summary": "getRolItem",
                 "description": "Get Rol",
-                "operationId": "91c8fd43fa6cb893098f1e5138553ac1",
+                "operationId": "eb5e7e90e98047fe705f5180ada35adc",
                 "parameters": [
                     {
                         "name": "id",
@@ -83,7 +83,7 @@
                 ],
                 "summary": "updateRol",
                 "description": "Update Rol",
-                "operationId": "69bfbf51a538e91dffb8de2929b48686",
+                "operationId": "96a2a8bc9feb81004a05c867c6a6f505",
                 "parameters": [
                     {
                         "name": "id",
@@ -126,7 +126,7 @@
                 ],
                 "summary": "deleteRol",
                 "description": "Delete Rol",
-                "operationId": "5effbdfa1c5ef7165eede348b831f72d",
+                "operationId": "79fb80bb341d2e47ff5b25ac4a0bb6c1",
                 "parameters": [
                     {
                         "name": "id",

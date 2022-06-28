@@ -30,7 +30,7 @@ class RolAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/roles",
+     *      path="/api/roles",
      *      summary="getRolList",
      *      tags={"Rol"},
      *      description="Get all Rols",
@@ -72,7 +72,7 @@ class RolAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Post(
-     *      path="/roles",
+     *      path="/api/roles",
      *      summary="createRol",
      *      tags={"Rol"},
      *      description="Create Rol",
@@ -126,7 +126,7 @@ class RolAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/roles/{id}",
+     *      path="/api/roles/{id}",
      *      summary="getRolItem",
      *      tags={"Rol"},
      *      description="Get Rol",
@@ -178,7 +178,7 @@ class RolAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Put(
-     *      path="/roles/{id}",
+     *      path="/api/roles/{id}",
      *      summary="updateRol",
      *      tags={"Rol"},
      *      description="Update Rol",
@@ -248,7 +248,7 @@ class RolAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Delete(
-     *      path="/roles/{id}",
+     *      path="/api/roles/{id}",
      *      summary="deleteRol",
      *      tags={"Rol"},
      *      description="Delete Rol",
