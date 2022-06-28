@@ -2,8 +2,8 @@
 Web de microsevicios API REST FUll del ministerio
 
 ## Requerimintos
-Instalacion de [docker](https://www.docker.com/products/docker-desktop)
-Instalacion de [Composer](https://getcomposer.org/doc/00-intro.md)
+- Instalacion de [docker](https://www.docker.com/products/docker-desktop)
+- Instalacion de [Composer](https://getcomposer.org/doc/00-intro.md)
 
 ## Configurar el entorno de desarrollo
 - Crear directorio rrhh-project
