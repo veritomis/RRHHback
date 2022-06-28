@@ -40,3 +40,6 @@ Configuring de Bash [Alias](https://laravel.com/docs/9.x/sail#configuring-a-bash
 - [Redis](https://redis.io/).
 - [Meilisearch](https://www.meilisearch.com/)
 - [Mailhog](https://github.com/mailhog/MailHog#mailhog-----)
+
+## Documentación de API REST FULL
+Para la documentación de los endPoint creados para los microsevicios utilizaremos swagger una vez inicializado el projecto accedemos a la siguiente url [http://localhost/api/documentation](http://localhost/api/documentation#/)
