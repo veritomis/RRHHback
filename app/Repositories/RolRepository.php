@@ -2,25 +2,23 @@
 
 namespace App\Repositories;
 
-use App\Models\Estado;
+use App\Models\Rol;
 use App\Repositories\BaseRepository;
 
 /**
- * Class EstadoRepository
+ * Class RolRepository
  * @package App\Repositories
- * @version April 28, 2022, 4:23 am UTC
+ * @version June 25, 2022, 6:24 am UTC
 */
 
-class EstadoRepository extends BaseRepository
+class RolRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'nombre',
-        'siglas',
-        'capital',
-        'poblacion'
+        'name',
+        'guard_name'
     ];
 
     /**
@@ -38,6 +36,6 @@ class EstadoRepository extends BaseRepository
      **/
     public function model()
     {
-        return Estado::class;
+        return Rol::class;
     }
 }

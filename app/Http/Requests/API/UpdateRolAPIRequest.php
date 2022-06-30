@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\API;
 
-use App\Models\Estado;
+use App\Models\Rol;
 use InfyOm\Generator\Request\APIRequest;
 
-class CreateEstadoAPIRequest extends APIRequest
+class UpdateRolAPIRequest extends APIRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,6 +24,8 @@ class CreateEstadoAPIRequest extends APIRequest
      */
     public function rules()
     {
-        return Estado::$rules;
+        $rules = Rol::$rules;
+        
+        return $rules;
     }
 }
