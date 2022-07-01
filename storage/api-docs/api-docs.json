@@ -5,6 +5,171 @@
         "version": "0.1"
     },
     "paths": {
+        "/api/agentes": {
+            "get": {
+                "tags": [
+                    "Agente"
+                ],
+                "summary": "getAgenteList",
+                "description": "Get all Agentes",
+                "operationId": "8deeff578f5d2d74b975be976f80d44c",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Agente"
+                ],
+                "summary": "createAgente",
+                "description": "Create Agente",
+                "operationId": "d4fe17793707cc26016137ad51e15b7e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/agentes/{id}": {
+            "get": {
+                "tags": [
+                    "Agente"
+                ],
+                "summary": "getAgenteItem",
+                "description": "Get Agente",
+                "operationId": "0ad206ba83a91d97aec4ab35e0d8728f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Agente",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Agente"
+                ],
+                "summary": "updateAgente",
+                "description": "Update Agente",
+                "operationId": "a4be971022406fb8329a66147a29f7e0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Agente",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Agente"
+                ],
+                "summary": "deleteAgente",
+                "description": "Delete Agente",
+                "operationId": "8f29f6a36175d234dc3345e6601431ff",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Agente",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/roles": {
             "get": {
                 "tags": [
@@ -173,6 +338,98 @@
     },
     "components": {
         "schemas": {
+            "Agente": {
+                "required": [
+                    "segundo_nombre",
+                    "segundo_apellido"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": true,
+                        "nullable": false
+                    },
+                    "primer_nombre": {
+                        "description": "primer_nombre",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": true
+                    },
+                    "segundo_nombre": {
+                        "description": "segundo_nombre",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "primer_apellido": {
+                        "description": "primer_apellido",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": true
+                    },
+                    "segundo_apellido": {
+                        "description": "segundo_apellido",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "dni": {
+                        "description": "dni",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": true
+                    },
+                    "cuil": {
+                        "description": "cuil",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": true
+                    },
+                    "fecha_nacimiento": {
+                        "description": "fecha_nacimiento",
+                        "type": "string",
+                        "format": "date",
+                        "readOnly": false,
+                        "nullable": true
+                    },
+                    "letra": {
+                        "description": "letra",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": true
+                    },
+                    "numero": {
+                        "description": "numero",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": true
+                    },
+                    "created_at": {
+                        "description": "created_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "updated_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "deleted_at": {
+                        "description": "deleted_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
             "Rol": {
                 "required": [
                     "name",
