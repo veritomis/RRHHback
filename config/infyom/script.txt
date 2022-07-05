@@ -13,3 +13,5 @@ sail artisan infyom:api Rol      --fromTable --tableName=roles     --skip=migrat
 sail artisan infyom:api Module   --fromTable --tableName=modules   --skip=migrations
 
 sail artisan infyom:api Agente   --fromTable --tableName=agentes   --skip=migrations
+
+sail artisan infyom:api Carrera  --fromTable --tableName=carreras  --skip=migrations

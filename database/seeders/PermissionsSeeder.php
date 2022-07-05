@@ -41,7 +41,13 @@ class PermissionsSeeder extends Seeder
             ['name' => 'crear-agentes', 'guard_name' => 'sanctum'],
             ['name' => 'editar-agentes', 'guard_name' => 'sanctum'],
             ['name' => 'borrar-agentes', 'guard_name' => 'sanctum'],
-            ['name' => 'consultar-agentes', 'guard_name' => 'sanctum']
+            ['name' => 'consultar-agentes', 'guard_name' => 'sanctum'],
+
+            //Carreras
+            ['name' => 'crear-carreras', 'guard_name' => 'sanctum'],
+            ['name' => 'editar-carreras', 'guard_name' => 'sanctum'],
+            ['name' => 'borrar-carreras', 'guard_name' => 'sanctum'],
+            ['name' => 'consultar-carreras', 'guard_name' => 'sanctum']
         ];
 
         foreach ($permisos as $permiso) {

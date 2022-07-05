@@ -33,6 +33,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('modulos', App\Http\Controllers\API\ModuleAPIController::class);
     Route::resource('roles', App\Http\Controllers\API\RolAPIController::class);
     Route::resource('agentes', App\Http\Controllers\API\AgenteAPIController::class);
+    Route::resource('carreras', App\Http\Controllers\API\AgenteAPIController::class);
     Route::post('/logout', [AuthenticatedSessionController::class, 'logout'])
                 ->name('logout');
 });
