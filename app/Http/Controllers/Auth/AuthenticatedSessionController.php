@@ -18,8 +18,19 @@ class AuthenticatedSessionController extends AppBaseController
      */
     public function store(LoginRequest $request)
     {
+        
+        // $credentials = [
+        //     'username' => 'haacosta',
+        //     'password' => 'Produccion01',
+        // ];
+        
+        // if (Auth::attempt($credentials)) {
+        //     $user = Auth::user();
+            
+        //     return $this->sendResponse(['Usuario' => $user], 'Acceso satisfactorio');
+        // }
+        
         $request->authenticate();
-
         $token = $request->user()->createToken('token')->plainTextToken;
         $user = Auth::user();
         // return response()->json(['user'=> $user,'token' => $token]);
