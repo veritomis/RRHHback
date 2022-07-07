@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
+
+
 
 /**
  * @OA\Schema(
@@ -173,6 +176,23 @@ class Agente extends Model
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
     ];
+
+    /**
+     * Scope to search by any column
+     * @param  Builder $query
+     * @param  string $filter
+     * @return Builder
+     */
+    public function scopeQuery(Builder $query, $filter)
+    {
+        $value = "%$filter%";
+
+        return $query->where('dni', 'LIKE', $value)
+            ->orWhere('primer_nombre', 'LIKE', $value)
+            ->orWhere('primer_apellido', 'LIKE', $value)
+            ->orWhere('segundo_apellido', 'LIKE', $value);;
+
+    }
 
     
 }

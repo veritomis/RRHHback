@@ -45,4 +45,5 @@ class AgenteRepository extends BaseRepository
     {
         return Agente::class;
     }
+
 }
