@@ -14,9 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('carreras', function (Blueprint $table) {
-            $table->id('id'); //solo id?
-            $table->unsignedBigInteger('id_agente'); //este no coincide con el id de la tabla agente
-            //va a andar igual?
+            $table->id('id'); 
+            $table->unsignedBigInteger('id_agente'); 
             $table->date('fecha');
             $table->date('fecha_inicial');
             $table->date('fecha_fin');
