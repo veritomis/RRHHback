@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('carreras', function (Blueprint $table) {
             $table->id('id'); //solo id?
-            $table->id('agente_id'); //este no coincide con el id de la tabla agente
-                                     //va a andar igual?
+            $table->unsignedBigInteger('id_agente'); //este no coincide con el id de la tabla agente
+            //va a andar igual?
             $table->date('fecha');
             $table->date('fecha_inicial');
             $table->date('fecha_fin');
@@ -26,8 +26,8 @@ return new class extends Migration
             //nivel
             //grado (creo que estan repetidos de la tabla agente!)
             $table->string('compensacion_transitoria'); // ver que es...
-            $table->id('id_profesiones');
-            $table->id('id_titulos');
+            $table->unsignedBigInteger('id_profesiones');
+            $table->unsignedBigInteger('id_titulos');
             $table->timestamps();
             $table->softDeletes();
         });
