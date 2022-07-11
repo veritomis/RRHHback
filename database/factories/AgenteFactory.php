@@ -22,18 +22,18 @@ class AgenteFactory extends Factory
      */
     public function definition()
     {
-        
+
         return [
-            'primer_nombre' => $this->faker->text($this->faker->numberBetween(5, 255)),
-            'segundo_nombre' => $this->faker->text($this->faker->numberBetween(5, 255)),
-            'primer_apellido' => $this->faker->text($this->faker->numberBetween(5, 255)),
-            'segundo_apellido' => $this->faker->text($this->faker->numberBetween(5, 255)),
-            'dni' => $this->faker->text($this->faker->numberBetween(5, 255)),
-            'cuil' => $this->faker->text($this->faker->numberBetween(5, 255)),
-            'fecha_nacimiento' => $this->faker->date('Y-m-d'),
-            'letra_nivel' => $this->faker->text($this->faker->numberBetween(5, 255)),
-            'numero_grado' => $this->faker->text($this->faker->numberBetween(5, 255)),
-            'created_at' => $this->faker->date('Y-m-d H:i:s')
+            'primer_nombre' => fake()->firstName(),
+            'segundo_nombre' => fake()->firstName(),
+            'primer_apellido' => fake()->lastName(),
+            'segundo_apellido' => fake()->lastName(),
+            'dni' => fake()->unique()->numberBetween(1000000, 99999999),
+            'cuil' => fake()->numberBetween(00, 99) . '-' . fake()->numberBetween(1000000, 99999999) . '-' . fake()->numberBetween(0, 9),
+            'fecha_nacimiento' => fake()->dateTimeBetween('-65 years', '-18 years'),
+            'letra_nivel' => fake()->randomElement(['A', 'B', 'C', 'D']),
+            'numero_grado' => fake()->randomElement([1, 2, 3, 4]),
+            'created_at' => fake()->dateTimeBetween('-1 years', 'now'),
         ];
     }
 }
