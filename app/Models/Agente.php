@@ -5,14 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Builder;
-
-
 
 /**
  * @OA\Schema(
  *      schema="Agente",
- *      required={"segundo_nombre", "segundo_apellido"},
+ *      required={"segundo_nombre", "segundo_apellido", "grupo_id"},
  *      @OA\Property(
  *          property="id",
  *          description="id",
@@ -72,18 +69,26 @@ use Illuminate\Database\Eloquent\Builder;
  *          format="date"
  *      ),
  *      @OA\Property(
- *          property="letra",
- *          description="letra",
+ *          property="letra_nivel",
+ *          description="letra_nivel",
  *          readOnly=false,
  *          nullable=true,
  *          type="string"
  *      ),
  *      @OA\Property(
- *          property="numero",
- *          description="numero",
+ *          property="numero_grado",
+ *          description="numero_grado",
  *          readOnly=false,
  *          nullable=true,
  *          type="string"
+ *      ),
+ *      @OA\Property(
+ *          property="grupo_id",
+ *          description="grupo_id",
+ *          readOnly=false,
+ *          nullable=false,
+ *          type="integer",
+ *          format="int32"
  *      ),
  *      @OA\Property(
  *          property="created_at",
@@ -136,7 +141,8 @@ class Agente extends Model
         'cuil',
         'fecha_nacimiento',
         'letra_nivel',
-        'numero_grado'
+        'numero_grado',
+        'grupo_id'
     ];
 
     /**
@@ -154,7 +160,8 @@ class Agente extends Model
         'cuil' => 'string',
         'fecha_nacimiento' => 'date',
         'letra_nivel' => 'string',
-        'numero_grado' => 'string'
+        'numero_grado' => 'string',
+        'grupo_id' => 'integer'
     ];
 
     /**
@@ -170,29 +177,19 @@ class Agente extends Model
         'dni' => 'nullable|string|max:255',
         'cuil' => 'nullable|string|max:255',
         'fecha_nacimiento' => 'nullable',
-        'letra_nivel' => 'nullable|string|max:8',
-        'numero_grado' => 'nullable|string|max:11',
+        'letra_nivel' => 'nullable|string|max:255',
+        'numero_grado' => 'nullable|string|max:255',
+        'grupo_id' => 'required',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
     ];
 
     /**
-     * Scope to search by any column
-     * @param  Builder $query
-     * @param  string $filter
-     * @return Builder
-     */
-    public function scopeQuery(Builder $query, $filter)
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function grupo()
     {
-        $value = "%$filter%";
-
-        return $query->where('dni', 'LIKE', $value)
-            ->orWhere('primer_nombre', 'LIKE', $value)
-            ->orWhere('primer_apellido', 'LIKE', $value)
-            ->orWhere('segundo_apellido', 'LIKE', $value);;
-
+        return $this->belongsTo(\App\Models\Grupo::class, 'grupo_id');
     }
-
-    
 }

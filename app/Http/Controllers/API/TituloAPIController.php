@@ -2,27 +2,27 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateAgenteAPIRequest;
-use App\Http\Requests\API\UpdateAgenteAPIRequest;
-use App\Models\Agente;
-use App\Repositories\AgenteRepository;
+use App\Http\Requests\API\CreateTituloAPIRequest;
+use App\Http\Requests\API\UpdateTituloAPIRequest;
+use App\Models\Titulo;
+use App\Repositories\TituloRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
 
 /**
- * Class AgenteController
+ * Class TituloController
  * @package App\Http\Controllers\API
  */
 
-class AgenteAPIController extends AppBaseController
+class TituloAPIController extends AppBaseController
 {
-    /** @var  AgenteRepository */
-    private $agenteRepository;
+    /** @var  TituloRepository */
+    private $tituloRepository;
 
-    public function __construct(AgenteRepository $agenteRepo)
+    public function __construct(TituloRepository $tituloRepo)
     {
-        $this->agenteRepository = $agenteRepo;
+        $this->tituloRepository = $tituloRepo;
     }
 
     /**
@@ -30,10 +30,10 @@ class AgenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/agentes",
-     *      summary="getAgenteList",
-     *      tags={"Agente"},
-     *      description="Get all Agentes",
+     *      path="/titulos",
+     *      summary="getTituloList",
+     *      tags={"Titulo"},
+     *      description="Get all Titulos",
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -46,7 +46,7 @@ class AgenteAPIController extends AppBaseController
      *              @OA\Property(
      *                  property="data",
      *                  type="array",
-     *                  @OA\Items(ref="#/definitions/Agente")
+     *                  @OA\Items(ref="#/definitions/Titulo")
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -58,13 +58,13 @@ class AgenteAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $agentes = $this->agenteRepository->all(
+        $titulos = $this->tituloRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
             $request->get('limit')
         );
 
-        return $this->sendResponse($agentes->toArray(), 'Agentes retrieved successfully');
+        return $this->sendResponse($titulos->toArray(), 'Titulos retrieved successfully');
     }
 
     /**
@@ -72,10 +72,10 @@ class AgenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Post(
-     *      path="/agentes",
-     *      summary="createAgente",
-     *      tags={"Agente"},
-     *      description="Create Agente",
+     *      path="/titulos",
+     *      summary="createTitulo",
+     *      tags={"Titulo"},
+     *      description="Create Titulo",
      *      @OA\RequestBody(
      *        required=true,
      *        @OA\MediaType(
@@ -102,7 +102,7 @@ class AgenteAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/Agente"
+     *                  ref="#/definitions/Titulo"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -112,13 +112,13 @@ class AgenteAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreateAgenteAPIRequest $request)
+    public function store(CreateTituloAPIRequest $request)
     {
         $input = $request->all();
 
-        $agente = $this->agenteRepository->create($input);
+        $titulo = $this->tituloRepository->create($input);
 
-        return $this->sendResponse($agente->toArray(), 'Agente saved successfully');
+        return $this->sendResponse($titulo->toArray(), 'Titulo saved successfully');
     }
 
     /**
@@ -126,13 +126,13 @@ class AgenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/agentes/{id}",
-     *      summary="getAgenteItem",
-     *      tags={"Agente"},
-     *      description="Get Agente",
+     *      path="/titulos/{id}",
+     *      summary="getTituloItem",
+     *      tags={"Titulo"},
+     *      description="Get Titulo",
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of Agente",
+     *          description="id of Titulo",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -150,7 +150,7 @@ class AgenteAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/Agente"
+     *                  ref="#/definitions/Titulo"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -162,14 +162,14 @@ class AgenteAPIController extends AppBaseController
      */
     public function show($id)
     {
-        /** @var Agente $agente */
-        $agente = $this->agenteRepository->find($id);
+        /** @var Titulo $titulo */
+        $titulo = $this->tituloRepository->find($id);
 
-        if (empty($agente)) {
-            return $this->sendError('Agente not found');
+        if (empty($titulo)) {
+            return $this->sendError('Titulo not found');
         }
 
-        return $this->sendResponse($agente->toArray(), 'Agente retrieved successfully');
+        return $this->sendResponse($titulo->toArray(), 'Titulo retrieved successfully');
     }
 
     /**
@@ -178,13 +178,13 @@ class AgenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Put(
-     *      path="/agentes/{id}",
-     *      summary="updateAgente",
-     *      tags={"Agente"},
-     *      description="Update Agente",
+     *      path="/titulos/{id}",
+     *      summary="updateTitulo",
+     *      tags={"Titulo"},
+     *      description="Update Titulo",
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of Agente",
+     *          description="id of Titulo",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -217,7 +217,7 @@ class AgenteAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/Agente"
+     *                  ref="#/definitions/Titulo"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -227,20 +227,20 @@ class AgenteAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update($id, UpdateAgenteAPIRequest $request)
+    public function update($id, UpdateTituloAPIRequest $request)
     {
         $input = $request->all();
 
-        /** @var Agente $agente */
-        $agente = $this->agenteRepository->find($id);
+        /** @var Titulo $titulo */
+        $titulo = $this->tituloRepository->find($id);
 
-        if (empty($agente)) {
-            return $this->sendError('Agente not found');
+        if (empty($titulo)) {
+            return $this->sendError('Titulo not found');
         }
 
-        $agente = $this->agenteRepository->update($input, $id);
+        $titulo = $this->tituloRepository->update($input, $id);
 
-        return $this->sendResponse($agente->toArray(), 'Agente updated successfully');
+        return $this->sendResponse($titulo->toArray(), 'Titulo updated successfully');
     }
 
     /**
@@ -248,13 +248,13 @@ class AgenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Delete(
-     *      path="/agentes/{id}",
-     *      summary="deleteAgente",
-     *      tags={"Agente"},
-     *      description="Delete Agente",
+     *      path="/titulos/{id}",
+     *      summary="deleteTitulo",
+     *      tags={"Titulo"},
+     *      description="Delete Titulo",
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of Agente",
+     *          description="id of Titulo",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -284,15 +284,15 @@ class AgenteAPIController extends AppBaseController
      */
     public function destroy($id)
     {
-        /** @var Agente $agente */
-        $agente = $this->agenteRepository->find($id);
+        /** @var Titulo $titulo */
+        $titulo = $this->tituloRepository->find($id);
 
-        if (empty($agente)) {
-            return $this->sendError('Agente not found');
+        if (empty($titulo)) {
+            return $this->sendError('Titulo not found');
         }
 
-        $agente->delete();
+        $titulo->delete();
 
-        return $this->sendSuccess('Agente deleted successfully');
+        return $this->sendSuccess('Titulo deleted successfully');
     }
 }

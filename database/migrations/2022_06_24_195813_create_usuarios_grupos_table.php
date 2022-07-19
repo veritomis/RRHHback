@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('profesiones', function (Blueprint $table) {
-            $table->id('id'); 
-            $table->string('nombre_profesion'); 
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::create('usuarios_grupos', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('grupo_id')->constrained('grupos');
+
+            
         });
     }
+   
 
     /**
      * Reverse the migrations.
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profesiones');
+        Schema::dropIfExists('miembros_grupos');
     }
 };

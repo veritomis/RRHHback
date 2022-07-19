@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * @OA\Schema(
  *      schema="Carrera",
- *      required={"id_agente", "fecha", "fecha_inicial", "fecha_fin", "numero_gedo", "antiguedad_puesto", "antiguedad_total", "compensacion_transitoria", "id_profesiones", "id_titulos"},
+ *      required={"id_agente", "fecha", "fecha_inicial", "fecha_fin", "numero_gedo", "antiguedad_total", "compensacion_transitoria", "profesion_id", "titulo_id"},
  *      @OA\Property(
  *          property="id",
  *          description="id",
@@ -58,20 +58,26 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          type="string"
  *      ),
  *      @OA\Property(
- *          property="antiguedad_puesto",
- *          description="antiguedad_puesto",
- *          readOnly=false,
- *          nullable=false,
- *          type="string",
- *          format="date"
- *      ),
- *      @OA\Property(
  *          property="antiguedad_total",
  *          description="antiguedad_total",
  *          readOnly=false,
  *          nullable=false,
  *          type="string",
  *          format="date"
+ *      ),
+ *      @OA\Property(
+ *          property="letra_nivel",
+ *          description="letra_nivel",
+ *          readOnly=false,
+ *          nullable=true,
+ *          type="string"
+ *      ),
+ *      @OA\Property(
+ *          property="numero_grado",
+ *          description="numero_grado",
+ *          readOnly=false,
+ *          nullable=true,
+ *          type="string"
  *      ),
  *      @OA\Property(
  *          property="compensacion_transitoria",
@@ -81,16 +87,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          type="string"
  *      ),
  *      @OA\Property(
- *          property="id_profesiones",
- *          description="id_profesiones",
+ *          property="profesion_id",
+ *          description="profesion_id",
  *          readOnly=false,
  *          nullable=false,
  *          type="integer",
  *          format="int32"
  *      ),
  *      @OA\Property(
- *          property="id_titulos",
- *          description="id_titulos",
+ *          property="titulo_id",
+ *          description="titulo_id",
  *          readOnly=false,
  *          nullable=false,
  *          type="integer",
@@ -144,11 +150,12 @@ class Carrera extends Model
         'fecha_inicial',
         'fecha_fin',
         'numero_gedo',
-        'antiguedad_puesto',
         'antiguedad_total',
+        'letra_nivel',
+        'numero_grado',
         'compensacion_transitoria',
-        'id_profesiones',
-        'id_titulos'
+        'profesion_id',
+        'titulo_id'
     ];
 
     /**
@@ -163,11 +170,12 @@ class Carrera extends Model
         'fecha_inicial' => 'date',
         'fecha_fin' => 'date',
         'numero_gedo' => 'string',
-        'antiguedad_puesto' => 'date',
         'antiguedad_total' => 'date',
+        'letra_nivel' => 'string',
+        'numero_grado' => 'string',
         'compensacion_transitoria' => 'string',
-        'id_profesiones' => 'integer',
-        'id_titulos' => 'integer'
+        'profesion_id' => 'integer',
+        'titulo_id' => 'integer'
     ];
 
     /**
@@ -181,15 +189,30 @@ class Carrera extends Model
         'fecha_inicial' => 'required',
         'fecha_fin' => 'required',
         'numero_gedo' => 'required|string|max:255',
-        'antiguedad_puesto' => 'required',
         'antiguedad_total' => 'required',
+        'letra_nivel' => 'nullable|string|max:255',
+        'numero_grado' => 'nullable|string|max:255',
         'compensacion_transitoria' => 'required|string|max:255',
-        'id_profesiones' => 'required',
-        'id_titulos' => 'required',
+        'profesion_id' => 'required',
+        'titulo_id' => 'required',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
     ];
 
-    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function profesion()
+    {
+        return $this->belongsTo(\App\Models\Profesione::class, 'profesion_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function titulo()
+    {
+        return $this->belongsTo(\App\Models\Titulo::class, 'titulo_id');
+    }
 }

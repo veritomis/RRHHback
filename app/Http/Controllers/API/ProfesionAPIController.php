@@ -2,27 +2,27 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateAgenteAPIRequest;
-use App\Http\Requests\API\UpdateAgenteAPIRequest;
-use App\Models\Agente;
-use App\Repositories\AgenteRepository;
+use App\Http\Requests\API\CreateProfesionAPIRequest;
+use App\Http\Requests\API\UpdateProfesionAPIRequest;
+use App\Models\Profesion;
+use App\Repositories\ProfesionRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
 
 /**
- * Class AgenteController
+ * Class ProfesionController
  * @package App\Http\Controllers\API
  */
 
-class AgenteAPIController extends AppBaseController
+class ProfesionAPIController extends AppBaseController
 {
-    /** @var  AgenteRepository */
-    private $agenteRepository;
+    /** @var  ProfesionRepository */
+    private $profesionRepository;
 
-    public function __construct(AgenteRepository $agenteRepo)
+    public function __construct(ProfesionRepository $profesionRepo)
     {
-        $this->agenteRepository = $agenteRepo;
+        $this->profesionRepository = $profesionRepo;
     }
 
     /**
@@ -30,10 +30,10 @@ class AgenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/agentes",
-     *      summary="getAgenteList",
-     *      tags={"Agente"},
-     *      description="Get all Agentes",
+     *      path="/profesions",
+     *      summary="getProfesionList",
+     *      tags={"Profesion"},
+     *      description="Get all Profesions",
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -46,7 +46,7 @@ class AgenteAPIController extends AppBaseController
      *              @OA\Property(
      *                  property="data",
      *                  type="array",
-     *                  @OA\Items(ref="#/definitions/Agente")
+     *                  @OA\Items(ref="#/definitions/Profesion")
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -58,13 +58,13 @@ class AgenteAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $agentes = $this->agenteRepository->all(
+        $profesions = $this->profesionRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
             $request->get('limit')
         );
 
-        return $this->sendResponse($agentes->toArray(), 'Agentes retrieved successfully');
+        return $this->sendResponse($profesions->toArray(), 'Profesions retrieved successfully');
     }
 
     /**
@@ -72,10 +72,10 @@ class AgenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Post(
-     *      path="/agentes",
-     *      summary="createAgente",
-     *      tags={"Agente"},
-     *      description="Create Agente",
+     *      path="/profesions",
+     *      summary="createProfesion",
+     *      tags={"Profesion"},
+     *      description="Create Profesion",
      *      @OA\RequestBody(
      *        required=true,
      *        @OA\MediaType(
@@ -102,7 +102,7 @@ class AgenteAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/Agente"
+     *                  ref="#/definitions/Profesion"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -112,13 +112,13 @@ class AgenteAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreateAgenteAPIRequest $request)
+    public function store(CreateProfesionAPIRequest $request)
     {
         $input = $request->all();
 
-        $agente = $this->agenteRepository->create($input);
+        $profesion = $this->profesionRepository->create($input);
 
-        return $this->sendResponse($agente->toArray(), 'Agente saved successfully');
+        return $this->sendResponse($profesion->toArray(), 'Profesion saved successfully');
     }
 
     /**
@@ -126,13 +126,13 @@ class AgenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/agentes/{id}",
-     *      summary="getAgenteItem",
-     *      tags={"Agente"},
-     *      description="Get Agente",
+     *      path="/profesions/{id}",
+     *      summary="getProfesionItem",
+     *      tags={"Profesion"},
+     *      description="Get Profesion",
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of Agente",
+     *          description="id of Profesion",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -150,7 +150,7 @@ class AgenteAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/Agente"
+     *                  ref="#/definitions/Profesion"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -162,14 +162,14 @@ class AgenteAPIController extends AppBaseController
      */
     public function show($id)
     {
-        /** @var Agente $agente */
-        $agente = $this->agenteRepository->find($id);
+        /** @var Profesion $profesion */
+        $profesion = $this->profesionRepository->find($id);
 
-        if (empty($agente)) {
-            return $this->sendError('Agente not found');
+        if (empty($profesion)) {
+            return $this->sendError('Profesion not found');
         }
 
-        return $this->sendResponse($agente->toArray(), 'Agente retrieved successfully');
+        return $this->sendResponse($profesion->toArray(), 'Profesion retrieved successfully');
     }
 
     /**
@@ -178,13 +178,13 @@ class AgenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Put(
-     *      path="/agentes/{id}",
-     *      summary="updateAgente",
-     *      tags={"Agente"},
-     *      description="Update Agente",
+     *      path="/profesions/{id}",
+     *      summary="updateProfesion",
+     *      tags={"Profesion"},
+     *      description="Update Profesion",
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of Agente",
+     *          description="id of Profesion",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -217,7 +217,7 @@ class AgenteAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/Agente"
+     *                  ref="#/definitions/Profesion"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -227,20 +227,20 @@ class AgenteAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update($id, UpdateAgenteAPIRequest $request)
+    public function update($id, UpdateProfesionAPIRequest $request)
     {
         $input = $request->all();
 
-        /** @var Agente $agente */
-        $agente = $this->agenteRepository->find($id);
+        /** @var Profesion $profesion */
+        $profesion = $this->profesionRepository->find($id);
 
-        if (empty($agente)) {
-            return $this->sendError('Agente not found');
+        if (empty($profesion)) {
+            return $this->sendError('Profesion not found');
         }
 
-        $agente = $this->agenteRepository->update($input, $id);
+        $profesion = $this->profesionRepository->update($input, $id);
 
-        return $this->sendResponse($agente->toArray(), 'Agente updated successfully');
+        return $this->sendResponse($profesion->toArray(), 'Profesion updated successfully');
     }
 
     /**
@@ -248,13 +248,13 @@ class AgenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Delete(
-     *      path="/agentes/{id}",
-     *      summary="deleteAgente",
-     *      tags={"Agente"},
-     *      description="Delete Agente",
+     *      path="/profesions/{id}",
+     *      summary="deleteProfesion",
+     *      tags={"Profesion"},
+     *      description="Delete Profesion",
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of Agente",
+     *          description="id of Profesion",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -284,15 +284,15 @@ class AgenteAPIController extends AppBaseController
      */
     public function destroy($id)
     {
-        /** @var Agente $agente */
-        $agente = $this->agenteRepository->find($id);
+        /** @var Profesion $profesion */
+        $profesion = $this->profesionRepository->find($id);
 
-        if (empty($agente)) {
-            return $this->sendError('Agente not found');
+        if (empty($profesion)) {
+            return $this->sendError('Profesion not found');
         }
 
-        $agente->delete();
+        $profesion->delete();
 
-        return $this->sendSuccess('Agente deleted successfully');
+        return $this->sendSuccess('Profesion deleted successfully');
     }
 }

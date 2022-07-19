@@ -25,6 +25,9 @@ class CreateAgentesTable extends Migration
             $table->date('fecha_nacimiento')->nullable();
             $table->string('letra_nivel')->nullable();
             $table->string('numero_grado')->nullable();
+
+            $table->foreignId('grupo_id')->constrained('grupos');
+
             $table->timestamps();
             $table->softDeletes();
         });

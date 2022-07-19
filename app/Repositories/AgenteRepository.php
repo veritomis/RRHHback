@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class AgenteRepository
  * @package App\Repositories
- * @version June 30, 2022, 6:39 pm UTC
+ * @version July 18, 2022, 4:35 pm -03
 */
 
 class AgenteRepository extends BaseRepository
@@ -25,7 +25,8 @@ class AgenteRepository extends BaseRepository
         'cuil',
         'fecha_nacimiento',
         'letra_nivel',
-        'numero_grado'
+        'numero_grado',
+        'grupo_id'
     ];
 
     /**
@@ -45,5 +46,4 @@ class AgenteRepository extends BaseRepository
     {
         return Agente::class;
     }
-
 }

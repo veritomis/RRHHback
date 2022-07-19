@@ -15,3 +15,9 @@ sail artisan infyom:api Module   --fromTable --tableName=modules   --skip=migrat
 sail artisan infyom:api Agente   --fromTable --tableName=agentes   --skip=migrations
 
 sail artisan infyom:api Carrera  --fromTable --tableName=carreras  --skip=migrations
+
+sail artisan infyom:api Titulo  --fromTable --tableName=titulos  --skip=migrations
+sail artisan infyom:api Profesion --fromTable --tableName=profesiones --skip=migrations
+
+sail artisan infyom:api Grupo --fromTable --tableName=grupos --skip=migrations
+sail artisan infyom:api Usuario_grupo --fromTable --tableName=usuarios_grupos --skip=migrations

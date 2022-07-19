@@ -2,27 +2,27 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateAgenteAPIRequest;
-use App\Http\Requests\API\UpdateAgenteAPIRequest;
-use App\Models\Agente;
-use App\Repositories\AgenteRepository;
+use App\Http\Requests\API\CreateUsuario_grupoAPIRequest;
+use App\Http\Requests\API\UpdateUsuario_grupoAPIRequest;
+use App\Models\Usuario_grupo;
+use App\Repositories\Usuario_grupoRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
 
 /**
- * Class AgenteController
+ * Class Usuario_grupoController
  * @package App\Http\Controllers\API
  */
 
-class AgenteAPIController extends AppBaseController
+class Usuario_grupoAPIController extends AppBaseController
 {
-    /** @var  AgenteRepository */
-    private $agenteRepository;
+    /** @var  Usuario_grupoRepository */
+    private $usuarioGrupoRepository;
 
-    public function __construct(AgenteRepository $agenteRepo)
+    public function __construct(Usuario_grupoRepository $usuarioGrupoRepo)
     {
-        $this->agenteRepository = $agenteRepo;
+        $this->usuarioGrupoRepository = $usuarioGrupoRepo;
     }
 
     /**
@@ -30,10 +30,10 @@ class AgenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/agentes",
-     *      summary="getAgenteList",
-     *      tags={"Agente"},
-     *      description="Get all Agentes",
+     *      path="/usuarioGrupos",
+     *      summary="getUsuario_grupoList",
+     *      tags={"Usuario_grupo"},
+     *      description="Get all Usuario_grupos",
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -46,7 +46,7 @@ class AgenteAPIController extends AppBaseController
      *              @OA\Property(
      *                  property="data",
      *                  type="array",
-     *                  @OA\Items(ref="#/definitions/Agente")
+     *                  @OA\Items(ref="#/definitions/Usuario_grupo")
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -58,13 +58,13 @@ class AgenteAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $agentes = $this->agenteRepository->all(
+        $usuarioGrupos = $this->usuarioGrupoRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
             $request->get('limit')
         );
 
-        return $this->sendResponse($agentes->toArray(), 'Agentes retrieved successfully');
+        return $this->sendResponse($usuarioGrupos->toArray(), 'Usuario Grupos retrieved successfully');
     }
 
     /**
@@ -72,10 +72,10 @@ class AgenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Post(
-     *      path="/agentes",
-     *      summary="createAgente",
-     *      tags={"Agente"},
-     *      description="Create Agente",
+     *      path="/usuarioGrupos",
+     *      summary="createUsuario_grupo",
+     *      tags={"Usuario_grupo"},
+     *      description="Create Usuario_grupo",
      *      @OA\RequestBody(
      *        required=true,
      *        @OA\MediaType(
@@ -102,7 +102,7 @@ class AgenteAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/Agente"
+     *                  ref="#/definitions/Usuario_grupo"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -112,13 +112,13 @@ class AgenteAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreateAgenteAPIRequest $request)
+    public function store(CreateUsuario_grupoAPIRequest $request)
     {
         $input = $request->all();
 
-        $agente = $this->agenteRepository->create($input);
+        $usuarioGrupo = $this->usuarioGrupoRepository->create($input);
 
-        return $this->sendResponse($agente->toArray(), 'Agente saved successfully');
+        return $this->sendResponse($usuarioGrupo->toArray(), 'Usuario Grupo saved successfully');
     }
 
     /**
@@ -126,13 +126,13 @@ class AgenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/agentes/{id}",
-     *      summary="getAgenteItem",
-     *      tags={"Agente"},
-     *      description="Get Agente",
+     *      path="/usuarioGrupos/{id}",
+     *      summary="getUsuario_grupoItem",
+     *      tags={"Usuario_grupo"},
+     *      description="Get Usuario_grupo",
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of Agente",
+     *          description="id of Usuario_grupo",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -150,7 +150,7 @@ class AgenteAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/Agente"
+     *                  ref="#/definitions/Usuario_grupo"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -162,14 +162,14 @@ class AgenteAPIController extends AppBaseController
      */
     public function show($id)
     {
-        /** @var Agente $agente */
-        $agente = $this->agenteRepository->find($id);
+        /** @var Usuario_grupo $usuarioGrupo */
+        $usuarioGrupo = $this->usuarioGrupoRepository->find($id);
 
-        if (empty($agente)) {
-            return $this->sendError('Agente not found');
+        if (empty($usuarioGrupo)) {
+            return $this->sendError('Usuario Grupo not found');
         }
 
-        return $this->sendResponse($agente->toArray(), 'Agente retrieved successfully');
+        return $this->sendResponse($usuarioGrupo->toArray(), 'Usuario Grupo retrieved successfully');
     }
 
     /**
@@ -178,13 +178,13 @@ class AgenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Put(
-     *      path="/agentes/{id}",
-     *      summary="updateAgente",
-     *      tags={"Agente"},
-     *      description="Update Agente",
+     *      path="/usuarioGrupos/{id}",
+     *      summary="updateUsuario_grupo",
+     *      tags={"Usuario_grupo"},
+     *      description="Update Usuario_grupo",
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of Agente",
+     *          description="id of Usuario_grupo",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -217,7 +217,7 @@ class AgenteAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/Agente"
+     *                  ref="#/definitions/Usuario_grupo"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -227,20 +227,20 @@ class AgenteAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update($id, UpdateAgenteAPIRequest $request)
+    public function update($id, UpdateUsuario_grupoAPIRequest $request)
     {
         $input = $request->all();
 
-        /** @var Agente $agente */
-        $agente = $this->agenteRepository->find($id);
+        /** @var Usuario_grupo $usuarioGrupo */
+        $usuarioGrupo = $this->usuarioGrupoRepository->find($id);
 
-        if (empty($agente)) {
-            return $this->sendError('Agente not found');
+        if (empty($usuarioGrupo)) {
+            return $this->sendError('Usuario Grupo not found');
         }
 
-        $agente = $this->agenteRepository->update($input, $id);
+        $usuarioGrupo = $this->usuarioGrupoRepository->update($input, $id);
 
-        return $this->sendResponse($agente->toArray(), 'Agente updated successfully');
+        return $this->sendResponse($usuarioGrupo->toArray(), 'Usuario_grupo updated successfully');
     }
 
     /**
@@ -248,13 +248,13 @@ class AgenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Delete(
-     *      path="/agentes/{id}",
-     *      summary="deleteAgente",
-     *      tags={"Agente"},
-     *      description="Delete Agente",
+     *      path="/usuarioGrupos/{id}",
+     *      summary="deleteUsuario_grupo",
+     *      tags={"Usuario_grupo"},
+     *      description="Delete Usuario_grupo",
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of Agente",
+     *          description="id of Usuario_grupo",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -284,15 +284,15 @@ class AgenteAPIController extends AppBaseController
      */
     public function destroy($id)
     {
-        /** @var Agente $agente */
-        $agente = $this->agenteRepository->find($id);
+        /** @var Usuario_grupo $usuarioGrupo */
+        $usuarioGrupo = $this->usuarioGrupoRepository->find($id);
 
-        if (empty($agente)) {
-            return $this->sendError('Agente not found');
+        if (empty($usuarioGrupo)) {
+            return $this->sendError('Usuario Grupo not found');
         }
 
-        $agente->delete();
+        $usuarioGrupo->delete();
 
-        return $this->sendSuccess('Agente deleted successfully');
+        return $this->sendSuccess('Usuario Grupo deleted successfully');
     }
 }

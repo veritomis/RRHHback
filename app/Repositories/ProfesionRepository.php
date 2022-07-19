@@ -2,32 +2,22 @@
 
 namespace App\Repositories;
 
-use App\Models\Carrera;
+use App\Models\Profesion;
 use App\Repositories\BaseRepository;
 
 /**
- * Class CarreraRepository
+ * Class ProfesionRepository
  * @package App\Repositories
- * @version July 18, 2022, 4:36 pm -03
+ * @version July 19, 2022, 4:27 pm -03
 */
 
-class CarreraRepository extends BaseRepository
+class ProfesionRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'id_agente',
-        'fecha',
-        'fecha_inicial',
-        'fecha_fin',
-        'numero_gedo',
-        'antiguedad_total',
-        'letra_nivel',
-        'numero_grado',
-        'compensacion_transitoria',
-        'profesion_id',
-        'titulo_id'
+        'nombre_profesion'
     ];
 
     /**
@@ -45,6 +35,6 @@ class CarreraRepository extends BaseRepository
      **/
     public function model()
     {
-        return Carrera::class;
+        return Profesion::class;
     }
 }
