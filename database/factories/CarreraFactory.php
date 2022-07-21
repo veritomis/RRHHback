@@ -5,7 +5,7 @@ namespace Database\Factories;
 use App\Models\Carrera;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-use App\Models\Profesione;
+use App\Models\Profesion;
 use App\Models\Titulo;
 
 class CarreraFactory extends Factory
@@ -25,9 +25,9 @@ class CarreraFactory extends Factory
     public function definition()
     {
         
-        $profesione = Profesione::first();
-        if (!$profesione) {
-            $profesione = Profesione::factory()->create();
+        $profesion = Profesion::first();
+        if (!$profesion) {
+            $profesion = Profesion::factory()->create();
         }
 
         $titulo = Titulo::first();
@@ -45,7 +45,7 @@ class CarreraFactory extends Factory
             'letra_nivel' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'numero_grado' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'compensacion_transitoria' => $this->faker->text($this->faker->numberBetween(5, 255)),
-            'profesion_id' => $profesione->id,
+            'profesion_id' => $profesion->id,
             'titulo_id' => $titulo->id,
             'created_at' => $this->faker->date('Y-m-d H:i:s'),
             'updated_at' => $this->faker->date('Y-m-d H:i:s'),

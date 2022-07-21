@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre_grupo')->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

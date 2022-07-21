@@ -42,7 +42,7 @@ class AgenteFactory extends Factory
             'grupo_id' => $grupo->id,
             'created_at' => $this->faker->date('Y-m-d H:i:s'),
             'updated_at' => $this->faker->date('Y-m-d H:i:s'),
-            'deleted_at' => $this->faker->date('Y-m-d H:i:s')
+            //'deleted_at' => $this->faker->date('Y-m-d H:i:s')
         ];
     }
 }
