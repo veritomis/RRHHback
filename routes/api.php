@@ -33,12 +33,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('modulos', App\Http\Controllers\API\ModuleAPIController::class);
     Route::resource('roles', App\Http\Controllers\API\RolAPIController::class);
     Route::resource('agentes', App\Http\Controllers\API\AgenteAPIController::class);
-    Route::resource('carreras', App\Http\Controllers\API\AgenteAPIController::class);
+    Route::resource('carreras', App\Http\Controllers\API\CarreraAPIController::class);
 
     Route::resource('titulos', App\Http\Controllers\API\TituloAPIController::class);
-    Route::resource('profesions', App\Http\Controllers\API\ProfesionAPIController::class);
+    Route::resource('profesiones', App\Http\Controllers\API\ProfesionAPIController::class);
     Route::resource('grupos', App\Http\Controllers\API\GrupoAPIController::class);
-    Route::resource('usuario_grupos', App\Http\Controllers\API\Usuario_grupoAPIController::class);
+    Route::resource('usuariosgrupos', App\Http\Controllers\API\Usuario_grupoAPIController::class);
 
     Route::post('/logout', [AuthenticatedSessionController::class, 'logout'])
                 ->name('logout');
@@ -46,3 +46,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 
+
+
+Route::resource('profesions', App\Http\Controllers\API\ProfesionAPIController::class);

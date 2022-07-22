@@ -47,7 +47,32 @@ class PermissionsSeeder extends Seeder
             ['name' => 'crear-carreras', 'guard_name' => 'sanctum'],
             ['name' => 'editar-carreras', 'guard_name' => 'sanctum'],
             ['name' => 'borrar-carreras', 'guard_name' => 'sanctum'],
-            ['name' => 'consultar-carreras', 'guard_name' => 'sanctum']
+            ['name' => 'consultar-carreras', 'guard_name' => 'sanctum'],
+
+            //Grupos
+            ['name' => 'crear-grupos', 'guard_name' => 'sanctum'],
+            ['name' => 'editar-grupos', 'guard_name' => 'sanctum'],
+            ['name' => 'borrar-grupos', 'guard_name' => 'sanctum'],
+            ['name' => 'consultar-grupos', 'guard_name' => 'sanctum'],
+
+            //Titulos
+            ['name' => 'crear-titulos', 'guard_name' => 'sanctum'],
+            ['name' => 'editar-titulos', 'guard_name' => 'sanctum'],
+            ['name' => 'borrar-titulos', 'guard_name' => 'sanctum'],
+            ['name' => 'consultar-titulos', 'guard_name' => 'sanctum'],
+
+            //Profesiones
+            ['name' => 'crear-profesiones', 'guard_name' => 'sanctum'],
+            ['name' => 'editar-profesiones', 'guard_name' => 'sanctum'],
+            ['name' => 'borrar-profesiones', 'guard_name' => 'sanctum'],
+            ['name' => 'consultar-profesiones', 'guard_name' => 'sanctum'],
+
+            //Usuarios_grupos
+            ['name' => 'crear-usuarios_grupos', 'guard_name' => 'sanctum'],
+            ['name' => 'editar-usuarios_grupos', 'guard_name' => 'sanctum'],
+            ['name' => 'borrar-usuarios_grupos', 'guard_name' => 'sanctum'],
+            ['name' => 'consultar-usuarios_grupos', 'guard_name' => 'sanctum']
+
         ];
 
         foreach ($permisos as $permiso) {
