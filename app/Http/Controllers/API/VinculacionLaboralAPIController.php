@@ -34,6 +34,7 @@ class VinculacionLaboralAPIController extends AppBaseController
      *      summary="getVinculacionLaboralList",
      *      tags={"VinculacionLaboral"},
      *      description="Get all VinculacionLaborals",
+     *      security={ {"sanctum": {} }},
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -76,6 +77,7 @@ class VinculacionLaboralAPIController extends AppBaseController
      *      summary="createVinculacionLaboral",
      *      tags={"VinculacionLaboral"},
      *      description="Create VinculacionLaboral",
+     *      security={ {"sanctum": {} }},
      *      @OA\RequestBody(
      *        required=true,
      *        @OA\MediaType(
@@ -130,6 +132,7 @@ class VinculacionLaboralAPIController extends AppBaseController
      *      summary="getVinculacionLaboralItem",
      *      tags={"VinculacionLaboral"},
      *      description="Get VinculacionLaboral",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of VinculacionLaboral",
@@ -182,6 +185,7 @@ class VinculacionLaboralAPIController extends AppBaseController
      *      summary="updateVinculacionLaboral",
      *      tags={"VinculacionLaboral"},
      *      description="Update VinculacionLaboral",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of VinculacionLaboral",
@@ -252,6 +256,7 @@ class VinculacionLaboralAPIController extends AppBaseController
      *      summary="deleteVinculacionLaboral",
      *      tags={"VinculacionLaboral"},
      *      description="Delete VinculacionLaboral",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of VinculacionLaboral",

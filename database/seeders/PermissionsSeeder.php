@@ -32,10 +32,10 @@ class PermissionsSeeder extends Seeder
             ['name' => 'consultar-modulos', 'guard_name' => 'sanctum'],
 
             //Asistencia Medica
-            ['name' => 'crear-asistencia-medica', 'guard_name' => 'sanctum'],
-            ['name' => 'editar-asistencia-medica', 'guard_name' => 'sanctum'],
-            ['name' => 'borrar-asistencia-medica', 'guard_name' => 'sanctum'],
-            ['name' => 'consultar-asistencia-medica', 'guard_name' => 'sanctum']
+            ['name' => 'crear-contratos', 'guard_name' => 'sanctum'],
+            ['name' => 'editar-contratos', 'guard_name' => 'sanctum'],
+            ['name' => 'borrar-contratos', 'guard_name' => 'sanctum'],
+            ['name' => 'consultar-contratos', 'guard_name' => 'sanctum']
         ];
 
         foreach ($permisos as $permiso) {

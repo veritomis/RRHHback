@@ -8,6 +8,7 @@ use App\Models\Contrato;
 use App\Repositories\ContratoRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use App\Traits\VerificationRol;
 use Response;
 
 /**
@@ -17,6 +18,8 @@ use Response;
 
 class ContratoAPIController extends AppBaseController
 {
+    use VerificationRol;
+
     /** @var  ContratoRepository */
     private $contratoRepository;
 
@@ -34,6 +37,7 @@ class ContratoAPIController extends AppBaseController
      *      summary="getContratoList",
      *      tags={"Contrato"},
      *      description="Get all Contratos",
+     *      security={ {"sanctum": {} }},
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -64,6 +68,10 @@ class ContratoAPIController extends AppBaseController
             $request->get('limit')
         );
 
+        if (!$this->verifiedPermissions('consultar-contratos')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         return $this->sendResponse($contratos->toArray(), 'Contratos retrieved successfully');
     }
 
@@ -76,6 +84,7 @@ class ContratoAPIController extends AppBaseController
      *      summary="createContrato",
      *      tags={"Contrato"},
      *      description="Create Contrato",
+     *      security={ {"sanctum": {} }},
      *      @OA\RequestBody(
      *        required=true,
      *        @OA\MediaType(
@@ -114,6 +123,10 @@ class ContratoAPIController extends AppBaseController
      */
     public function store(CreateContratoAPIRequest $request)
     {
+        if (!$this->verifiedPermissions('crear-contratos')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         $input = $request->all();
 
         $contrato = $this->contratoRepository->create($input);
@@ -130,6 +143,7 @@ class ContratoAPIController extends AppBaseController
      *      summary="getContratoItem",
      *      tags={"Contrato"},
      *      description="Get Contrato",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of Contrato",
@@ -162,6 +176,10 @@ class ContratoAPIController extends AppBaseController
      */
     public function show($id)
     {
+        if (!$this->verifiedPermissions('consultar-contratos')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+        
         /** @var Contrato $contrato */
         $contrato = $this->contratoRepository->find($id);
 
@@ -182,6 +200,7 @@ class ContratoAPIController extends AppBaseController
      *      summary="updateContrato",
      *      tags={"Contrato"},
      *      description="Update Contrato",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of Contrato",
@@ -229,6 +248,10 @@ class ContratoAPIController extends AppBaseController
      */
     public function update($id, UpdateContratoAPIRequest $request)
     {
+        if (!$this->verifiedPermissions('editar-contratos')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         $input = $request->all();
 
         /** @var Contrato $contrato */
@@ -252,6 +275,7 @@ class ContratoAPIController extends AppBaseController
      *      summary="deleteContrato",
      *      tags={"Contrato"},
      *      description="Delete Contrato",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of Contrato",
@@ -284,6 +308,10 @@ class ContratoAPIController extends AppBaseController
      */
     public function destroy($id)
     {
+        if (!$this->verifiedPermissions('borrar-contratos')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         /** @var Contrato $contrato */
         $contrato = $this->contratoRepository->find($id);
 

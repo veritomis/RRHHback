@@ -34,6 +34,7 @@ class AsistenciaTipoContratoAPIController extends AppBaseController
      *      summary="getAsistenciaTipoContratoList",
      *      tags={"AsistenciaTipoContrato"},
      *      description="Get all AsistenciaTipoContratos",
+     *      security={ {"sanctum": {} }},
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -76,6 +77,7 @@ class AsistenciaTipoContratoAPIController extends AppBaseController
      *      summary="createAsistenciaTipoContrato",
      *      tags={"AsistenciaTipoContrato"},
      *      description="Create AsistenciaTipoContrato",
+     *      security={ {"sanctum": {} }},
      *      @OA\RequestBody(
      *        required=true,
      *        @OA\MediaType(
@@ -130,6 +132,7 @@ class AsistenciaTipoContratoAPIController extends AppBaseController
      *      summary="getAsistenciaTipoContratoItem",
      *      tags={"AsistenciaTipoContrato"},
      *      description="Get AsistenciaTipoContrato",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of AsistenciaTipoContrato",
@@ -182,6 +185,7 @@ class AsistenciaTipoContratoAPIController extends AppBaseController
      *      summary="updateAsistenciaTipoContrato",
      *      tags={"AsistenciaTipoContrato"},
      *      description="Update AsistenciaTipoContrato",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of AsistenciaTipoContrato",
@@ -252,6 +256,7 @@ class AsistenciaTipoContratoAPIController extends AppBaseController
      *      summary="deleteAsistenciaTipoContrato",
      *      tags={"AsistenciaTipoContrato"},
      *      description="Delete AsistenciaTipoContrato",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of AsistenciaTipoContrato",
