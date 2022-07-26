@@ -33,6 +33,8 @@ return new class extends Migration
             //relaciones
             // $table->integer('vinculacion_laboral_id');
             // $table->integer('asistenacia_tipo_contratacion_id');
+            $table->foreignId('vinculacion_laboral_id')->constrained('vinculaciones_laborales');
+            $table->foreignId('asistencia_tipo_contratacion_id')->constrained('asistencia_tipo_contrataciones');
 
             $table->integer('agente_id');
             $table->integer('area_id');
