@@ -14,7 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        \App\Models\VinculacionLaboral::factory(10)->create();
+        \App\Models\AsistenciaTipoContrato::factory(10)->create();
+        \App\Models\Contrato::factory(10)->create();
         activity()->withoutLogs(function () {
             $this->call([
                 PermissionsSeeder::class,

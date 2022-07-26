@@ -13,10 +13,17 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('users', App\Http\Controllers\API\UserAPIController::class);
     Route::resource('modulos', App\Http\Controllers\API\ModuleAPIController::class);
     Route::resource('roles', App\Http\Controllers\API\RolAPIController::class);
+    Route::resource('vinculaciones-laborales', App\Http\Controllers\API\VinculacionLaboralAPIController::class);
+    Route::resource('asistencia-tipo-contratos', App\Http\Controllers\API\AsistenciaTipoContratoAPIController::class);
+    Route::resource('contratos', App\Http\Controllers\API\ContratoAPIController::class);
 
     Route::post('/logout', [AuthenticatedSessionController::class, 'logout'])
                 ->name('logout');
 });
+
+
+
+
 
 
 
