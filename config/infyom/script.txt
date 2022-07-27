@@ -1,5 +1,5 @@
 -------------------------
-clear cache documentations 
+clear cache documentations
 -------------------------
 sail artisan cache:clear
 sail artisan config:cache
@@ -7,17 +7,16 @@ sail artisan config:clear
 -------------------------
 Creation the CRUD
 -------------------------
-sail artisan infyom:api Estado   --fromTable --tableName=estados   --skip=migrations
-sail artisan infyom:api Post     --fromTable --tableName=posts     --skip=migrations
-sail artisan infyom:api Rol      --fromTable --tableName=roles     --skip=migrations
-sail artisan infyom:api Module   --fromTable --tableName=modules   --skip=migrations
-
-sail artisan infyom:api Agente   --fromTable --tableName=agentes   --skip=migrations
-
-sail artisan infyom:api Carrera  --fromTable --tableName=carreras  --skip=migrations
-
-sail artisan infyom:api Titulo  --fromTable --tableName=titulos  --skip=migrations
-sail artisan infyom:api Profesion --fromTable --tableName=profesiones --skip=migrations
-
-sail artisan infyom:api Grupo --fromTable --tableName=grupos --skip=migrations
-sail artisan infyom:api Usuario_grupo --fromTable --tableName=usuarios_grupos --skip=migrations
+sail artisan infyom:api Estado                  --fromTable --tableName=estados                         --skip=migrations
+sail artisan infyom:api Post                    --fromTable --tableName=posts                           --skip=migrations
+sail artisan infyom:api Rol                     --fromTable --tableName=roles                           --skip=migrations
+sail artisan infyom:api Module                  --fromTable --tableName=modules                         --skip=migrations
+sail artisan infyom:api Agente                  --fromTable --tableName=agentes                         --skip=migrations
+sail artisan infyom:api Carrera                 --fromTable --tableName=carreras                        --skip=migrations
+sail artisan infyom:api Titulo                  --fromTable --tableName=titulos                         --skip=migrations
+sail artisan infyom:api Profesion               --fromTable --tableName=profesiones                     --skip=migrations
+sail artisan infyom:api Grupo                   --fromTable --tableName=grupos                          --skip=migrations
+sail artisan infyom:api Usuario_grupo           --fromTable --tableName=usuarios_grupos                 --skip=migrations
+sail artisan infyom:api VinculacionLaboral      --fromTable --tableName=vinculaciones_laborales         --skip=migrations
+sail artisan infyom:api AsistenciaTipoContrato  --fromTable --tableName=asistencia_tipo_contrataciones  --skip=migrations
+sail artisan infyom:api Contrato                --fromTable --tableName=contratos                       --skip=migrations

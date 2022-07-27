@@ -5,6 +5,7 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class Module
@@ -63,5 +64,16 @@ class Module extends Model
         'deleted_at' => 'nullable'
     ];
 
-    
+    /**
+     * Scope to search by any column
+     * @param  Builder $query
+     * @param  string $filter
+     * @return Builder
+     */
+    public function scopeQuery(Builder $query, $filter)
+    {
+        $value = "%$filter%";
+
+        return $query->where('nombre', 'LIKE', $value);
+    }
 }

@@ -24,18 +24,12 @@ class PermissionsSeeder extends Seeder
             ['name' => 'editar-post', 'guard_name' => 'sanctum'],
             ['name' => 'borrar-post', 'guard_name' => 'sanctum'],
             ['name' => 'consultar-post', 'guard_name' => 'sanctum'],
-            
+
             //Modulos
             ['name' => 'crear-modulos', 'guard_name' => 'sanctum'],
             ['name' => 'editar-modulos', 'guard_name' => 'sanctum'],
             ['name' => 'borrar-modulos', 'guard_name' => 'sanctum'],
             ['name' => 'consultar-modulos', 'guard_name' => 'sanctum'],
-
-            //Asistencia Medica
-            ['name' => 'crear-asistencia-medica', 'guard_name' => 'sanctum'],
-            ['name' => 'editar-asistencia-medica', 'guard_name' => 'sanctum'],
-            ['name' => 'borrar-asistencia-medica', 'guard_name' => 'sanctum'],
-            ['name' => 'consultar-asistencia-medica', 'guard_name' => 'sanctum'],
 
             //Agentes
             ['name' => 'crear-agentes', 'guard_name' => 'sanctum'],
@@ -66,13 +60,12 @@ class PermissionsSeeder extends Seeder
             ['name' => 'editar-profesiones', 'guard_name' => 'sanctum'],
             ['name' => 'borrar-profesiones', 'guard_name' => 'sanctum'],
             ['name' => 'consultar-profesiones', 'guard_name' => 'sanctum'],
-
-            //Usuarios_grupos
-            ['name' => 'crear-usuarios_grupos', 'guard_name' => 'sanctum'],
-            ['name' => 'editar-usuarios_grupos', 'guard_name' => 'sanctum'],
-            ['name' => 'borrar-usuarios_grupos', 'guard_name' => 'sanctum'],
-            ['name' => 'consultar-usuarios_grupos', 'guard_name' => 'sanctum']
-
+            
+            //Contratos
+            ['name' => 'crear-contratos', 'guard_name' => 'sanctum'],
+            ['name' => 'editar-contratos', 'guard_name' => 'sanctum'],
+            ['name' => 'borrar-contratos', 'guard_name' => 'sanctum'],
+            ['name' => 'consultar-contratos', 'guard_name' => 'sanctum']
         ];
 
         foreach ($permisos as $permiso) {

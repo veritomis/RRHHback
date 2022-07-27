@@ -2,24 +2,22 @@
 
 namespace App\Repositories;
 
-use App\Models\Module;
+use App\Models\VinculacionLaboral;
 use App\Repositories\BaseRepository;
 
 /**
- * Class ModuleRepository
+ * Class VinculacionLaboralRepository
  * @package App\Repositories
- * @version June 16, 2022, 12:21 am UTC
+ * @version July 26, 2022, 5:07 am UTC
 */
 
-class ModuleRepository extends BaseRepository
+class VinculacionLaboralRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'nombre',
-        'slug',
-        'activo'
+        'nombre'
     ];
 
     /**
@@ -37,7 +35,6 @@ class ModuleRepository extends BaseRepository
      **/
     public function model()
     {
-        return Module::class;
+        return VinculacionLaboral::class;
     }
-
 }
