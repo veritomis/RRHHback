@@ -3,10 +3,9 @@
 namespace Database\Factories;
 
 use App\Models\Carrera;
-use Illuminate\Database\Eloquent\Factories\Factory;
-
 use App\Models\Profesion;
 use App\Models\Titulo;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CarreraFactory extends Factory
 {
@@ -48,8 +47,7 @@ class CarreraFactory extends Factory
             'profesion_id' => $profesion->id,
             'titulo_id' => $titulo->id,
             'created_at' => $this->faker->date('Y-m-d H:i:s'),
-            'updated_at' => $this->faker->date('Y-m-d H:i:s'),
-            'deleted_at' => $this->faker->date('Y-m-d H:i:s')
+            'updated_at' => $this->faker->date('Y-m-d H:i:s')
         ];
     }
 }
