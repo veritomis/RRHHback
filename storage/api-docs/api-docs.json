@@ -5,6 +5,336 @@
         "version": "0.1"
     },
     "paths": {
+        "/asistenciaTipoContratos": {
+            "get": {
+                "tags": [
+                    "AsistenciaTipoContrato"
+                ],
+                "summary": "getAsistenciaTipoContratoList",
+                "description": "Get all AsistenciaTipoContratos",
+                "operationId": "7624288a3da80a18f9f4bec8616c4468",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "AsistenciaTipoContrato"
+                ],
+                "summary": "createAsistenciaTipoContrato",
+                "description": "Create AsistenciaTipoContrato",
+                "operationId": "5c17c51c75ace77ab11e8a7aebd50d4d",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/asistenciaTipoContratos/{id}": {
+            "get": {
+                "tags": [
+                    "AsistenciaTipoContrato"
+                ],
+                "summary": "getAsistenciaTipoContratoItem",
+                "description": "Get AsistenciaTipoContrato",
+                "operationId": "0a400ee2a0e203c72492e57c550582ff",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of AsistenciaTipoContrato",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "AsistenciaTipoContrato"
+                ],
+                "summary": "updateAsistenciaTipoContrato",
+                "description": "Update AsistenciaTipoContrato",
+                "operationId": "506e67e1d64f546f7b826857a205a319",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of AsistenciaTipoContrato",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "AsistenciaTipoContrato"
+                ],
+                "summary": "deleteAsistenciaTipoContrato",
+                "description": "Delete AsistenciaTipoContrato",
+                "operationId": "a8576afff97664ef8d81b3d3384d9a86",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of AsistenciaTipoContrato",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/contratos": {
+            "get": {
+                "tags": [
+                    "Contrato"
+                ],
+                "summary": "getContratoList",
+                "description": "Get all Contratos",
+                "operationId": "fca96978a57e3c8b8d966dc9fd00f2c8",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Contrato"
+                ],
+                "summary": "createContrato",
+                "description": "Create Contrato",
+                "operationId": "4088619050d270d10fa8d08323eb7ce3",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/contratos/{id}": {
+            "get": {
+                "tags": [
+                    "Contrato"
+                ],
+                "summary": "getContratoItem",
+                "description": "Get Contrato",
+                "operationId": "6875edd9a00aa534e0b046a18f0c76b2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Contrato",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Contrato"
+                ],
+                "summary": "updateContrato",
+                "description": "Update Contrato",
+                "operationId": "84b261ec37bc002d20fcad9e24bc88c8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Contrato",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Contrato"
+                ],
+                "summary": "deleteContrato",
+                "description": "Delete Contrato",
+                "operationId": "dd4729d727fe52b8f6ef991d9e45ae27",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Contrato",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/roles": {
             "get": {
                 "tags": [
@@ -169,10 +499,439 @@
                     }
                 ]
             }
+        },
+        "/api/vinculaciones-laborales": {
+            "get": {
+                "tags": [
+                    "VinculacionLaboral"
+                ],
+                "summary": "getVinculacionLaboralList",
+                "description": "Get all VinculacionLaborals",
+                "operationId": "9d772090c739d4bd767e57b18b94430a",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "VinculacionLaboral"
+                ],
+                "summary": "createVinculacionLaboral",
+                "description": "Create VinculacionLaboral",
+                "operationId": "d17ea212f1c77b7132d44ea77e5112bc",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/vinculaciones-laborales/{id}": {
+            "get": {
+                "tags": [
+                    "VinculacionLaboral"
+                ],
+                "summary": "getVinculacionLaboralItem",
+                "description": "Get VinculacionLaboral",
+                "operationId": "199714ad3de810d1bb7659fcf6e901bc",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of VinculacionLaboral",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "VinculacionLaboral"
+                ],
+                "summary": "updateVinculacionLaboral",
+                "description": "Update VinculacionLaboral",
+                "operationId": "b7456fcc8ce4a213556bb1b912f096a9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of VinculacionLaboral",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "VinculacionLaboral"
+                ],
+                "summary": "deleteVinculacionLaboral",
+                "description": "Delete VinculacionLaboral",
+                "operationId": "da0072e6c2d447983779302e57c9b1f8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of VinculacionLaboral",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
         }
     },
     "components": {
         "schemas": {
+            "AsistenciaTipoContrato": {
+                "required": [
+                    "nombre",
+                    "vinculacion_laboral_id"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": true,
+                        "nullable": false
+                    },
+                    "nombre": {
+                        "description": "nombre",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "vinculacion_laboral_id": {
+                        "description": "vinculacion_laboral_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "created_at": {
+                        "description": "created_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "updated_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "deleted_at": {
+                        "description": "deleted_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "Contrato": {
+                "required": [
+                    "tipo_alta",
+                    "caracter_contrato",
+                    "tipo_servicio",
+                    "objetivo_general",
+                    "objetivo_especifico",
+                    "actividades_tarea",
+                    "resultado_parcial_final",
+                    "estandares_cualitativos_cuantitativos",
+                    "fecha_obtencion_resultados",
+                    "horario_propuesto",
+                    "nivel_educativo",
+                    "numero_nota_expediente_electronico",
+                    "numero_resolucion",
+                    "estado",
+                    "vinculacion_laboral_id",
+                    "asistencia_tipo_contratacion_id",
+                    "agente_id",
+                    "area_id",
+                    "titulo_orientacion_id",
+                    "puesto_trabajo_id",
+                    "familia_id",
+                    "sub_familia_id",
+                    "puesto_nomenclatura_id",
+                    "funcion_trabajo_id"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": true,
+                        "nullable": false
+                    },
+                    "tipo_alta": {
+                        "description": "tipo_alta",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "caracter_contrato": {
+                        "description": "caracter_contrato",
+                        "type": "boolean",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "tipo_servicio": {
+                        "description": "tipo_servicio",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "objetivo_general": {
+                        "description": "objetivo_general",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "objetivo_especifico": {
+                        "description": "objetivo_especifico",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "actividades_tarea": {
+                        "description": "actividades_tarea",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "resultado_parcial_final": {
+                        "description": "resultado_parcial_final",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "estandares_cualitativos_cuantitativos": {
+                        "description": "estandares_cualitativos_cuantitativos",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "fecha_obtencion_resultados": {
+                        "description": "fecha_obtencion_resultados",
+                        "type": "string",
+                        "format": "date",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "horario_propuesto": {
+                        "description": "horario_propuesto",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "nivel_educativo": {
+                        "description": "nivel_educativo",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "numero_nota_expediente_electronico": {
+                        "description": "numero_nota_expediente_electronico",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "numero_resolucion": {
+                        "description": "numero_resolucion",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "estado": {
+                        "description": "estado",
+                        "type": "boolean",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "vinculacion_laboral_id": {
+                        "description": "vinculacion_laboral_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "asistencia_tipo_contratacion_id": {
+                        "description": "asistencia_tipo_contratacion_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "agente_id": {
+                        "description": "agente_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "area_id": {
+                        "description": "area_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "titulo_orientacion_id": {
+                        "description": "titulo_orientacion_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "puesto_trabajo_id": {
+                        "description": "puesto_trabajo_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "familia_id": {
+                        "description": "familia_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "sub_familia_id": {
+                        "description": "sub_familia_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "puesto_nomenclatura_id": {
+                        "description": "puesto_nomenclatura_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "funcion_trabajo_id": {
+                        "description": "funcion_trabajo_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "created_at": {
+                        "description": "created_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "updated_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "deleted_at": {
+                        "description": "deleted_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
             "Rol": {
                 "required": [
                     "name",
@@ -207,6 +966,48 @@
                     },
                     "updated_at": {
                         "description": "updated_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "VinculacionLaboral": {
+                "required": [
+                    "nombre"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": true,
+                        "nullable": false
+                    },
+                    "nombre": {
+                        "description": "nombre",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "created_at": {
+                        "description": "created_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "updated_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "deleted_at": {
+                        "description": "deleted_at",
                         "type": "string",
                         "format": "date-time",
                         "readOnly": true,
