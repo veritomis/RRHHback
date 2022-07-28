@@ -30,10 +30,11 @@ class TituloAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/titulos",
+     *      path="/api/titulos",
      *      summary="getTituloList",
      *      tags={"Titulo"},
      *      description="Get all Titulos",
+     *      security={ {"sanctum": {} }},
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -72,10 +73,11 @@ class TituloAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Post(
-     *      path="/titulos",
+     *      path="/api/titulos",
      *      summary="createTitulo",
      *      tags={"Titulo"},
      *      description="Create Titulo",
+     *      security={ {"sanctum": {} }},
      *      @OA\RequestBody(
      *        required=true,
      *        @OA\MediaType(
@@ -126,10 +128,11 @@ class TituloAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/titulos/{id}",
+     *      path="/api/titulos/{id}",
      *      summary="getTituloItem",
      *      tags={"Titulo"},
      *      description="Get Titulo",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of Titulo",
@@ -178,10 +181,11 @@ class TituloAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Put(
-     *      path="/titulos/{id}",
+     *      path="/api/titulos/{id}",
      *      summary="updateTitulo",
      *      tags={"Titulo"},
      *      description="Update Titulo",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of Titulo",
@@ -248,10 +252,11 @@ class TituloAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Delete(
-     *      path="/titulos/{id}",
+     *      path="/api/titulos/{id}",
      *      summary="deleteTitulo",
      *      tags={"Titulo"},
      *      description="Delete Titulo",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of Titulo",

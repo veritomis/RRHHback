@@ -32,7 +32,7 @@ class VinculacionLaboralAPIController extends AppBaseController
      * @OA\Get(
      *      path="/api/vinculaciones-laborales",
      *      summary="getVinculacionLaboralList",
-     *      tags={"VinculacionLaboral"},
+     *      tags={"Vinculacion Laboral"},
      *      description="Get all VinculacionLaborals",
      *      security={ {"sanctum": {} }},
      *      @OA\Response(
@@ -75,7 +75,7 @@ class VinculacionLaboralAPIController extends AppBaseController
      * @OA\Post(
      *      path="/api/vinculaciones-laborales",
      *      summary="createVinculacionLaboral",
-     *      tags={"VinculacionLaboral"},
+     *      tags={"Vinculacion Laboral"},
      *      description="Create VinculacionLaboral",
      *      security={ {"sanctum": {} }},
      *      @OA\RequestBody(
@@ -130,7 +130,7 @@ class VinculacionLaboralAPIController extends AppBaseController
      * @OA\Get(
      *      path="/api/vinculaciones-laborales/{id}",
      *      summary="getVinculacionLaboralItem",
-     *      tags={"VinculacionLaboral"},
+     *      tags={"Vinculacion Laboral"},
      *      description="Get VinculacionLaboral",
      *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
@@ -183,7 +183,7 @@ class VinculacionLaboralAPIController extends AppBaseController
      * @OA\Put(
      *      path="/api/vinculaciones-laborales/{id}",
      *      summary="updateVinculacionLaboral",
-     *      tags={"VinculacionLaboral"},
+     *      tags={"Vinculacion Laboral"},
      *      description="Update VinculacionLaboral",
      *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
@@ -254,7 +254,7 @@ class VinculacionLaboralAPIController extends AppBaseController
      * @OA\Delete(
      *      path="/api/vinculaciones-laborales/{id}",
      *      summary="deleteVinculacionLaboral",
-     *      tags={"VinculacionLaboral"},
+     *      tags={"Vinculacion Laboral"},
      *      description="Delete VinculacionLaboral",
      *      security={ {"sanctum": {} }},
      *      @OA\Parameter(

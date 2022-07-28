@@ -30,10 +30,11 @@ class AgenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/agentes",
+     *      path="/api/agentes",
      *      summary="getAgenteList",
      *      tags={"Agente"},
      *      description="Get all Agentes",
+     *      security={ {"sanctum": {} }},
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -72,10 +73,11 @@ class AgenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Post(
-     *      path="/agentes",
+     *      path="/api/agentes",
      *      summary="createAgente",
      *      tags={"Agente"},
      *      description="Create Agente",
+     *      security={ {"sanctum": {} }},
      *      @OA\RequestBody(
      *        required=true,
      *        @OA\MediaType(
@@ -126,10 +128,11 @@ class AgenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/agentes/{id}",
+     *      path="/api/agentes/{id}",
      *      summary="getAgenteItem",
      *      tags={"Agente"},
      *      description="Get Agente",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of Agente",
@@ -178,10 +181,11 @@ class AgenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Put(
-     *      path="/agentes/{id}",
+     *      path="/api/agentes/{id}",
      *      summary="updateAgente",
      *      tags={"Agente"},
      *      description="Update Agente",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of Agente",
@@ -248,10 +252,11 @@ class AgenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Delete(
-     *      path="/agentes/{id}",
+     *      path="/api/agentes/{id}",
      *      summary="deleteAgente",
      *      tags={"Agente"},
      *      description="Delete Agente",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of Agente",

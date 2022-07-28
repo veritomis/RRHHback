@@ -5,19 +5,24 @@
         "version": "0.1"
     },
     "paths": {
-        "/agentes": {
+        "/api/agentes": {
             "get": {
                 "tags": [
                     "Agente"
                 ],
                 "summary": "getAgenteList",
                 "description": "Get all Agentes",
-                "operationId": "8a6cadb0715d91b63f635fba818fd165",
+                "operationId": "8deeff578f5d2d74b975be976f80d44c",
                 "responses": {
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
@@ -25,7 +30,7 @@
                 ],
                 "summary": "createAgente",
                 "description": "Create Agente",
-                "operationId": "f1739bb7bc3504acb3cecda5acbedb00",
+                "operationId": "d4fe17793707cc26016137ad51e15b7e",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -49,17 +54,22 @@
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
-        "/agentes/{id}": {
+        "/api/agentes/{id}": {
             "get": {
                 "tags": [
                     "Agente"
                 ],
                 "summary": "getAgenteItem",
                 "description": "Get Agente",
-                "operationId": "d60599c5c8c45b380f6d8425888f41d1",
+                "operationId": "0ad206ba83a91d97aec4ab35e0d8728f",
                 "parameters": [
                     {
                         "name": "id",
@@ -75,7 +85,12 @@
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "put": {
                 "tags": [
@@ -83,7 +98,7 @@
                 ],
                 "summary": "updateAgente",
                 "description": "Update Agente",
-                "operationId": "6b83f1d57eb1b96ea64213f1a9d22a5c",
+                "operationId": "a4be971022406fb8329a66147a29f7e0",
                 "parameters": [
                     {
                         "name": "id",
@@ -118,7 +133,12 @@
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
@@ -126,7 +146,7 @@
                 ],
                 "summary": "deleteAgente",
                 "description": "Delete Agente",
-                "operationId": "827a9c0e54463487ab1dd3e733da1121",
+                "operationId": "8f29f6a36175d234dc3345e6601431ff",
                 "parameters": [
                     {
                         "name": "id",
@@ -142,17 +162,22 @@
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
-        "/asistenciaTipoContratos": {
+        "/api/asistencia-tipo-contratos": {
             "get": {
                 "tags": [
-                    "AsistenciaTipoContrato"
+                    "Asistencia Tipo Contrato"
                 ],
                 "summary": "getAsistenciaTipoContratoList",
                 "description": "Get all AsistenciaTipoContratos",
-                "operationId": "7624288a3da80a18f9f4bec8616c4468",
+                "operationId": "4e5d72dc310cc16f74e8db1e42ee9125",
                 "responses": {
                     "200": {
                         "description": "successful operation"
@@ -166,11 +191,11 @@
             },
             "post": {
                 "tags": [
-                    "AsistenciaTipoContrato"
+                    "Asistencia Tipo Contrato"
                 ],
                 "summary": "createAsistenciaTipoContrato",
                 "description": "Create AsistenciaTipoContrato",
-                "operationId": "5c17c51c75ace77ab11e8a7aebd50d4d",
+                "operationId": "cb186fb7c5991b35bc8ca5c4ffe335f5",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -202,14 +227,14 @@
                 ]
             }
         },
-        "/asistenciaTipoContratos/{id}": {
+        "/api/asistencia-tipo-contratos/{id}": {
             "get": {
                 "tags": [
-                    "AsistenciaTipoContrato"
+                    "Asistencia Tipo Contrato"
                 ],
                 "summary": "getAsistenciaTipoContratoItem",
                 "description": "Get AsistenciaTipoContrato",
-                "operationId": "0a400ee2a0e203c72492e57c550582ff",
+                "operationId": "ab1c396a9f7b1b943506d0213293c980",
                 "parameters": [
                     {
                         "name": "id",
@@ -234,11 +259,11 @@
             },
             "put": {
                 "tags": [
-                    "AsistenciaTipoContrato"
+                    "Asistencia Tipo Contrato"
                 ],
                 "summary": "updateAsistenciaTipoContrato",
                 "description": "Update AsistenciaTipoContrato",
-                "operationId": "506e67e1d64f546f7b826857a205a319",
+                "operationId": "6af24cb8751b585b940ae61b27ebb2e0",
                 "parameters": [
                     {
                         "name": "id",
@@ -282,11 +307,11 @@
             },
             "delete": {
                 "tags": [
-                    "AsistenciaTipoContrato"
+                    "Asistencia Tipo Contrato"
                 ],
                 "summary": "deleteAsistenciaTipoContrato",
                 "description": "Delete AsistenciaTipoContrato",
-                "operationId": "a8576afff97664ef8d81b3d3384d9a86",
+                "operationId": "d5f7a3230e1ef532b24713506754297b",
                 "parameters": [
                     {
                         "name": "id",
@@ -310,19 +335,24 @@
                 ]
             }
         },
-        "/carreras": {
+        "/api/carreras": {
             "get": {
                 "tags": [
                     "Carrera"
                 ],
                 "summary": "getCarreraList",
                 "description": "Get all Carreras",
-                "operationId": "2a2258dc0c81b6d9e83358833d995c45",
+                "operationId": "161c6e3173766b2ff78e44053a2c5b65",
                 "responses": {
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
@@ -330,7 +360,7 @@
                 ],
                 "summary": "createCarrera",
                 "description": "Create Carrera",
-                "operationId": "df29ac8cfbff602e7ba2554634e1d958",
+                "operationId": "1316db0c312e0d83592a312864622a35",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -354,17 +384,22 @@
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
-        "/carreras/{id}": {
+        "/api/carreras/{id}": {
             "get": {
                 "tags": [
                     "Carrera"
                 ],
                 "summary": "getCarreraItem",
                 "description": "Get Carrera",
-                "operationId": "d04b65e07447dc4980a6e1a9005a640a",
+                "operationId": "9b7e824b444cd12fa3a3471d41d394bc",
                 "parameters": [
                     {
                         "name": "id",
@@ -380,7 +415,12 @@
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "put": {
                 "tags": [
@@ -388,7 +428,7 @@
                 ],
                 "summary": "updateCarrera",
                 "description": "Update Carrera",
-                "operationId": "866b6fb1c6d0066eadd504a10cfe2aa9",
+                "operationId": "0a48f563525ec67e3c468ec2b59c6403",
                 "parameters": [
                     {
                         "name": "id",
@@ -423,7 +463,12 @@
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
@@ -431,7 +476,7 @@
                 ],
                 "summary": "deleteCarrera",
                 "description": "Delete Carrera",
-                "operationId": "e82897b7a550df098324408a81d6240a",
+                "operationId": "1c777870148b4fd7c744ede4885846bc",
                 "parameters": [
                     {
                         "name": "id",
@@ -447,17 +492,22 @@
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
-        "/contratos": {
+        "/api/contratos": {
             "get": {
                 "tags": [
                     "Contrato"
                 ],
                 "summary": "getContratoList",
                 "description": "Get all Contratos",
-                "operationId": "fca96978a57e3c8b8d966dc9fd00f2c8",
+                "operationId": "db3bfa425e13582c906e0bbd177627b1",
                 "responses": {
                     "200": {
                         "description": "successful operation"
@@ -475,7 +525,7 @@
                 ],
                 "summary": "createContrato",
                 "description": "Create Contrato",
-                "operationId": "4088619050d270d10fa8d08323eb7ce3",
+                "operationId": "08e941cd57134e1322051cbfceed0c2d",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -507,14 +557,14 @@
                 ]
             }
         },
-        "/contratos/{id}": {
+        "/api/contratos/{id}": {
             "get": {
                 "tags": [
                     "Contrato"
                 ],
                 "summary": "getContratoItem",
                 "description": "Get Contrato",
-                "operationId": "6875edd9a00aa534e0b046a18f0c76b2",
+                "operationId": "aaf21e1a9b74a259e0810025ebc84785",
                 "parameters": [
                     {
                         "name": "id",
@@ -543,7 +593,7 @@
                 ],
                 "summary": "updateContrato",
                 "description": "Update Contrato",
-                "operationId": "84b261ec37bc002d20fcad9e24bc88c8",
+                "operationId": "9653aff1966556303826e8a8f2989734",
                 "parameters": [
                     {
                         "name": "id",
@@ -591,7 +641,7 @@
                 ],
                 "summary": "deleteContrato",
                 "description": "Delete Contrato",
-                "operationId": "dd4729d727fe52b8f6ef991d9e45ae27",
+                "operationId": "794501ea37dd9576c078eb11ab57a59c",
                 "parameters": [
                     {
                         "name": "id",
@@ -615,19 +665,24 @@
                 ]
             }
         },
-        "/grupos": {
+        "/api/grupos": {
             "get": {
                 "tags": [
                     "Grupo"
                 ],
                 "summary": "getGrupoList",
                 "description": "Get all Grupos",
-                "operationId": "0e3982a143acef18499e4793d0f8e9ab",
+                "operationId": "9842de5f3ecd39455fddd3f18c44f09c",
                 "responses": {
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
@@ -635,7 +690,7 @@
                 ],
                 "summary": "createGrupo",
                 "description": "Create Grupo",
-                "operationId": "412fcb85a39f10c042da5295265fe24d",
+                "operationId": "4018715c3a6d74e7944e885b13ee8378",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -659,17 +714,22 @@
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
-        "/grupos/{id}": {
+        "/api/grupos/{id}": {
             "get": {
                 "tags": [
                     "Grupo"
                 ],
                 "summary": "getGrupoItem",
                 "description": "Get Grupo",
-                "operationId": "4dd159cb6615abdaa3aed2e87da45f2c",
+                "operationId": "905c4642efab55ec6b26c007bc6784bf",
                 "parameters": [
                     {
                         "name": "id",
@@ -685,7 +745,12 @@
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "put": {
                 "tags": [
@@ -693,7 +758,7 @@
                 ],
                 "summary": "updateGrupo",
                 "description": "Update Grupo",
-                "operationId": "9ac267067a02dc53c80ec5ac90d0fb57",
+                "operationId": "d3534e4813ecc41804d58882713e49b9",
                 "parameters": [
                     {
                         "name": "id",
@@ -728,7 +793,12 @@
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
@@ -736,7 +806,7 @@
                 ],
                 "summary": "deleteGrupo",
                 "description": "Delete Grupo",
-                "operationId": "40d8e5b74b9b352e8c4bcce912b82a38",
+                "operationId": "a4b54a6f0484e75c2c910061711d9acf",
                 "parameters": [
                     {
                         "name": "id",
@@ -752,22 +822,32 @@
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
-        "/profesions": {
+        "/api/profesiones": {
             "get": {
                 "tags": [
                     "Profesion"
                 ],
                 "summary": "getProfesionList",
                 "description": "Get all Profesions",
-                "operationId": "91abe19cfc227eeed0fa589ed9eca1d5",
+                "operationId": "935d1b679bd3c6f674561e31da34bd1a",
                 "responses": {
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
@@ -775,7 +855,7 @@
                 ],
                 "summary": "createProfesion",
                 "description": "Create Profesion",
-                "operationId": "4457207c77649f6e5d51e9d65da662a5",
+                "operationId": "089ca9453d7417826222e208484d6fa8",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -799,17 +879,22 @@
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
-        "/profesions/{id}": {
+        "/api/profesiones/{id}": {
             "get": {
                 "tags": [
                     "Profesion"
                 ],
                 "summary": "getProfesionItem",
                 "description": "Get Profesion",
-                "operationId": "a4d8dc7729c4a1eb773788ae302e418e",
+                "operationId": "008d157c1937a1df545a8c2a8a001121",
                 "parameters": [
                     {
                         "name": "id",
@@ -825,7 +910,12 @@
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "put": {
                 "tags": [
@@ -833,7 +923,7 @@
                 ],
                 "summary": "updateProfesion",
                 "description": "Update Profesion",
-                "operationId": "915cf45eb014de3a1e052a05aabc2504",
+                "operationId": "2cb3497e196935dab8288de4494073ab",
                 "parameters": [
                     {
                         "name": "id",
@@ -868,7 +958,12 @@
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
@@ -876,7 +971,7 @@
                 ],
                 "summary": "deleteProfesion",
                 "description": "Delete Profesion",
-                "operationId": "c607c30ca5125e2da4e98a4f2c19c925",
+                "operationId": "caac29564f227139f706ca64803a0f5e",
                 "parameters": [
                     {
                         "name": "id",
@@ -892,7 +987,12 @@
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
         "/api/roles": {
@@ -1060,19 +1160,24 @@
                 ]
             }
         },
-        "/titulos": {
+        "/api/titulos": {
             "get": {
                 "tags": [
                     "Titulo"
                 ],
                 "summary": "getTituloList",
                 "description": "Get all Titulos",
-                "operationId": "d1dfa4cac5d01a88d28425bd2ee0a97c",
+                "operationId": "f9daffa62966c1432db8bc211f346701",
                 "responses": {
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
@@ -1080,7 +1185,7 @@
                 ],
                 "summary": "createTitulo",
                 "description": "Create Titulo",
-                "operationId": "f1740629b79885fa714dde826ccb022f",
+                "operationId": "de720dbd621659be51485d224b9317cb",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -1104,17 +1209,22 @@
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
-        "/titulos/{id}": {
+        "/api/titulos/{id}": {
             "get": {
                 "tags": [
                     "Titulo"
                 ],
                 "summary": "getTituloItem",
                 "description": "Get Titulo",
-                "operationId": "10b1531006e52ebdb5e777a5e1511ced",
+                "operationId": "55412e94d477f58ef5a46a785bddfba9",
                 "parameters": [
                     {
                         "name": "id",
@@ -1130,7 +1240,12 @@
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "put": {
                 "tags": [
@@ -1138,7 +1253,7 @@
                 ],
                 "summary": "updateTitulo",
                 "description": "Update Titulo",
-                "operationId": "c231a985fdf71c781cd206dd80bbf64d",
+                "operationId": "ac340bbf9bbb89de62304549221b5000",
                 "parameters": [
                     {
                         "name": "id",
@@ -1173,7 +1288,12 @@
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
@@ -1181,7 +1301,7 @@
                 ],
                 "summary": "deleteTitulo",
                 "description": "Delete Titulo",
-                "operationId": "89af7a2ed0d46f52ee0a9af3fea83674",
+                "operationId": "1233da538affabdce53c1996e49cdf88",
                 "parameters": [
                     {
                         "name": "id",
@@ -1197,7 +1317,12 @@
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
         "/usuarioGrupos": {
@@ -1343,7 +1468,7 @@
         "/api/vinculaciones-laborales": {
             "get": {
                 "tags": [
-                    "VinculacionLaboral"
+                    "Vinculacion Laboral"
                 ],
                 "summary": "getVinculacionLaboralList",
                 "description": "Get all VinculacionLaborals",
@@ -1361,7 +1486,7 @@
             },
             "post": {
                 "tags": [
-                    "VinculacionLaboral"
+                    "Vinculacion Laboral"
                 ],
                 "summary": "createVinculacionLaboral",
                 "description": "Create VinculacionLaboral",
@@ -1400,7 +1525,7 @@
         "/api/vinculaciones-laborales/{id}": {
             "get": {
                 "tags": [
-                    "VinculacionLaboral"
+                    "Vinculacion Laboral"
                 ],
                 "summary": "getVinculacionLaboralItem",
                 "description": "Get VinculacionLaboral",
@@ -1429,7 +1554,7 @@
             },
             "put": {
                 "tags": [
-                    "VinculacionLaboral"
+                    "Vinculacion Laboral"
                 ],
                 "summary": "updateVinculacionLaboral",
                 "description": "Update VinculacionLaboral",
@@ -1477,7 +1602,7 @@
             },
             "delete": {
                 "tags": [
-                    "VinculacionLaboral"
+                    "Vinculacion Laboral"
                 ],
                 "summary": "deleteVinculacionLaboral",
                 "description": "Delete VinculacionLaboral",

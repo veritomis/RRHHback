@@ -30,10 +30,11 @@ class CarreraAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/carreras",
+     *      path="/api/carreras",
      *      summary="getCarreraList",
      *      tags={"Carrera"},
      *      description="Get all Carreras",
+     *      security={ {"sanctum": {} }},
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -72,10 +73,11 @@ class CarreraAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Post(
-     *      path="/carreras",
+     *      path="/api/carreras",
      *      summary="createCarrera",
      *      tags={"Carrera"},
      *      description="Create Carrera",
+     *      security={ {"sanctum": {} }},
      *      @OA\RequestBody(
      *        required=true,
      *        @OA\MediaType(
@@ -126,10 +128,11 @@ class CarreraAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/carreras/{id}",
+     *      path="/api/carreras/{id}",
      *      summary="getCarreraItem",
      *      tags={"Carrera"},
      *      description="Get Carrera",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of Carrera",
@@ -178,10 +181,11 @@ class CarreraAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Put(
-     *      path="/carreras/{id}",
+     *      path="/api/carreras/{id}",
      *      summary="updateCarrera",
      *      tags={"Carrera"},
      *      description="Update Carrera",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of Carrera",
@@ -248,10 +252,11 @@ class CarreraAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Delete(
-     *      path="/carreras/{id}",
+     *      path="/api/carreras/{id}",
      *      summary="deleteCarrera",
      *      tags={"Carrera"},
      *      description="Delete Carrera",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of Carrera",

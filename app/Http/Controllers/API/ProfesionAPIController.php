@@ -30,10 +30,11 @@ class ProfesionAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/profesions",
+     *      path="/api/profesiones",
      *      summary="getProfesionList",
      *      tags={"Profesion"},
      *      description="Get all Profesions",
+     *      security={ {"sanctum": {} }},
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -72,10 +73,11 @@ class ProfesionAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Post(
-     *      path="/profesions",
+     *      path="/api/profesiones",
      *      summary="createProfesion",
      *      tags={"Profesion"},
      *      description="Create Profesion",
+     *      security={ {"sanctum": {} }},
      *      @OA\RequestBody(
      *        required=true,
      *        @OA\MediaType(
@@ -126,10 +128,11 @@ class ProfesionAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/profesions/{id}",
+     *      path="/api/profesiones/{id}",
      *      summary="getProfesionItem",
      *      tags={"Profesion"},
      *      description="Get Profesion",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of Profesion",
@@ -178,10 +181,11 @@ class ProfesionAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Put(
-     *      path="/profesions/{id}",
+     *      path="/api/profesiones/{id}",
      *      summary="updateProfesion",
      *      tags={"Profesion"},
      *      description="Update Profesion",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of Profesion",
@@ -248,10 +252,11 @@ class ProfesionAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Delete(
-     *      path="/profesions/{id}",
+     *      path="/api/profesiones/{id}",
      *      summary="deleteProfesion",
      *      tags={"Profesion"},
      *      description="Delete Profesion",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of Profesion",

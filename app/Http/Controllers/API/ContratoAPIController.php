@@ -33,7 +33,7 @@ class ContratoAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/contratos",
+     *      path="/api/contratos",
      *      summary="getContratoList",
      *      tags={"Contrato"},
      *      description="Get all Contratos",
@@ -80,7 +80,7 @@ class ContratoAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Post(
-     *      path="/contratos",
+     *      path="/api/contratos",
      *      summary="createContrato",
      *      tags={"Contrato"},
      *      description="Create Contrato",
@@ -139,7 +139,7 @@ class ContratoAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/contratos/{id}",
+     *      path="/api/contratos/{id}",
      *      summary="getContratoItem",
      *      tags={"Contrato"},
      *      description="Get Contrato",
@@ -196,7 +196,7 @@ class ContratoAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Put(
-     *      path="/contratos/{id}",
+     *      path="/api/contratos/{id}",
      *      summary="updateContrato",
      *      tags={"Contrato"},
      *      description="Update Contrato",
@@ -271,7 +271,7 @@ class ContratoAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Delete(
-     *      path="/contratos/{id}",
+     *      path="/api/contratos/{id}",
      *      summary="deleteContrato",
      *      tags={"Contrato"},
      *      description="Delete Contrato",

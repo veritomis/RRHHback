@@ -30,10 +30,11 @@ class GrupoAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/grupos",
+     *      path="/api/grupos",
      *      summary="getGrupoList",
      *      tags={"Grupo"},
      *      description="Get all Grupos",
+     *      security={ {"sanctum": {} }},
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -72,10 +73,11 @@ class GrupoAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Post(
-     *      path="/grupos",
+     *      path="/api/grupos",
      *      summary="createGrupo",
      *      tags={"Grupo"},
      *      description="Create Grupo",
+     *      security={ {"sanctum": {} }},
      *      @OA\RequestBody(
      *        required=true,
      *        @OA\MediaType(
@@ -126,10 +128,11 @@ class GrupoAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/grupos/{id}",
+     *      path="/api/grupos/{id}",
      *      summary="getGrupoItem",
      *      tags={"Grupo"},
      *      description="Get Grupo",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of Grupo",
@@ -178,10 +181,11 @@ class GrupoAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Put(
-     *      path="/grupos/{id}",
+     *      path="/api/grupos/{id}",
      *      summary="updateGrupo",
      *      tags={"Grupo"},
      *      description="Update Grupo",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of Grupo",
@@ -248,10 +252,11 @@ class GrupoAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Delete(
-     *      path="/grupos/{id}",
+     *      path="/api/grupos/{id}",
      *      summary="deleteGrupo",
      *      tags={"Grupo"},
      *      description="Delete Grupo",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of Grupo",

@@ -30,9 +30,9 @@ class AsistenciaTipoContratoAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/asistenciaTipoContratos",
+     *      path="/api/asistencia-tipo-contratos",
      *      summary="getAsistenciaTipoContratoList",
-     *      tags={"AsistenciaTipoContrato"},
+     *      tags={"Asistencia Tipo Contrato"},
      *      description="Get all AsistenciaTipoContratos",
      *      security={ {"sanctum": {} }},
      *      @OA\Response(
@@ -73,9 +73,9 @@ class AsistenciaTipoContratoAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Post(
-     *      path="/asistenciaTipoContratos",
+     *      path="/api/asistencia-tipo-contratos",
      *      summary="createAsistenciaTipoContrato",
-     *      tags={"AsistenciaTipoContrato"},
+     *      tags={"Asistencia Tipo Contrato"},
      *      description="Create AsistenciaTipoContrato",
      *      security={ {"sanctum": {} }},
      *      @OA\RequestBody(
@@ -128,9 +128,9 @@ class AsistenciaTipoContratoAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/asistenciaTipoContratos/{id}",
+     *      path="/api/asistencia-tipo-contratos/{id}",
      *      summary="getAsistenciaTipoContratoItem",
-     *      tags={"AsistenciaTipoContrato"},
+     *      tags={"Asistencia Tipo Contrato"},
      *      description="Get AsistenciaTipoContrato",
      *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
@@ -181,9 +181,9 @@ class AsistenciaTipoContratoAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Put(
-     *      path="/asistenciaTipoContratos/{id}",
+     *      path="/api/asistencia-tipo-contratos/{id}",
      *      summary="updateAsistenciaTipoContrato",
-     *      tags={"AsistenciaTipoContrato"},
+     *      tags={"Asistencia Tipo Contrato"},
      *      description="Update AsistenciaTipoContrato",
      *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
@@ -252,9 +252,9 @@ class AsistenciaTipoContratoAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Delete(
-     *      path="/asistenciaTipoContratos/{id}",
+     *      path="/api/asistencia-tipo-contratos/{id}",
      *      summary="deleteAsistenciaTipoContrato",
-     *      tags={"AsistenciaTipoContrato"},
+     *      tags={"Asistencia Tipo Contrato"},
      *      description="Delete AsistenciaTipoContrato",
      *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
