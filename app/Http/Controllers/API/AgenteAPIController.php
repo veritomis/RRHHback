@@ -59,6 +59,10 @@ class AgenteAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
+        if (!$this->verifiedPermissions('consultar-agentes')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         $agentes = $this->agenteRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
@@ -116,6 +120,10 @@ class AgenteAPIController extends AppBaseController
      */
     public function store(CreateAgenteAPIRequest $request)
     {
+        if (!$this->verifiedPermissions('crear-agentes')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         $input = $request->all();
 
         $agente = $this->agenteRepository->create($input);
@@ -165,6 +173,10 @@ class AgenteAPIController extends AppBaseController
      */
     public function show($id)
     {
+        if (!$this->verifiedPermissions('consultar-agentes')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         /** @var Agente $agente */
         $agente = $this->agenteRepository->find($id);
 
@@ -233,6 +245,10 @@ class AgenteAPIController extends AppBaseController
      */
     public function update($id, UpdateAgenteAPIRequest $request)
     {
+        if (!$this->verifiedPermissions('editar-agentes')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         $input = $request->all();
 
         /** @var Agente $agente */
@@ -289,6 +305,10 @@ class AgenteAPIController extends AppBaseController
      */
     public function destroy($id)
     {
+        if (!$this->verifiedPermissions('borrar-agentes')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         /** @var Agente $agente */
         $agente = $this->agenteRepository->find($id);
 

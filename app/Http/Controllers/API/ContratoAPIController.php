@@ -62,15 +62,16 @@ class ContratoAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
+        if (!$this->verifiedPermissions('consultar-contratos')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         $contratos = $this->contratoRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
             $request->get('limit')
         );
 
-        if (!$this->verifiedPermissions('consultar-contratos')) {
-            return $this->sendError('Usuario no autorizado');
-        }
 
         return $this->sendResponse($contratos->toArray(), 'Contratos retrieved successfully');
     }
