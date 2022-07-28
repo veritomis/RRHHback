@@ -37,7 +37,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('titulos', App\Http\Controllers\API\TituloAPIController::class);
     Route::resource('profesiones', App\Http\Controllers\API\ProfesionAPIController::class);
     Route::resource('grupos', App\Http\Controllers\API\GrupoAPIController::class);
-    Route::resource('usuariosgrupos', App\Http\Controllers\API\Usuario_grupoAPIController::class);
     Route::resource('vinculaciones-laborales', App\Http\Controllers\API\VinculacionLaboralAPIController::class);
     Route::resource('asistencia-tipo-contratos', App\Http\Controllers\API\AsistenciaTipoContratoAPIController::class);
     Route::resource('contratos', App\Http\Controllers\API\ContratoAPIController::class);
