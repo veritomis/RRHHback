@@ -24,18 +24,48 @@ class PermissionsSeeder extends Seeder
             ['name' => 'editar-post', 'guard_name' => 'sanctum'],
             ['name' => 'borrar-post', 'guard_name' => 'sanctum'],
             ['name' => 'consultar-post', 'guard_name' => 'sanctum'],
-            
+
             //Modulos
             ['name' => 'crear-modulos', 'guard_name' => 'sanctum'],
             ['name' => 'editar-modulos', 'guard_name' => 'sanctum'],
             ['name' => 'borrar-modulos', 'guard_name' => 'sanctum'],
             ['name' => 'consultar-modulos', 'guard_name' => 'sanctum'],
 
-            //Asistencia Medica
-            ['name' => 'crear-asistencia-medica', 'guard_name' => 'sanctum'],
-            ['name' => 'editar-asistencia-medica', 'guard_name' => 'sanctum'],
-            ['name' => 'borrar-asistencia-medica', 'guard_name' => 'sanctum'],
-            ['name' => 'consultar-asistencia-medica', 'guard_name' => 'sanctum']
+            //Agentes
+            ['name' => 'crear-agentes', 'guard_name' => 'sanctum'],
+            ['name' => 'editar-agentes', 'guard_name' => 'sanctum'],
+            ['name' => 'borrar-agentes', 'guard_name' => 'sanctum'],
+            ['name' => 'consultar-agentes', 'guard_name' => 'sanctum'],
+
+            //Carreras
+            ['name' => 'crear-carreras', 'guard_name' => 'sanctum'],
+            ['name' => 'editar-carreras', 'guard_name' => 'sanctum'],
+            ['name' => 'borrar-carreras', 'guard_name' => 'sanctum'],
+            ['name' => 'consultar-carreras', 'guard_name' => 'sanctum'],
+
+            //Grupos
+            ['name' => 'crear-grupos', 'guard_name' => 'sanctum'],
+            ['name' => 'editar-grupos', 'guard_name' => 'sanctum'],
+            ['name' => 'borrar-grupos', 'guard_name' => 'sanctum'],
+            ['name' => 'consultar-grupos', 'guard_name' => 'sanctum'],
+
+            //Titulos
+            ['name' => 'crear-titulos', 'guard_name' => 'sanctum'],
+            ['name' => 'editar-titulos', 'guard_name' => 'sanctum'],
+            ['name' => 'borrar-titulos', 'guard_name' => 'sanctum'],
+            ['name' => 'consultar-titulos', 'guard_name' => 'sanctum'],
+
+            //Profesiones
+            ['name' => 'crear-profesiones', 'guard_name' => 'sanctum'],
+            ['name' => 'editar-profesiones', 'guard_name' => 'sanctum'],
+            ['name' => 'borrar-profesiones', 'guard_name' => 'sanctum'],
+            ['name' => 'consultar-profesiones', 'guard_name' => 'sanctum'],
+            
+            //Contratos
+            ['name' => 'crear-contratos', 'guard_name' => 'sanctum'],
+            ['name' => 'editar-contratos', 'guard_name' => 'sanctum'],
+            ['name' => 'borrar-contratos', 'guard_name' => 'sanctum'],
+            ['name' => 'consultar-contratos', 'guard_name' => 'sanctum']
         ];
 
         foreach ($permisos as $permiso) {
