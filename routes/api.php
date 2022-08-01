@@ -13,6 +13,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('users', App\Http\Controllers\API\UserAPIController::class);
     Route::resource('modulos', App\Http\Controllers\API\ModuleAPIController::class);
     Route::resource('roles', App\Http\Controllers\API\RolAPIController::class);
+    Route::get('users/export/', [UsersController::class, 'export']);
+    Route::get('users/import/', [UsersController::class, 'import']);
+
+
 
     Route::post('/logout', [AuthenticatedSessionController::class, 'logout'])
                 ->name('logout');
