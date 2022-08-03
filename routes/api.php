@@ -41,6 +41,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('asistencia-tipo-contratos', App\Http\Controllers\API\AsistenciaTipoContratoAPIController::class);
     Route::resource('contratos', App\Http\Controllers\API\ContratoAPIController::class);
 
+    // UploadFile
+    Route::get('users/export/', [UsersController::class, 'export']);
+    Route::get('users/import/', [UsersController::class, 'import']);
+
     Route::post('/logout', [AuthenticatedSessionController::class, 'logout'])
                 ->name('logout');
 });
