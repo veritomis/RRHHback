@@ -8,6 +8,7 @@ use App\Models\Agente;
 use App\Repositories\AgenteRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use App\Traits\VerificationRol;
 use Response;
 
 /**
@@ -17,6 +18,8 @@ use Response;
 
 class AgenteAPIController extends AppBaseController
 {
+    use VerificationRol;
+
     /** @var  AgenteRepository */
     private $agenteRepository;
 
