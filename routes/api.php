@@ -18,6 +18,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 
+    // UploadFile
+    Route::get('users/export/', [UsersController::class, 'export']);
+    Route::get('users/import/', [UsersController::class, 'import']);
+
     Route::post('/logout', [AuthenticatedSessionController::class, 'logout'])
                 ->name('logout');
 });
