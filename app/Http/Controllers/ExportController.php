@@ -15,11 +15,20 @@ class ExportController extends Controller
         $this->excel = $excel;
     }
 
-    public function export()
+   /*public function export()
     {
         return Excel::download(new UsersExport, 'users.xlsx');
+    }*/
+
+
+    //va store porque es una api.
+    public function storeExcel() 
+    {
+        // Store on default disk
+        Excel::store(new UsersExport, 'users.xlsx');
     }
 }
+
 
 
 
