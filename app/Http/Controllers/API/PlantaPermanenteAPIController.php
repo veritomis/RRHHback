@@ -8,6 +8,7 @@ use App\Models\PlantaPermanente;
 use App\Repositories\PlantaPermanenteRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use App\Traits\VerificationRol;
 use Response;
 
 /**
@@ -17,6 +18,8 @@ use Response;
 
 class PlantaPermanenteAPIController extends AppBaseController
 {
+    use VerificationRol;
+
     /** @var  PlantaPermanenteRepository */
     private $plantaPermanenteRepository;
 
@@ -30,10 +33,11 @@ class PlantaPermanenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/api/plantaPermanentes",
+     *      path="/api/plantas-permanentes",
      *      summary="getPlantaPermanenteList",
      *      tags={"PlantaPermanente"},
      *      description="Get all PlantaPermanentes",
+     *      security={ {"sanctum": {} }},
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -58,11 +62,16 @@ class PlantaPermanenteAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
+        if (!$this->verifiedPermissions('consultar-plantas-permanentes')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         $plantaPermanentes = $this->plantaPermanenteRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
             $request->get('limit')
         );
+
 
         return $this->sendResponse($plantaPermanentes->toArray(), 'Planta Permanentes retrieved successfully');
     }
@@ -72,10 +81,11 @@ class PlantaPermanenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Post(
-     *      path="/api/plantaPermanentes",
+     *      path="/api/plantas-permanentes",
      *      summary="createPlantaPermanente",
      *      tags={"PlantaPermanente"},
      *      description="Create PlantaPermanente",
+     *      security={ {"sanctum": {} }},
      *      @OA\RequestBody(
      *        required=true,
      *        @OA\MediaType(
@@ -114,6 +124,10 @@ class PlantaPermanenteAPIController extends AppBaseController
      */
     public function store(CreatePlantaPermanenteAPIRequest $request)
     {
+        if (!$this->verifiedPermissions('consultar-plantas-permanentes')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         $input = $request->all();
 
         $plantaPermanente = $this->plantaPermanenteRepository->create($input);
@@ -126,10 +140,11 @@ class PlantaPermanenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/api/plantaPermanentes/{id}",
+     *      path="/api/plantas-permanentes/{id}",
      *      summary="getPlantaPermanenteItem",
      *      tags={"PlantaPermanente"},
      *      description="Get PlantaPermanente",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of PlantaPermanente",
@@ -162,6 +177,10 @@ class PlantaPermanenteAPIController extends AppBaseController
      */
     public function show($id)
     {
+        if (!$this->verifiedPermissions('consultar-plantas-permanentes')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         /** @var PlantaPermanente $plantaPermanente */
         $plantaPermanente = $this->plantaPermanenteRepository->find($id);
 
@@ -178,10 +197,11 @@ class PlantaPermanenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Put(
-     *      path="/api/plantaPermanentes/{id}",
+     *      path="/api/plantas-permanentes/{id}",
      *      summary="updatePlantaPermanente",
      *      tags={"PlantaPermanente"},
      *      description="Update PlantaPermanente",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of PlantaPermanente",
@@ -229,6 +249,10 @@ class PlantaPermanenteAPIController extends AppBaseController
      */
     public function update($id, UpdatePlantaPermanenteAPIRequest $request)
     {
+        if (!$this->verifiedPermissions('consultar-plantas-permanentes')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+        
         $input = $request->all();
 
         /** @var PlantaPermanente $plantaPermanente */
@@ -248,10 +272,11 @@ class PlantaPermanenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Delete(
-     *      path="/api/plantaPermanentes/{id}",
+     *      path="/api/plantas-permanentes/{id}",
      *      summary="deletePlantaPermanente",
      *      tags={"PlantaPermanente"},
      *      description="Delete PlantaPermanente",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of PlantaPermanente",
