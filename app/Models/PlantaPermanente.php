@@ -229,7 +229,7 @@ class PlantaPermanente extends Model
 
     use HasFactory;
 
-    public $table = 'plantas_permanentes';
+    public $table = 'planta_permanentes';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';

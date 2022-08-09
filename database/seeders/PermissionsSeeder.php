@@ -65,7 +65,14 @@ class PermissionsSeeder extends Seeder
             ['name' => 'crear-contratos', 'guard_name' => 'sanctum'],
             ['name' => 'editar-contratos', 'guard_name' => 'sanctum'],
             ['name' => 'borrar-contratos', 'guard_name' => 'sanctum'],
-            ['name' => 'consultar-contratos', 'guard_name' => 'sanctum']
+            ['name' => 'consultar-contratos', 'guard_name' => 'sanctum'],
+            
+
+            //Planta Permanente        
+            ['name' => 'crear-planta-permanentes', 'guard_name' => 'sanctum'],
+            ['name' => 'editar-planta-permanentes', 'guard_name' => 'sanctum'],
+            ['name' => 'borrar-planta-permanentes', 'guard_name' => 'sanctum'],
+            ['name' => 'consultar-planta-permanentes', 'guard_name' => 'sanctum']
         ];
 
         foreach ($permisos as $permiso) {

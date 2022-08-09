@@ -42,7 +42,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('contratos', App\Http\Controllers\API\ContratoAPIController::class);
 
     //hago la ruta de plantas_permanentes
-    Route::resource('plantas-permanentes', App\Http\Controllers\API\PlantaPermanenteAPIController::class);
+    Route::resource('planta-permanentes', App\Http\Controllers\API\PlantaPermanenteAPIController::class);
 
     // UploadFile
     Route::get('users/export/', [UsersController::class, 'export']);
@@ -51,5 +51,3 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthenticatedSessionController::class, 'logout'])
                 ->name('logout');
 });
-
-Route::resource('planta-permanentes', App\Http\Controllers\API\PlantaPermanenteAPIController::class);

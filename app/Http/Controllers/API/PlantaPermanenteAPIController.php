@@ -33,7 +33,7 @@ class PlantaPermanenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/api/plantas-permanentes",
+     *      path="/api/planta-permanentes",
      *      summary="getPlantaPermanenteList",
      *      tags={"PlantaPermanente"},
      *      description="Get all PlantaPermanentes",
@@ -62,7 +62,7 @@ class PlantaPermanenteAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        if (!$this->verifiedPermissions('consultar-plantas-permanentes')) {
+        if (!$this->verifiedPermissions('consultar-planta-permanentes')) {
             return $this->sendError('Usuario no autorizado');
         }
 
@@ -81,7 +81,7 @@ class PlantaPermanenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Post(
-     *      path="/api/plantas-permanentes",
+     *      path="/api/planta-permanentes",
      *      summary="createPlantaPermanente",
      *      tags={"PlantaPermanente"},
      *      description="Create PlantaPermanente",
@@ -124,7 +124,7 @@ class PlantaPermanenteAPIController extends AppBaseController
      */
     public function store(CreatePlantaPermanenteAPIRequest $request)
     {
-        if (!$this->verifiedPermissions('consultar-plantas-permanentes')) {
+        if (!$this->verifiedPermissions('consultar-planta-permanentes')) {
             return $this->sendError('Usuario no autorizado');
         }
 
@@ -140,7 +140,7 @@ class PlantaPermanenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/api/plantas-permanentes/{id}",
+     *      path="/api/planta-permanentes/{id}",
      *      summary="getPlantaPermanenteItem",
      *      tags={"PlantaPermanente"},
      *      description="Get PlantaPermanente",
@@ -177,7 +177,7 @@ class PlantaPermanenteAPIController extends AppBaseController
      */
     public function show($id)
     {
-        if (!$this->verifiedPermissions('consultar-plantas-permanentes')) {
+        if (!$this->verifiedPermissions('consultar-planta-permanentes')) {
             return $this->sendError('Usuario no autorizado');
         }
 
@@ -197,7 +197,7 @@ class PlantaPermanenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Put(
-     *      path="/api/plantas-permanentes/{id}",
+     *      path="/api/planta-permanentes/{id}",
      *      summary="updatePlantaPermanente",
      *      tags={"PlantaPermanente"},
      *      description="Update PlantaPermanente",
@@ -249,7 +249,7 @@ class PlantaPermanenteAPIController extends AppBaseController
      */
     public function update($id, UpdatePlantaPermanenteAPIRequest $request)
     {
-        if (!$this->verifiedPermissions('consultar-plantas-permanentes')) {
+        if (!$this->verifiedPermissions('consultar-planta-permanentes')) {
             return $this->sendError('Usuario no autorizado');
         }
         
@@ -272,7 +272,7 @@ class PlantaPermanenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Delete(
-     *      path="/api/plantas-permanentes/{id}",
+     *      path="/api/planta-permanentes/{id}",
      *      summary="deletePlantaPermanente",
      *      tags={"PlantaPermanente"},
      *      description="Delete PlantaPermanente",

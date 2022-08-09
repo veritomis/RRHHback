@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('plantas_permanentes', function (Blueprint $table) {
+        Schema::create('planta_permanentes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('agente_id')->constrained('agentes');
             
@@ -60,6 +60,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('plantaspermanentes');
+        Schema::dropIfExists('plantapermanentes');
     }
 };

@@ -830,6 +830,171 @@
                 ]
             }
         },
+        "/api/planta-permanentes": {
+            "get": {
+                "tags": [
+                    "PlantaPermanente"
+                ],
+                "summary": "getPlantaPermanenteList",
+                "description": "Get all PlantaPermanentes",
+                "operationId": "40a339a56c89b73aae543a11ee1b8e0e",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "PlantaPermanente"
+                ],
+                "summary": "createPlantaPermanente",
+                "description": "Create PlantaPermanente",
+                "operationId": "2b9f140a56dfda183b41db28b7158855",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/planta-permanentes/{id}": {
+            "get": {
+                "tags": [
+                    "PlantaPermanente"
+                ],
+                "summary": "getPlantaPermanenteItem",
+                "description": "Get PlantaPermanente",
+                "operationId": "e06b2a734f97090e4f6b187738737813",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of PlantaPermanente",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "PlantaPermanente"
+                ],
+                "summary": "updatePlantaPermanente",
+                "description": "Update PlantaPermanente",
+                "operationId": "e2af91d443503d8eb338d1b08a0ce1a3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of PlantaPermanente",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "PlantaPermanente"
+                ],
+                "summary": "deletePlantaPermanente",
+                "description": "Delete PlantaPermanente",
+                "operationId": "3e922a6b65a21019c8b0aa110251a8d9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of PlantaPermanente",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/profesiones": {
             "get": {
                 "tags": [
@@ -2001,6 +2166,219 @@
                     },
                     "updated_at": {
                         "description": "updated_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "PlantaPermanente": {
+                "required": [
+                    "agente_id",
+                    "letra_nivel",
+                    "numero_grado",
+                    "tramo",
+                    "agrupamiento",
+                    "modalidad_vinculacion",
+                    "estado_agente",
+                    "funcion",
+                    "ejercicio",
+                    "numero_expediente",
+                    "estado_expediente",
+                    "numero_formulario",
+                    "nivel_formulario",
+                    "calificacion",
+                    "puntaje",
+                    "evaluador",
+                    "area_id",
+                    "unidad_analisis",
+                    "notificacion",
+                    "observacion",
+                    "corrimiento_grado",
+                    "numero_expediente_grado",
+                    "corrimiento_agrupamiento",
+                    "numero_expediente_agrupacion"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": true,
+                        "nullable": false
+                    },
+                    "agente_id": {
+                        "description": "agente_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "letra_nivel": {
+                        "description": "letra_nivel",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "numero_grado": {
+                        "description": "numero_grado",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "tramo": {
+                        "description": "tramo",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "agrupamiento": {
+                        "description": "agrupamiento",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "modalidad_vinculacion": {
+                        "description": "modalidad_vinculacion",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "estado_agente": {
+                        "description": "estado_agente",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "funcion": {
+                        "description": "funcion",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "ejercicio": {
+                        "description": "ejercicio",
+                        "type": "string",
+                        "format": "date",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "numero_expediente": {
+                        "description": "numero_expediente",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "estado_expediente": {
+                        "description": "estado_expediente",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "numero_formulario": {
+                        "description": "numero_formulario",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "nivel_formulario": {
+                        "description": "nivel_formulario",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "calificacion": {
+                        "description": "calificacion",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "puntaje": {
+                        "description": "puntaje",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "evaluador": {
+                        "description": "evaluador",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "area_id": {
+                        "description": "area_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "unidad_analisis": {
+                        "description": "unidad_analisis",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "notificacion": {
+                        "description": "notificacion",
+                        "type": "boolean",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "numero_notificacion": {
+                        "description": "numero_notificacion",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": true
+                    },
+                    "observacion": {
+                        "description": "observacion",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "corrimiento_grado": {
+                        "description": "corrimiento_grado",
+                        "type": "boolean",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "numero_expediente_grado": {
+                        "description": "numero_expediente_grado",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "corrimiento_agrupamiento": {
+                        "description": "corrimiento_agrupamiento",
+                        "type": "boolean",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "numero_expediente_agrupacion": {
+                        "description": "numero_expediente_agrupacion",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "created_at": {
+                        "description": "created_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "updated_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "deleted_at": {
+                        "description": "deleted_at",
                         "type": "string",
                         "format": "date-time",
                         "readOnly": true,
