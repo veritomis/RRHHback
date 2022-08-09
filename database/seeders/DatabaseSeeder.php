@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Grupo::factory(10)->create();
         \App\Models\Carrera::factory(10)->create();
         \App\Models\Contrato::factory(10)->create();
+        \App\Models\PlantaPermanente::factory(10)->create();
         activity()->withoutLogs(function () {
             $this->call([
                 PermissionsSeeder::class,
