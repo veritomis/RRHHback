@@ -39,10 +39,12 @@ return new class extends Migration
             $table->integer('agente_id');
             $table->integer('area_id');
             $table->integer('titulo_orientacion_id');
-            $table->integer('puesto_trabajo_id');
-            $table->integer('familia_id');
-            $table->integer('sub_familia_id');
-            $table->integer('puesto_nomenclatura_id');
+            
+            $table->foreignId('puesto_grupo_id')->constrained('puestos_grupos');
+            $table->foreignId('puesto_familia_id')->nullable()->constrained('puestos_familias');
+            $table->foreignId('puesto_subfamilia_id')->nullable()->constrained('puestos_subfamilias');
+            $table->foreignId('puesto_nomenclatura_id')->constrained('puestos_nomenclaturas');
+            
             $table->integer('funcion_trabajo_id');
 
             $table->timestamps();

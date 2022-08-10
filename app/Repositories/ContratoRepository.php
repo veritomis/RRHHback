@@ -36,9 +36,9 @@ class ContratoRepository extends BaseRepository
         'agente_id',
         'area_id',
         'titulo_orientacion_id',
-        'puesto_trabajo_id',
-        'familia_id',
-        'sub_familia_id',
+        'puesto_grupo_id',
+        'puesto_familia_id',
+        'puesto_subfamilia_id',
         'puesto_nomenclatura_id',
         'funcion_trabajo_id'
     ];

@@ -21,4 +21,7 @@ sail artisan infyom:api AsistenciaTipoContrato  --fromTable --tableName=asistenc
 
 sail artisan infyom:api PlantaPermanente        --fromTable --tableName=planta_permanentes             --skip=migrations
 
-                  
+sail artisan infyom:api PuestoGrupo             --fromTable --tableName=puestos_grupos                 --skip=migrations
+sail artisan infyom:api PuestoFamilia           --fromTable --tableName=puestos_familias               --skip=migrations
+sail artisan infyom:api PuestoSubfamilia        --fromTable --tableName=puestos_subfamilias            --skip=migrations
+sail artisan infyom:api PuestoNomenclatura      --fromTable --tableName=puestos_nomenclaturas          --skip=migrations

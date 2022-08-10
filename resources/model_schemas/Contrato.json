@@ -240,7 +240,7 @@
         "inView": true
     },
     {
-        "name": "puesto_trabajo_id",
+        "name": "puesto_grupo_id",
         "dbType": "integer,false",
         "htmlType": null,
         "validations": "required|integer|integer",
@@ -252,7 +252,7 @@
         "inView": true
     },
     {
-        "name": "familia_id",
+        "name": "puesto_familia_id",
         "dbType": "integer,false",
         "htmlType": null,
         "validations": "required|integer|integer",
@@ -264,7 +264,7 @@
         "inView": true
     },
     {
-        "name": "sub_familia_id",
+        "name": "puesto_subfamilia_id",
         "dbType": "integer,false",
         "htmlType": null,
         "validations": "required|integer|integer",

@@ -4,6 +4,10 @@ namespace Database\Factories;
 
 use App\Models\Contrato;
 use App\Models\AsistenciaTipoContrato;
+use App\Models\PuestoFamilia;
+use App\Models\PuestoGrupo;
+use App\Models\PuestoNomenclatura;
+use App\Models\PuestoSubfamilia;
 use App\Models\VinculacionLaboral;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -34,6 +38,27 @@ class ContratoFactory extends Factory
             $vinculacionesLaborale = VinculacionLaboral::factory()->create();
         }
 
+        $puestoGrupo = PuestoGrupo::first();
+        if (!$puestoGrupo) {
+            $puestoGrupo = PuestoGrupo::factory()->create();
+        }
+
+        $puestoFamilia = PuestoFamilia::first();
+        if (!$puestoFamilia) {
+            $puestoFamilia = PuestoFamilia::factory()->create();
+        }
+        
+        $puestoSubfamilia = PuestoSubfamilia::first();
+        if (!$puestoSubfamilia) {
+            $puestoSubfamilia = PuestoSubfamilia::factory()->create();
+        }
+
+        $puestoNomenclatura = PuestoNomenclatura::first();
+        if (!$puestoNomenclatura) {
+            $puestoNomenclatura = PuestoNomenclatura::factory()->create();
+        }
+
+
         return [
             'tipo_alta' => 'Pura',
             'caracter_contrato' => $this->faker->boolean,
@@ -54,10 +79,10 @@ class ContratoFactory extends Factory
             'agente_id' => $this->faker->numberBetween(0, 999),
             'area_id' => $this->faker->numberBetween(0, 999),
             'titulo_orientacion_id' => $this->faker->numberBetween(0, 999),
-            'puesto_trabajo_id' => $this->faker->numberBetween(0, 999),
-            'familia_id' => $this->faker->numberBetween(0, 999),
-            'sub_familia_id' => $this->faker->numberBetween(0, 999),
-            'puesto_nomenclatura_id' => $this->faker->numberBetween(0, 999),
+            'puesto_grupo_id' => $puestoGrupo->id,
+            'puesto_familia_id' => $puestoFamilia->id,
+            'puesto_subfamilia_id' => $puestoSubfamilia->id,
+            'puesto_nomenclatura_id' => $puestoNomenclatura->id,
             'funcion_trabajo_id' => $this->faker->numberBetween(0, 999),
             'created_at' => $this->faker->date('Y-m-d H:i:s'),
             'updated_at' => $this->faker->date('Y-m-d H:i:s')

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * @OA\Schema(
  *      schema="Contrato",
- *      required={"tipo_alta", "caracter_contrato", "tipo_servicio", "objetivo_general", "objetivo_especifico", "actividades_tarea", "resultado_parcial_final", "estandares_cualitativos_cuantitativos", "fecha_obtencion_resultados", "horario_propuesto", "nivel_educativo", "numero_nota_expediente_electronico", "numero_resolucion", "estado", "vinculacion_laboral_id", "asistencia_tipo_contratacion_id", "agente_id", "area_id", "titulo_orientacion_id", "puesto_trabajo_id", "familia_id", "sub_familia_id", "puesto_nomenclatura_id", "funcion_trabajo_id"},
+ *      required={"tipo_alta", "caracter_contrato", "tipo_servicio", "objetivo_general", "objetivo_especifico", "actividades_tarea", "resultado_parcial_final", "estandares_cualitativos_cuantitativos", "fecha_obtencion_resultados", "horario_propuesto", "nivel_educativo", "numero_nota_expediente_electronico", "numero_resolucion", "estado", "vinculacion_laboral_id", "asistencia_tipo_contratacion_id", "agente_id", "area_id", "titulo_orientacion_id", "puesto_grupo_id", "puesto_familia_id", "puesto_subfamilia_id", "puesto_nomenclatura_id", "funcion_trabajo_id"},
  *      @OA\Property(
  *          property="id",
  *          description="id",
@@ -158,24 +158,24 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          format="int32"
  *      ),
  *      @OA\Property(
- *          property="puesto_trabajo_id",
- *          description="puesto_trabajo_id",
+ *          property="puesto_grupo_id",
+ *          description="puesto_grupo_id",
  *          readOnly=false,
  *          nullable=false,
  *          type="integer",
  *          format="int32"
  *      ),
  *      @OA\Property(
- *          property="familia_id",
- *          description="familia_id",
+ *          property="puesto_familia_id",
+ *          description="puesto_familia_id",
  *          readOnly=false,
  *          nullable=false,
  *          type="integer",
  *          format="int32"
  *      ),
  *      @OA\Property(
- *          property="sub_familia_id",
- *          description="sub_familia_id",
+ *          property="puesto_subfamilia_id",
+ *          description="puesto_subfamilia_id",
  *          readOnly=false,
  *          nullable=false,
  *          type="integer",
@@ -259,9 +259,9 @@ class Contrato extends Model
         'agente_id',
         'area_id',
         'titulo_orientacion_id',
-        'puesto_trabajo_id',
-        'familia_id',
-        'sub_familia_id',
+        'puesto_grupo_id',
+        'puesto_familia_id',
+        'puesto_subfamilia_id',
         'puesto_nomenclatura_id',
         'funcion_trabajo_id'
     ];
@@ -292,9 +292,9 @@ class Contrato extends Model
         'agente_id' => 'integer',
         'area_id' => 'integer',
         'titulo_orientacion_id' => 'integer',
-        'puesto_trabajo_id' => 'integer',
-        'familia_id' => 'integer',
-        'sub_familia_id' => 'integer',
+        'puesto_grupo_id' => 'integer',
+        'puesto_familia_id' => 'integer',
+        'puesto_subfamilia_id' => 'integer',
         'puesto_nomenclatura_id' => 'integer',
         'funcion_trabajo_id' => 'integer'
     ];
@@ -324,9 +324,9 @@ class Contrato extends Model
         'agente_id' => 'required|integer',
         'area_id' => 'required|integer',
         'titulo_orientacion_id' => 'required|integer',
-        'puesto_trabajo_id' => 'required|integer',
-        'familia_id' => 'required|integer',
-        'sub_familia_id' => 'required|integer',
+        'puesto_grupo_id' => 'required|integer',
+        'puesto_familia_id' => 'required|integer',
+        'puesto_subfamilia_id' => 'required|integer',
         'puesto_nomenclatura_id' => 'required|integer',
         'funcion_trabajo_id' => 'required|integer',
         'created_at' => 'nullable',

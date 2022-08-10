@@ -1160,6 +1160,666 @@
                 ]
             }
         },
+        "/api/puesto-familias": {
+            "get": {
+                "tags": [
+                    "Puesto Familias"
+                ],
+                "summary": "getPuestoFamiliaList",
+                "description": "Get all PuestoFamilias",
+                "operationId": "d009d810dedbe5ab807968cdd684ca67",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Puesto Familias"
+                ],
+                "summary": "createPuestoFamilia",
+                "description": "Create PuestoFamilia",
+                "operationId": "c4207f4dbf83fe08c8ac15a8d20948b2",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/puesto-familias/{id}": {
+            "get": {
+                "tags": [
+                    "Puesto Familias"
+                ],
+                "summary": "getPuestoFamiliaItem",
+                "description": "Get PuestoFamilia",
+                "operationId": "ec72af3fb24a417cf1276fa2f1421fd8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of PuestoFamilia",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Puesto Familias"
+                ],
+                "summary": "updatePuestoFamilia",
+                "description": "Update PuestoFamilia",
+                "operationId": "7db5adbc0f54054f930d6e480b79f054",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of PuestoFamilia",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Puesto Familias"
+                ],
+                "summary": "deletePuestoFamilia",
+                "description": "Delete PuestoFamilia",
+                "operationId": "dc59ab32fcbb1e2ccb1f70f029cf8c18",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of PuestoFamilia",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/puesto-grupos": {
+            "get": {
+                "tags": [
+                    "Puesto Grupos"
+                ],
+                "summary": "getPuestoGrupoList",
+                "description": "Get all PuestoGrupos",
+                "operationId": "c7e9e6b8763bf1f6381181e7ab80e9e3",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Puesto Grupos"
+                ],
+                "summary": "createPuestoGrupo",
+                "description": "Create PuestoGrupo",
+                "operationId": "c63ce87c486097c560fbb4e2f9dc9ad7",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/puesto-grupos/{id}": {
+            "get": {
+                "tags": [
+                    "Puesto Grupos"
+                ],
+                "summary": "getPuestoGrupoItem",
+                "description": "Get PuestoGrupo",
+                "operationId": "7441a688867b42c09a29d3912c4d0933",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of PuestoGrupo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Puesto Grupos"
+                ],
+                "summary": "updatePuestoGrupo",
+                "description": "Update PuestoGrupo",
+                "operationId": "9939f5b04258e8510eacac0e897a1950",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of PuestoGrupo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Puesto Grupos"
+                ],
+                "summary": "deletePuestoGrupo",
+                "description": "Delete PuestoGrupo",
+                "operationId": "9abcae48207a0e4b84a42c9212421c31",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of PuestoGrupo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/puesto-nomenclaturas": {
+            "get": {
+                "tags": [
+                    "Puesto Nomenclaturas"
+                ],
+                "summary": "getPuestoNomenclaturaList",
+                "description": "Get all PuestoNomenclaturas",
+                "operationId": "1b4d54be13729823501a3ebb7e711072",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Puesto Nomenclaturas"
+                ],
+                "summary": "createPuestoNomenclatura",
+                "description": "Create PuestoNomenclatura",
+                "operationId": "7a4273a1b5dfe861421c9119927eeed8",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/puesto-nomenclaturas/{id}": {
+            "get": {
+                "tags": [
+                    "Puesto Nomenclaturas"
+                ],
+                "summary": "getPuestoNomenclaturaItem",
+                "description": "Get PuestoNomenclatura",
+                "operationId": "d0a2a61d34b653f8906d45e57a5442bd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of PuestoNomenclatura",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Puesto Nomenclaturas"
+                ],
+                "summary": "updatePuestoNomenclatura",
+                "description": "Update PuestoNomenclatura",
+                "operationId": "4cebf3c456de569f089adeb49603f598",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of PuestoNomenclatura",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Puesto Nomenclaturas"
+                ],
+                "summary": "deletePuestoNomenclatura",
+                "description": "Delete PuestoNomenclatura",
+                "operationId": "86e7109bc14d09392d1865980375faac",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of PuestoNomenclatura",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/puesto-subfamilias": {
+            "get": {
+                "tags": [
+                    "Puesto Subfamilias"
+                ],
+                "summary": "getPuestoSubfamiliaList",
+                "description": "Get all PuestoSubfamilias",
+                "operationId": "dd2eed6cb9a0e89b1a4f93b263cc69a6",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Puesto Subfamilias"
+                ],
+                "summary": "createPuestoSubfamilia",
+                "description": "Create PuestoSubfamilia",
+                "operationId": "5ef80e608d44bf403f71e98bf04f1f8b",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/puesto-subfamilias/{id}": {
+            "get": {
+                "tags": [
+                    "Puesto Subfamilias"
+                ],
+                "summary": "getPuestoSubfamiliaItem",
+                "description": "Get PuestoSubfamilia",
+                "operationId": "7172ebab90aa32b396205a79613a1365",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of PuestoSubfamilia",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Puesto Subfamilias"
+                ],
+                "summary": "updatePuestoSubfamilia",
+                "description": "Update PuestoSubfamilia",
+                "operationId": "8e8d4e72c59dd239064baca2fb7786c6",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of PuestoSubfamilia",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Puesto Subfamilias"
+                ],
+                "summary": "deletePuestoSubfamilia",
+                "description": "Delete PuestoSubfamilia",
+                "operationId": "b67db691e32cff35c5dd81fca88224fb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of PuestoSubfamilia",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/roles": {
             "get": {
                 "tags": [
@@ -1946,9 +2606,9 @@
                     "agente_id",
                     "area_id",
                     "titulo_orientacion_id",
-                    "puesto_trabajo_id",
-                    "familia_id",
-                    "sub_familia_id",
+                    "puesto_grupo_id",
+                    "puesto_familia_id",
+                    "puesto_subfamilia_id",
                     "puesto_nomenclatura_id",
                     "funcion_trabajo_id"
                 ],
@@ -2080,22 +2740,22 @@
                         "readOnly": false,
                         "nullable": false
                     },
-                    "puesto_trabajo_id": {
-                        "description": "puesto_trabajo_id",
+                    "puesto_grupo_id": {
+                        "description": "puesto_grupo_id",
                         "type": "integer",
                         "format": "int32",
                         "readOnly": false,
                         "nullable": false
                     },
-                    "familia_id": {
-                        "description": "familia_id",
+                    "puesto_familia_id": {
+                        "description": "puesto_familia_id",
                         "type": "integer",
                         "format": "int32",
                         "readOnly": false,
                         "nullable": false
                     },
-                    "sub_familia_id": {
-                        "description": "sub_familia_id",
+                    "puesto_subfamilia_id": {
+                        "description": "puesto_subfamilia_id",
                         "type": "integer",
                         "format": "int32",
                         "readOnly": false,
@@ -2404,6 +3064,216 @@
                         "type": "string",
                         "readOnly": false,
                         "nullable": false
+                    },
+                    "created_at": {
+                        "description": "created_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "updated_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "deleted_at": {
+                        "description": "deleted_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "PuestoFamilia": {
+                "required": [
+                    "nombre"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": true,
+                        "nullable": false
+                    },
+                    "nombre": {
+                        "description": "nombre",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "puesto_grupo_id": {
+                        "description": "puesto_grupo_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": true
+                    },
+                    "created_at": {
+                        "description": "created_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "updated_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "deleted_at": {
+                        "description": "deleted_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "PuestoGrupo": {
+                "required": [
+                    "nombre"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": true,
+                        "nullable": false
+                    },
+                    "nombre": {
+                        "description": "nombre",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "created_at": {
+                        "description": "created_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "updated_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "deleted_at": {
+                        "description": "deleted_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "PuestoNomenclatura": {
+                "required": [
+                    "nombre"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": true,
+                        "nullable": false
+                    },
+                    "nombre": {
+                        "description": "nombre",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "puesto_grupo_id": {
+                        "description": "puesto_grupo_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": true
+                    },
+                    "puesto_familia_id": {
+                        "description": "puesto_familia_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": true
+                    },
+                    "puesto_subfamilia_id": {
+                        "description": "puesto_subfamilia_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": true
+                    },
+                    "created_at": {
+                        "description": "created_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "updated_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "deleted_at": {
+                        "description": "deleted_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "PuestoSubfamilia": {
+                "required": [
+                    "nombre"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": true,
+                        "nullable": false
+                    },
+                    "nombre": {
+                        "description": "nombre",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "puesto_grupo_id": {
+                        "description": "puesto_grupo_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": true
+                    },
+                    "puesto_familia_id": {
+                        "description": "puesto_familia_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": true
                     },
                     "created_at": {
                         "description": "created_at",

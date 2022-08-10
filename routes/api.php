@@ -40,6 +40,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('vinculaciones-laborales', App\Http\Controllers\API\VinculacionLaboralAPIController::class);
     Route::resource('asistencia-tipo-contratos', App\Http\Controllers\API\AsistenciaTipoContratoAPIController::class);
     Route::resource('contratos', App\Http\Controllers\API\ContratoAPIController::class);
+    Route::resource('puesto-grupos', App\Http\Controllers\API\PuestoGrupoAPIController::class);
+    Route::resource('puesto-familias', App\Http\Controllers\API\PuestoFamiliaAPIController::class);
+    Route::resource('puesto-subfamilias', App\Http\Controllers\API\PuestoSubfamiliaAPIController::class);
+    Route::resource('puesto-nomenclaturas', App\Http\Controllers\API\PuestoNomenclaturaAPIController::class);
 
     //hago la ruta de plantas_permanentes
     Route::resource('planta-permanentes', App\Http\Controllers\API\PlantaPermanenteAPIController::class);
