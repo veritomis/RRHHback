@@ -19,7 +19,7 @@ class PlantaPermanenteApiTest extends TestCase
 
         $this->response = $this->json(
             'POST',
-            '/api/planta_permanentes', $plantaPermanente
+            '/api/planta-permanentes', $plantaPermanente
         );
 
         $this->assertApiResponse($plantaPermanente);
@@ -34,7 +34,7 @@ class PlantaPermanenteApiTest extends TestCase
 
         $this->response = $this->json(
             'GET',
-            '/api/planta_permanentes/'.$plantaPermanente->id
+            '/api/planta-permanentes/'.$plantaPermanente->id
         );
 
         $this->assertApiResponse($plantaPermanente->toArray());
@@ -50,7 +50,7 @@ class PlantaPermanenteApiTest extends TestCase
 
         $this->response = $this->json(
             'PUT',
-            '/api/planta_permanentes/'.$plantaPermanente->id,
+            '/api/planta-permanentes/'.$plantaPermanente->id,
             $editedPlantaPermanente
         );
 
@@ -66,13 +66,13 @@ class PlantaPermanenteApiTest extends TestCase
 
         $this->response = $this->json(
             'DELETE',
-             '/api/planta_permanentes/'.$plantaPermanente->id
+             '/api/planta-permanentes/'.$plantaPermanente->id
          );
 
         $this->assertApiSuccess();
         $this->response = $this->json(
             'GET',
-            '/api/planta_permanentes/'.$plantaPermanente->id
+            '/api/planta-permanentes/'.$plantaPermanente->id
         );
 
         $this->response->assertStatus(404);

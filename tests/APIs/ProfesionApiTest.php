@@ -19,7 +19,7 @@ class ProfesionApiTest extends TestCase
 
         $this->response = $this->json(
             'POST',
-            '/api/profesions', $profesion
+            '/api/profesiones', $profesion
         );
 
         $this->assertApiResponse($profesion);
@@ -34,7 +34,7 @@ class ProfesionApiTest extends TestCase
 
         $this->response = $this->json(
             'GET',
-            '/api/profesions/'.$profesion->id
+            '/api/profesiones/'.$profesion->id
         );
 
         $this->assertApiResponse($profesion->toArray());
@@ -50,7 +50,7 @@ class ProfesionApiTest extends TestCase
 
         $this->response = $this->json(
             'PUT',
-            '/api/profesions/'.$profesion->id,
+            '/api/profesiones/'.$profesion->id,
             $editedProfesion
         );
 
@@ -66,13 +66,13 @@ class ProfesionApiTest extends TestCase
 
         $this->response = $this->json(
             'DELETE',
-             '/api/profesions/'.$profesion->id
+             '/api/profesiones/'.$profesion->id
          );
 
         $this->assertApiSuccess();
         $this->response = $this->json(
             'GET',
-            '/api/profesions/'.$profesion->id
+            '/api/profesiones/'.$profesion->id
         );
 
         $this->response->assertStatus(404);
