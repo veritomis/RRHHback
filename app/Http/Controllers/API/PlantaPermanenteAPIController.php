@@ -124,9 +124,9 @@ class PlantaPermanenteAPIController extends AppBaseController
      */
     public function store(CreatePlantaPermanenteAPIRequest $request)
     {
-        // if (!$this->verifiedPermissions('consultar-planta-permanentes')) {
-        //     return $this->sendError('Usuario no autorizado');
-        // }
+        if (!$this->verifiedPermissions('consultar-planta-permanentes')) {
+            return $this->sendError('Usuario no autorizado');
+        }
 
         $input = $request->all();
 
@@ -177,9 +177,9 @@ class PlantaPermanenteAPIController extends AppBaseController
      */
     public function show($id)
     {
-        // if (!$this->verifiedPermissions('consultar-planta-permanentes')) {
-        //     return $this->sendError('Usuario no autorizado');
-        // }
+        if (!$this->verifiedPermissions('consultar-planta-permanentes')) {
+             return $this->sendError('Usuario no autorizado');
+        }
 
         /** @var PlantaPermanente $plantaPermanente */
         $plantaPermanente = $this->plantaPermanenteRepository->find($id);
@@ -249,9 +249,9 @@ class PlantaPermanenteAPIController extends AppBaseController
      */
     public function update($id, UpdatePlantaPermanenteAPIRequest $request)
     {
-        // if (!$this->verifiedPermissions('consultar-planta-permanentes')) {
-        //     return $this->sendError('Usuario no autorizado');
-        // }
+        if (!$this->verifiedPermissions('consultar-planta-permanentes')) {
+             return $this->sendError('Usuario no autorizado');
+        }
         
         $input = $request->all();
 
@@ -309,9 +309,9 @@ class PlantaPermanenteAPIController extends AppBaseController
      */
     public function destroy($id)
     {
-        // if (!$this->verifiedPermissions('borrar-planta-permanentes')) {
-        //     return $this->sendError('Usuario no autorizado');
-        // }
+        if (!$this->verifiedPermissions('borrar-planta-permanentes')) {
+            return $this->sendError('Usuario no autorizado');
+        }
 
         /** @var PlantaPermanente $plantaPermanente */
         $plantaPermanente = $this->plantaPermanenteRepository->find($id);

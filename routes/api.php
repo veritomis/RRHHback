@@ -45,6 +45,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('puesto-subfamilias', App\Http\Controllers\API\PuestoSubfamiliaAPIController::class);
     Route::resource('puesto-nomenclaturas', App\Http\Controllers\API\PuestoNomenclaturaAPIController::class);
 
+    // este lo agrego porque falta:
+    Route::resource('vinculacion-laboral', App\Http\Controllers\API\VinculacionLaboralAPIController::class);
+
     //hago la ruta de plantas_permanentes
     Route::resource('planta-permanentes', App\Http\Controllers\API\PlantaPermanenteAPIController::class);
 

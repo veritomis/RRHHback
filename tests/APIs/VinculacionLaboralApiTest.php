@@ -19,7 +19,7 @@ class VinculacionLaboralApiTest extends TestCase
 
         $this->response = $this->json(
             'POST',
-            '/api/vinculacion_laborals', $vinculacionLaboral
+            '/api/vinculaciones-laborales', $vinculacionLaboral
         );
 
         $this->assertApiResponse($vinculacionLaboral);
@@ -34,7 +34,7 @@ class VinculacionLaboralApiTest extends TestCase
 
         $this->response = $this->json(
             'GET',
-            '/api/vinculacion_laborals/'.$vinculacionLaboral->id
+            '/api/vinculaciones-laborales/'.$vinculacionLaboral->id
         );
 
         $this->assertApiResponse($vinculacionLaboral->toArray());
@@ -50,7 +50,7 @@ class VinculacionLaboralApiTest extends TestCase
 
         $this->response = $this->json(
             'PUT',
-            '/api/vinculacion_laborals/'.$vinculacionLaboral->id,
+            '/api/vinculaciones-laborales/'.$vinculacionLaboral->id,
             $editedVinculacionLaboral
         );
 
@@ -66,13 +66,13 @@ class VinculacionLaboralApiTest extends TestCase
 
         $this->response = $this->json(
             'DELETE',
-             '/api/vinculacion_laborals/'.$vinculacionLaboral->id
+             '/api/vinculaciones-laborales/'.$vinculacionLaboral->id
          );
 
         $this->assertApiSuccess();
         $this->response = $this->json(
             'GET',
-            '/api/vinculacion_laborals/'.$vinculacionLaboral->id
+            '/api/vinculaciones-laborales/'.$vinculacionLaboral->id
         );
 
         $this->response->assertStatus(404);
