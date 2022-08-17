@@ -36,7 +36,7 @@ class PuestoSubfamiliaFactory extends Factory
         }
 
         return [
-            'nombre' => $this->faker->text($this->faker->numberBetween(5, 255)),
+            'nombre' => $this->faker->text($this->faker->numberBetween(5, 20)),
             'puesto_grupo_id' => $puestosGrupo->id,
             'puesto_familia_id' => $puestosFamilia->id,
             'created_at' => $this->faker->date('Y-m-d H:i:s'),
