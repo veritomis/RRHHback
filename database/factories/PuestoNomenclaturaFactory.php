@@ -42,7 +42,7 @@ class PuestoNomenclaturaFactory extends Factory
         }
 
         return [
-            'nombre' => $this->faker->text($this->faker->numberBetween(5, 255)),
+            'nombre' => $this->faker->text($this->faker->numberBetween(5, 20)),
             'puesto_grupo_id' => $puestosGrupo->id,
             'puesto_familia_id' => $puestosFamilia->id,
             'puesto_subfamilia_id' => $puestosSubfamilia->id,
