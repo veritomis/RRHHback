@@ -22,15 +22,16 @@ class DatabaseSeeder extends Seeder
         \App\Models\Carrera::factory(10)->create();
         \App\Models\Contrato::factory(10)->create();
         \App\Models\PlantaPermanente::factory(10)->create();
-        \App\Models\PuestoGrupo::factory(10)->create();
-        \App\Models\PuestoFamilia::factory(10)->create();
-        \App\Models\PuestoSubfamilia::factory(10)->create();
-        \App\Models\PuestoNomenclatura::factory(10)->create();
+        // \App\Models\PuestoGrupo::factory(10)->create();
+        // \App\Models\PuestoFamilia::factory(10)->create();
+        // \App\Models\PuestoSubfamilia::factory(10)->create();
+        // \App\Models\PuestoNomenclatura::factory(10)->create();
         activity()->withoutLogs(function () {
             $this->call([
                 PermissionsSeeder::class,
                 ModulesSeeder::class,
                 AgenteSeeder::class,
+                PuestosSeeder::class,
             ]);
         });
     }
