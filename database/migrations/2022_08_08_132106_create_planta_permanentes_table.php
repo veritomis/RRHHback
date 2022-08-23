@@ -16,12 +16,10 @@ return new class extends Migration
         Schema::create('planta_permanentes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('agente_id')->constrained('agentes');
-            
+
             // esto ya esta en la tabla agente, lo de nivel y grado, va de nuevo?
             $table->string('letra_nivel');
             $table->string('numero_grado');
-            
-             
             $table->string('tramo');
             $table->string('agrupamiento');
 
@@ -60,6 +58,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('plantapermanentes');
+        Schema::dropIfExists('planta_permanentes');
     }
 };

@@ -33,6 +33,11 @@ class PuestoNomenclaturaRepository extends BaseRepository
         return $this->fieldSearchable;
     }
 
+    public function getIncludes()
+    {
+        return ['puestoGrupo','puestoFamilia','puestoSubfamilia'];
+    }
+
     /**
      * Configure the Model
      **/
