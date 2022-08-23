@@ -20,8 +20,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\AsistenciaTipoContrato::factory(10)->create();
         \App\Models\Grupo::factory(10)->create();
         \App\Models\Carrera::factory(10)->create();
-        \App\Models\Contrato::factory(10)->create();
-        \App\Models\PlantaPermanente::factory(10)->create();
         // \App\Models\PuestoGrupo::factory(10)->create();
         // \App\Models\PuestoFamilia::factory(10)->create();
         // \App\Models\PuestoSubfamilia::factory(10)->create();
@@ -34,5 +32,7 @@ class DatabaseSeeder extends Seeder
                 PuestosSeeder::class,
             ]);
         });
+        \App\Models\Contrato::factory(10)->create();
+        \App\Models\PlantaPermanente::factory(10)->create();
     }
 }
