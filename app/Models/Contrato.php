@@ -22,7 +22,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          property="tipo_alta",
  *          description="tipo_alta",
  *          readOnly=false,
- *          nullable=false,
  *          type="string"
  *      ),
  *      @OA\Property(
@@ -305,7 +304,7 @@ class Contrato extends Model
      * @var array
      */
     public static $rules = [
-        'tipo_alta' => 'required|string',
+        'tipo_alta' => 'string',
         'caracter_contrato' => 'required|boolean',
         'tipo_servicio' => 'required|string|max:255',
         'objetivo_general' => 'required|string|max:255',
@@ -325,8 +324,8 @@ class Contrato extends Model
         'area_id' => 'required|integer',
         'titulo_orientacion_id' => 'required|integer',
         'puesto_grupo_id' => 'required|integer',
-        'puesto_familia_id' => 'required|integer',
-        'puesto_subfamilia_id' => 'required|integer',
+        'puesto_familia_id' => 'nullable|integer',
+        'puesto_subfamilia_id' => 'nullable|integer',
         'puesto_nomenclatura_id' => 'required|integer',
         'funcion_trabajo_id' => 'required|integer',
         'created_at' => 'nullable',
