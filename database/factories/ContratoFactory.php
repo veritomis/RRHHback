@@ -33,10 +33,10 @@ class ContratoFactory extends Factory
             $asistenciaTipoContratacione = AsistenciaTipoContrato::factory()->create();
         }
 
-        $vinculacionesLaborale = VinculacionLaboral::first();
-        if (!$vinculacionesLaborale) {
-            $vinculacionesLaborale = VinculacionLaboral::factory()->create();
-        }
+        // $vinculacionesLaborale = VinculacionLaboral::first();
+        // if (!$vinculacionesLaborale) {
+        //     $vinculacionesLaborale = VinculacionLaboral::factory()->create();
+        // }
 
         $puestoGrupo = PuestoGrupo::first();
         if (!$puestoGrupo) {
@@ -61,7 +61,7 @@ class ContratoFactory extends Factory
 
         return [
             'tipo_alta' => 'Pura',
-            'caracter_contrato' => $this->faker->boolean,
+            'caracter_contrato' => 'Estacional',
             'tipo_servicio' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'objetivo_general' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'objetivo_especifico' => $this->faker->text($this->faker->numberBetween(5, 255)),
@@ -74,7 +74,6 @@ class ContratoFactory extends Factory
             'numero_nota_expediente_electronico' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'numero_resolucion' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'estado' => $this->faker->boolean,
-            'vinculacion_laboral_id' => $vinculacionesLaborale->id,
             'asistencia_tipo_contratacion_id' => $asistenciaTipoContratacione->id,
             'agente_id' => $this->faker->numberBetween(0, 999),
             'area_id' => $this->faker->numberBetween(0, 999),

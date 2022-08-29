@@ -55,3 +55,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthenticatedSessionController::class, 'logout'])
                 ->name('logout');
 });
+
+Route::resource('funcions', App\Http\Controllers\API\FuncionAPIController::class);

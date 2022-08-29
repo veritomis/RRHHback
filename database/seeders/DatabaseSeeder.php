@@ -16,11 +16,11 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\Profesion::factory(10)->create();
         \App\Models\Titulo::factory(10)->create();
-        \App\Models\VinculacionLaboral::factory(10)->create();
+        // \App\Models\VinculacionLaboral::factory(10)->create();
         \App\Models\AsistenciaTipoContrato::factory(10)->create();
         \App\Models\Grupo::factory(10)->create();
         \App\Models\Carrera::factory(10)->create();
-        // \App\Models\PuestoGrupo::factory(10)->create();
+        \App\Models\Funcion::factory(5)->create();
         // \App\Models\PuestoFamilia::factory(10)->create();
         // \App\Models\PuestoSubfamilia::factory(10)->create();
         // \App\Models\PuestoNomenclatura::factory(10)->create();
