@@ -8,6 +8,7 @@ sail artisan config:clear
 Example command Unit Test 
 -------------------------
 sail artisan test --filter PlantaPermanenteApiTest tests/APIs/PlantaPermanenteApiTest.php
+sail artisan test --filter RolApiTest tests/APIs/RolApiTest.php
 -------------------------
 Creation the CRUD
 -------------------------
