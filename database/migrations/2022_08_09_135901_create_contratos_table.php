@@ -28,8 +28,8 @@ return new class extends Migration
             $table->string('horario_propuesto');
             $table->string('nivel_educativo');
             $table->string('numero_nota_expediente_electronico');
-            $table->string('numero_resolucion');
-            $table->boolean('estado');
+            $table->string('numero_resolucion')->nullable();
+            $table->boolean('estado')->nullable();
 
             $table->text('experiencia_laboral')->nullable();
             $table->text('observacion')->nullable();

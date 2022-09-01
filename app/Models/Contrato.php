@@ -338,7 +338,7 @@ class Contrato extends Model
      * @var array
      */
     public static $rules = [
-        'tipo_alta' => 'required|string|max:255',
+        'tipo_alta' => 'nullable|string|max:255',
         'caracter_contrato' => 'required|string|max:255',
         'nivel_categoria' => 'required|string|max:255',
         'tipo_servicio' => 'required|string|max:255',
@@ -351,8 +351,8 @@ class Contrato extends Model
         'horario_propuesto' => 'required|string|max:255',
         'nivel_educativo' => 'required|string|max:255',
         'numero_nota_expediente_electronico' => 'required|string|max:255',
-        'numero_resolucion' => 'required|string|max:255',
-        'estado' => 'required|boolean',
+        'numero_resolucion' => 'nullable|string|max:255',
+        'estado' => 'nullable|boolean',
         'asistencia_tipo_contratacion_id' => 'required',
         'agente_id' => 'required|integer',
         'area_id' => 'required|integer',
