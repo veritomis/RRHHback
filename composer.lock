@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "765a8738e48e9342819b7ca2d80dbd8e",
+    "content-hash": "029659ce661076bbbf40753ebce52308",
     "packages": [
         {
             "name": "brick/math",
@@ -296,16 +296,16 @@
         },
         {
             "name": "directorytree/ldaprecord-laravel",
-            "version": "v2.5.6",
+            "version": "v2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DirectoryTree/LdapRecord-Laravel.git",
-                "reference": "75ba6b5a981fa1e9f1ad6c2233ea4f73078f8d66"
+                "reference": "ec537bc3534f874bcade5febd3199cbb0758d9bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DirectoryTree/LdapRecord-Laravel/zipball/75ba6b5a981fa1e9f1ad6c2233ea4f73078f8d66",
-                "reference": "75ba6b5a981fa1e9f1ad6c2233ea4f73078f8d66",
+                "url": "https://api.github.com/repos/DirectoryTree/LdapRecord-Laravel/zipball/ec537bc3534f874bcade5febd3199cbb0758d9bb",
+                "reference": "ec537bc3534f874bcade5febd3199cbb0758d9bb",
                 "shasum": ""
             },
             "require": {
@@ -348,7 +348,7 @@
             ],
             "support": {
                 "issues": "https://github.com/DirectoryTree/LdapRecord-Laravel/issues",
-                "source": "https://github.com/DirectoryTree/LdapRecord-Laravel/tree/v2.5.6"
+                "source": "https://github.com/DirectoryTree/LdapRecord-Laravel/tree/v2.6.0"
             },
             "funding": [
                 {
@@ -356,7 +356,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-05-11T13:35:40+00:00"
+            "time": "2022-07-22T17:06:47+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -9329,5 +9329,5 @@
         "php": "^8.0.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.3.0"
 }

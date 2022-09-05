@@ -10,6 +10,18 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionController extends AppBaseController
 {
+    // public function usarname()
+    // {
+    //     return 'username';
+    // }
+    // protected function credentials(Request $request)
+    // {
+    //     return [
+    //         'uid' => $request->username,
+    //         'password' => $request->password
+    //     ];
+    // }
+
     /**
      * Handle an incoming authentication request.
      *
@@ -18,18 +30,18 @@ class AuthenticatedSessionController extends AppBaseController
      */
     public function store(LoginRequest $request)
     {
-        
-        // $credentials = [
-        //     'username' => 'haacosta',
-        //     'password' => 'Produccion01',
-        // ];
-        
-        // if (Auth::attempt($credentials)) {
-        //     $user = Auth::user();
-            
-        //     return $this->sendResponse(['Usuario' => $user], 'Acceso satisfactorio');
-        // }
-        
+        $credentials = [
+            'username' => 'sirh',
+            'password' => 'Pr0ducc10n',
+        ];
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+
+            return $this->sendResponse(['Usuario' => $user], 'Acceso satisfactorio');
+        }else{
+            return $this->sendError('Usuario No conecta');
+        }
+
         $request->authenticate();
         $token = $request->user()->createToken('token')->plainTextToken;
         $user = Auth::user();
