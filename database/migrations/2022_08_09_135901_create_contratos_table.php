@@ -18,6 +18,7 @@ return new class extends Migration
             $table->enum('tipo_alta', ['Pura', 'Renovacion','Adenda','Cambio de Nivel','Movilidad Interna'])->default('Pura');
             $table->enum('caracter_contrato', ['Estacional', 'Transitorio']);
             $table->enum('nivel_categoria', ['A','B','C','D','E','F']);
+            $table->enum('competetencias_laborales_especificas', ['Deseable','Excluyente']);
             $table->string('tipo_servicio');
             $table->string('objetivo_general');
             $table->string('objetivo_especifico');
@@ -35,6 +36,7 @@ return new class extends Migration
             $table->text('observacion')->nullable();
             $table->text('otro_requisito')->nullable();
             $table->text('reportar')->nullable();
+            $table->text('denominacion_funcion')->nullable();
 
             //relaciones
             // $table->integer('vinculacion_laboral_id');
@@ -53,7 +55,7 @@ return new class extends Migration
             
             $table->string('puesto_trabajo_otro')->nullable();
             
-            $table->integer('funcion_trabajo_id');
+            // $table->integer('funcion_trabajo_id');
 
             $table->timestamps();
             $table->softDeletes();

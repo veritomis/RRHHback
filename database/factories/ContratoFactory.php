@@ -62,6 +62,8 @@ class ContratoFactory extends Factory
         return [
             'tipo_alta' => 'Pura',
             'caracter_contrato' => 'Estacional',
+            'competetencias_laborales_especificas' => 'Deseable',
+            'denominacion_funcion' => $this->faker->text($this->faker->numberBetween(5, 25)),
             'tipo_servicio' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'objetivo_general' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'objetivo_especifico' => $this->faker->text($this->faker->numberBetween(5, 255)),
@@ -82,7 +84,7 @@ class ContratoFactory extends Factory
             'puesto_familia_id' => $puestoFamilia->id,
             'puesto_subfamilia_id' => $puestoSubfamilia->id,
             'puesto_nomenclatura_id' => $puestoNomenclatura->id,
-            'funcion_trabajo_id' => $this->faker->numberBetween(0, 999),
+
             'created_at' => $this->faker->date('Y-m-d H:i:s'),
             'updated_at' => $this->faker->date('Y-m-d H:i:s')
         ];
