@@ -37,15 +37,15 @@ class ModuleAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
+        if (!$this->verifiedPermissions('consultar-modulos')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+        
         $modules = $this->moduleRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
             $request->get('limit')
         );
-
-        if (!$this->verifiedPermissions('consultar-modulos')) {
-            return $this->sendError('Usuario no autorizado');
-        }
 
         return $this->sendResponse($modules->toArray(), 'Modules retrieved successfully');
     }

@@ -43,3 +43,8 @@ Configuring de Bash [Alias](https://laravel.com/docs/9.x/sail#configuring-a-bash
 
 ## Documentación de API REST FULL
 Para la documentación de los endPoint creados para los microsevicios utilizaremos swagger una vez inicializado el projecto accedemos a la siguiente url [http://localhost/api/documentation](http://localhost/api/documentation#/)
+
+Al acceder a la sección de Documentación de API se va a solicitar un token de autorización por lo que es requerido que utilice alguna aplicación de consulta de API como [Postman](https://www.postman.com/) o [Insonmia](https://insomnia.rest/download) para poder consultar la ruta login http://localhost/api/login con las credenciales necesarias para obtener el token válido a utilizar, el siguiente token se debe de incorporar en la sección de Autorize, al hacer click desplegará un modal en el cual se debe insertar el token de la siguiente manera:
+
+Ejemplo:
+```Bearer 1|e3Hj2QfIfi68y4D3NCOypq4cKD8gUd80FLgiPKhQ```
