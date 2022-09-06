@@ -665,6 +665,146 @@
                 ]
             }
         },
+        "/funcions": {
+            "get": {
+                "tags": [
+                    "Funcion"
+                ],
+                "summary": "getFuncionList",
+                "description": "Get all Funcions",
+                "operationId": "d8f54840b708e24bcac78472dbe99190",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Funcion"
+                ],
+                "summary": "createFuncion",
+                "description": "Create Funcion",
+                "operationId": "e4143726123f35b1030c4dd097b1d9d2",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/funcions/{id}": {
+            "get": {
+                "tags": [
+                    "Funcion"
+                ],
+                "summary": "getFuncionItem",
+                "description": "Get Funcion",
+                "operationId": "9347754925e95e5b3b7b0de7ba1e8102",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Funcion",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Funcion"
+                ],
+                "summary": "updateFuncion",
+                "description": "Update Funcion",
+                "operationId": "6617a1b950023e856543c16bbfb0f5b9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Funcion",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Funcion"
+                ],
+                "summary": "deleteFuncion",
+                "description": "Delete Funcion",
+                "operationId": "3deb78483408d781c8a0d79f4cc336db",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Funcion",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
         "/api/grupos": {
             "get": {
                 "tags": [
@@ -2610,7 +2750,14 @@
                     "puesto_familia_id",
                     "puesto_subfamilia_id",
                     "puesto_nomenclatura_id",
-                    "funcion_trabajo_id"
+                    "funcion_trabajo_id",
+                    "puesto_trabajo_otro",
+                    "experiencia_laboral",
+                    "observacion",
+                    "otro_requisito",
+                    "reportar",
+                    "competetencias_laborales_especificas",
+                    "denominacion_funcion"
                 ],
                 "properties": {
                     "id": {
@@ -2623,8 +2770,7 @@
                     "tipo_alta": {
                         "description": "tipo_alta",
                         "type": "string",
-                        "readOnly": false,
-                        "nullable": false
+                        "readOnly": false
                     },
                     "caracter_contrato": {
                         "description": "caracter_contrato",
@@ -2658,6 +2804,18 @@
                     },
                     "resultado_parcial_final": {
                         "description": "resultado_parcial_final",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "competetencias_laborales_especificas": {
+                        "description": "competetencias_laborales_especificas",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "denominacion_funcion": {
+                        "description": "denominacion_funcion",
                         "type": "string",
                         "readOnly": false,
                         "nullable": false
@@ -2702,13 +2860,6 @@
                     "estado": {
                         "description": "estado",
                         "type": "boolean",
-                        "readOnly": false,
-                        "nullable": false
-                    },
-                    "vinculacion_laboral_id": {
-                        "description": "vinculacion_laboral_id",
-                        "type": "integer",
-                        "format": "int32",
                         "readOnly": false,
                         "nullable": false
                     },
@@ -2772,6 +2923,73 @@
                         "description": "funcion_trabajo_id",
                         "type": "integer",
                         "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "created_at": {
+                        "description": "created_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "updated_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "deleted_at": {
+                        "description": "deleted_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "puesto_trabajo_otro": {
+                        "description": "puesto_trabajo_otro",
+                        "type": "string",
+                        "readOnly": false
+                    },
+                    "experiencia_laboral": {
+                        "description": "experiencia_laboral",
+                        "type": "string",
+                        "readOnly": false
+                    },
+                    "observacion": {
+                        "description": "observacion",
+                        "type": "string",
+                        "readOnly": false
+                    },
+                    "otro_requisito": {
+                        "description": "otro_requisito",
+                        "type": "string",
+                        "readOnly": false
+                    },
+                    "reportar": {
+                        "description": "reportar",
+                        "type": "string",
+                        "readOnly": false
+                    }
+                },
+                "type": "object"
+            },
+            "Funcion": {
+                "required": [
+                    "nombre"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": true,
+                        "nullable": false
+                    },
+                    "nombre": {
+                        "description": "nombre",
+                        "type": "string",
                         "readOnly": false,
                         "nullable": false
                     },
