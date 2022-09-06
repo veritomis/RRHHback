@@ -283,7 +283,6 @@ class Contrato extends Model
         'numero_nota_expediente_electronico',
         'numero_resolucion',
         'estado',
-
         'asistencia_tipo_contratacion_id',
         'agente_id',
         'area_id',
@@ -297,7 +296,6 @@ class Contrato extends Model
         'observacion',
         'otro_requisito',
         'reportar',
-        
         'denominacion_funcion'
     ];
 

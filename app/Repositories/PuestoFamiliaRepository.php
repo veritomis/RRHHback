@@ -33,7 +33,7 @@ class PuestoFamiliaRepository extends BaseRepository
 
     public function getIncludes()
     {
-        return ['puestoGrupo','puestosSubfamilias','puestosNomenclaturas'];
+        return ['puestoGrupo','puestosSubfamilias','puestoNomenclaturas'];
     }
 
     /**
