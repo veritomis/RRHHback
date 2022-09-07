@@ -10,17 +10,17 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionController extends AppBaseController
 {
-    // public function usarname()
-    // {
-    //     return 'username';
-    // }
-    // protected function credentials(Request $request)
-    // {
-    //     return [
-    //         'uid' => $request->username,
-    //         'password' => $request->password
-    //     ];
-    // }
+    public function usarname()
+    {
+        return 'username';
+    }
+    protected function credentials()
+    {
+        return [
+            'uid' => 'tesla',
+            'password' => 'password'
+        ];
+    }
 
     /**
      * Handle an incoming authentication request.
@@ -30,10 +30,11 @@ class AuthenticatedSessionController extends AppBaseController
      */
     public function store(LoginRequest $request)
     {
-        $credentials = [
-            'username' => 'sirh',
-            'password' => 'Pr0ducc10n',
-        ];
+        // $credential = [
+        //     'username' => 'tesla',
+        //     'password' => 'password',
+        // ];
+        $credentials = $this->credentials();
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 

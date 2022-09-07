@@ -38,7 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'ldap',
+            'provider' => 'users',
         ],
     ],
 
@@ -60,10 +60,19 @@ return [
     */
 
     'providers' => [
+
         'users' => [
             'driver' => 'ldap',
-            'model' => LdapRecord\Models\ActiveDirectory\User::class,
+            'model' => LdapRecord\Models\OpenLDAP\User::class,
             'rules' => [],
+            'database' => [
+                'model' => App\Models\User::class,
+                'sync_passwords' => false,
+                'sync_attributes' => [
+                    'name' => 'cn',
+                    'email' => 'mail',
+                ],
+            ],
         ],
 
         // 'users' => [
