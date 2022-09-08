@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * @OA\Schema(
  *      schema="Contrato",
- *      required={"tipo_alta", "caracter_contrato", "tipo_servicio", "objetivo_general", "objetivo_especifico", "actividades_tarea", "resultado_parcial_final", "estandares_cualitativos_cuantitativos", "fecha_obtencion_resultados", "horario_propuesto", "nivel_educativo", "numero_nota_expediente_electronico", "numero_resolucion", "estado", "vinculacion_laboral_id", "asistencia_tipo_contratacion_id", "agente_id", "area_id", "titulo_orientacion_id", "puesto_grupo_id", "puesto_familia_id", "puesto_subfamilia_id", "puesto_nomenclatura_id", "funcion_trabajo_id"},
+ *      required={"tipo_alta", "caracter_contrato", "tipo_servicio", "objetivo_general", "objetivo_especifico", "actividades_tarea", "resultado_parcial_final", "estandares_cualitativos_cuantitativos", "fecha_obtencion_resultados", "horario_propuesto", "nivel_educativo", "numero_nota_expediente_electronico", "numero_resolucion", "estado", "vinculacion_laboral_id", "asistencia_tipo_contratacion_id", "agente_id", "area_id", "titulo_orientacion_id", "puesto_grupo_id", "puesto_familia_id", "puesto_subfamilia_id", "puesto_nomenclatura_id","puesto_trabajo_otro","experiencia_laboral","observacion","otro_requisito","reportar","competetencias_laborales_especificas","denominacion_funcion"},
  *      @OA\Property(
  *          property="id",
  *          description="id",
@@ -22,7 +22,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          property="tipo_alta",
  *          description="tipo_alta",
  *          readOnly=false,
- *          nullable=false,
  *          type="string"
  *      ),
  *      @OA\Property(
@@ -63,6 +62,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *      @OA\Property(
  *          property="resultado_parcial_final",
  *          description="resultado_parcial_final",
+ *          readOnly=false,
+ *          nullable=false,
+ *          type="string"
+ *      ),
+ *      @OA\Property(
+ *          property="competetencias_laborales_especificas",
+ *          description="competetencias_laborales_especificas",
+ *          readOnly=false,
+ *          nullable=false,
+ *          type="string"
+ *      ),
+ *      @OA\Property(
+ *          property="denominacion_funcion",
+ *          description="denominacion_funcion",
  *          readOnly=false,
  *          nullable=false,
  *          type="string"
@@ -116,14 +129,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          readOnly=false,
  *          nullable=false,
  *          type="boolean"
- *      ),
- *      @OA\Property(
- *          property="vinculacion_laboral_id",
- *          description="vinculacion_laboral_id",
- *          readOnly=false,
- *          nullable=false,
- *          type="integer",
- *          format="int32"
  *      ),
  *      @OA\Property(
  *          property="asistencia_tipo_contratacion_id",
@@ -190,14 +195,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          format="int32"
  *      ),
  *      @OA\Property(
- *          property="funcion_trabajo_id",
- *          description="funcion_trabajo_id",
- *          readOnly=false,
- *          nullable=false,
- *          type="integer",
- *          format="int32"
- *      ),
- *      @OA\Property(
  *          property="created_at",
  *          description="created_at",
  *          readOnly=true,
@@ -220,7 +217,37 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          nullable=true,
  *          type="string",
  *          format="date-time"
- *      )
+ *      ),
+ *      @OA\Property(
+ *          property="puesto_trabajo_otro",
+ *          description="puesto_trabajo_otro",
+ *          readOnly=false,
+ *          type="string"
+ *      ),
+ *      @OA\Property(
+ *          property="experiencia_laboral",
+ *          description="experiencia_laboral",
+ *          readOnly=false,
+ *          type="string"
+ *      ),
+ *      @OA\Property(
+ *          property="observacion",
+ *          description="observacion",
+ *          readOnly=false,
+ *          type="string"
+ *      ),
+ *      @OA\Property(
+ *          property="otro_requisito",
+ *          description="otro_requisito",
+ *          readOnly=false,
+ *          type="string"
+ *      ),
+ *      @OA\Property(
+ *          property="reportar",
+ *          description="reportar",
+ *          readOnly=false,
+ *          type="string"
+ *      ),
  * )
  */
 class Contrato extends Model
@@ -242,6 +269,8 @@ class Contrato extends Model
     public $fillable = [
         'tipo_alta',
         'caracter_contrato',
+        'nivel_categoria',
+        'competetencias_laborales_especificas',
         'tipo_servicio',
         'objetivo_general',
         'objetivo_especifico',
@@ -254,7 +283,6 @@ class Contrato extends Model
         'numero_nota_expediente_electronico',
         'numero_resolucion',
         'estado',
-        'vinculacion_laboral_id',
         'asistencia_tipo_contratacion_id',
         'agente_id',
         'area_id',
@@ -263,7 +291,12 @@ class Contrato extends Model
         'puesto_familia_id',
         'puesto_subfamilia_id',
         'puesto_nomenclatura_id',
-        'funcion_trabajo_id'
+        'puesto_trabajo_otro',
+        'experiencia_laboral',
+        'observacion',
+        'otro_requisito',
+        'reportar',
+        'denominacion_funcion'
     ];
 
     /**
@@ -274,7 +307,8 @@ class Contrato extends Model
     protected $casts = [
         'id' => 'integer',
         'tipo_alta' => 'string',
-        'caracter_contrato' => 'boolean',
+        'caracter_contrato' => 'string',
+        'nivel_categoria' => 'string',
         'tipo_servicio' => 'string',
         'objetivo_general' => 'string',
         'objetivo_especifico' => 'string',
@@ -287,7 +321,6 @@ class Contrato extends Model
         'numero_nota_expediente_electronico' => 'string',
         'numero_resolucion' => 'string',
         'estado' => 'boolean',
-        'vinculacion_laboral_id' => 'integer',
         'asistencia_tipo_contratacion_id' => 'integer',
         'agente_id' => 'integer',
         'area_id' => 'integer',
@@ -296,7 +329,13 @@ class Contrato extends Model
         'puesto_familia_id' => 'integer',
         'puesto_subfamilia_id' => 'integer',
         'puesto_nomenclatura_id' => 'integer',
-        'funcion_trabajo_id' => 'integer'
+        'puesto_trabajo_otro' => 'string',
+        'experiencia_laboral' => 'string',
+        'observacion' => 'string',
+        'otro_requisito' => 'string',
+        'reportar' => 'string',
+        'competetencias_laborales_especificas'=> 'string',
+        'denominacion_funcion'=> 'string',
     ];
 
     /**
@@ -305,8 +344,11 @@ class Contrato extends Model
      * @var array
      */
     public static $rules = [
-        'tipo_alta' => 'required|string',
-        'caracter_contrato' => 'required|boolean',
+        'tipo_alta' => 'nullable|string|max:255',
+        'competetencias_laborales_especificas'=> 'required|string|max:255',
+        'denominacion_funcion'=> 'nullable|string|max:255',
+        'caracter_contrato' => 'required|string|max:255',
+        'nivel_categoria' => 'required|string|max:255',
         'tipo_servicio' => 'required|string|max:255',
         'objetivo_general' => 'required|string|max:255',
         'objetivo_especifico' => 'required|string|max:255',
@@ -317,21 +359,23 @@ class Contrato extends Model
         'horario_propuesto' => 'required|string|max:255',
         'nivel_educativo' => 'required|string|max:255',
         'numero_nota_expediente_electronico' => 'required|string|max:255',
-        'numero_resolucion' => 'required|string|max:255',
-        'estado' => 'required|boolean',
-        'vinculacion_laboral_id' => 'required',
+        'numero_resolucion' => 'nullable|string|max:255',
+        'estado' => 'nullable|boolean',
         'asistencia_tipo_contratacion_id' => 'required',
         'agente_id' => 'required|integer',
         'area_id' => 'required|integer',
         'titulo_orientacion_id' => 'required|integer',
         'puesto_grupo_id' => 'required|integer',
-        'puesto_familia_id' => 'required|integer',
-        'puesto_subfamilia_id' => 'required|integer',
+        'puesto_familia_id' => 'nullable|integer',
+        'puesto_subfamilia_id' => 'nullable|integer',
         'puesto_nomenclatura_id' => 'required|integer',
-        'funcion_trabajo_id' => 'required|integer',
+        'puesto_trabajo_otro' => 'nullable|string',
+        'experiencia_laboral' => 'nullable|string',
+        'observacion' => 'nullable|string',
+        'otro_requisito' => 'nullable|string',
+        'reportar' => 'nullable|string',
         'created_at' => 'nullable',
-        'updated_at' => 'nullable',
-        'deleted_at' => 'nullable'
+        'updated_at' => 'nullable'
     ];
 
     /**
@@ -343,10 +387,10 @@ class Contrato extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function vinculacionLaboral()
+     * The roles that belong to the user.
+     */
+    public function funciones()
     {
-        return $this->belongsTo(\App\Models\VinculacionLaboral::class, 'vinculacion_laboral_id');
+        return $this->belongsToMany(\App\Models\Funcion::class, 'contratos_funciones');
     }
 }

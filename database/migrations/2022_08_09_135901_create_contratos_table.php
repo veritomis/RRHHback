@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('contratos', function (Blueprint $table) {
             $table->id();
             $table->enum('tipo_alta', ['Pura', 'Renovacion','Adenda','Cambio de Nivel','Movilidad Interna'])->default('Pura');
-            $table->boolean('caracter_contrato')->default(0);
+            $table->enum('caracter_contrato', ['Estacional', 'Transitorio']);
+            $table->enum('nivel_categoria', ['A','B','C','D','E','F']);
             $table->string('tipo_servicio');
             $table->string('objetivo_general');
             $table->string('objetivo_especifico');
@@ -27,25 +28,28 @@ return new class extends Migration
             $table->string('horario_propuesto');
             $table->string('nivel_educativo');
             $table->string('numero_nota_expediente_electronico');
-            $table->string('numero_resolucion');
-            $table->boolean('estado');
-
-            //relaciones
-            // $table->integer('vinculacion_laboral_id');
-            // $table->integer('asistenacia_tipo_contratacion_id');
-            $table->foreignId('vinculacion_laboral_id')->constrained('vinculaciones_laborales');
+            $table->string('numero_resolucion')->nullable();
+            $table->boolean('estado')->nullable();
             $table->foreignId('asistencia_tipo_contratacion_id')->constrained('asistencia_tipo_contrataciones');
-
             $table->integer('agente_id');
             $table->integer('area_id');
             $table->integer('titulo_orientacion_id');
-            
             $table->foreignId('puesto_grupo_id')->constrained('puestos_grupos');
             $table->foreignId('puesto_familia_id')->nullable()->constrained('puestos_familias');
             $table->foreignId('puesto_subfamilia_id')->nullable()->constrained('puestos_subfamilias');
             $table->foreignId('puesto_nomenclatura_id')->constrained('puestos_nomenclaturas');
-            
-            $table->integer('funcion_trabajo_id');
+            $table->string('puesto_trabajo_otro')->nullable();
+            $table->text('experiencia_laboral')->nullable();
+            $table->text('observacion')->nullable();
+            $table->text('otro_requisito')->nullable();
+            $table->text('reportar')->nullable();
+            $table->enum('competetencias_laborales_especificas', ['Deseable','Excluyente']);
+            $table->text('denominacion_funcion')->nullable();
+
+            //relaciones
+            // $table->integer('vinculacion_laboral_id');
+            // $table->integer('asistenacia_tipo_contratacion_id');
+            // $table->foreignId('vinculacion_laboral_id')->constrained('vinculaciones_laborales');
 
             $table->timestamps();
             $table->softDeletes();

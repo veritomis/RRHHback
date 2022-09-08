@@ -44,6 +44,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('puesto-familias', App\Http\Controllers\API\PuestoFamiliaAPIController::class);
     Route::resource('puesto-subfamilias', App\Http\Controllers\API\PuestoSubfamiliaAPIController::class);
     Route::resource('puesto-nomenclaturas', App\Http\Controllers\API\PuestoNomenclaturaAPIController::class);
+    Route::resource('funciones', App\Http\Controllers\API\FuncionAPIController::class);
 
     //hago la ruta de plantas_permanentes
     Route::resource('planta-permanentes', App\Http\Controllers\API\PlantaPermanenteAPIController::class);
@@ -55,3 +56,4 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthenticatedSessionController::class, 'logout'])
                 ->name('logout');
 });
+

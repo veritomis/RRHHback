@@ -2,19 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\PuestoFamilia;
+use App\Models\Funcion;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-use App\Models\PuestoGrupo;
 
-class PuestoFamiliaFactory extends Factory
+class FuncionFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = PuestoFamilia::class;
+    protected $model = Funcion::class;
 
     /**
      * Define the model's default state.
@@ -24,14 +23,8 @@ class PuestoFamiliaFactory extends Factory
     public function definition()
     {
         
-        $puestosGrupo = PuestoGrupo::first();
-        if (!$puestosGrupo) {
-            $puestosGrupo = PuestoGrupo::factory()->create();
-        }
-
         return [
-            'nombre' => $this->faker->text($this->faker->numberBetween(5, 20)),
-            'puesto_grupo_id' => $puestosGrupo->id,
+            'nombre' => $this->faker->text($this->faker->numberBetween(5, 50)),
             'created_at' => $this->faker->date('Y-m-d H:i:s'),
             'updated_at' => $this->faker->date('Y-m-d H:i:s')
         ];

@@ -2,24 +2,22 @@
 
 namespace App\Repositories;
 
-use App\Models\PuestoSubfamilia;
+use App\Models\Funcion;
 use App\Repositories\BaseRepository;
 
 /**
- * Class PuestoSubfamiliaRepository
+ * Class FuncionRepository
  * @package App\Repositories
- * @version August 10, 2022, 2:26 am -03
+ * @version August 28, 2022, 10:54 pm -03
 */
 
-class PuestoSubfamiliaRepository extends BaseRepository
+class FuncionRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'nombre',
-        'puesto_grupo_id',
-        'puesto_familia_id'
+        'nombre'
     ];
 
     /**
@@ -32,16 +30,11 @@ class PuestoSubfamiliaRepository extends BaseRepository
         return $this->fieldSearchable;
     }
 
-    public function getIncludes()
-    {
-        return ['puestoGrupo','puestoFamilia','puestosNomenclaturas'];
-    }
-
     /**
      * Configure the Model
      **/
     public function model()
     {
-        return PuestoSubfamilia::class;
+        return Funcion::class;
     }
 }
