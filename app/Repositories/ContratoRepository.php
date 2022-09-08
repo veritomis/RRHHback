@@ -3,7 +3,9 @@
 namespace App\Repositories;
 
 use App\Models\Contrato;
+use App\Models\Funcion;
 use App\Repositories\BaseRepository;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class ContratoRepository
@@ -19,6 +21,8 @@ class ContratoRepository extends BaseRepository
     protected $fieldSearchable = [
         'tipo_alta',
         'caracter_contrato',
+        'nivel_categoria',
+        'competetencias_laborales_especificas',
         'tipo_servicio',
         'objetivo_general',
         'objetivo_especifico',
@@ -31,7 +35,6 @@ class ContratoRepository extends BaseRepository
         'numero_nota_expediente_electronico',
         'numero_resolucion',
         'estado',
-        'vinculacion_laboral_id',
         'asistencia_tipo_contratacion_id',
         'agente_id',
         'area_id',
@@ -40,7 +43,12 @@ class ContratoRepository extends BaseRepository
         'puesto_familia_id',
         'puesto_subfamilia_id',
         'puesto_nomenclatura_id',
-        'funcion_trabajo_id'
+        'puesto_trabajo_otro',
+        'experiencia_laboral',
+        'observacion',
+        'otro_requisito',
+        'reportar',
+        'denominacion_funcion'
     ];
 
     /**
@@ -59,5 +67,46 @@ class ContratoRepository extends BaseRepository
     public function model()
     {
         return Contrato::class;
+    }
+
+    public function getIncludes()
+    {
+        return ['funciones'];
+    }
+
+    /**
+     * Update model record for given id
+     *
+     * @param array $input
+     * @param int $id
+     *
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|Model
+     */
+    public function update($input, $id)
+    {
+        try {
+            DB::beginTransaction();
+            $query = $this->model->newQuery();
+            $model = $query->findOrFail($id);
+            $funciones = $this->createFuncion($input['funciones']);
+            $model->fill($input);
+            $model->save();
+            $model->funciones()->sync($funciones);
+            DB::commit();
+            return $model;
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $this->handleException($th);
+        }
+    }
+
+    public function createFuncion($inputs)
+    {
+        $arrary = [];
+        foreach ($inputs as $key => $value) {
+            $arrary[] = Funcion::updateOrCreate(['id' => $value['id']],$value)->id;
+        }
+
+        return $arrary;
     }
 }
