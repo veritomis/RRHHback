@@ -30,11 +30,12 @@ class AuthenticatedSessionController extends AppBaseController
      */
     public function store(LoginRequest $request)
     {
-        // $credential = [
-        //     'username' => 'tesla',
-        //     'password' => 'password',
-        // ];
+        $credential = [
+            'username' => 'olimpus\haacosta',
+            'password' => 'Produccion01',
+        ];
         $credentials = $this->credentials();
+        dd(Auth::attempt($credentials));
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
