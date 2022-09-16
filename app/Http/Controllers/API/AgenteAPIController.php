@@ -323,4 +323,24 @@ class AgenteAPIController extends AppBaseController
 
         return $this->sendSuccess('Agente deleted successfully');
     }
+
+    public function manyDelete(Request $request){
+        foreach ($request->all() as $key => $value){
+            $agente = $this->agenteRepository->find($value);
+
+            if (empty($agente)) {
+                
+                //return $this->sendError('Agente not found');
+                continue;
+            }
+
+            $agente->delete();
+        }
+        //$agentes = $this->agenteRepository->all();
+        
+        //if (empty($agentes->whereIn('id',$request->all()))) {
+            return $this->sendSuccess('Agentes deleted successfully');
+        //}
+    }
+
 }
