@@ -8,7 +8,7 @@
     "packages": [
         {
             "name": "brick/math",
-            "version": "0.10.2",
+            "version": "0.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brick/math.git",
@@ -16,8 +16,8 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brick/math/zipball/459f2781e1a08d52ee56b0b1444086e038561e3f",
-                "reference": "459f2781e1a08d52ee56b0b1444086e038561e3f",
+                "url": "https://api.github.com/repos/brick/math/zipball/ca57d18f028f84f777b2168cd1911b0dee2343ae",
+                "reference": "ca57d18f028f84f777b2168cd1911b0dee2343ae",
                 "shasum": ""
             },
             "require": {
@@ -52,7 +52,7 @@
             ],
             "support": {
                 "issues": "https://github.com/brick/math/issues",
-                "source": "https://github.com/brick/math/tree/0.10.2"
+                "source": "https://github.com/brick/math/tree/0.9.3"
             },
             "funding": [
                 {
@@ -60,7 +60,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-08-10T22:54:19+00:00"
+            "time": "2021-08-15T20:50:18+00:00"
         },
         {
             "name": "darkaonline/l5-swagger",
@@ -217,144 +217,6 @@
             "time": "2021-08-13T13:06:58+00:00"
         },
         {
-            "name": "directorytree/ldaprecord",
-            "version": "v2.17.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/DirectoryTree/LdapRecord.git",
-                "reference": "d679be5b8b7fefa2bd3c002240fed055ec88ff34"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/DirectoryTree/LdapRecord/zipball/d679be5b8b7fefa2bd3c002240fed055ec88ff34",
-                "reference": "d679be5b8b7fefa2bd3c002240fed055ec88ff34",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "ext-ldap": "*",
-                "illuminate/contracts": "^5.0|^6.0|^7.0|^8.0|^9.0",
-                "nesbot/carbon": "^1.0|^2.0",
-                "php": ">=7.3",
-                "psr/log": "^1.0|^2.0|^3.0",
-                "psr/simple-cache": "^1.0|^2.0",
-                "symfony/polyfill-php80": "^1.25",
-                "tightenco/collect": "^5.6|^6.0|^7.0|^8.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.0",
-                "phpunit/phpunit": "^9.0",
-                "spatie/ray": "^1.24"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "LdapRecord\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Steve Bauman",
-                    "email": "steven_bauman@outlook.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A fully-featured LDAP ORM.",
-            "homepage": "https://www.ldaprecord.com",
-            "keywords": [
-                "active directory",
-                "ad",
-                "adLDAP",
-                "adldap2",
-                "directory",
-                "ldap",
-                "ldaprecord",
-                "orm",
-                "windows"
-            ],
-            "support": {
-                "docs": "https://ldaprecord.com",
-                "email": "steven_bauman@outlook.com",
-                "issues": "https://github.com/DirectoryTree/LdapRecord/issues",
-                "source": "https://github.com/DirectoryTree/LdapRecord"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/stevebauman",
-                    "type": "github"
-                }
-            ],
-            "time": "2022-09-01T13:01:57+00:00"
-        },
-        {
-            "name": "directorytree/ldaprecord-laravel",
-            "version": "v2.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/DirectoryTree/LdapRecord-Laravel.git",
-                "reference": "ec537bc3534f874bcade5febd3199cbb0758d9bb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/DirectoryTree/LdapRecord-Laravel/zipball/ec537bc3534f874bcade5febd3199cbb0758d9bb",
-                "reference": "ec537bc3534f874bcade5febd3199cbb0758d9bb",
-                "shasum": ""
-            },
-            "require": {
-                "directorytree/ldaprecord": "^2.4.4",
-                "ext-ldap": "*",
-                "illuminate/support": "^5.6|^6.0|^7.0|^8.0|^9.0",
-                "php": ">=7.3",
-                "ramsey/uuid": "*"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.0",
-                "orchestra/testbench": "^3.7|^4.0|^5.0|^6.0|^7.0",
-                "phpunit/phpunit": "^7.0|^8.0|^9.0",
-                "spatie/ray": "^1.28"
-            },
-            "type": "project",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "LdapRecord\\Laravel\\LdapServiceProvider",
-                        "LdapRecord\\Laravel\\LdapAuthServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "LdapRecord\\Laravel\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "LDAP Authentication & Management for Laravel.",
-            "keywords": [
-                "adldap2",
-                "laravel",
-                "ldap",
-                "ldaprecord"
-            ],
-            "support": {
-                "issues": "https://github.com/DirectoryTree/LdapRecord-Laravel/issues",
-                "source": "https://github.com/DirectoryTree/LdapRecord-Laravel/tree/v2.6.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/stevebauman",
-                    "type": "github"
-                }
-            ],
-            "time": "2022-07-22T17:06:47+00:00"
-        },
-        {
             "name": "doctrine/annotations",
             "version": "1.13.3",
             "source": {
@@ -364,8 +226,8 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/648b0343343565c4a056bfc8392201385e8d89f0",
-                "reference": "648b0343343565c4a056bfc8392201385e8d89f0",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/5b668aef16090008790395c02c893b1ba13f7e08",
+                "reference": "5b668aef16090008790395c02c893b1ba13f7e08",
                 "shasum": ""
             },
             "require": {
@@ -1758,7 +1620,7 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v9.27.0",
+            "version": "v9.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
@@ -1766,8 +1628,8 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/27572f45120fd3977d92651a71d8c711a9aaa790",
-                "reference": "27572f45120fd3977d92651a71d8c711a9aaa790",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/c4eea9060d847b5c93957b203caa8f57544a76ab",
+                "reference": "c4eea9060d847b5c93957b203caa8f57544a76ab",
                 "shasum": ""
             },
             "require": {
@@ -1934,7 +1796,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-08-30T13:34:43+00:00"
+            "time": "2022-08-02T14:24:44+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -2960,7 +2822,7 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.62.1",
+            "version": "2.60.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
@@ -2968,8 +2830,8 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/01bc4cdefe98ef58d1f9cb31bdbbddddf2a88f7a",
-                "reference": "01bc4cdefe98ef58d1f9cb31bdbbddddf2a88f7a",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/00a259ae02b003c563158b54fb6743252b638ea6",
+                "reference": "00a259ae02b003c563158b54fb6743252b638ea6",
                 "shasum": ""
             },
             "require": {
@@ -3058,7 +2920,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-09-02T07:48:13+00:00"
+            "time": "2022-07-27T15:57:48+00:00"
         },
         {
             "name": "nette/schema",
@@ -4539,7 +4401,7 @@
         },
         {
             "name": "swagger-api/swagger-ui",
-            "version": "v4.14.0",
+            "version": "v4.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swagger-api/swagger-ui.git",
@@ -4547,8 +4409,8 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swagger-api/swagger-ui/zipball/424d704d1e971cb4b8c952d1b5e302414745f86c",
-                "reference": "424d704d1e971cb4b8c952d1b5e302414745f86c",
+                "url": "https://api.github.com/repos/swagger-api/swagger-ui/zipball/7fc7320eff983a0e4d8dab88ed5cc9cf2995e47f",
+                "reference": "7fc7320eff983a0e4d8dab88ed5cc9cf2995e47f",
                 "shasum": ""
             },
             "type": "library",
@@ -4594,9 +4456,9 @@
             ],
             "support": {
                 "issues": "https://github.com/swagger-api/swagger-ui/issues",
-                "source": "https://github.com/swagger-api/swagger-ui/tree/v4.14.0"
+                "source": "https://github.com/swagger-api/swagger-ui/tree/v4.12.0"
             },
-            "time": "2022-08-17T18:49:32+00:00"
+            "time": "2022-06-03T17:08:45+00:00"
         },
         {
             "name": "symfony/console",
@@ -6704,7 +6566,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v6.1.4",
+            "version": "v6.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
@@ -6712,8 +6574,8 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/86ee4d8fa594ed45e40d86eedfda1bcb66c8d919",
-                "reference": "86ee4d8fa594ed45e40d86eedfda1bcb66c8d919",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/84ce4f9d2d68f306f971a39d949d8f4b5550dba2",
+                "reference": "84ce4f9d2d68f306f971a39d949d8f4b5550dba2",
                 "shasum": ""
             },
             "require": {
@@ -6758,7 +6620,7 @@
             "description": "Loads and dumps YAML files",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/yaml/tree/v6.1.4"
+                "source": "https://github.com/symfony/yaml/tree/v6.1.0"
             },
             "funding": [
                 {
@@ -6774,61 +6636,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-08-02T16:17:38+00:00"
-        },
-        {
-            "name": "tightenco/collect",
-            "version": "v8.83.23",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tighten/collect.git",
-                "reference": "a4423c6ace6b54ba4f86c0ac9de588c57bc94d79"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tighten/collect/zipball/a4423c6ace6b54ba4f86c0ac9de588c57bc94d79",
-                "reference": "a4423c6ace6b54ba4f86c0ac9de588c57bc94d79",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.3|^8.0",
-                "symfony/var-dumper": "^3.4 || ^4.0 || ^5.0 || ^6.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.0",
-                "nesbot/carbon": "^2.23.0",
-                "phpunit/phpunit": "^8.3"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/Collect/Support/helpers.php",
-                    "src/Collect/Support/alias.php"
-                ],
-                "psr-4": {
-                    "Tightenco\\Collect\\": "src/Collect"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylorotwell@gmail.com"
-                }
-            ],
-            "description": "Collect - Illuminate Collections as a separate package.",
-            "keywords": [
-                "collection",
-                "laravel"
-            ],
-            "support": {
-                "issues": "https://github.com/tighten/collect/issues",
-                "source": "https://github.com/tighten/collect/tree/v8.83.23"
-            },
-            "time": "2022-08-22T17:50:04+00:00"
+            "time": "2022-04-15T14:25:02+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -7097,7 +6905,7 @@
         },
         {
             "name": "zircote/swagger-php",
-            "version": "4.4.8",
+            "version": "4.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zircote/swagger-php.git",
@@ -7105,8 +6913,8 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zircote/swagger-php/zipball/34c0980c4cd4f32a1a43f995463001e450d18896",
-                "reference": "34c0980c4cd4f32a1a43f995463001e450d18896",
+                "url": "https://api.github.com/repos/zircote/swagger-php/zipball/fd8f1eb8d0165c7a668f307fbccbf3adf33f4017",
+                "reference": "fd8f1eb8d0165c7a668f307fbccbf3adf33f4017",
                 "shasum": ""
             },
             "require": {
@@ -7168,9 +6976,9 @@
             ],
             "support": {
                 "issues": "https://github.com/zircote/swagger-php/issues",
-                "source": "https://github.com/zircote/swagger-php/tree/4.4.8"
+                "source": "https://github.com/zircote/swagger-php/tree/4.4.5"
             },
-            "time": "2022-08-16T23:21:13+00:00"
+            "time": "2022-06-02T21:05:02+00:00"
         }
     ],
     "packages-dev": [
@@ -7435,7 +7243,7 @@
         },
         {
             "name": "laravel/breeze",
-            "version": "v1.12.0",
+            "version": "v1.9.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/breeze.git",
@@ -7443,8 +7251,8 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/breeze/zipball/6d95e9aacbe992e19c81d5cd6f7eec994e50dd8d",
-                "reference": "6d95e9aacbe992e19c81d5cd6f7eec994e50dd8d",
+                "url": "https://api.github.com/repos/laravel/breeze/zipball/98c79a68ae53c2193367238c019a2f988be44f4f",
+                "reference": "98c79a68ae53c2193367238c019a2f988be44f4f",
                 "shasum": ""
             },
             "require": {
@@ -7492,20 +7300,20 @@
                 "issues": "https://github.com/laravel/breeze/issues",
                 "source": "https://github.com/laravel/breeze"
             },
-            "time": "2022-08-15T22:57:15+00:00"
+            "time": "2022-06-13T18:41:50+00:00"
         },
         {
             "name": "laravel/sail",
-            "version": "v1.15.4",
+            "version": "v1.15.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "853dea1fa866a52a93beccc4e5affdc49b98e7d5"
+                "reference": "8eb6d7116deda5b0e26153c1993f3e326d67768c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/853dea1fa866a52a93beccc4e5affdc49b98e7d5",
-                "reference": "853dea1fa866a52a93beccc4e5affdc49b98e7d5",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/6edf45a247b3688e0d07e149570a62fd9bc11c73",
+                "reference": "6edf45a247b3688e0d07e149570a62fd9bc11c73",
                 "shasum": ""
             },
             "require": {
@@ -7552,7 +7360,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2022-08-17T13:17:15+00:00"
+            "time": "2022-06-13T18:32:48+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -7687,7 +7495,7 @@
         },
         {
             "name": "nunomaduro/collision",
-            "version": "v6.3.0",
+            "version": "v6.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/collision.git",
@@ -7695,8 +7503,8 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/17f600e2e8872856ff2846243efb74ad4b6da531",
-                "reference": "17f600e2e8872856ff2846243efb74ad4b6da531",
+                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/c379636dc50e829edb3a8bcb944a01aa1aed8f25",
+                "reference": "c379636dc50e829edb3a8bcb944a01aa1aed8f25",
                 "shasum": ""
             },
             "require": {
@@ -7706,9 +7514,8 @@
             },
             "require-dev": {
                 "brianium/paratest": "^6.4.1",
-                "laravel/framework": "^9.26.1",
-                "laravel/pint": "^1.1.1",
-                "nunomaduro/larastan": "^1.0.3",
+                "laravel/framework": "^9.7",
+                "nunomaduro/larastan": "^1.0.2",
                 "nunomaduro/mock-final-classes": "^1.1.0",
                 "orchestra/testbench": "^7.7",
                 "phpunit/phpunit": "^9.5.23",
@@ -7771,7 +7578,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-08-29T09:11:20+00:00"
+            "time": "2022-04-05T15:31:38+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -9620,5 +9427,5 @@
         "php": "^8.0.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.2.0"
 }
