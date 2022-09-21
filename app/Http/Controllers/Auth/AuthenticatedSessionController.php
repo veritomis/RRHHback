@@ -14,11 +14,11 @@ class AuthenticatedSessionController extends AppBaseController
     {
         return 'username';
     }
-    protected function credentials()
+    protected function credentials($data)
     {
         return [
-            'username' => 'haacosta',
-            'password' => 'Produccion01'
+            'samaccountname' => $data['username'],
+            'password' =>  $data['password']
         ];
     }
 
@@ -30,21 +30,19 @@ class AuthenticatedSessionController extends AppBaseController
      */
     public function store(LoginRequest $request)
     {
-        $credentials = $this->credentials();
-        dd($credentials,Auth::attempt($credentials));
+        $credentials = $this->credentials($request->all());
         if (Auth::attempt($credentials)) {
+            // $request->authenticate();
+            $token = $request->user()->createToken('token')->plainTextToken;
             $user = Auth::user();
-
-            return $this->sendResponse(['Usuario' => $user], 'Acceso satisfactorio');
+            return $this->sendResponse(['Usuario' => $user,'Token' => $token], 'Acceso satisfactorio');
         }else{
-            return $this->sendError('Usuario No conecta');
+            return $this->sendError('Usuario o Contraseña invalidos');
         }
-
-        $request->authenticate();
-        $token = $request->user()->createToken('token')->plainTextToken;
-        $user = Auth::user();
-        // return response()->json(['user'=> $user,'token' => $token]);
-        return $this->sendResponse(['Usuario' => $user,'Token' => $token], 'Acceso satisfactorio');
+        // $request->authenticate();
+        // $token = $request->user()->createToken('token')->plainTextToken;
+        // $user = Auth::user();
+        // return $this->sendResponse(['Usuario' => $user,'Token' => $token], 'Acceso satisfactorio');
     }
 
     /**
