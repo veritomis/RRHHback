@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Exports\AgentsExport;
 use App\Http\Requests\API\CreateAgenteAPIRequest;
 use App\Http\Requests\API\UpdateAgenteAPIRequest;
 use App\Models\Agente;
@@ -9,6 +10,7 @@ use App\Repositories\AgenteRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use App\Traits\VerificationRol;
+use Maatwebsite\Excel\Facades\Excel;
 use Response;
 
 /**
@@ -322,5 +324,10 @@ class AgenteAPIController extends AppBaseController
         $agente->delete();
 
         return $this->sendSuccess('Agente deleted successfully');
+    }
+
+    public function export(){
+        return Excel::download(new AgentsExport, 'agents.xlsx');
+    
     }
 }
