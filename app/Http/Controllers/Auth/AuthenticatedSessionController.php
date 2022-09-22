@@ -39,10 +39,6 @@ class AuthenticatedSessionController extends AppBaseController
         }else{
             return $this->sendError('Usuario o Contraseña invalidos');
         }
-        // $request->authenticate();
-        // $token = $request->user()->createToken('token')->plainTextToken;
-        // $user = Auth::user();
-        // return $this->sendResponse(['Usuario' => $user,'Token' => $token], 'Acceso satisfactorio');
     }
 
     /**
