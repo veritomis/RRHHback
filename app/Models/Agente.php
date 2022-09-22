@@ -194,6 +194,11 @@ class Agente extends Model
         return $this->belongsTo(\App\Models\Grupo::class, 'grupo_id');
     }
 
+    public function contratos()
+    {;
+        return $this->hasMany(\App\Models\Contrato::class, 'agente_id');
+    }
+
     /**
      * Scope to search by any column
      * @param  Builder $query
