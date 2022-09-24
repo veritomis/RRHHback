@@ -9,6 +9,7 @@ use App\Models\Agente;
 use App\Repositories\AgenteRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use App\Imports\AgentsImport;
 use App\Traits\VerificationRol;
 use Maatwebsite\Excel\Facades\Excel;
 use Response;
@@ -328,6 +329,11 @@ class AgenteAPIController extends AppBaseController
 
     public function export(){
         return Excel::download(new AgentsExport, 'agents.xlsx');
+    
+    }
+
+    public function import(){
+        return Excel::upload(new AgentsImport, 'agents.xlsx');
     
     }
 }

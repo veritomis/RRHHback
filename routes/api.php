@@ -15,7 +15,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('roles', App\Http\Controllers\API\RolAPIController::class);
     //Route::get('agents/export', 'App\Http\Controllers\ExportController@export');
     Route::get('agents/export', [App\Http\Controllers\API\AgenteAPIController::class, 'export']);
-    
+    Route::get('agents/import', [App\Http\Controllers\API\AgenteAPIController::class, 'import']);
 
     Route::post('/logout', [AuthenticatedSessionController::class, 'logout'])
                 ->name('logout');
