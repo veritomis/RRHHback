@@ -46,4 +46,10 @@ class AgenteRepository extends BaseRepository
     {
         return Agente::class;
     }
+
+    // public function getIncludes()
+    // {
+    //     return ['puestoGrupo','puestoFamilia','puestosNomenclaturas'];
+    // }
+
 }

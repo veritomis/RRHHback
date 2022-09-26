@@ -2,30 +2,27 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateAgenteAPIRequest;
-use App\Http\Requests\API\UpdateAgenteAPIRequest;
-use App\Models\Agente;
-use App\Repositories\AgenteRepository;
+use App\Http\Requests\API\CreateFuncionAPIRequest;
+use App\Http\Requests\API\UpdateFuncionAPIRequest;
+use App\Models\Funcion;
+use App\Repositories\FuncionRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
-use App\Traits\VerificationRol;
 use Response;
 
 /**
- * Class AgenteController
+ * Class FuncionController
  * @package App\Http\Controllers\API
  */
 
-class AgenteAPIController extends AppBaseController
+class FuncionAPIController extends AppBaseController
 {
-    use VerificationRol;
+    /** @var  FuncionRepository */
+    private $funcionRepository;
 
-    /** @var  AgenteRepository */
-    private $agenteRepository;
-
-    public function __construct(AgenteRepository $agenteRepo)
+    public function __construct(FuncionRepository $funcionRepo)
     {
-        $this->agenteRepository = $agenteRepo;
+        $this->funcionRepository = $funcionRepo;
     }
 
     /**
@@ -33,11 +30,10 @@ class AgenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/api/agentes",
-     *      summary="getAgenteList",
-     *      tags={"Agente"},
-     *      description="Get all Agentes",
-     *      security={ {"sanctum": {} }},
+     *      path="/funcions",
+     *      summary="getFuncionList",
+     *      tags={"Funcion"},
+     *      description="Get all Funcions",
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -50,7 +46,7 @@ class AgenteAPIController extends AppBaseController
      *              @OA\Property(
      *                  property="data",
      *                  type="array",
-     *                  @OA\Items(ref="#/definitions/Agente")
+     *                  @OA\Items(ref="#/definitions/Funcion")
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -62,17 +58,13 @@ class AgenteAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        if (!$this->verifiedPermissions('consultar-agentes')) {
-            return $this->sendError('Usuario no autorizado');
-        }
-
-        $agentes = $this->agenteRepository->all(
+        $funcions = $this->funcionRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
             $request->get('limit')
         );
 
-        return $this->sendResponse($agentes->toArray(), 'Agentes retrieved successfully');
+        return $this->sendResponse($funcions->toArray(), 'Funcions retrieved successfully');
     }
 
     /**
@@ -80,11 +72,10 @@ class AgenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Post(
-     *      path="/api/agentes",
-     *      summary="createAgente",
-     *      tags={"Agente"},
-     *      description="Create Agente",
-     *      security={ {"sanctum": {} }},
+     *      path="/funcions",
+     *      summary="createFuncion",
+     *      tags={"Funcion"},
+     *      description="Create Funcion",
      *      @OA\RequestBody(
      *        required=true,
      *        @OA\MediaType(
@@ -111,7 +102,7 @@ class AgenteAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/Agente"
+     *                  ref="#/definitions/Funcion"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -121,17 +112,13 @@ class AgenteAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreateAgenteAPIRequest $request)
+    public function store(CreateFuncionAPIRequest $request)
     {
-        if (!$this->verifiedPermissions('crear-agentes')) {
-            return $this->sendError('Usuario no autorizado');
-        }
-
         $input = $request->all();
 
-        $agente = $this->agenteRepository->create($input);
+        $funcion = $this->funcionRepository->create($input);
 
-        return $this->sendResponse($agente->toArray(), 'Agente saved successfully');
+        return $this->sendResponse($funcion->toArray(), 'Funcion saved successfully');
     }
 
     /**
@@ -139,14 +126,13 @@ class AgenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/api/agentes/{id}",
-     *      summary="getAgenteItem",
-     *      tags={"Agente"},
-     *      description="Get Agente",
-     *      security={ {"sanctum": {} }},
+     *      path="/funcions/{id}",
+     *      summary="getFuncionItem",
+     *      tags={"Funcion"},
+     *      description="Get Funcion",
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of Agente",
+     *          description="id of Funcion",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -164,7 +150,7 @@ class AgenteAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/Agente"
+     *                  ref="#/definitions/Funcion"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -176,18 +162,14 @@ class AgenteAPIController extends AppBaseController
      */
     public function show($id)
     {
-        if (!$this->verifiedPermissions('consultar-agentes')) {
-            return $this->sendError('Usuario no autorizado');
+        /** @var Funcion $funcion */
+        $funcion = $this->funcionRepository->find($id);
+
+        if (empty($funcion)) {
+            return $this->sendError('Funcion not found');
         }
 
-        /** @var Agente $agente */
-        $agente = $this->agenteRepository->find($id);
-
-        if (empty($agente)) {
-            return $this->sendError('Agente not found');
-        }
-
-        return $this->sendResponse($agente->toArray(), 'Agente retrieved successfully');
+        return $this->sendResponse($funcion->toArray(), 'Funcion retrieved successfully');
     }
 
     /**
@@ -196,14 +178,13 @@ class AgenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Put(
-     *      path="/api/agentes/{id}",
-     *      summary="updateAgente",
-     *      tags={"Agente"},
-     *      description="Update Agente",
-     *      security={ {"sanctum": {} }},
+     *      path="/funcions/{id}",
+     *      summary="updateFuncion",
+     *      tags={"Funcion"},
+     *      description="Update Funcion",
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of Agente",
+     *          description="id of Funcion",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -236,7 +217,7 @@ class AgenteAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/Agente"
+     *                  ref="#/definitions/Funcion"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -246,24 +227,20 @@ class AgenteAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update($id, UpdateAgenteAPIRequest $request)
+    public function update($id, UpdateFuncionAPIRequest $request)
     {
-        if (!$this->verifiedPermissions('editar-agentes')) {
-            return $this->sendError('Usuario no autorizado');
-        }
-
         $input = $request->all();
 
-        /** @var Agente $agente */
-        $agente = $this->agenteRepository->find($id);
+        /** @var Funcion $funcion */
+        $funcion = $this->funcionRepository->find($id);
 
-        if (empty($agente)) {
-            return $this->sendError('Agente not found');
+        if (empty($funcion)) {
+            return $this->sendError('Funcion not found');
         }
 
-        $agente = $this->agenteRepository->update($input, $id);
+        $funcion = $this->funcionRepository->update($input, $id);
 
-        return $this->sendResponse($agente->toArray(), 'Agente updated successfully');
+        return $this->sendResponse($funcion->toArray(), 'Funcion updated successfully');
     }
 
     /**
@@ -271,14 +248,13 @@ class AgenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Delete(
-     *      path="/api/agentes/{id}",
-     *      summary="deleteAgente",
-     *      tags={"Agente"},
-     *      description="Delete Agente",
-     *      security={ {"sanctum": {} }},
+     *      path="/funcions/{id}",
+     *      summary="deleteFuncion",
+     *      tags={"Funcion"},
+     *      description="Delete Funcion",
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of Agente",
+     *          description="id of Funcion",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -308,39 +284,15 @@ class AgenteAPIController extends AppBaseController
      */
     public function destroy($id)
     {
-        if (!$this->verifiedPermissions('borrar-agentes')) {
-            return $this->sendError('Usuario no autorizado');
+        /** @var Funcion $funcion */
+        $funcion = $this->funcionRepository->find($id);
+
+        if (empty($funcion)) {
+            return $this->sendError('Funcion not found');
         }
 
-        /** @var Agente $agente */
-        $agente = $this->agenteRepository->find($id);
+        $funcion->delete();
 
-        if (empty($agente)) {
-            return $this->sendError('Agente not found');
-        }
-
-        $agente->delete();
-
-        return $this->sendSuccess('Agente deleted successfully');
+        return $this->sendSuccess('Funcion deleted successfully');
     }
-
-    public function manyDelete(Request $request){
-        foreach ($request->all() as $key => $value){
-            $agente = $this->agenteRepository->find($value);
-
-            if (empty($agente)) {
-                
-                //return $this->sendError('Agente not found');
-                continue;
-            }
-
-            $agente->delete();
-        }
-        //$agentes = $this->agenteRepository->all();
-        
-        //if (empty($agentes->whereIn('id',$request->all()))) {
-            return $this->sendSuccess('Agentes deleted successfully');
-        //}
-    }
-
 }
