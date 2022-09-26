@@ -22,9 +22,7 @@ return new class extends Migration
             $table->string('numero_gedo'); //preguntar a juan que es y si es string
             //$table->date('antiguedad_puesto'); //esto es una fecha? un numero?
             $table->date('antiguedad_total');
-            $table->string('letra_nivel')->nullable();
-            $table->string('numero_grado')->nullable();
-            
+                        
             $table->string('compensacion_transitoria'); // ver que es...
             $table->foreignId('profesion_id')->constrained('profesiones');
             $table->foreignId('titulo_id')->constrained('titulos');
