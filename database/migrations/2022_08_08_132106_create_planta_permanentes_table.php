@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('agrupamiento');
 
             $table->string('modalidad_vinculacion');
-            $table->string('estado_agente');
+            /*$table->string('estado_agente');
             $table->string('funcion');
             $table->date('ejercicio');
             $table->string('numero_expediente');
@@ -36,16 +36,22 @@ return new class extends Migration
             $table->string('evaluador');
 
             //relaciones
-            $table->integer('area_id');
+            //$table->integer('area_id');
 
             $table->string('unidad_analisis');
             $table->boolean('notificacion');
-            $table->string('numero_notificacion')->nullable();
-            $table->string('observacion');
+            /*$table->string('numero_notificacion')->nullable();
+            $table->string('observacion');*/
             $table->boolean('corrimiento_grado'); 
-            $table->string('numero_expediente_grado');
+            /*$table->string('numero_expediente_grado');
             $table->boolean('corrimiento_agrupamiento');
-            $table->string('numero_expediente_agrupacion');
+            $table->string('numero_expediente_agrupacion');*/
+            $table->string('asistencia');
+            $table->boolean('es_ejecutivo');
+            $table->string('nivel_funcion_ejecutiva')->nullable();
+            $table->boolean('es_titular');
+            $table->string('puesto_agente');
+
             $table->timestamps();
             $table->softDeletes();
         });

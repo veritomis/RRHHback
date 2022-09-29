@@ -313,7 +313,7 @@ class PlantaPermanente extends Model
         'tramo' => 'required|string|max:255',
         'agrupamiento' => 'required|string|max:255',
         'modalidad_vinculacion' => 'required|string|max:255',
-        'estado_agente' => 'required|string|max:255',
+        /*'estado_agente' => 'required|string|max:255',
         'funcion' => 'required|string|max:255',
         'ejercicio' => 'required',
         'numero_expediente' => 'required|string|max:255',
@@ -327,11 +327,17 @@ class PlantaPermanente extends Model
         'unidad_analisis' => 'required|string|max:255',
         'notificacion' => 'required|boolean',
         'numero_notificacion' => 'nullable|string|max:255',
-        'observacion' => 'required|string|max:255',
+        'observacion' => 'required|string|max:255',*/
         'corrimiento_grado' => 'required|boolean',
-        'numero_expediente_grado' => 'required|string|max:255',
+        /*'numero_expediente_grado' => 'required|string|max:255',
         'corrimiento_agrupamiento' => 'required|boolean',
-        'numero_expediente_agrupacion' => 'required|string|max:255',
+        'numero_expediente_agrupacion' => 'required|string|max:255',*/
+        'asistencia' => 'required|string|max:255',
+        'es_ejecutivo' => 'required|boolean',
+        'nivel_funcion_ejecutiva' => 'nullable|string',
+        'es_titular' => 'required|boolean',
+        'puesto_agente' => 'required|string|max:255',
+
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
