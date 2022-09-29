@@ -34,5 +34,6 @@ class DatabaseSeeder extends Seeder
         });
         \App\Models\Contrato::factory(10)->create();
         \App\Models\PlantaPermanente::factory(10)->create();
+        \App\Models\Evaluacion::factory(5)->create();
     }
 }

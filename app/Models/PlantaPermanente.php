@@ -344,4 +344,11 @@ class PlantaPermanente extends Model
     {
         return $this->belongsTo(\App\Models\Agente::class, 'agente_id');
     }
+    
+    public function evaluaciones()
+    {;
+        return $this->hasMany(\App\Models\Evaluacion::class, 'planta_permanentes_id');
+    }
 }
+
+

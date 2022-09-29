@@ -31,3 +31,4 @@ sail artisan infyom:api PuestoSubfamilia        --fromTable --tableName=puestos_
 sail artisan infyom:api PuestoNomenclatura      --fromTable --tableName=puestos_nomenclaturas          --skip=migrations
 
 sail artisan infyom:api Funcion                 --fromTable --tableName=funciones                      --skip=migrations
+sail artisan infyom:api Evaluacion              --fromTable --tableName=evaluaciones                   --skip=migrations
