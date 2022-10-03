@@ -386,6 +386,11 @@ class Contrato extends Model
         return $this->belongsTo(\App\Models\AsistenciaTipoContrato::class, 'asistencia_tipo_contratacion_id');
     }
 
+    public function area()
+    {
+        return $this->belongsTo(\App\Models\Area::class, 'area_id');
+    }
+
     /**
      * The roles that belong to the user.
      */
