@@ -34,3 +34,4 @@ sail artisan infyom:api Funcion                 --fromTable --tableName=funcione
 sail artisan infyom:api Area                    --fromTable --tableName=areas                          --skip=migrations
 sail artisan infyom:api Suplemento              --fromTable --tableName=suplementos                    --skip=migrations
 sail artisan infyom:api Capacitacion            --fromTable --tableName=capacitaciones                 --skip=migrations
+sail artisan infyom:api Asitencia               --fromTable --tableName=asistencias                    --skip=migrations
