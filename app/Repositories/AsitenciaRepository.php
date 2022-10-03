@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class AsitenciaRepository
  * @package App\Repositories
- * @version October 3, 2022, 12:22 pm -03
+ * @version October 3, 2022, 12:36 pm -03
 */
 
 class AsitenciaRepository extends BaseRepository
@@ -17,7 +17,9 @@ class AsitenciaRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        
+        'agente_id',
+        'calendario',
+        'horario_propuesto'
     ];
 
     /**

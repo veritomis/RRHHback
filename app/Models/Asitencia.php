@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * @OA\Schema(
  *      schema="Asitencia",
- *      required={""},
+ *      required={"agente_id", "calendario", "horario_propuesto"},
  *      @OA\Property(
  *          property="id",
  *          description="id",
@@ -17,6 +17,28 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          nullable=false,
  *          type="integer",
  *          format="int32"
+ *      ),
+ *      @OA\Property(
+ *          property="agente_id",
+ *          description="agente_id",
+ *          readOnly=false,
+ *          nullable=false,
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @OA\Property(
+ *          property="calendario",
+ *          description="calendario",
+ *          readOnly=false,
+ *          nullable=false,
+ *          type="string"
+ *      ),
+ *      @OA\Property(
+ *          property="horario_propuesto",
+ *          description="horario_propuesto",
+ *          readOnly=false,
+ *          nullable=false,
+ *          type="string"
  *      ),
  *      @OA\Property(
  *          property="created_at",
@@ -53,7 +75,9 @@ class Asitencia extends Model
 
 
     public $fillable = [
-        
+        'agente_id',
+        'calendario',
+        'horario_propuesto'
     ];
 
     /**
@@ -62,7 +86,10 @@ class Asitencia extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer'
+        'id' => 'integer',
+        'agente_id' => 'integer',
+        'calendario' => 'string',
+        'horario_propuesto' => 'string'
     ];
 
     /**
@@ -71,9 +98,18 @@ class Asitencia extends Model
      * @var array
      */
     public static $rules = [
+        'agente_id' => 'required',
+        'calendario' => 'required|string|max:255',
+        'horario_propuesto' => 'required|string|max:255',
         'created_at' => 'nullable',
         'updated_at' => 'nullable'
     ];
 
-    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function agente()
+    {
+        return $this->belongsTo(\App\Models\Agente::class, 'agente_id');
+    }
 }
