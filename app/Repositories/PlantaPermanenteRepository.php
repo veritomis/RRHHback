@@ -2,8 +2,10 @@
 
 namespace App\Repositories;
 
+use App\Models\Capacitacion;
 use App\Models\PlantaPermanente;
 use App\Models\Evaluacion;
+use App\Models\Suplemento;
 use App\Repositories\BaseRepository;
 use Illuminate\Support\Facades\DB;
 
@@ -66,7 +68,7 @@ class PlantaPermanenteRepository extends BaseRepository
 
     public function getIncludes()
     {
-        return ['evaluaciones'];
+        return ['capacitacion','evaluaciones','suplemento'];
     }
 
     /**
@@ -86,9 +88,17 @@ class PlantaPermanenteRepository extends BaseRepository
             $model = $query->findOrFail($id);
             $model->fill($input);
             $model->save();
+
+            $input['suplemento']['id'] = !array_key_exists('id', $input['suplemento']) ? null : $input['suplemento']['id'];
+            $model->suplemento()->updateOrCreate(['id' => $input['suplemento']['id']] ,$input['suplemento']);
+
+            $input['capacitacion']['id'] = !array_key_exists('id', $input['capacitacion']) ? null : $input['capacitacion']['id'];
+            $model->capacitacion()->updateOrCreate(['id' => $input['suplemento']['id']] ,$input['capacitacion']);
+
             foreach ($input['evaluaciones'] as $key => $value) {
                 $model->evaluaciones()->updateOrCreate($value);
             }
+
             DB::commit();
             return $model;
         } catch (\Throwable $th) {

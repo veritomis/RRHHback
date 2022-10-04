@@ -2,10 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\Capacitacion;
+use App\Models\PlantaPermanente;
 use Illuminate\Database\Eloquent\Factories\Factory;
-
-use App\Models\Carrera;
 
 class CapacitacionFactory extends Factory
 {
@@ -23,10 +21,10 @@ class CapacitacionFactory extends Factory
      */
     public function definition()
     {
-        
-        $carrera = Carrera::first();
-        if (!$carrera) {
-            $carrera = Carrera::factory()->create();
+
+        $plantaPermanente = PlantaPermanente::first();
+        if (!$plantaPermanente) {
+            $plantaPermanente = PlantaPermanente::factory()->create();
         }
 
         return [
@@ -38,9 +36,9 @@ class CapacitacionFactory extends Factory
             'agrupamiento' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'perfiles' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'saldo' => $this->faker->text($this->faker->numberBetween(5, 255)),
-            'carrera_id' => $carrera->id,
-            'deleted_at' => $this->faker->date('Y-m-d H:i:s'),
-            'created_at' => $this->faker->date('Y-m-d H:i:s')
+            'plantaPermanente_id' => $plantaPermanente->id,
+            'created_at' => $this->faker->date('Y-m-d H:i:s'),
+            'updated_at' => $this->faker->date('Y-m-d H:i:s')
         ];
     }
 }

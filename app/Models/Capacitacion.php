@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * @OA\Schema(
  *      schema="Capacitacion",
- *      required={"apto_tramo", "corrimiento_grado", "fue_utilizada", "carrera_id"},
+ *      required={"apto_tramo", "corrimiento_grado", "fue_utilizada", "planta_permanente_id"},
  *      @OA\Property(
  *          property="id",
  *          description="id",
@@ -75,8 +75,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          type="string"
  *      ),
  *      @OA\Property(
- *          property="carrera_id",
- *          description="carrera_id",
+ *          property="planta_permanente_id",
+ *          description="planta_permanente_id",
  *          readOnly=false,
  *          nullable=false,
  *          type="integer",
@@ -133,7 +133,7 @@ class Capacitacion extends Model
         'agrupamiento',
         'perfiles',
         'saldo',
-        'carrera_id'
+        'planta_permanente_id'
     ];
 
     /**
@@ -151,7 +151,7 @@ class Capacitacion extends Model
         'agrupamiento' => 'string',
         'perfiles' => 'string',
         'saldo' => 'string',
-        'carrera_id' => 'integer'
+        'planta_permanente_id' => 'integer'
     ];
 
     /**
@@ -168,7 +168,7 @@ class Capacitacion extends Model
         'agrupamiento' => 'nullable|string|max:255',
         'perfiles' => 'nullable|string|max:255',
         'saldo' => 'nullable|string|max:255',
-        'carrera_id' => 'required',
+        'planta_permanente_id' => 'required',
         'deleted_at' => 'nullable',
         'created_at' => 'nullable',
         'updated_at' => 'nullable'
@@ -177,8 +177,8 @@ class Capacitacion extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function carrera()
+    public function plantaPermante()
     {
-        return $this->belongsTo(\App\Models\Carrera::class, 'carrera_id');
+        return $this->belongsTo(\App\Models\PlantaPermanente::class, 'planta_permanente_id');
     }
 }

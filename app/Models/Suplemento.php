@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * @OA\Schema(
  *      schema="Suplemento",
- *      required={"nombre_suplemento", "porcentaje", "fecha_asignacion", "carrera_id"},
+ *      required={"nombre_suplemento", "porcentaje", "fecha_asignacion", "planta_permanente_id"},
  *      @OA\Property(
  *          property="id",
  *          description="id",
@@ -42,8 +42,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          format="date"
  *      ),
  *      @OA\Property(
- *          property="carrera_id",
- *          description="carrera_id",
+ *          property="planta_permanente_id",
+ *          description="planta_permanente_id",
  *          readOnly=false,
  *          nullable=false,
  *          type="integer",
@@ -95,7 +95,7 @@ class Suplemento extends Model
         'nombre_suplemento',
         'porcentaje',
         'fecha_asignacion',
-        'carrera_id'
+        'planta_permanente_id'
     ];
 
     /**
@@ -108,7 +108,7 @@ class Suplemento extends Model
         'nombre_suplemento' => 'string',
         'porcentaje' => 'float',
         'fecha_asignacion' => 'date',
-        'carrera_id' => 'integer'
+        'planta_permanente_id' => 'integer'
     ];
 
     /**
@@ -120,7 +120,7 @@ class Suplemento extends Model
         'nombre_suplemento' => 'required|string|max:255',
         'porcentaje' => 'required|numeric',
         'fecha_asignacion' => 'required',
-        'carrera_id' => 'required',
+        'planta_permanente_id' => 'required',
         'deleted_at' => 'nullable',
         'created_at' => 'nullable',
         'updated_at' => 'nullable'
@@ -129,8 +129,8 @@ class Suplemento extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function carrera()
+    public function plantaPermanente()
     {
-        return $this->belongsTo(\App\Models\Carrera::class, 'carrera_id');
+        return $this->belongsTo(\App\Models\PlantaPermanente::class, 'planta_permanente_id');
     }
 }

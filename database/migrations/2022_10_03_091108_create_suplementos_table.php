@@ -20,7 +20,7 @@ return new class extends Migration
             $table->float('porcentaje', 8, 2)->default(0);
             $table->date('fecha_asignacion');
 
-            $table->foreignId('carrera_id')->constrained('carreras');
+            $table->foreignId('planta_permanente_id')->constrained('planta_permanentes');
 
             $table->softDeletes();
             $table->timestamps();

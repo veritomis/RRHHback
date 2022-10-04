@@ -124,12 +124,12 @@ class PlantaPermanenteAPIController extends AppBaseController
      */
     public function store(CreatePlantaPermanenteAPIRequest $request)
     {
-        // if (!$this->verifiedPermissions('consultar-planta-permanentes')) {
-        //     return $this->sendError('Usuario no autorizado');
-        // }
+        if (!$this->verifiedPermissions('crear-planta-permanentes')) {
+            return $this->sendError('Usuario no autorizado');
+        }
 
         $input = $request->all();
-
+        
         $plantaPermanente = $this->plantaPermanenteRepository->create($input);
 
         return $this->sendResponse($plantaPermanente->toArray(), 'Planta Permanente saved successfully');
