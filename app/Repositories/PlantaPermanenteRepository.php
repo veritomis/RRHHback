@@ -93,7 +93,7 @@ class PlantaPermanenteRepository extends BaseRepository
             $model->suplemento()->updateOrCreate(['id' => $input['suplemento']['id']] ,$input['suplemento']);
 
             $input['capacitacion']['id'] = !array_key_exists('id', $input['capacitacion']) ? null : $input['capacitacion']['id'];
-            $model->capacitacion()->updateOrCreate(['id' => $input['suplemento']['id']] ,$input['capacitacion']);
+            $model->capacitacion()->updateOrCreate(['id' => $input['capacitacion']['id']] ,$input['capacitacion']);
 
             foreach ($input['evaluaciones'] as $key => $value) {
                 $model->evaluaciones()->updateOrCreate($value);
