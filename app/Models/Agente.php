@@ -198,6 +198,10 @@ class Agente extends Model
     {;
         return $this->hasMany(\App\Models\Contrato::class, 'agente_id');
     }
+    public function asistencia_medicas()
+    {;
+        return $this->hasMany(\App\Models\Contrato::class, 'agente_id');
+    }
 
     /**
      * Scope to search by any column
