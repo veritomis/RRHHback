@@ -195,8 +195,13 @@ class Agente extends Model
     }
 
     public function contratos()
-    {;
+    {
         return $this->hasMany(\App\Models\Contrato::class, 'agente_id');
+    }
+
+    public function legajos()
+    {
+        return $this->hasMany(\App\Models\Legajo::class, 'agente_id');
     }
 
     /**
