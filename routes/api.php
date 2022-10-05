@@ -47,6 +47,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('funciones', App\Http\Controllers\API\FuncionAPIController::class);
     Route::post('borrado-agentes-masivo', 'App\Http\Controllers\API\AgenteAPIController@manyDelete');
     Route::resource('areas', App\Http\Controllers\API\AreaAPIController::class);
+    Route::resource('legajos', App\Http\Controllers\API\LegajoAPIController::class);
     // Route::resource('suplementos', App\Http\Controllers\API\SuplementoAPIController::class);
     // Route::resource('capacitacions', App\Http\Controllers\API\CapacitacionAPIController::class);
 
@@ -64,4 +65,7 @@ Route::middleware('auth:sanctum')->group(function () {
                 ->name('logout');
 });
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> f4f0b0af24e87b854845166d1994f620189f70d5

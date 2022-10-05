@@ -203,6 +203,11 @@ class Agente extends Model
         return $this->hasMany(\App\Models\AsistenciaMedica::class, 'agente_id');
     }
 
+    public function legajos()
+    {
+        return $this->hasMany(\App\Models\Legajo::class, 'agente_id');
+    }
+
     /**
      * Scope to search by any column
      * @param  Builder $query
