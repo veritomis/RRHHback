@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('asistencias', function (Blueprint $table) {
             $table->id();
             $table->foreignId('agente_id')->constrained('agentes');
-            $table->string('calendario');
+            $table->string('calendario')->nullable();
             $table->string('horario_propuesto'); //esta columna ya esta en contratos.
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

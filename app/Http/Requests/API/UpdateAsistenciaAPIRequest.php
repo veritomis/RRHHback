@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\API;
 
-use App\Models\Asitencia;
+use App\Models\Asistencia;
 use InfyOm\Generator\Request\APIRequest;
 
-class UpdateAsitenciaAPIRequest extends APIRequest
+class UpdateAsistenciaAPIRequest extends APIRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class UpdateAsitenciaAPIRequest extends APIRequest
      */
     public function rules()
     {
-        $rules = Asitencia::$rules;
+        $rules = Asistencia::$rules;
         
         return $rules;
     }

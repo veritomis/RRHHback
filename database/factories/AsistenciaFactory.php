@@ -2,19 +2,19 @@
 
 namespace Database\Factories;
 
-use App\Models\Asitencia;
+use App\Models\Asistencia;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 use App\Models\Agente;
 
-class AsitenciaFactory extends Factory
+class AsistenciaFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Asitencia::class;
+    protected $model = Asistencia::class;
 
     /**
      * Define the model's default state.

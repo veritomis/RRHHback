@@ -2,27 +2,30 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateAsitenciaAPIRequest;
-use App\Http\Requests\API\UpdateAsitenciaAPIRequest;
-use App\Models\Asitencia;
-use App\Repositories\AsitenciaRepository;
+use App\Http\Requests\API\CreateAsistenciaAPIRequest;
+use App\Http\Requests\API\UpdateAsistenciaAPIRequest;
+use App\Models\Asistencia;
+use App\Repositories\AsistenciaRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use App\Traits\VerificationRol;
 use Response;
 
 /**
- * Class AsitenciaController
+ * Class AsistenciaController
  * @package App\Http\Controllers\API
  */
 
-class AsitenciaAPIController extends AppBaseController
+class AsistenciaAPIController extends AppBaseController
 {
-    /** @var  AsitenciaRepository */
-    private $asitenciaRepository;
+    use VerificationRol;
 
-    public function __construct(AsitenciaRepository $asitenciaRepo)
+    /** @var  AsistenciaRepository */
+    private $asistenciaRepository;
+
+    public function __construct(AsistenciaRepository $asistenciaRepo)
     {
-        $this->asitenciaRepository = $asitenciaRepo;
+        $this->asistenciaRepository = $asistenciaRepo;
     }
 
     /**
@@ -30,13 +33,14 @@ class AsitenciaAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/asitencias",
-     *      summary="getAsitenciaList",
-     *      tags={"Asitencia"},
-     *      description="Get all Asitencias",
+     *      path="/api/asistencias",
+     *      summary="getAsistenciaList",
+     *      tags={"Asistencia"},
+     *      description="Get all Asistencias",
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
+     *          security={ {"sanctum": {} }},
      *          @OA\Schema(
      *              type="object",
      *              @OA\Property(
@@ -46,7 +50,7 @@ class AsitenciaAPIController extends AppBaseController
      *              @OA\Property(
      *                  property="data",
      *                  type="array",
-     *                  @OA\Items(ref="#/definitions/Asitencia")
+     *                  @OA\Items(ref="#/definitions/Asistencia")
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -58,13 +62,17 @@ class AsitenciaAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $asitencias = $this->asitenciaRepository->all(
+        //if (!$this->verifiedPermissions('consultar-asistencias')) {
+        //    return $this->sendError('Usuario no autorizado');
+        //}
+
+        $asistencias = $this->asistenciaRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
             $request->get('limit')
         );
 
-        return $this->sendResponse($asitencias->toArray(), 'Asitencias retrieved successfully');
+        return $this->sendResponse($asistencias->toArray(), 'Asistencias retrieved successfully');
     }
 
     /**
@@ -72,10 +80,11 @@ class AsitenciaAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Post(
-     *      path="/asitencias",
-     *      summary="createAsitencia",
-     *      tags={"Asitencia"},
-     *      description="Create Asitencia",
+     *      path="/api/asistencias",
+     *      summary="createAsistencia",
+     *      tags={"Asistencia"},
+     *      description="Create Asistencia",
+     *      security={ {"sanctum": {} }},
      *      @OA\RequestBody(
      *        required=true,
      *        @OA\MediaType(
@@ -102,7 +111,7 @@ class AsitenciaAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/Asitencia"
+     *                  ref="#/definitions/Asistencia"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -112,13 +121,16 @@ class AsitenciaAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreateAsitenciaAPIRequest $request)
+    public function store(CreateAsistenciaAPIRequest $request)
     {
+        //if (!$this->verifiedPermissions('crear-asistencias')) {
+        //    return $this->sendError('Usuario no autorizado');
+        //}
         $input = $request->all();
 
-        $asitencia = $this->asitenciaRepository->create($input);
+        $asistencia = $this->asistenciaRepository->create($input);
 
-        return $this->sendResponse($asitencia->toArray(), 'Asitencia saved successfully');
+        return $this->sendResponse($asistencia->toArray(), 'Asistencia saved successfully');
     }
 
     /**
@@ -126,13 +138,14 @@ class AsitenciaAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/asitencias/{id}",
-     *      summary="getAsitenciaItem",
-     *      tags={"Asitencia"},
-     *      description="Get Asitencia",
+     *      path="/asistencias/{id}",
+     *      summary="getAsistenciaItem",
+     *      tags={"Asistencia"},
+     *      description="Get Asistencia",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of Asitencia",
+     *          description="id of Asistencia",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -150,7 +163,7 @@ class AsitenciaAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/Asitencia"
+     *                  ref="#/definitions/Asistencia"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -162,14 +175,17 @@ class AsitenciaAPIController extends AppBaseController
      */
     public function show($id)
     {
-        /** @var Asitencia $asitencia */
-        $asitencia = $this->asitenciaRepository->find($id);
+        //if (!$this->verifiedPermissions('consultar-asistencias')) {
+        //    return $this->sendError('Usuario no autorizado');
+        //}
+        /** @var Asistencia $asistencia */
+        $asistencia = $this->asistenciaRepository->find($id);
 
-        if (empty($asitencia)) {
-            return $this->sendError('Asitencia not found');
+        if (empty($asistencia)) {
+            return $this->sendError('Asistencia not found');
         }
 
-        return $this->sendResponse($asitencia->toArray(), 'Asitencia retrieved successfully');
+        return $this->sendResponse($asistencia->toArray(), 'Asistencia retrieved successfully');
     }
 
     /**
@@ -178,13 +194,14 @@ class AsitenciaAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Put(
-     *      path="/asitencias/{id}",
-     *      summary="updateAsitencia",
-     *      tags={"Asitencia"},
-     *      description="Update Asitencia",
+     *      path="/api/asistencias/{id}",
+     *      summary="updateAsistencia",
+     *      tags={"Asistencia"},
+     *      description="Update Asistencia",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of Asitencia",
+     *          description="id of Asistencia",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -217,7 +234,7 @@ class AsitenciaAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/Asitencia"
+     *                  ref="#/definitions/Asistencia"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -227,20 +244,24 @@ class AsitenciaAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update($id, UpdateAsitenciaAPIRequest $request)
+    public function update($id, UpdateAsistenciaAPIRequest $request)
     {
+        //if (!$this->verifiedPermissions('editar-asistencias')) {
+        //    return $this->sendError('Usuario no autorizado');
+        //}
+
         $input = $request->all();
 
-        /** @var Asitencia $asitencia */
-        $asitencia = $this->asitenciaRepository->find($id);
+        /** @var Asistencia $asistencia */
+        $asistencia = $this->asistenciaRepository->find($id);
 
-        if (empty($asitencia)) {
-            return $this->sendError('Asitencia not found');
+        if (empty($asistencia)) {
+            return $this->sendError('Asistencia not found');
         }
 
-        $asitencia = $this->asitenciaRepository->update($input, $id);
+        $asistencia = $this->asistenciaRepository->update($input, $id);
 
-        return $this->sendResponse($asitencia->toArray(), 'Asitencia updated successfully');
+        return $this->sendResponse($asistencia->toArray(), 'Asistencia updated successfully');
     }
 
     /**
@@ -248,13 +269,14 @@ class AsitenciaAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Delete(
-     *      path="/asitencias/{id}",
-     *      summary="deleteAsitencia",
-     *      tags={"Asitencia"},
-     *      description="Delete Asitencia",
+     *      path="/api/asistencias/{id}",
+     *      summary="deleteAsistencia",
+     *      tags={"Asistencia"},
+     *      description="Delete Asistencia",
+     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of Asitencia",
+     *          description="id of Asistencia",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -284,15 +306,18 @@ class AsitenciaAPIController extends AppBaseController
      */
     public function destroy($id)
     {
-        /** @var Asitencia $asitencia */
-        $asitencia = $this->asitenciaRepository->find($id);
+        //if (!$this->verifiedPermissions('borrar-asistencias')) {
+        //    return $this->sendError('Usuario no autorizado');
+        //}
+        /** @var Asistencia $asistencia */
+        $asistencia = $this->asistenciaRepository->find($id);
 
-        if (empty($asitencia)) {
-            return $this->sendError('Asitencia not found');
+        if (empty($asistencia)) {
+            return $this->sendError('Asistencia not found');
         }
 
-        $asitencia->delete();
+        $asistencia->delete();
 
-        return $this->sendSuccess('Asitencia deleted successfully');
+        return $this->sendSuccess('Asistencia deleted successfully');
     }
 }

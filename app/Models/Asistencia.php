@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @OA\Schema(
- *      schema="Asitencia",
+ *      schema="Asistencia",
  *      required={"agente_id", "calendario", "horario_propuesto"},
  *      @OA\Property(
  *          property="id",
@@ -58,7 +58,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *      )
  * )
  */
-class Asitencia extends Model
+class Asistencia extends Model
 {
     use SoftDeletes;
 

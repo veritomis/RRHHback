@@ -2,16 +2,16 @@
 
 namespace App\Repositories;
 
-use App\Models\Asitencia;
+use App\Models\Asistencia;
 use App\Repositories\BaseRepository;
 
 /**
- * Class AsitenciaRepository
+ * Class AsistenciaRepository
  * @package App\Repositories
- * @version October 3, 2022, 12:36 pm -03
+ * @version October 4, 2022, 2:27 pm -03
 */
 
-class AsitenciaRepository extends BaseRepository
+class AsistenciaRepository extends BaseRepository
 {
     /**
      * @var array
@@ -37,6 +37,6 @@ class AsitenciaRepository extends BaseRepository
      **/
     public function model()
     {
-        return Asitencia::class;
+        return Asistencia::class;
     }
 }
