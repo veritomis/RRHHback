@@ -195,12 +195,12 @@ class Agente extends Model
     }
 
     public function contratos()
-    {;
+    {
         return $this->hasMany(\App\Models\Contrato::class, 'agente_id');
     }
-    public function asistencia_medicas()
-    {;
-        return $this->hasMany(\App\Models\Contrato::class, 'agente_id');
+    public function asistenciaMedicas()
+    {
+        return $this->hasMany(\App\Models\AsistenciaMedica::class, 'agente_id');
     }
 
     /**
