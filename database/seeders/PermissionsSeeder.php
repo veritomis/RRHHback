@@ -83,7 +83,13 @@ class PermissionsSeeder extends Seeder
             ['name' => 'crear-asistencia-medicas', 'guard_name' => 'sanctum'],
             ['name' => 'editar-asistencia-medicas', 'guard_name' => 'sanctum'],
             ['name' => 'borrar-asistencia-medicas', 'guard_name' => 'sanctum'],
-            ['name' => 'consultar-asistencia-medicas', 'guard_name' => 'sanctum']
+            ['name' => 'consultar-asistencia-medicas', 'guard_name' => 'sanctum'],
+
+            //Liquidacion
+            ['name' => 'crear-liquidaciones', 'guard_name' => 'sanctum'],
+            ['name' => 'editar-liquidaciones', 'guard_name' => 'sanctum'],
+            ['name' => 'borrar-liquidaciones', 'guard_name' => 'sanctum'],
+            ['name' => 'consultar-liquidaciones', 'guard_name' => 'sanctum']
         ];
 
         foreach ($permisos as $permiso) {
