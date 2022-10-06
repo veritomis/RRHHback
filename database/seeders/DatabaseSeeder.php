@@ -32,10 +32,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Contrato::factory(10)->create();
         \App\Models\PlantaPermanente::factory(10)->create();
         \App\Models\Evaluacion::factory(5)->create();
-<<<<<<< HEAD
         \App\Models\AsistenciaMedica::factory(5)->create();
-=======
         \App\Models\Legajo::factory(5)->create();
->>>>>>> f4f0b0af24e87b854845166d1994f620189f70d5
     }
 }

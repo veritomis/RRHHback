@@ -64,8 +64,3 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthenticatedSessionController::class, 'logout'])
                 ->name('logout');
 });
-
-<<<<<<< HEAD
-
-=======
->>>>>>> f4f0b0af24e87b854845166d1994f620189f70d5

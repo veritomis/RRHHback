@@ -8,6 +8,7 @@ use App\Models\AsistenciaMedica;
 use App\Repositories\AsistenciaMedicaRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use App\Traits\VerificationRol;
 use Response;
 
 /**
@@ -17,6 +18,8 @@ use Response;
 
 class AsistenciaMedicaAPIController extends AppBaseController
 {
+    use VerificationRol;
+
     /** @var  AsistenciaMedicaRepository */
     private $asistenciaMedicaRepository;
 
@@ -32,7 +35,7 @@ class AsistenciaMedicaAPIController extends AppBaseController
      * @OA\Get(
      *      path="/api/asistencia-medicas",
      *      summary="getAsistenciaMedicaList",
-     *      tags={"AsistenciaMedica"},
+     *      tags={"Asistencia Medica"},
      *      description="Get all AsistenciaMedicas",
      *      security={ {"sanctum": {} }},
      *      @OA\Response(
@@ -59,6 +62,10 @@ class AsistenciaMedicaAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
+        if (!$this->verifiedPermissions('consultar-asistencia-medicas')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         $asistenciaMedicas = $this->asistenciaMedicaRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
@@ -75,7 +82,7 @@ class AsistenciaMedicaAPIController extends AppBaseController
      * @OA\Post(
      *      path="/api/asistencia-medicas",
      *      summary="createAsistenciaMedica",
-     *      tags={"AsistenciaMedica"},
+     *      tags={"Asistencia Medica"},
      *      description="Create AsistenciaMedica",
      *      security={ {"sanctum": {} }},
      *      @OA\RequestBody(
@@ -116,6 +123,10 @@ class AsistenciaMedicaAPIController extends AppBaseController
      */
     public function store(CreateAsistenciaMedicaAPIRequest $request)
     {
+        if (!$this->verifiedPermissions('crear-asistencia-medicas')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         $input = $request->all();
 
         $asistenciaMedica = $this->asistenciaMedicaRepository->create($input);
@@ -130,7 +141,7 @@ class AsistenciaMedicaAPIController extends AppBaseController
      * @OA\Get(
      *      path="/api/asistencia-medicas/{id}",
      *      summary="getAsistenciaMedicaItem",
-     *      tags={"AsistenciaMedica"},
+     *      tags={"Asistencia Medica"},
      *      description="Get AsistenciaMedica",
      *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
@@ -165,6 +176,10 @@ class AsistenciaMedicaAPIController extends AppBaseController
      */
     public function show($id)
     {
+        if (!$this->verifiedPermissions('consultar-asistencia-medicas')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         /** @var AsistenciaMedica $asistenciaMedica */
         $asistenciaMedica = $this->asistenciaMedicaRepository->find($id);
 
@@ -183,7 +198,7 @@ class AsistenciaMedicaAPIController extends AppBaseController
      * @OA\Put(
      *      path="/api/asistencia-medicas/{id}",
      *      summary="updateAsistenciaMedica",
-     *      tags={"AsistenciaMedica"},
+     *      tags={"Asistencia Medica"},
      *      description="Update AsistenciaMedica",
      *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
@@ -233,6 +248,10 @@ class AsistenciaMedicaAPIController extends AppBaseController
      */
     public function update($id, UpdateAsistenciaMedicaAPIRequest $request)
     {
+        if (!$this->verifiedPermissions('editar-asistencia-medicas')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         $input = $request->all();
 
         /** @var AsistenciaMedica $asistenciaMedica */
@@ -254,7 +273,7 @@ class AsistenciaMedicaAPIController extends AppBaseController
      * @OA\Delete(
      *      path="/api/asistencia-medicas{id}",
      *      summary="deleteAsistenciaMedica",
-     *      tags={"AsistenciaMedica"},
+     *      tags={"Asistencia Medica"},
      *      description="Delete AsistenciaMedica",
      *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
@@ -289,6 +308,10 @@ class AsistenciaMedicaAPIController extends AppBaseController
      */
     public function destroy($id)
     {
+        if (!$this->verifiedPermissions('borrar-asistencia-medicas')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         /** @var AsistenciaMedica $asistenciaMedica */
         $asistenciaMedica = $this->asistenciaMedicaRepository->find($id);
 
