@@ -36,3 +36,4 @@ sail artisan infyom:api Area                    --fromTable --tableName=areas   
 sail artisan infyom:api Suplemento              --fromTable --tableName=suplementos                    --skip=migrations
 sail artisan infyom:api Capacitacion            --fromTable --tableName=capacitaciones                 --skip=migrations
 sail artisan infyom:api Legajo                  --fromTable --tableName=legajos                        --skip=migrations
+sail artisan infyom:api Liquidacion             --fromTable --tableName=liquidaciones                  --skip=migrations

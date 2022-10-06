@@ -204,6 +204,11 @@ class Agente extends Model
         return $this->hasMany(\App\Models\Legajo::class, 'agente_id');
     }
 
+    public function liquidaciones()
+    {
+        return $this->hasMany(\App\Models\Liquidacion::class, 'agente_id');
+    }
+
     /**
      * Scope to search by any column
      * @param  Builder $query
