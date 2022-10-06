@@ -36,6 +36,7 @@ class AsistenciaAPIController extends AppBaseController
      *      path="/api/asistencias",
      *      summary="getAsistenciaList",
      *      tags={"Asistencia"},
+     *      security={ {"sanctum": {} }},
      *      description="Get all Asistencias",
      *      @OA\Response(
      *          response=200,
@@ -62,9 +63,9 @@ class AsistenciaAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        //if (!$this->verifiedPermissions('consultar-asistencias')) {
-        //    return $this->sendError('Usuario no autorizado');
-        //}
+        if (!$this->verifiedPermissions('consultar-asistencias')) {
+           return $this->sendError('Usuario no autorizado');
+        }
 
         $asistencias = $this->asistenciaRepository->all(
             $request->except(['skip', 'limit']),
@@ -83,6 +84,7 @@ class AsistenciaAPIController extends AppBaseController
      *      path="/api/asistencias",
      *      summary="createAsistencia",
      *      tags={"Asistencia"},
+     *      security={ {"sanctum": {} }},
      *      description="Create Asistencia",
      *      security={ {"sanctum": {} }},
      *      @OA\RequestBody(
@@ -123,9 +125,10 @@ class AsistenciaAPIController extends AppBaseController
      */
     public function store(CreateAsistenciaAPIRequest $request)
     {
-        //if (!$this->verifiedPermissions('crear-asistencias')) {
-        //    return $this->sendError('Usuario no autorizado');
-        //}
+        if (!$this->verifiedPermissions('crear-asistencias')) {
+           return $this->sendError('Usuario no autorizado');
+        }
+
         $input = $request->all();
 
         $asistencia = $this->asistenciaRepository->create($input);
@@ -141,6 +144,7 @@ class AsistenciaAPIController extends AppBaseController
      *      path="/asistencias/{id}",
      *      summary="getAsistenciaItem",
      *      tags={"Asistencia"},
+     *      security={ {"sanctum": {} }},
      *      description="Get Asistencia",
      *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
@@ -175,9 +179,10 @@ class AsistenciaAPIController extends AppBaseController
      */
     public function show($id)
     {
-        //if (!$this->verifiedPermissions('consultar-asistencias')) {
-        //    return $this->sendError('Usuario no autorizado');
-        //}
+        if (!$this->verifiedPermissions('consultar-asistencias')) {
+           return $this->sendError('Usuario no autorizado');
+        }
+
         /** @var Asistencia $asistencia */
         $asistencia = $this->asistenciaRepository->find($id);
 
@@ -197,6 +202,7 @@ class AsistenciaAPIController extends AppBaseController
      *      path="/api/asistencias/{id}",
      *      summary="updateAsistencia",
      *      tags={"Asistencia"},
+     *      security={ {"sanctum": {} }},
      *      description="Update Asistencia",
      *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
@@ -246,9 +252,9 @@ class AsistenciaAPIController extends AppBaseController
      */
     public function update($id, UpdateAsistenciaAPIRequest $request)
     {
-        //if (!$this->verifiedPermissions('editar-asistencias')) {
-        //    return $this->sendError('Usuario no autorizado');
-        //}
+        if (!$this->verifiedPermissions('editar-asistencias')) {
+           return $this->sendError('Usuario no autorizado');
+        }
 
         $input = $request->all();
 
@@ -272,6 +278,7 @@ class AsistenciaAPIController extends AppBaseController
      *      path="/api/asistencias/{id}",
      *      summary="deleteAsistencia",
      *      tags={"Asistencia"},
+     *      security={ {"sanctum": {} }},
      *      description="Delete Asistencia",
      *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
@@ -306,9 +313,10 @@ class AsistenciaAPIController extends AppBaseController
      */
     public function destroy($id)
     {
-        //if (!$this->verifiedPermissions('borrar-asistencias')) {
-        //    return $this->sendError('Usuario no autorizado');
-        //}
+        if (!$this->verifiedPermissions('borrar-asistencias')) {
+           return $this->sendError('Usuario no autorizado');
+        }
+
         /** @var Asistencia $asistencia */
         $asistencia = $this->asistenciaRepository->find($id);
 
