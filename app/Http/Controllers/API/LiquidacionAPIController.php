@@ -2,30 +2,30 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreatePlantaPermanenteAPIRequest;
-use App\Http\Requests\API\UpdatePlantaPermanenteAPIRequest;
-use App\Models\PlantaPermanente;
-use App\Repositories\PlantaPermanenteRepository;
+use App\Http\Requests\API\CreateLiquidacionAPIRequest;
+use App\Http\Requests\API\UpdateLiquidacionAPIRequest;
+use App\Models\Liquidacion;
+use App\Repositories\LiquidacionRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use App\Traits\VerificationRol;
 use Response;
 
 /**
- * Class PlantaPermanenteController
+ * Class LiquidacionController
  * @package App\Http\Controllers\API
  */
 
-class PlantaPermanenteAPIController extends AppBaseController
+class LiquidacionAPIController extends AppBaseController
 {
     use VerificationRol;
 
-    /** @var  PlantaPermanenteRepository */
-    private $plantaPermanenteRepository;
+    /** @var  LiquidacionRepository */
+    private $liquidacionRepository;
 
-    public function __construct(PlantaPermanenteRepository $plantaPermanenteRepo)
+    public function __construct(LiquidacionRepository $liquidacionRepo)
     {
-        $this->plantaPermanenteRepository = $plantaPermanenteRepo;
+        $this->liquidacionRepository = $liquidacionRepo;
     }
 
     /**
@@ -33,11 +33,11 @@ class PlantaPermanenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/api/planta-permanentes",
-     *      summary="getPlantaPermanenteList",
-     *      tags={"PlantaPermanente"},
-     *      description="Get all PlantaPermanentes",
+     *      path="/api/liquidacions",
+     *      summary="getLiquidacionList",
+     *      tags={"Liquidacion"},
      *      security={ {"sanctum": {} }},
+     *      description="Get all Liquidacions",
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -50,7 +50,7 @@ class PlantaPermanenteAPIController extends AppBaseController
      *              @OA\Property(
      *                  property="data",
      *                  type="array",
-     *                  @OA\Items(ref="#/definitions/PlantaPermanente")
+     *                  @OA\Items(ref="#/definitions/Liquidacion")
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -62,18 +62,18 @@ class PlantaPermanenteAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        if (!$this->verifiedPermissions('consultar-planta-permanentes')) {
+
+        if (!$this->verifiedPermissions('consultar-liquidaciones')) {
             return $this->sendError('Usuario no autorizado');
         }
 
-        $plantaPermanentes = $this->plantaPermanenteRepository->all(
+        $liquidacions = $this->liquidacionRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
             $request->get('limit')
         );
 
-
-        return $this->sendResponse($plantaPermanentes->toArray(), 'Planta Permanentes retrieved successfully');
+        return $this->sendResponse($liquidacions->toArray(), 'Liquidacions retrieved successfully');
     }
 
     /**
@@ -81,11 +81,11 @@ class PlantaPermanenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Post(
-     *      path="/api/planta-permanentes",
-     *      summary="createPlantaPermanente",
-     *      tags={"PlantaPermanente"},
-     *      description="Create PlantaPermanente",
+     *      path="/api/liquidacions",
+     *      summary="createLiquidacion",
+     *      tags={"Liquidacion"},
      *      security={ {"sanctum": {} }},
+     *      description="Create Liquidacion",
      *      @OA\RequestBody(
      *        required=true,
      *        @OA\MediaType(
@@ -112,7 +112,7 @@ class PlantaPermanenteAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/PlantaPermanente"
+     *                  ref="#/definitions/Liquidacion"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -122,17 +122,17 @@ class PlantaPermanenteAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreatePlantaPermanenteAPIRequest $request)
+    public function store(CreateLiquidacionAPIRequest $request)
     {
-        if (!$this->verifiedPermissions('crear-planta-permanentes')) {
+        if (!$this->verifiedPermissions('crear-liquidaciones')) {
             return $this->sendError('Usuario no autorizado');
         }
 
         $input = $request->all();
-        
-        $plantaPermanente = $this->plantaPermanenteRepository->create($input);
 
-        return $this->sendResponse($plantaPermanente->toArray(), 'Planta Permanente saved successfully');
+        $liquidacion = $this->liquidacionRepository->create($input);
+
+        return $this->sendResponse($liquidacion->toArray(), 'Liquidacion saved successfully');
     }
 
     /**
@@ -140,14 +140,14 @@ class PlantaPermanenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/api/planta-permanentes/{id}",
-     *      summary="getPlantaPermanenteItem",
-     *      tags={"PlantaPermanente"},
-     *      description="Get PlantaPermanente",
+     *      path="/api/liquidacions/{id}",
+     *      summary="getLiquidacionItem",
+     *      tags={"Liquidacion"},
      *      security={ {"sanctum": {} }},
+     *      description="Get Liquidacion",
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of PlantaPermanente",
+     *          description="id of Liquidacion",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -165,7 +165,7 @@ class PlantaPermanenteAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/PlantaPermanente"
+     *                  ref="#/definitions/Liquidacion"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -177,18 +177,18 @@ class PlantaPermanenteAPIController extends AppBaseController
      */
     public function show($id)
     {
-        // if (!$this->verifiedPermissions('consultar-planta-permanentes')) {
-        //     return $this->sendError('Usuario no autorizado');
-        // }
-
-        /** @var PlantaPermanente $plantaPermanente */
-        $plantaPermanente = $this->plantaPermanenteRepository->find($id);
-
-        if (empty($plantaPermanente)) {
-            return $this->sendError('Planta Permanente not found');
+        if (!$this->verifiedPermissions('consultar-liquidaciones')) {
+            return $this->sendError('Usuario no autorizado');
         }
 
-        return $this->sendResponse($plantaPermanente->toArray(), 'Planta Permanente retrieved successfully');
+        /** @var Liquidacion $liquidacion */
+        $liquidacion = $this->liquidacionRepository->find($id);
+
+        if (empty($liquidacion)) {
+            return $this->sendError('Liquidacion not found');
+        }
+
+        return $this->sendResponse($liquidacion->toArray(), 'Liquidacion retrieved successfully');
     }
 
     /**
@@ -197,14 +197,14 @@ class PlantaPermanenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Put(
-     *      path="/api/planta-permanentes/{id}",
-     *      summary="updatePlantaPermanente",
-     *      tags={"PlantaPermanente"},
-     *      description="Update PlantaPermanente",
+     *      path="/api/liquidacions/{id}",
+     *      summary="updateLiquidacion",
+     *      tags={"Liquidacion"},
      *      security={ {"sanctum": {} }},
+     *      description="Update Liquidacion",
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of PlantaPermanente",
+     *          description="id of Liquidacion",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -237,7 +237,7 @@ class PlantaPermanenteAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/PlantaPermanente"
+     *                  ref="#/definitions/Liquidacion"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -247,24 +247,24 @@ class PlantaPermanenteAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update($id, UpdatePlantaPermanenteAPIRequest $request)
+    public function update($id, UpdateLiquidacionAPIRequest $request)
     {
-        // if (!$this->verifiedPermissions('consultar-planta-permanentes')) {
-        //     return $this->sendError('Usuario no autorizado');
-        // }
-        
-        $input = $request->all();
-
-        /** @var PlantaPermanente $plantaPermanente */
-        $plantaPermanente = $this->plantaPermanenteRepository->find($id);
-
-        if (empty($plantaPermanente)) {
-            return $this->sendError('Planta Permanente not found');
+        if (!$this->verifiedPermissions('editar-liquidaciones')) {
+            return $this->sendError('Usuario no autorizado');
         }
 
-        $plantaPermanente = $this->plantaPermanenteRepository->update($input, $id);
+        $input = $request->all();
 
-        return $this->sendResponse($plantaPermanente->toArray(), 'PlantaPermanente updated successfully');
+        /** @var Liquidacion $liquidacion */
+        $liquidacion = $this->liquidacionRepository->find($id);
+
+        if (empty($liquidacion)) {
+            return $this->sendError('Liquidacion not found');
+        }
+
+        $liquidacion = $this->liquidacionRepository->update($input, $id);
+
+        return $this->sendResponse($liquidacion->toArray(), 'Liquidacion updated successfully');
     }
 
     /**
@@ -272,14 +272,14 @@ class PlantaPermanenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Delete(
-     *      path="/api/planta-permanentes/{id}",
-     *      summary="deletePlantaPermanente",
-     *      tags={"PlantaPermanente"},
-     *      description="Delete PlantaPermanente",
+     *      path="/api/liquidacions/{id}",
+     *      summary="deleteLiquidacion",
+     *      tags={"Liquidacion"},
      *      security={ {"sanctum": {} }},
+     *      description="Delete Liquidacion",
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of PlantaPermanente",
+     *          description="id of Liquidacion",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -309,19 +309,19 @@ class PlantaPermanenteAPIController extends AppBaseController
      */
     public function destroy($id)
     {
-        // if (!$this->verifiedPermissions('borrar-planta-permanentes')) {
-        //     return $this->sendError('Usuario no autorizado');
-        // }
-
-        /** @var PlantaPermanente $plantaPermanente */
-        $plantaPermanente = $this->plantaPermanenteRepository->find($id);
-
-        if (empty($plantaPermanente)) {
-            return $this->sendError('Planta Permanente not found');
+        if (!$this->verifiedPermissions('borrar-liquidaciones')) {
+            return $this->sendError('Usuario no autorizado');
         }
 
-        $plantaPermanente->delete();
+        /** @var Liquidacion $liquidacion */
+        $liquidacion = $this->liquidacionRepository->find($id);
 
-        return $this->sendSuccess('Planta Permanente deleted successfully');
+        if (empty($liquidacion)) {
+            return $this->sendError('Liquidacion not found');
+        }
+
+        $liquidacion->delete();
+
+        return $this->sendSuccess('Liquidacion deleted successfully');
     }
 }

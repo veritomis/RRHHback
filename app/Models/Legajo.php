@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @OA\Schema(
- *      schema="Suplemento",
- *      required={"nombre_suplemento", "porcentaje", "fecha_asignacion", "planta_permanente_id"},
+ *      schema="Legajo",
+ *      required={"baja_tramite", "nota_gde", "fecha_baja", "motivo_baja", "agente_id"},
  *      @OA\Property(
  *          property="id",
  *          description="id",
@@ -19,31 +19,37 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          format="int32"
  *      ),
  *      @OA\Property(
- *          property="nombre_suplemento",
- *          description="nombre_suplemento",
+ *          property="baja_tramite",
+ *          description="baja_tramite",
  *          readOnly=false,
  *          nullable=false,
  *          type="string"
  *      ),
  *      @OA\Property(
- *          property="porcentaje",
- *          description="porcentaje",
+ *          property="nota_gde",
+ *          description="nota_gde",
  *          readOnly=false,
  *          nullable=false,
- *          type="number",
- *          format="number"
+ *          type="string"
  *      ),
  *      @OA\Property(
- *          property="fecha_asignacion",
- *          description="fecha_asignacion",
+ *          property="fecha_baja",
+ *          description="fecha_baja",
  *          readOnly=false,
  *          nullable=false,
  *          type="string",
  *          format="date"
  *      ),
  *      @OA\Property(
- *          property="planta_permanente_id",
- *          description="planta_permanente_id",
+ *          property="motivo_baja",
+ *          description="motivo_baja",
+ *          readOnly=false,
+ *          nullable=false,
+ *          type="string"
+ *      ),
+ *      @OA\Property(
+ *          property="agente_id",
+ *          description="agente_id",
  *          readOnly=false,
  *          nullable=false,
  *          type="integer",
@@ -75,13 +81,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *      )
  * )
  */
-class Suplemento extends Model
+class Legajo extends Model
 {
     use SoftDeletes;
 
     use HasFactory;
 
-    public $table = 'suplementos';
+    public $table = 'legajos';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
@@ -92,10 +98,11 @@ class Suplemento extends Model
 
 
     public $fillable = [
-        'nombre_suplemento',
-        'porcentaje',
-        'fecha_asignacion',
-        'planta_permanente_id'
+        'baja_tramite',
+        'nota_gde',
+        'fecha_baja',
+        'motivo_baja',
+        'agente_id'
     ];
 
     /**
@@ -105,10 +112,11 @@ class Suplemento extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'nombre_suplemento' => 'string',
-        'porcentaje' => 'float',
-        'fecha_asignacion' => 'date',
-        'planta_permanente_id' => 'integer'
+        'baja_tramite' => 'string',
+        'nota_gde' => 'string',
+        'fecha_baja' => 'date',
+        'motivo_baja' => 'string',
+        'agente_id' => 'integer'
     ];
 
     /**
@@ -117,10 +125,11 @@ class Suplemento extends Model
      * @var array
      */
     public static $rules = [
-        'nombre_suplemento' => 'required|string|max:255',
-        'porcentaje' => 'required|numeric',
-        'fecha_asignacion' => 'required',
-        'planta_permanente_id' => 'required',
+        'baja_tramite' => 'required|string|max:255',
+        'nota_gde' => 'required|string|max:255',
+        'fecha_baja' => 'required',
+        'motivo_baja' => 'required|string',
+        'agente_id' => 'required',
         'deleted_at' => 'nullable',
         'created_at' => 'nullable',
         'updated_at' => 'nullable'
@@ -129,8 +138,8 @@ class Suplemento extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function plantaPermanente()
+    public function agente()
     {
-        return $this->belongsTo(\App\Models\PlantaPermanente::class, 'planta_permanente_id');
+        return $this->belongsTo(\App\Models\Agente::class, 'agente_id');
     }
 }

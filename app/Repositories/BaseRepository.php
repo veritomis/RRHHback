@@ -187,6 +187,7 @@ abstract class BaseRepository
         try {
             DB::beginTransaction();
             $model = $this->model->newInstance($input);
+            // dd($model);
             $model->save();
             DB::commit();
             return $model;

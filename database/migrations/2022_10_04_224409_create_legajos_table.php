@@ -13,15 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('suplementos', function (Blueprint $table) {
+        Schema::create('legajos', function (Blueprint $table) {
             $table->id();
-
-            $table->string('nombre_suplemento')->index();
-            $table->float('porcentaje', 8, 2)->default(0);
-            $table->date('fecha_asignacion');
-
-            $table->foreignId('planta_permanente_id')->constrained('planta_permanentes');
-
+            $table->string('baja_tramite')->index();
+            $table->string('nota_gde')->index();
+            $table->date('fecha_baja');
+            $table->enum('motivo_baja', ['Jubilación', 'Fallecimiento','Renuncia','MOBI Movilidad Interministerial','Finalización de Contrato'])->default('Jubilación');
+            $table->foreignId('agente_id')->constrained('agentes');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -34,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('suplementos');
+        Schema::dropIfExists('legajos');
     }
 };

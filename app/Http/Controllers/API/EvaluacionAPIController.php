@@ -2,30 +2,27 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreatePlantaPermanenteAPIRequest;
-use App\Http\Requests\API\UpdatePlantaPermanenteAPIRequest;
-use App\Models\PlantaPermanente;
-use App\Repositories\PlantaPermanenteRepository;
+use App\Http\Requests\API\CreateEvaluacionAPIRequest;
+use App\Http\Requests\API\UpdateEvaluacionAPIRequest;
+use App\Models\Evaluacion;
+use App\Repositories\EvaluacionRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
-use App\Traits\VerificationRol;
 use Response;
 
 /**
- * Class PlantaPermanenteController
+ * Class EvaluacionController
  * @package App\Http\Controllers\API
  */
 
-class PlantaPermanenteAPIController extends AppBaseController
+class EvaluacionAPIController extends AppBaseController
 {
-    use VerificationRol;
+    /** @var  EvaluacionRepository */
+    private $evaluacionRepository;
 
-    /** @var  PlantaPermanenteRepository */
-    private $plantaPermanenteRepository;
-
-    public function __construct(PlantaPermanenteRepository $plantaPermanenteRepo)
+    public function __construct(EvaluacionRepository $evaluacionRepo)
     {
-        $this->plantaPermanenteRepository = $plantaPermanenteRepo;
+        $this->evaluacionRepository = $evaluacionRepo;
     }
 
     /**
@@ -33,11 +30,10 @@ class PlantaPermanenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/api/planta-permanentes",
-     *      summary="getPlantaPermanenteList",
-     *      tags={"PlantaPermanente"},
-     *      description="Get all PlantaPermanentes",
-     *      security={ {"sanctum": {} }},
+     *      path="/evaluacions",
+     *      summary="getEvaluacionList",
+     *      tags={"Evaluacion"},
+     *      description="Get all Evaluacions",
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -50,7 +46,7 @@ class PlantaPermanenteAPIController extends AppBaseController
      *              @OA\Property(
      *                  property="data",
      *                  type="array",
-     *                  @OA\Items(ref="#/definitions/PlantaPermanente")
+     *                  @OA\Items(ref="#/definitions/Evaluacion")
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -62,18 +58,13 @@ class PlantaPermanenteAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        if (!$this->verifiedPermissions('consultar-planta-permanentes')) {
-            return $this->sendError('Usuario no autorizado');
-        }
-
-        $plantaPermanentes = $this->plantaPermanenteRepository->all(
+        $evaluacions = $this->evaluacionRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
             $request->get('limit')
         );
 
-
-        return $this->sendResponse($plantaPermanentes->toArray(), 'Planta Permanentes retrieved successfully');
+        return $this->sendResponse($evaluacions->toArray(), 'Evaluacions retrieved successfully');
     }
 
     /**
@@ -81,11 +72,10 @@ class PlantaPermanenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Post(
-     *      path="/api/planta-permanentes",
-     *      summary="createPlantaPermanente",
-     *      tags={"PlantaPermanente"},
-     *      description="Create PlantaPermanente",
-     *      security={ {"sanctum": {} }},
+     *      path="/evaluacions",
+     *      summary="createEvaluacion",
+     *      tags={"Evaluacion"},
+     *      description="Create Evaluacion",
      *      @OA\RequestBody(
      *        required=true,
      *        @OA\MediaType(
@@ -112,7 +102,7 @@ class PlantaPermanenteAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/PlantaPermanente"
+     *                  ref="#/definitions/Evaluacion"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -122,17 +112,13 @@ class PlantaPermanenteAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreatePlantaPermanenteAPIRequest $request)
+    public function store(CreateEvaluacionAPIRequest $request)
     {
-        if (!$this->verifiedPermissions('crear-planta-permanentes')) {
-            return $this->sendError('Usuario no autorizado');
-        }
-
         $input = $request->all();
-        
-        $plantaPermanente = $this->plantaPermanenteRepository->create($input);
 
-        return $this->sendResponse($plantaPermanente->toArray(), 'Planta Permanente saved successfully');
+        $evaluacion = $this->evaluacionRepository->create($input);
+
+        return $this->sendResponse($evaluacion->toArray(), 'Evaluacion saved successfully');
     }
 
     /**
@@ -140,14 +126,13 @@ class PlantaPermanenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/api/planta-permanentes/{id}",
-     *      summary="getPlantaPermanenteItem",
-     *      tags={"PlantaPermanente"},
-     *      description="Get PlantaPermanente",
-     *      security={ {"sanctum": {} }},
+     *      path="/evaluacions/{id}",
+     *      summary="getEvaluacionItem",
+     *      tags={"Evaluacion"},
+     *      description="Get Evaluacion",
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of PlantaPermanente",
+     *          description="id of Evaluacion",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -165,7 +150,7 @@ class PlantaPermanenteAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/PlantaPermanente"
+     *                  ref="#/definitions/Evaluacion"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -177,18 +162,14 @@ class PlantaPermanenteAPIController extends AppBaseController
      */
     public function show($id)
     {
-        // if (!$this->verifiedPermissions('consultar-planta-permanentes')) {
-        //     return $this->sendError('Usuario no autorizado');
-        // }
+        /** @var Evaluacion $evaluacion */
+        $evaluacion = $this->evaluacionRepository->find($id);
 
-        /** @var PlantaPermanente $plantaPermanente */
-        $plantaPermanente = $this->plantaPermanenteRepository->find($id);
-
-        if (empty($plantaPermanente)) {
-            return $this->sendError('Planta Permanente not found');
+        if (empty($evaluacion)) {
+            return $this->sendError('Evaluacion not found');
         }
 
-        return $this->sendResponse($plantaPermanente->toArray(), 'Planta Permanente retrieved successfully');
+        return $this->sendResponse($evaluacion->toArray(), 'Evaluacion retrieved successfully');
     }
 
     /**
@@ -197,14 +178,13 @@ class PlantaPermanenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Put(
-     *      path="/api/planta-permanentes/{id}",
-     *      summary="updatePlantaPermanente",
-     *      tags={"PlantaPermanente"},
-     *      description="Update PlantaPermanente",
-     *      security={ {"sanctum": {} }},
+     *      path="/evaluacions/{id}",
+     *      summary="updateEvaluacion",
+     *      tags={"Evaluacion"},
+     *      description="Update Evaluacion",
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of PlantaPermanente",
+     *          description="id of Evaluacion",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -237,7 +217,7 @@ class PlantaPermanenteAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/PlantaPermanente"
+     *                  ref="#/definitions/Evaluacion"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -247,24 +227,20 @@ class PlantaPermanenteAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update($id, UpdatePlantaPermanenteAPIRequest $request)
+    public function update($id, UpdateEvaluacionAPIRequest $request)
     {
-        // if (!$this->verifiedPermissions('consultar-planta-permanentes')) {
-        //     return $this->sendError('Usuario no autorizado');
-        // }
-        
         $input = $request->all();
 
-        /** @var PlantaPermanente $plantaPermanente */
-        $plantaPermanente = $this->plantaPermanenteRepository->find($id);
+        /** @var Evaluacion $evaluacion */
+        $evaluacion = $this->evaluacionRepository->find($id);
 
-        if (empty($plantaPermanente)) {
-            return $this->sendError('Planta Permanente not found');
+        if (empty($evaluacion)) {
+            return $this->sendError('Evaluacion not found');
         }
 
-        $plantaPermanente = $this->plantaPermanenteRepository->update($input, $id);
+        $evaluacion = $this->evaluacionRepository->update($input, $id);
 
-        return $this->sendResponse($plantaPermanente->toArray(), 'PlantaPermanente updated successfully');
+        return $this->sendResponse($evaluacion->toArray(), 'Evaluacion updated successfully');
     }
 
     /**
@@ -272,14 +248,13 @@ class PlantaPermanenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Delete(
-     *      path="/api/planta-permanentes/{id}",
-     *      summary="deletePlantaPermanente",
-     *      tags={"PlantaPermanente"},
-     *      description="Delete PlantaPermanente",
-     *      security={ {"sanctum": {} }},
+     *      path="/evaluacions/{id}",
+     *      summary="deleteEvaluacion",
+     *      tags={"Evaluacion"},
+     *      description="Delete Evaluacion",
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of PlantaPermanente",
+     *          description="id of Evaluacion",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -309,19 +284,15 @@ class PlantaPermanenteAPIController extends AppBaseController
      */
     public function destroy($id)
     {
-        // if (!$this->verifiedPermissions('borrar-planta-permanentes')) {
-        //     return $this->sendError('Usuario no autorizado');
-        // }
+        /** @var Evaluacion $evaluacion */
+        $evaluacion = $this->evaluacionRepository->find($id);
 
-        /** @var PlantaPermanente $plantaPermanente */
-        $plantaPermanente = $this->plantaPermanenteRepository->find($id);
-
-        if (empty($plantaPermanente)) {
-            return $this->sendError('Planta Permanente not found');
+        if (empty($evaluacion)) {
+            return $this->sendError('Evaluacion not found');
         }
 
-        $plantaPermanente->delete();
+        $evaluacion->delete();
 
-        return $this->sendSuccess('Planta Permanente deleted successfully');
+        return $this->sendSuccess('Evaluacion deleted successfully');
     }
 }

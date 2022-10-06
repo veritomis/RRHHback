@@ -13,15 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('suplementos', function (Blueprint $table) {
+        Schema::create('liquidaciones', function (Blueprint $table) {
             $table->id();
-
-            $table->string('nombre_suplemento')->index();
-            $table->float('porcentaje', 8, 2)->default(0);
-            $table->date('fecha_asignacion');
-
-            $table->foreignId('planta_permanente_id')->constrained('planta_permanentes');
-
+            $table->float('moton',8,2)->default(0);
+            $table->date('fecha');
+            $table->foreignId('agente_id')->constrained('agentes');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -34,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('suplementos');
+        Schema::dropIfExists('liquidaciones');
     }
 };

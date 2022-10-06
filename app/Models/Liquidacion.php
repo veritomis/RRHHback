@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @OA\Schema(
- *      schema="Suplemento",
- *      required={"nombre_suplemento", "porcentaje", "fecha_asignacion", "planta_permanente_id"},
+ *      schema="Liquidacion",
+ *      required={"moton", "fecha", "agente_id"},
  *      @OA\Property(
  *          property="id",
  *          description="id",
@@ -19,31 +19,24 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          format="int32"
  *      ),
  *      @OA\Property(
- *          property="nombre_suplemento",
- *          description="nombre_suplemento",
- *          readOnly=false,
- *          nullable=false,
- *          type="string"
- *      ),
- *      @OA\Property(
- *          property="porcentaje",
- *          description="porcentaje",
+ *          property="moton",
+ *          description="moton",
  *          readOnly=false,
  *          nullable=false,
  *          type="number",
  *          format="number"
  *      ),
  *      @OA\Property(
- *          property="fecha_asignacion",
- *          description="fecha_asignacion",
+ *          property="fecha",
+ *          description="fecha",
  *          readOnly=false,
  *          nullable=false,
  *          type="string",
  *          format="date"
  *      ),
  *      @OA\Property(
- *          property="planta_permanente_id",
- *          description="planta_permanente_id",
+ *          property="agente_id",
+ *          description="agente_id",
  *          readOnly=false,
  *          nullable=false,
  *          type="integer",
@@ -75,13 +68,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *      )
  * )
  */
-class Suplemento extends Model
+class Liquidacion extends Model
 {
     use SoftDeletes;
 
     use HasFactory;
 
-    public $table = 'suplementos';
+    public $table = 'liquidaciones';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
@@ -92,10 +85,9 @@ class Suplemento extends Model
 
 
     public $fillable = [
-        'nombre_suplemento',
-        'porcentaje',
-        'fecha_asignacion',
-        'planta_permanente_id'
+        'moton',
+        'fecha',
+        'agente_id'
     ];
 
     /**
@@ -105,10 +97,9 @@ class Suplemento extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'nombre_suplemento' => 'string',
-        'porcentaje' => 'float',
-        'fecha_asignacion' => 'date',
-        'planta_permanente_id' => 'integer'
+        'moton' => 'float',
+        'fecha' => 'date',
+        'agente_id' => 'integer'
     ];
 
     /**
@@ -117,10 +108,9 @@ class Suplemento extends Model
      * @var array
      */
     public static $rules = [
-        'nombre_suplemento' => 'required|string|max:255',
-        'porcentaje' => 'required|numeric',
-        'fecha_asignacion' => 'required',
-        'planta_permanente_id' => 'required',
+        'moton' => 'required|numeric',
+        'fecha' => 'required',
+        'agente_id' => 'required',
         'deleted_at' => 'nullable',
         'created_at' => 'nullable',
         'updated_at' => 'nullable'
@@ -129,8 +119,8 @@ class Suplemento extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function plantaPermanente()
+    public function agente()
     {
-        return $this->belongsTo(\App\Models\PlantaPermanente::class, 'planta_permanente_id');
+        return $this->belongsTo(\App\Models\Agente::class, 'agente_id');
     }
 }

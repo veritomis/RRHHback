@@ -2,14 +2,18 @@
 
 namespace App\Repositories;
 
+use App\Models\Capacitacion;
 use App\Models\PlantaPermanente;
+use App\Models\Evaluacion;
+use App\Models\Suplemento;
 use App\Repositories\BaseRepository;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class PlantaPermanenteRepository
  * @package App\Repositories
  * @version August 8, 2022, 2:35 pm -03
-*/
+ */
 
 class PlantaPermanenteRepository extends BaseRepository
 {
@@ -61,4 +65,47 @@ class PlantaPermanenteRepository extends BaseRepository
     {
         return PlantaPermanente::class;
     }
+
+    public function getIncludes()
+    {
+        return ['capacitacion','evaluaciones','suplemento'];
+    }
+
+    /**
+     * Update model record for given id
+     *
+     * @param array $input
+     * @param int $id
+     *
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|Model
+     */
+    public function update($input, $id)
+    {
+
+        try {
+            DB::beginTransaction();
+            $query = $this->model->newQuery();
+            $model = $query->findOrFail($id);
+            $model->fill($input);
+            $model->save();
+
+            $input['suplemento']['id'] = !array_key_exists('id', $input['suplemento']) ? null : $input['suplemento']['id'];
+            $model->suplemento()->updateOrCreate(['id' => $input['suplemento']['id']] ,$input['suplemento']);
+
+            $input['capacitacion']['id'] = !array_key_exists('id', $input['capacitacion']) ? null : $input['capacitacion']['id'];
+            $model->capacitacion()->updateOrCreate(['id' => $input['capacitacion']['id']] ,$input['capacitacion']);
+
+            foreach ($input['evaluaciones'] as $key => $value) {
+                $value['id'] = !array_key_exists('id', $value) ? null : $value['id'];
+                $model->evaluaciones()->updateOrCreate(['id' => $value['id']],$value);
+            }
+
+            DB::commit();
+            return $model;
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $this->handleException($th);
+        }
+    }
+
 }

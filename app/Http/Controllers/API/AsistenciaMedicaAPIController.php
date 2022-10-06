@@ -2,30 +2,30 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreatePlantaPermanenteAPIRequest;
-use App\Http\Requests\API\UpdatePlantaPermanenteAPIRequest;
-use App\Models\PlantaPermanente;
-use App\Repositories\PlantaPermanenteRepository;
+use App\Http\Requests\API\CreateAsistenciaMedicaAPIRequest;
+use App\Http\Requests\API\UpdateAsistenciaMedicaAPIRequest;
+use App\Models\AsistenciaMedica;
+use App\Repositories\AsistenciaMedicaRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use App\Traits\VerificationRol;
 use Response;
 
 /**
- * Class PlantaPermanenteController
+ * Class AsistenciaMedicaController
  * @package App\Http\Controllers\API
  */
 
-class PlantaPermanenteAPIController extends AppBaseController
+class AsistenciaMedicaAPIController extends AppBaseController
 {
     use VerificationRol;
 
-    /** @var  PlantaPermanenteRepository */
-    private $plantaPermanenteRepository;
+    /** @var  AsistenciaMedicaRepository */
+    private $asistenciaMedicaRepository;
 
-    public function __construct(PlantaPermanenteRepository $plantaPermanenteRepo)
+    public function __construct(AsistenciaMedicaRepository $asistenciaMedicaRepo)
     {
-        $this->plantaPermanenteRepository = $plantaPermanenteRepo;
+        $this->asistenciaMedicaRepository = $asistenciaMedicaRepo;
     }
 
     /**
@@ -33,10 +33,10 @@ class PlantaPermanenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/api/planta-permanentes",
-     *      summary="getPlantaPermanenteList",
-     *      tags={"PlantaPermanente"},
-     *      description="Get all PlantaPermanentes",
+     *      path="/api/asistencia-medicas",
+     *      summary="getAsistenciaMedicaList",
+     *      tags={"Asistencia Medica"},
+     *      description="Get all AsistenciaMedicas",
      *      security={ {"sanctum": {} }},
      *      @OA\Response(
      *          response=200,
@@ -50,7 +50,7 @@ class PlantaPermanenteAPIController extends AppBaseController
      *              @OA\Property(
      *                  property="data",
      *                  type="array",
-     *                  @OA\Items(ref="#/definitions/PlantaPermanente")
+     *                  @OA\Items(ref="#/definitions/AsistenciaMedica")
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -62,18 +62,17 @@ class PlantaPermanenteAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        if (!$this->verifiedPermissions('consultar-planta-permanentes')) {
+        if (!$this->verifiedPermissions('consultar-asistencia-medicas')) {
             return $this->sendError('Usuario no autorizado');
         }
 
-        $plantaPermanentes = $this->plantaPermanenteRepository->all(
+        $asistenciaMedicas = $this->asistenciaMedicaRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
             $request->get('limit')
         );
 
-
-        return $this->sendResponse($plantaPermanentes->toArray(), 'Planta Permanentes retrieved successfully');
+        return $this->sendResponse($asistenciaMedicas->toArray(), 'Asistencia Medicas retrieved successfully');
     }
 
     /**
@@ -81,10 +80,10 @@ class PlantaPermanenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Post(
-     *      path="/api/planta-permanentes",
-     *      summary="createPlantaPermanente",
-     *      tags={"PlantaPermanente"},
-     *      description="Create PlantaPermanente",
+     *      path="/api/asistencia-medicas",
+     *      summary="createAsistenciaMedica",
+     *      tags={"Asistencia Medica"},
+     *      description="Create AsistenciaMedica",
      *      security={ {"sanctum": {} }},
      *      @OA\RequestBody(
      *        required=true,
@@ -112,7 +111,7 @@ class PlantaPermanenteAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/PlantaPermanente"
+     *                  ref="#/definitions/AsistenciaMedica"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -122,17 +121,17 @@ class PlantaPermanenteAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreatePlantaPermanenteAPIRequest $request)
+    public function store(CreateAsistenciaMedicaAPIRequest $request)
     {
-        if (!$this->verifiedPermissions('crear-planta-permanentes')) {
+        if (!$this->verifiedPermissions('crear-asistencia-medicas')) {
             return $this->sendError('Usuario no autorizado');
         }
 
         $input = $request->all();
-        
-        $plantaPermanente = $this->plantaPermanenteRepository->create($input);
 
-        return $this->sendResponse($plantaPermanente->toArray(), 'Planta Permanente saved successfully');
+        $asistenciaMedica = $this->asistenciaMedicaRepository->create($input);
+
+        return $this->sendResponse($asistenciaMedica->toArray(), 'Asistencia Medica saved successfully');
     }
 
     /**
@@ -140,14 +139,14 @@ class PlantaPermanenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/api/planta-permanentes/{id}",
-     *      summary="getPlantaPermanenteItem",
-     *      tags={"PlantaPermanente"},
-     *      description="Get PlantaPermanente",
+     *      path="/api/asistencia-medicas/{id}",
+     *      summary="getAsistenciaMedicaItem",
+     *      tags={"Asistencia Medica"},
+     *      description="Get AsistenciaMedica",
      *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of PlantaPermanente",
+     *          description="id of AsistenciaMedica",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -165,7 +164,7 @@ class PlantaPermanenteAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/PlantaPermanente"
+     *                  ref="#/definitions/AsistenciaMedica"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -177,18 +176,18 @@ class PlantaPermanenteAPIController extends AppBaseController
      */
     public function show($id)
     {
-        // if (!$this->verifiedPermissions('consultar-planta-permanentes')) {
-        //     return $this->sendError('Usuario no autorizado');
-        // }
-
-        /** @var PlantaPermanente $plantaPermanente */
-        $plantaPermanente = $this->plantaPermanenteRepository->find($id);
-
-        if (empty($plantaPermanente)) {
-            return $this->sendError('Planta Permanente not found');
+        if (!$this->verifiedPermissions('consultar-asistencia-medicas')) {
+            return $this->sendError('Usuario no autorizado');
         }
 
-        return $this->sendResponse($plantaPermanente->toArray(), 'Planta Permanente retrieved successfully');
+        /** @var AsistenciaMedica $asistenciaMedica */
+        $asistenciaMedica = $this->asistenciaMedicaRepository->find($id);
+
+        if (empty($asistenciaMedica)) {
+            return $this->sendError('Asistencia Medica not found');
+        }
+
+        return $this->sendResponse($asistenciaMedica->toArray(), 'Asistencia Medica retrieved successfully');
     }
 
     /**
@@ -197,14 +196,14 @@ class PlantaPermanenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Put(
-     *      path="/api/planta-permanentes/{id}",
-     *      summary="updatePlantaPermanente",
-     *      tags={"PlantaPermanente"},
-     *      description="Update PlantaPermanente",
+     *      path="/api/asistencia-medicas/{id}",
+     *      summary="updateAsistenciaMedica",
+     *      tags={"Asistencia Medica"},
+     *      description="Update AsistenciaMedica",
      *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of PlantaPermanente",
+     *          description="id of AsistenciaMedica",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -237,7 +236,7 @@ class PlantaPermanenteAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/PlantaPermanente"
+     *                  ref="#/definitions/AsistenciaMedica"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -247,24 +246,24 @@ class PlantaPermanenteAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update($id, UpdatePlantaPermanenteAPIRequest $request)
+    public function update($id, UpdateAsistenciaMedicaAPIRequest $request)
     {
-        // if (!$this->verifiedPermissions('consultar-planta-permanentes')) {
-        //     return $this->sendError('Usuario no autorizado');
-        // }
-        
-        $input = $request->all();
-
-        /** @var PlantaPermanente $plantaPermanente */
-        $plantaPermanente = $this->plantaPermanenteRepository->find($id);
-
-        if (empty($plantaPermanente)) {
-            return $this->sendError('Planta Permanente not found');
+        if (!$this->verifiedPermissions('editar-asistencia-medicas')) {
+            return $this->sendError('Usuario no autorizado');
         }
 
-        $plantaPermanente = $this->plantaPermanenteRepository->update($input, $id);
+        $input = $request->all();
 
-        return $this->sendResponse($plantaPermanente->toArray(), 'PlantaPermanente updated successfully');
+        /** @var AsistenciaMedica $asistenciaMedica */
+        $asistenciaMedica = $this->asistenciaMedicaRepository->find($id);
+
+        if (empty($asistenciaMedica)) {
+            return $this->sendError('Asistencia Medica not found');
+        }
+
+        $asistenciaMedica = $this->asistenciaMedicaRepository->update($input, $id);
+
+        return $this->sendResponse($asistenciaMedica->toArray(), 'AsistenciaMedica updated successfully');
     }
 
     /**
@@ -272,14 +271,14 @@ class PlantaPermanenteAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Delete(
-     *      path="/api/planta-permanentes/{id}",
-     *      summary="deletePlantaPermanente",
-     *      tags={"PlantaPermanente"},
-     *      description="Delete PlantaPermanente",
+     *      path="/api/asistencia-medicas{id}",
+     *      summary="deleteAsistenciaMedica",
+     *      tags={"Asistencia Medica"},
+     *      description="Delete AsistenciaMedica",
      *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of PlantaPermanente",
+     *          description="id of AsistenciaMedica",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -309,19 +308,19 @@ class PlantaPermanenteAPIController extends AppBaseController
      */
     public function destroy($id)
     {
-        // if (!$this->verifiedPermissions('borrar-planta-permanentes')) {
-        //     return $this->sendError('Usuario no autorizado');
-        // }
-
-        /** @var PlantaPermanente $plantaPermanente */
-        $plantaPermanente = $this->plantaPermanenteRepository->find($id);
-
-        if (empty($plantaPermanente)) {
-            return $this->sendError('Planta Permanente not found');
+        if (!$this->verifiedPermissions('borrar-asistencia-medicas')) {
+            return $this->sendError('Usuario no autorizado');
         }
 
-        $plantaPermanente->delete();
+        /** @var AsistenciaMedica $asistenciaMedica */
+        $asistenciaMedica = $this->asistenciaMedicaRepository->find($id);
 
-        return $this->sendSuccess('Planta Permanente deleted successfully');
+        if (empty($asistenciaMedica)) {
+            return $this->sendError('Asistencia Medica not found');
+        }
+
+        $asistenciaMedica->delete();
+
+        return $this->sendSuccess('Asistencia Medica deleted successfully');
     }
 }
