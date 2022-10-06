@@ -335,6 +335,173 @@
                 ]
             }
         },
+        "/api/asistencia-medicas": {
+            "get": {
+                "tags": [
+                    "Asistencia Medica"
+                ],
+                "summary": "getAsistenciaMedicaList",
+                "description": "Get all AsistenciaMedicas",
+                "operationId": "1cdc0cfc010dd8d36ffc4ff781a5cbe0",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Asistencia Medica"
+                ],
+                "summary": "createAsistenciaMedica",
+                "description": "Create AsistenciaMedica",
+                "operationId": "385745e19c4d15afb8d67fd53d32dfde",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/asistencia-medicas/{id}": {
+            "get": {
+                "tags": [
+                    "Asistencia Medica"
+                ],
+                "summary": "getAsistenciaMedicaItem",
+                "description": "Get AsistenciaMedica",
+                "operationId": "d11e0838ae6dba44e9a2da9b05bb08b4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of AsistenciaMedica",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Asistencia Medica"
+                ],
+                "summary": "updateAsistenciaMedica",
+                "description": "Update AsistenciaMedica",
+                "operationId": "360a35e66c86ce6d967ebad3153030bd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of AsistenciaMedica",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/asistencia-medicas{id}": {
+            "delete": {
+                "tags": [
+                    "Asistencia Medica"
+                ],
+                "summary": "deleteAsistenciaMedica",
+                "description": "Delete AsistenciaMedica",
+                "operationId": "bcf31f359324f23e06cefc708e42933f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of AsistenciaMedica",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/asistencia-tipo-contratos": {
             "get": {
                 "tags": [
@@ -3564,6 +3731,97 @@
                     },
                     "updated_at": {
                         "description": "updated_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "AsistenciaMedica": {
+                "required": [
+                    "agente_id",
+                    "historia_clinica",
+                    "tipo_licencia",
+                    "diagnostico",
+                    "tratamiento",
+                    "estudio_complementario",
+                    "imagen_url"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": true,
+                        "nullable": false
+                    },
+                    "agente_id": {
+                        "description": "agente_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "historia_clinica": {
+                        "description": "historia_clinica",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "tipo_licencia": {
+                        "description": "tipo_licencia",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "diagnostico": {
+                        "description": "diagnostico",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "tratamiento": {
+                        "description": "tratamiento",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "estudio_complementario": {
+                        "description": "estudio_complementario",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "numero_nota_realizada": {
+                        "description": "numero_nota_realizada",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": true
+                    },
+                    "imagen_url": {
+                        "description": "imagen_url",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "created_at": {
+                        "description": "created_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "updated_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "deleted_at": {
+                        "description": "deleted_at",
                         "type": "string",
                         "format": "date-time",
                         "readOnly": true,
