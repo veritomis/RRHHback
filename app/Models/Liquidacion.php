@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * @OA\Schema(
  *      schema="Liquidacion",
- *      required={"moton", "fecha", "agente_id"},
+ *      required={"monto", "fecha", "agente_id"},
  *      @OA\Property(
  *          property="id",
  *          description="id",
@@ -19,8 +19,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          format="int32"
  *      ),
  *      @OA\Property(
- *          property="moton",
- *          description="moton",
+ *          property="monto",
+ *          description="monto",
  *          readOnly=false,
  *          nullable=false,
  *          type="number",
@@ -85,7 +85,7 @@ class Liquidacion extends Model
 
 
     public $fillable = [
-        'moton',
+        'monto',
         'fecha',
         'agente_id'
     ];
@@ -97,7 +97,7 @@ class Liquidacion extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'moton' => 'float',
+        'monto' => 'float',
         'fecha' => 'date',
         'agente_id' => 'integer'
     ];
@@ -108,7 +108,7 @@ class Liquidacion extends Model
      * @var array
      */
     public static $rules = [
-        'moton' => 'required|numeric',
+        'monto' => 'required|numeric',
         'fecha' => 'required',
         'agente_id' => 'required',
         'deleted_at' => 'nullable',

@@ -12,7 +12,7 @@
         "inView": false
     },
     {
-        "name": "moton",
+        "name": "monto",
         "dbType": "float,8,2",
         "htmlType": null,
         "validations": "required|numeric|numeric",

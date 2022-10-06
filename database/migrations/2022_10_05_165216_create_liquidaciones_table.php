@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('liquidaciones', function (Blueprint $table) {
             $table->id();
-            $table->float('moton',8,2)->default(0);
+            $table->float('monto',8,2)->default(0);
             $table->date('fecha');
             $table->foreignId('agente_id')->constrained('agentes');
             $table->softDeletes();

@@ -30,7 +30,7 @@ class LiquidacionFactory extends Factory
         }
 
         return [
-            'moton' => $this->faker->numberBetween(0, 255),
+            'monto' => $this->faker->numberBetween(0, 255),
             'fecha' => $this->faker->date('Y-m-d'),
             'agente_id' => $agente->id,
             'created_at' => $this->faker->date('Y-m-d H:i:s'),

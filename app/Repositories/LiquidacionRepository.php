@@ -17,7 +17,7 @@ class LiquidacionRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'moton',
+        'monto',
         'fecha',
         'agente_id'
     ];
