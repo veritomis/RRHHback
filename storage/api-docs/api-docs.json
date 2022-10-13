@@ -335,6 +335,173 @@
                 ]
             }
         },
+        "/api/asistencias": {
+            "get": {
+                "tags": [
+                    "Asistencia"
+                ],
+                "summary": "getAsistenciaList",
+                "description": "Get all Asistencias",
+                "operationId": "7ac0e513602784ab953c46733aeaca94",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Asistencia"
+                ],
+                "summary": "createAsistencia",
+                "description": "Create Asistencia",
+                "operationId": "18bcef616a0bd9cd1267cebecc349b35",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/asistencias/{id}": {
+            "get": {
+                "tags": [
+                    "Asistencia"
+                ],
+                "summary": "getAsistenciaItem",
+                "description": "Get Asistencia",
+                "operationId": "5c27ffaea48c9aa32414c35a2bce5fea",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Asistencia",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/asistencias/{id}": {
+            "put": {
+                "tags": [
+                    "Asistencia"
+                ],
+                "summary": "updateAsistencia",
+                "description": "Update Asistencia",
+                "operationId": "55d2f6d8fb5f8b1753e1299e6a5c7b9b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Asistencia",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Asistencia"
+                ],
+                "summary": "deleteAsistencia",
+                "description": "Delete Asistencia",
+                "operationId": "d660e10dd2a4d12c09834cf20b673c82",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Asistencia",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/asistencia-medicas": {
             "get": {
                 "tags": [
@@ -3739,6 +3906,56 @@
                 },
                 "type": "object"
             },
+            "Asistencia": {
+                "required": [
+                    "agente_id",
+                    "calendario",
+                    "horario_propuesto"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": true,
+                        "nullable": false
+                    },
+                    "agente_id": {
+                        "description": "agente_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "calendario": {
+                        "description": "calendario",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "horario_propuesto": {
+                        "description": "horario_propuesto",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "created_at": {
+                        "description": "created_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "updated_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
             "AsistenciaMedica": {
                 "required": [
                     "agente_id",
@@ -4580,7 +4797,7 @@
             },
             "Liquidacion": {
                 "required": [
-                    "moton",
+                    "monto",
                     "fecha",
                     "agente_id"
                 ],
@@ -4592,8 +4809,8 @@
                         "readOnly": true,
                         "nullable": false
                     },
-                    "moton": {
-                        "description": "moton",
+                    "monto": {
+                        "description": "monto",
                         "type": "number",
                         "format": "number",
                         "readOnly": false,
