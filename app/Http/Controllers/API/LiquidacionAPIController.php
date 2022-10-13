@@ -33,7 +33,7 @@ class LiquidacionAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/api/liquidacions",
+     *      path="/api/liquidaciones",
      *      summary="getLiquidacionList",
      *      tags={"Liquidacion"},
      *      security={ {"sanctum": {} }},
@@ -81,7 +81,7 @@ class LiquidacionAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Post(
-     *      path="/api/liquidacions",
+     *      path="/api/liquidaciones",
      *      summary="createLiquidacion",
      *      tags={"Liquidacion"},
      *      security={ {"sanctum": {} }},
@@ -140,7 +140,7 @@ class LiquidacionAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/api/liquidacions/{id}",
+     *      path="/api/liquidaciones/{id}",
      *      summary="getLiquidacionItem",
      *      tags={"Liquidacion"},
      *      security={ {"sanctum": {} }},
@@ -197,7 +197,7 @@ class LiquidacionAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Put(
-     *      path="/api/liquidacions/{id}",
+     *      path="/api/liquidaciones/{id}",
      *      summary="updateLiquidacion",
      *      tags={"Liquidacion"},
      *      security={ {"sanctum": {} }},
@@ -272,7 +272,7 @@ class LiquidacionAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Delete(
-     *      path="/api/liquidacions/{id}",
+     *      path="/api/liquidaciones/{id}",
      *      summary="deleteLiquidacion",
      *      tags={"Liquidacion"},
      *      security={ {"sanctum": {} }},
