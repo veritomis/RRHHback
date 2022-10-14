@@ -41,7 +41,6 @@ class AsistenciaAPIController extends AppBaseController
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
-     *          security={ {"sanctum": {} }},
      *          @OA\Schema(
      *              type="object",
      *              @OA\Property(
@@ -86,7 +85,6 @@ class AsistenciaAPIController extends AppBaseController
      *      tags={"Asistencia"},
      *      security={ {"sanctum": {} }},
      *      description="Create Asistencia",
-     *      security={ {"sanctum": {} }},
      *      @OA\RequestBody(
      *        required=true,
      *        @OA\MediaType(
@@ -146,7 +144,6 @@ class AsistenciaAPIController extends AppBaseController
      *      tags={"Asistencia"},
      *      security={ {"sanctum": {} }},
      *      description="Get Asistencia",
-     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of Asistencia",
@@ -204,7 +201,6 @@ class AsistenciaAPIController extends AppBaseController
      *      tags={"Asistencia"},
      *      security={ {"sanctum": {} }},
      *      description="Update Asistencia",
-     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of Asistencia",
@@ -280,7 +276,6 @@ class AsistenciaAPIController extends AppBaseController
      *      tags={"Asistencia"},
      *      security={ {"sanctum": {} }},
      *      description="Delete Asistencia",
-     *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="id of Asistencia",
