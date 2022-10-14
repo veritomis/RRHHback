@@ -2,23 +2,25 @@
 
 namespace App\Repositories;
 
-use App\Models\Post;
+use App\Models\Suplemento;
 use App\Repositories\BaseRepository;
 
 /**
- * Class PostRepository
+ * Class SuplementoRepository
  * @package App\Repositories
- * @version April 28, 2022, 6:19 pm UTC
+ * @version October 3, 2022, 9:46 am -03
 */
 
-class PostRepository extends BaseRepository
+class SuplementoRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'name',
-        'description'
+        'nombre_suplemento',
+        'porcentaje',
+        'fecha_asignacion',
+        'carrera_id'
     ];
 
     /**
@@ -36,6 +38,6 @@ class PostRepository extends BaseRepository
      **/
     public function model()
     {
-        return Post::class;
+        return Suplemento::class;
     }
 }

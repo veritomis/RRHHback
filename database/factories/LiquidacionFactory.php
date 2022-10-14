@@ -2,17 +2,19 @@
 
 namespace Database\Factories;
 
-use App\Models\Post;
+use App\Models\Liquidacion;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class PostFactory extends Factory
+use App\Models\Agente;
+
+class LiquidacionFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Post::class;
+    protected $model = Liquidacion::class;
 
     /**
      * Define the model's default state.
@@ -21,9 +23,16 @@ class PostFactory extends Factory
      */
     public function definition()
     {
+        
+        $agente = Agente::first();
+        if (!$agente) {
+            $agente = Agente::factory()->create();
+        }
+
         return [
-            'name' => $this->faker->word,
-            'description' => $this->faker->text,
+            'monto' => $this->faker->numberBetween(0, 255),
+            'fecha' => $this->faker->date('Y-m-d'),
+            'agente_id' => $agente->id,
             'created_at' => $this->faker->date('Y-m-d H:i:s'),
             'updated_at' => $this->faker->date('Y-m-d H:i:s')
         ];

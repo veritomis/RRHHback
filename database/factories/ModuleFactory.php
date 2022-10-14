@@ -23,11 +23,10 @@ class ModuleFactory extends Factory
     {
         return [
             'nombre' => $this->faker->word,
-        'slug' => $this->faker->word,
-        'activo' => $this->faker->word,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'updated_at' => $this->faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s')
+            'slug' => $this->faker->word,
+            'activo' => $this->faker->word,
+            'created_at' => $this->faker->date('Y-m-d H:i:s'),
+            'updated_at' => $this->faker->date('Y-m-d H:i:s')
         ];
     }
 }

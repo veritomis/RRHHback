@@ -46,9 +46,21 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('puesto-nomenclaturas', App\Http\Controllers\API\PuestoNomenclaturaAPIController::class);
     Route::resource('funciones', App\Http\Controllers\API\FuncionAPIController::class);
     Route::post('borrado-agentes-masivo', 'App\Http\Controllers\API\AgenteAPIController@manyDelete');
+    Route::resource('areas', App\Http\Controllers\API\AreaAPIController::class);
+    Route::resource('legajos', App\Http\Controllers\API\LegajoAPIController::class);
+    Route::resource('liquidaciones', App\Http\Controllers\API\LiquidacionAPIController::class);
+
+    // Route::resource('suplementos', App\Http\Controllers\API\SuplementoAPIController::class);
+    // Route::resource('capacitacions', App\Http\Controllers\API\CapacitacionAPIController::class);
 
     //hago la ruta de plantas_permanentes
     Route::resource('planta-permanentes', App\Http\Controllers\API\PlantaPermanenteAPIController::class);
+    Route::resource('evaluaciones', App\Http\Controllers\API\EvaluacionAPIController::class);
+
+    Route::resource('asistencia-medicas', App\Http\Controllers\API\AsistenciaMedicaAPIController::class);
+
+    //ruta asistencias
+    Route::resource('asistencias', App\Http\Controllers\API\AsistenciaAPIController::class);
 
     // UploadFile
     Route::get('users/export/', [UsersController::class, 'export']);
@@ -57,4 +69,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthenticatedSessionController::class, 'logout'])
                 ->name('logout');
 });
+
+
+
+
 

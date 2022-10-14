@@ -4,75 +4,75 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use Tests\ApiTestTrait;
-use App\Models\Post;
+use App\Models\Legajo;
 
-class PostApiTest extends TestCase
+class LegajoApiTest extends TestCase
 {
     use ApiTestTrait, WithoutMiddleware, DatabaseTransactions;
 
     /**
      * @test
      */
-    public function test_create_post()
+    public function test_create_legajo()
     {
-        $post = Post::factory()->make()->toArray();
+        $legajo = Legajo::factory()->make()->toArray();
 
         $this->response = $this->json(
             'POST',
-            '/api/posts', $post
+            '/api/legajos', $legajo
         );
 
-        $this->assertApiResponse($post);
+        $this->assertApiResponse($legajo);
     }
 
     /**
      * @test
      */
-    public function test_read_post()
+    public function test_read_legajo()
     {
-        $post = Post::factory()->create();
+        $legajo = Legajo::factory()->create();
 
         $this->response = $this->json(
             'GET',
-            '/api/posts/'.$post->id
+            '/api/legajos/'.$legajo->id
         );
 
-        $this->assertApiResponse($post->toArray());
+        $this->assertApiResponse($legajo->toArray());
     }
 
     /**
      * @test
      */
-    public function test_update_post()
+    public function test_update_legajo()
     {
-        $post = Post::factory()->create();
-        $editedPost = Post::factory()->make()->toArray();
+        $legajo = Legajo::factory()->create();
+        $editedLegajo = Legajo::factory()->make()->toArray();
 
         $this->response = $this->json(
             'PUT',
-            '/api/posts/'.$post->id,
-            $editedPost
+            '/api/legajos/'.$legajo->id,
+            $editedLegajo
         );
 
-        $this->assertApiResponse($editedPost);
+        $this->assertApiResponse($editedLegajo);
     }
 
     /**
      * @test
      */
-    public function test_delete_post()
+    public function test_delete_legajo()
     {
-        $post = Post::factory()->create();
+        $legajo = Legajo::factory()->create();
 
         $this->response = $this->json(
             'DELETE',
-             '/api/posts/'.$post->id
+             '/api/legajos/'.$legajo->id
          );
 
         $this->assertApiSuccess();
         $this->response = $this->json(
             'GET',
-            '/api/posts/'.$post->id
+            '/api/legajos/'.$legajo->id
         );
 
         $this->response->assertStatus(404);

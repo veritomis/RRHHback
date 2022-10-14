@@ -21,9 +21,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\Grupo::factory(10)->create();
         \App\Models\Carrera::factory(10)->create();
         \App\Models\Funcion::factory(5)->create();
-        // \App\Models\PuestoFamilia::factory(10)->create();
-        // \App\Models\PuestoSubfamilia::factory(10)->create();
-        // \App\Models\PuestoNomenclatura::factory(10)->create();
         activity()->withoutLogs(function () {
             $this->call([
                 PermissionsSeeder::class,
@@ -34,5 +31,10 @@ class DatabaseSeeder extends Seeder
         });
         \App\Models\Contrato::factory(10)->create();
         \App\Models\PlantaPermanente::factory(10)->create();
+        \App\Models\Asistencia::factory(5)->create();
+        \App\Models\Evaluacion::factory(5)->create();
+        \App\Models\AsistenciaMedica::factory(5)->create();
+        \App\Models\Legajo::factory(5)->create();
+        \App\Models\Liquidacion::factory(5)->create();
     }
 }
