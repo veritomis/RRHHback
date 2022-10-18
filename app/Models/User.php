@@ -11,10 +11,11 @@ use Spatie\Permission\Traits\HasRoles;
 use Laravel\Sanctum\HasApiTokens;
 use LdapRecord\Laravel\Auth\LdapAuthenticatable;
 use LdapRecord\Laravel\Auth\AuthenticatesWithLdap;
+use LdapRecord\Laravel\Auth\HasLdapUser;
 
 class User extends Authenticatable implements LdapAuthenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, AuthenticatesWithLdap;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, AuthenticatesWithLdap, HasLdapUser;
 
     protected $guard_name = ['sanctum'];
 

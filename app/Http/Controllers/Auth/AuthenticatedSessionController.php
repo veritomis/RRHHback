@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use LdapRecord\Models\ActiveDirectory\Group;
 
 class AuthenticatedSessionController extends AppBaseController
 {
@@ -33,8 +34,12 @@ class AuthenticatedSessionController extends AppBaseController
         $credentials = $this->credentials($request->all());
         if (Auth::attempt($credentials)) {
             // $request->authenticate();
+
             $token = $request->user()->createToken('token')->plainTextToken;
             $user = Auth::user();
+            $group = Group::all();
+            $groups = $user->ldap->groups()->get();
+            dd($groups,$group);
             return $this->sendResponse(['Usuario' => $user,'Token' => $token], 'Acceso satisfactorio');
         }else{
             return $this->sendError('Usuario o Contraseña invalidos');
