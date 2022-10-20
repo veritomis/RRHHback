@@ -280,28 +280,28 @@ abstract class BaseRepository
         // para determinar las imagenes eliminadas
         $requestGallery = array_column($documentos, 'archivo');
         $currentGallery = array_column($model->documentos->toArray(), 'archivo');
-        $deletedImages = array_values(array_diff($currentGallery, $requestGallery));
+        $deletedDocumentos = array_values(array_diff($currentGallery, $requestGallery));
 
         // eliminar imagenes
-        foreach ($deletedImages as $deletedImage) {
-            $delete = Documento::where('archivo', $deletedImage)->first();
+        foreach ($deletedDocumentos as $deletedDocumento) {
+            $delete = Documento::where('archivo', $deletedDocumento)->first();
             Storage::disk('public')->delete($delete->archivo);
             $delete->delete();
         }
 
         // new images
-        foreach ($documentos as $key => $imageInput) {
-            if (array_key_exists('file', $imageInput)) {
-                $fileName   = time() . '.' . $imageInput['nombre_archivo'];
-                $this->saveFileFromBase64($imageInput['file'], $fileName, $folderName);
+        foreach ($documentos as $key => $documento) {
+            if (array_key_exists('file', $documento)) {
+                $fileName   = time() . '.' . $documento['nombre_archivo'];
+                $this->saveFileFromBase64($documento['file'], $fileName, $folderName);
                 $input['url']      = '/storage/' . $folderName . '/' . $fileName;
                 $input['archivo'] = $fileName;
-                $input['ext'] = $imageInput['ext'];
+                $input['ext'] = $documento['ext'];
                 $model->documentos()->create($input);
             } else {
                 // Actualizacion de possicion de la imagen
-                $documento = Documento::findOrFail($imageInput['id']);
-                $documento->orden = isset($imageInput['orden'])? $imageInput['orden'] : 0;
+                $documento = Documento::findOrFail($documento['id']);
+                $documento->orden = isset($documento['orden'])? $documento['orden'] : 0;
                 $documento->save();
             }
         }
