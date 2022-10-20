@@ -1939,14 +1939,14 @@
                 ]
             }
         },
-        "/api/liquidacions": {
+        "/api/liquidaciones": {
             "get": {
                 "tags": [
                     "Liquidacion"
                 ],
                 "summary": "getLiquidacionList",
                 "description": "Get all Liquidacions",
-                "operationId": "9b1935a20e4d7a8ac61f0f3194aa44df",
+                "operationId": "5db89f2300e119d6cdffb5ec5e862ab8",
                 "responses": {
                     "200": {
                         "description": "successful operation"
@@ -1964,7 +1964,7 @@
                 ],
                 "summary": "createLiquidacion",
                 "description": "Create Liquidacion",
-                "operationId": "d72689ef602277c6975e9d333a8db987",
+                "operationId": "a9d16e513775e3cff8de4bb29c550060",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -1996,14 +1996,14 @@
                 ]
             }
         },
-        "/api/liquidacions/{id}": {
+        "/api/liquidaciones/{id}": {
             "get": {
                 "tags": [
                     "Liquidacion"
                 ],
                 "summary": "getLiquidacionItem",
                 "description": "Get Liquidacion",
-                "operationId": "656233e716998a6299076486313d8b9a",
+                "operationId": "a0f84a4ada4ddbfc1684f7aab41f6360",
                 "parameters": [
                     {
                         "name": "id",
@@ -2032,7 +2032,7 @@
                 ],
                 "summary": "updateLiquidacion",
                 "description": "Update Liquidacion",
-                "operationId": "30a06030346cbe2435b05fd410cd6e60",
+                "operationId": "fe67f81045dcc237a60485aaa9e57a6a",
                 "parameters": [
                     {
                         "name": "id",
@@ -2080,7 +2080,7 @@
                 ],
                 "summary": "deleteLiquidacion",
                 "description": "Delete Liquidacion",
-                "operationId": "6c16dd27095e5fc2795d6cd3a8e7826e",
+                "operationId": "9b646cf8c976d563f99a0131ad6666b7",
                 "parameters": [
                     {
                         "name": "id",
