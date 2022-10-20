@@ -53,9 +53,6 @@ Route::middleware('auth:sanctum')->group(function () {
     // Route::resource('suplementos', App\Http\Controllers\API\SuplementoAPIController::class);
     // Route::resource('capacitacions', App\Http\Controllers\API\CapacitacionAPIController::class);
 
-    // este lo agrego porque falta:
-    Route::resource('vinculacion-laboral', App\Http\Controllers\API\VinculacionLaboralAPIController::class);
-
     //hago la ruta de plantas_permanentes
     Route::resource('planta-permanentes', App\Http\Controllers\API\PlantaPermanenteAPIController::class);
     Route::resource('evaluaciones', App\Http\Controllers\API\EvaluacionAPIController::class);
