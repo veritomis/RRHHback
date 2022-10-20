@@ -194,6 +194,30 @@ class Agente extends Model
         return $this->belongsTo(\App\Models\Grupo::class, 'grupo_id');
     }
 
+    public function contratos()
+    {
+        return $this->hasMany(\App\Models\Contrato::class, 'agente_id');
+    }
+    public function asistenciaMedicas()
+    {
+        return $this->hasMany(\App\Models\AsistenciaMedica::class, 'agente_id');
+    }
+
+    public function legajos()
+    {
+        return $this->hasMany(\App\Models\Legajo::class, 'agente_id');
+    }
+
+    public function liquidaciones()
+    {
+        return $this->hasMany(\App\Models\Liquidacion::class, 'agente_id');
+    }
+
+    public function asistencias()
+    {
+        return $this->hasMany(\App\Models\Asistencia::class, 'agente_id');
+    }
+
     /**
      * Scope to search by any column
      * @param  Builder $query

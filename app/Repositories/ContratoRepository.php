@@ -92,6 +92,13 @@ class ContratoRepository extends BaseRepository
             $model->fill($input);
             $model->save();
             $model->funciones()->sync($funciones);
+
+            // foreach ($archivos as $archivo) {
+            //     if (isset($archivo['file'])) {
+            //         $this->saveFile($archivo, $model);
+            //     }
+            // }
+
             DB::commit();
             return $model;
         } catch (\Throwable $th) {
@@ -109,4 +116,5 @@ class ContratoRepository extends BaseRepository
 
         return $arrary;
     }
+
 }

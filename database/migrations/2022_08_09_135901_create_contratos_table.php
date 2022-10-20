@@ -31,8 +31,8 @@ return new class extends Migration
             $table->string('numero_resolucion')->nullable();
             $table->boolean('estado')->nullable();
             $table->foreignId('asistencia_tipo_contratacion_id')->constrained('asistencia_tipo_contrataciones');
-            $table->integer('agente_id');
-            $table->integer('area_id');
+            $table->foreignId('agente_id')->constrained('agentes');
+            $table->foreignId('area_id')->constrained('areas');
             $table->integer('titulo_orientacion_id');
             $table->foreignId('puesto_grupo_id')->constrained('puestos_grupos');
             $table->foreignId('puesto_familia_id')->nullable()->constrained('puestos_familias');

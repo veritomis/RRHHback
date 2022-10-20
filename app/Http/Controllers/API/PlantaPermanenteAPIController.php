@@ -129,7 +129,7 @@ class PlantaPermanenteAPIController extends AppBaseController
         }
 
         $input = $request->all();
-
+        
         $plantaPermanente = $this->plantaPermanenteRepository->create($input);
 
         return $this->sendResponse($plantaPermanente->toArray(), 'Planta Permanente saved successfully');

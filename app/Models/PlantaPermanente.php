@@ -246,25 +246,11 @@ class PlantaPermanente extends Model
         'tramo',
         'agrupamiento',
         'modalidad_vinculacion',
-        'estado_agente',
-        'funcion',
-        'ejercicio',
-        'numero_expediente',
-        'estado_expediente',
-        'numero_formulario',
-        'nivel_formulario',
-        'calificacion',
-        'puntaje',
-        'evaluador',
-        'area_id',
-        'unidad_analisis',
-        'notificacion',
-        'numero_notificacion',
-        'observacion',
-        'corrimiento_grado',
-        'numero_expediente_grado',
-        'corrimiento_agrupamiento',
-        'numero_expediente_agrupacion'
+        'asistencia',
+        'nivel_funcion_ejecutiva',
+        'puesto_agente',
+        'es_ejecutivo',
+        'es_titular'
     ];
 
     /**
@@ -280,25 +266,11 @@ class PlantaPermanente extends Model
         'tramo' => 'string',
         'agrupamiento' => 'string',
         'modalidad_vinculacion' => 'string',
-        'estado_agente' => 'string',
-        'funcion' => 'string',
-        'ejercicio' => 'date',
-        'numero_expediente' => 'string',
-        'estado_expediente' => 'string',
-        'numero_formulario' => 'string',
-        'nivel_formulario' => 'string',
-        'calificacion' => 'string',
-        'puntaje' => 'integer',
-        'evaluador' => 'string',
-        'area_id' => 'integer',
-        'unidad_analisis' => 'string',
-        'notificacion' => 'boolean',
-        'numero_notificacion' => 'string',
-        'observacion' => 'string',
-        'corrimiento_grado' => 'boolean',
-        'numero_expediente_grado' => 'string',
-        'corrimiento_agrupamiento' => 'boolean',
-        'numero_expediente_agrupacion' => 'string'
+        'asistencia' => 'string',
+        'nivel_funcion_ejecutiva' => 'string',
+        'puesto_agente' => 'string',
+        'es_ejecutivo' => 'boolean',
+        'es_titular' => 'boolean',
     ];
 
     /**
@@ -313,28 +285,11 @@ class PlantaPermanente extends Model
         'tramo' => 'required|string|max:255',
         'agrupamiento' => 'required|string|max:255',
         'modalidad_vinculacion' => 'required|string|max:255',
-        'estado_agente' => 'required|string|max:255',
-        'funcion' => 'required|string|max:255',
-        'ejercicio' => 'required',
-        'numero_expediente' => 'required|string|max:255',
-        'estado_expediente' => 'required|string|max:255',
-        'numero_formulario' => 'required|string|max:255',
-        'nivel_formulario' => 'required|string|max:255',
-        'calificacion' => 'required|string|max:255',
-        'puntaje' => 'required|integer',
-        'evaluador' => 'required|string|max:255',
-        'area_id' => 'required|integer',
-        'unidad_analisis' => 'required|string|max:255',
-        'notificacion' => 'required|boolean',
-        'numero_notificacion' => 'nullable|string|max:255',
-        'observacion' => 'required|string|max:255',
-        'corrimiento_grado' => 'required|boolean',
-        'numero_expediente_grado' => 'required|string|max:255',
-        'corrimiento_agrupamiento' => 'required|boolean',
-        'numero_expediente_agrupacion' => 'required|string|max:255',
-        'created_at' => 'nullable',
-        'updated_at' => 'nullable',
-        'deleted_at' => 'nullable'
+        'asistencia' => 'required|string|max:255',
+        'nivel_funcion_ejecutiva' => 'nullable|string',
+        'puesto_agente' => 'required|string|max:255',
+        'es_ejecutivo' => 'required|boolean',
+        'es_titular' => 'required|boolean',
     ];
 
     /**
@@ -344,4 +299,22 @@ class PlantaPermanente extends Model
     {
         return $this->belongsTo(\App\Models\Agente::class, 'agente_id');
     }
+    
+    public function evaluaciones()
+    {
+        return $this->hasMany(\App\Models\Evaluacion::class, 'planta_permanentes_id');
+    }
+
+    public function capacitacion()
+    {
+        return $this->hasOne(\App\Models\Capacitacion::class, 'planta_permanente_id');
+    }
+
+    public function suplemento()
+    {
+        return $this->hasOne(\App\Models\Suplemento::class, 'planta_permanente_id');
+    }
+    
 }
+
+

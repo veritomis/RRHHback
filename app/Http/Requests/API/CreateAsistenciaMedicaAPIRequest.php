@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\API;
 
-use App\Models\Post;
+use App\Models\AsistenciaMedica;
 use InfyOm\Generator\Request\APIRequest;
 
-class CreatePostAPIRequest extends APIRequest
+class CreateAsistenciaMedicaAPIRequest extends APIRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,6 +24,6 @@ class CreatePostAPIRequest extends APIRequest
      */
     public function rules()
     {
-        return Post::$rules;
+        return AsistenciaMedica::$rules;
     }
 }

@@ -170,6 +170,505 @@
                 ]
             }
         },
+        "api/areas": {
+            "get": {
+                "tags": [
+                    "Area"
+                ],
+                "summary": "getAreaList",
+                "description": "Get all Areas",
+                "operationId": "8113a9301d21fc5c30eb90b2a80bdeeb",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Area"
+                ],
+                "summary": "createArea",
+                "description": "Create Area",
+                "operationId": "6514a3743a3f72843a96c102dd646ed1",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "api/areas/{id}": {
+            "get": {
+                "tags": [
+                    "Area"
+                ],
+                "summary": "getAreaItem",
+                "description": "Get Area",
+                "operationId": "05084b87c6b1980107a4a810e544808b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Area",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Area"
+                ],
+                "summary": "updateArea",
+                "description": "Update Area",
+                "operationId": "4600133120c190fad50a07b153f44892",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Area",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Area"
+                ],
+                "summary": "deleteArea",
+                "description": "Delete Area",
+                "operationId": "b8b31953673e4762767f752e1a3a8133",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Area",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/asistencias": {
+            "get": {
+                "tags": [
+                    "Asistencia"
+                ],
+                "summary": "getAsistenciaList",
+                "description": "Get all Asistencias",
+                "operationId": "7ac0e513602784ab953c46733aeaca94",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Asistencia"
+                ],
+                "summary": "createAsistencia",
+                "description": "Create Asistencia",
+                "operationId": "18bcef616a0bd9cd1267cebecc349b35",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/asistencias/{id}": {
+            "get": {
+                "tags": [
+                    "Asistencia"
+                ],
+                "summary": "getAsistenciaItem",
+                "description": "Get Asistencia",
+                "operationId": "5c27ffaea48c9aa32414c35a2bce5fea",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Asistencia",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/asistencias/{id}": {
+            "put": {
+                "tags": [
+                    "Asistencia"
+                ],
+                "summary": "updateAsistencia",
+                "description": "Update Asistencia",
+                "operationId": "55d2f6d8fb5f8b1753e1299e6a5c7b9b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Asistencia",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Asistencia"
+                ],
+                "summary": "deleteAsistencia",
+                "description": "Delete Asistencia",
+                "operationId": "d660e10dd2a4d12c09834cf20b673c82",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Asistencia",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/asistencia-medicas": {
+            "get": {
+                "tags": [
+                    "Asistencia Medica"
+                ],
+                "summary": "getAsistenciaMedicaList",
+                "description": "Get all AsistenciaMedicas",
+                "operationId": "1cdc0cfc010dd8d36ffc4ff781a5cbe0",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Asistencia Medica"
+                ],
+                "summary": "createAsistenciaMedica",
+                "description": "Create AsistenciaMedica",
+                "operationId": "385745e19c4d15afb8d67fd53d32dfde",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/asistencia-medicas/{id}": {
+            "get": {
+                "tags": [
+                    "Asistencia Medica"
+                ],
+                "summary": "getAsistenciaMedicaItem",
+                "description": "Get AsistenciaMedica",
+                "operationId": "d11e0838ae6dba44e9a2da9b05bb08b4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of AsistenciaMedica",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Asistencia Medica"
+                ],
+                "summary": "updateAsistenciaMedica",
+                "description": "Update AsistenciaMedica",
+                "operationId": "360a35e66c86ce6d967ebad3153030bd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of AsistenciaMedica",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/asistencia-medicas{id}": {
+            "delete": {
+                "tags": [
+                    "Asistencia Medica"
+                ],
+                "summary": "deleteAsistenciaMedica",
+                "description": "Delete AsistenciaMedica",
+                "operationId": "bcf31f359324f23e06cefc708e42933f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of AsistenciaMedica",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/asistencia-tipo-contratos": {
             "get": {
                 "tags": [
@@ -317,6 +816,171 @@
                         "name": "id",
                         "in": "path",
                         "description": "id of AsistenciaTipoContrato",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "api/capacitacions": {
+            "get": {
+                "tags": [
+                    "Capacitaciones"
+                ],
+                "summary": "getCapacitacionList",
+                "description": "Get all Capacitacions",
+                "operationId": "a5946d14620f64b61ac18c6ebd07cc3c",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Capacitaciones"
+                ],
+                "summary": "createCapacitacion",
+                "description": "Create Capacitacion",
+                "operationId": "9d8b7072427240fffcf3b20d64f815d5",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "api/capacitacions/{id}": {
+            "get": {
+                "tags": [
+                    "Capacitaciones"
+                ],
+                "summary": "getCapacitacionItem",
+                "description": "Get Capacitacion",
+                "operationId": "b8e15be39037121c330a4dcc1b3e55bf",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Capacitacion",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Capacitaciones"
+                ],
+                "summary": "updateCapacitacion",
+                "description": "Update Capacitacion",
+                "operationId": "5ddb0b9a2d95091e5d9f6fbe65a04087",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Capacitacion",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Capacitaciones"
+                ],
+                "summary": "deleteCapacitacion",
+                "description": "Delete Capacitacion",
+                "operationId": "86a7faad7b96de039b15939d743d3e07",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Capacitacion",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -665,6 +1329,146 @@
                 ]
             }
         },
+        "/evaluacions": {
+            "get": {
+                "tags": [
+                    "Evaluacion"
+                ],
+                "summary": "getEvaluacionList",
+                "description": "Get all Evaluacions",
+                "operationId": "bccc470441ca81d23df5de8d90f6aa40",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Evaluacion"
+                ],
+                "summary": "createEvaluacion",
+                "description": "Create Evaluacion",
+                "operationId": "d6355de152edeadb09eb5e39fc136335",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/evaluacions/{id}": {
+            "get": {
+                "tags": [
+                    "Evaluacion"
+                ],
+                "summary": "getEvaluacionItem",
+                "description": "Get Evaluacion",
+                "operationId": "2503e8830b27a64b1807763ef6c403a5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Evaluacion",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Evaluacion"
+                ],
+                "summary": "updateEvaluacion",
+                "description": "Update Evaluacion",
+                "operationId": "5f14f004a5acc963a3f1ef933497254c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Evaluacion",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Evaluacion"
+                ],
+                "summary": "deleteEvaluacion",
+                "description": "Delete Evaluacion",
+                "operationId": "c19c8de0db82e63d43b886b29ab8e41a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Evaluacion",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
         "/funcions": {
             "get": {
                 "tags": [
@@ -952,6 +1756,336 @@
                         "name": "id",
                         "in": "path",
                         "description": "id of Grupo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/legajos": {
+            "get": {
+                "tags": [
+                    "Legajo"
+                ],
+                "summary": "getLegajoList",
+                "description": "Get all Legajos",
+                "operationId": "b90528b43ea4f112918999d0c5cd8e8a",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Legajo"
+                ],
+                "summary": "createLegajo",
+                "description": "Create Legajo",
+                "operationId": "d1d75fcf6e8be699f3b7fcaf42523e8e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/legajos/{id}": {
+            "get": {
+                "tags": [
+                    "Legajo"
+                ],
+                "summary": "getLegajoItem",
+                "description": "Get Legajo",
+                "operationId": "5b3f0a954b6e2d552e0beaf7f8824946",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Legajo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Legajo"
+                ],
+                "summary": "updateLegajo",
+                "description": "Update Legajo",
+                "operationId": "ef2f9f0d3aaf32700507ae7d4f0b6cd6",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Legajo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Legajo"
+                ],
+                "summary": "deleteLegajo",
+                "description": "Delete Legajo",
+                "operationId": "f62c21089539d3b637c3f1784ab37978",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Legajo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/liquidacions": {
+            "get": {
+                "tags": [
+                    "Liquidacion"
+                ],
+                "summary": "getLiquidacionList",
+                "description": "Get all Liquidacions",
+                "operationId": "9b1935a20e4d7a8ac61f0f3194aa44df",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Liquidacion"
+                ],
+                "summary": "createLiquidacion",
+                "description": "Create Liquidacion",
+                "operationId": "d72689ef602277c6975e9d333a8db987",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/liquidacions/{id}": {
+            "get": {
+                "tags": [
+                    "Liquidacion"
+                ],
+                "summary": "getLiquidacionItem",
+                "description": "Get Liquidacion",
+                "operationId": "656233e716998a6299076486313d8b9a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Liquidacion",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Liquidacion"
+                ],
+                "summary": "updateLiquidacion",
+                "description": "Update Liquidacion",
+                "operationId": "30a06030346cbe2435b05fd410cd6e60",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Liquidacion",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Liquidacion"
+                ],
+                "summary": "deleteLiquidacion",
+                "description": "Delete Liquidacion",
+                "operationId": "6c16dd27095e5fc2795d6cd3a8e7826e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Liquidacion",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -2125,6 +3259,171 @@
                 ]
             }
         },
+        "/api/suplementos": {
+            "get": {
+                "tags": [
+                    "Suplementos"
+                ],
+                "summary": "getSuplementoList",
+                "description": "Get all Suplementos",
+                "operationId": "1780d05fc82f5e45ff0a824ef80e3bf5",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Suplementos"
+                ],
+                "summary": "createSuplemento",
+                "description": "Create Suplemento",
+                "operationId": "bb4e076e15f1065da8f121efe9e65c7c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/suplementos/{id}": {
+            "get": {
+                "tags": [
+                    "Suplementos"
+                ],
+                "summary": "getSuplementoItem",
+                "description": "Get Suplemento",
+                "operationId": "e92d76b59a0e228178a2780782babfea",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Suplemento",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Suplementos"
+                ],
+                "summary": "updateSuplemento",
+                "description": "Update Suplemento",
+                "operationId": "35e0a7b5f34b59798a0e7ada15edd6aa",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Suplemento",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    ""
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "desc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Suplementos"
+                ],
+                "summary": "deleteSuplemento",
+                "description": "Delete Suplemento",
+                "operationId": "cfac7632a2445db5022b1a13bb694c18",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Suplemento",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/titulos": {
             "get": {
                 "tags": [
@@ -2558,6 +3857,196 @@
                 },
                 "type": "object"
             },
+            "Area": {
+                "required": [
+                    "nombre",
+                    "sigla"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": true,
+                        "nullable": false
+                    },
+                    "nombre": {
+                        "description": "nombre",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "sigla": {
+                        "description": "sigla",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "deleted_at": {
+                        "description": "deleted_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "created_at": {
+                        "description": "created_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "updated_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "Asistencia": {
+                "required": [
+                    "agente_id",
+                    "calendario",
+                    "horario_propuesto"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": true,
+                        "nullable": false
+                    },
+                    "agente_id": {
+                        "description": "agente_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "calendario": {
+                        "description": "calendario",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "horario_propuesto": {
+                        "description": "horario_propuesto",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "created_at": {
+                        "description": "created_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "updated_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "AsistenciaMedica": {
+                "required": [
+                    "agente_id",
+                    "historia_clinica",
+                    "tipo_licencia",
+                    "diagnostico",
+                    "tratamiento",
+                    "estudio_complementario",
+                    "imagen_url"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": true,
+                        "nullable": false
+                    },
+                    "agente_id": {
+                        "description": "agente_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "historia_clinica": {
+                        "description": "historia_clinica",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "tipo_licencia": {
+                        "description": "tipo_licencia",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "diagnostico": {
+                        "description": "diagnostico",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "tratamiento": {
+                        "description": "tratamiento",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "estudio_complementario": {
+                        "description": "estudio_complementario",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "numero_nota_realizada": {
+                        "description": "numero_nota_realizada",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": true
+                    },
+                    "imagen_url": {
+                        "description": "imagen_url",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "created_at": {
+                        "description": "created_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "updated_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "deleted_at": {
+                        "description": "deleted_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
             "AsistenciaTipoContrato": {
                 "required": [
                     "nombre",
@@ -2600,6 +4089,100 @@
                     },
                     "deleted_at": {
                         "description": "deleted_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "Capacitacion": {
+                "required": [
+                    "apto_tramo",
+                    "corrimiento_grado",
+                    "fue_utilizada",
+                    "planta_permanente_id"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": true,
+                        "nullable": false
+                    },
+                    "apto_tramo": {
+                        "description": "apto_tramo",
+                        "type": "boolean",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "corrimiento_grado": {
+                        "description": "corrimiento_grado",
+                        "type": "boolean",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "fue_utilizada": {
+                        "description": "fue_utilizada",
+                        "type": "boolean",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "tramo": {
+                        "description": "tramo",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": true
+                    },
+                    "nivel": {
+                        "description": "nivel",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": true
+                    },
+                    "agrupamiento": {
+                        "description": "agrupamiento",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": true
+                    },
+                    "perfiles": {
+                        "description": "perfiles",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": true
+                    },
+                    "saldo": {
+                        "description": "saldo",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": true
+                    },
+                    "planta_permanente_id": {
+                        "description": "planta_permanente_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "deleted_at": {
+                        "description": "deleted_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "created_at": {
+                        "description": "created_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "updated_at",
                         "type": "string",
                         "format": "date-time",
                         "readOnly": true,
@@ -2750,7 +4333,6 @@
                     "puesto_familia_id",
                     "puesto_subfamilia_id",
                     "puesto_nomenclatura_id",
-                    "funcion_trabajo_id",
                     "puesto_trabajo_otro",
                     "experiencia_laboral",
                     "observacion",
@@ -2919,13 +4501,6 @@
                         "readOnly": false,
                         "nullable": false
                     },
-                    "funcion_trabajo_id": {
-                        "description": "funcion_trabajo_id",
-                        "type": "integer",
-                        "format": "int32",
-                        "readOnly": false,
-                        "nullable": false
-                    },
                     "created_at": {
                         "description": "created_at",
                         "type": "string",
@@ -2971,6 +4546,102 @@
                         "description": "reportar",
                         "type": "string",
                         "readOnly": false
+                    }
+                },
+                "type": "object"
+            },
+            "Evaluacion": {
+                "required": [
+                    "planta_permanentes_id",
+                    "fecha_desde",
+                    "fecha_hasta",
+                    "nivel_formulario",
+                    "puntaje",
+                    "calificacion",
+                    "fue_utilizada",
+                    "tiene_bonificacion"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": true,
+                        "nullable": false
+                    },
+                    "planta_permanentes_id": {
+                        "description": "planta_permanentes_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "fecha_desde": {
+                        "description": "fecha_desde",
+                        "type": "string",
+                        "format": "date",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "fecha_hasta": {
+                        "description": "fecha_hasta",
+                        "type": "string",
+                        "format": "date",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "nivel_formulario": {
+                        "description": "nivel_formulario",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "puntaje": {
+                        "description": "puntaje",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "calificacion": {
+                        "description": "calificacion",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "fue_utilizada": {
+                        "description": "fue_utilizada",
+                        "type": "boolean",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "tiene_bonificacion": {
+                        "description": "tiene_bonificacion",
+                        "type": "boolean",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "created_at": {
+                        "description": "created_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "updated_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "deleted_at": {
+                        "description": "deleted_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
                     }
                 },
                 "type": "object"
@@ -3034,6 +4705,137 @@
                         "type": "string",
                         "readOnly": false,
                         "nullable": false
+                    },
+                    "created_at": {
+                        "description": "created_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "updated_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "Legajo": {
+                "required": [
+                    "baja_tramite",
+                    "nota_gde",
+                    "fecha_baja",
+                    "motivo_baja",
+                    "agente_id"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": true,
+                        "nullable": false
+                    },
+                    "baja_tramite": {
+                        "description": "baja_tramite",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "nota_gde": {
+                        "description": "nota_gde",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "fecha_baja": {
+                        "description": "fecha_baja",
+                        "type": "string",
+                        "format": "date",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "motivo_baja": {
+                        "description": "motivo_baja",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "agente_id": {
+                        "description": "agente_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "deleted_at": {
+                        "description": "deleted_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "created_at": {
+                        "description": "created_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "updated_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "Liquidacion": {
+                "required": [
+                    "monto",
+                    "fecha",
+                    "agente_id"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": true,
+                        "nullable": false
+                    },
+                    "monto": {
+                        "description": "monto",
+                        "type": "number",
+                        "format": "number",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "fecha": {
+                        "description": "fecha",
+                        "type": "string",
+                        "format": "date",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "agente_id": {
+                        "description": "agente_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "deleted_at": {
+                        "description": "deleted_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
                     },
                     "created_at": {
                         "description": "created_at",
@@ -3541,6 +5343,72 @@
                         "type": "string",
                         "readOnly": false,
                         "nullable": false
+                    },
+                    "created_at": {
+                        "description": "created_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "updated_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "Suplemento": {
+                "required": [
+                    "nombre_suplemento",
+                    "porcentaje",
+                    "fecha_asignacion",
+                    "planta_permanente_id"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": true,
+                        "nullable": false
+                    },
+                    "nombre_suplemento": {
+                        "description": "nombre_suplemento",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "porcentaje": {
+                        "description": "porcentaje",
+                        "type": "number",
+                        "format": "number",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "fecha_asignacion": {
+                        "description": "fecha_asignacion",
+                        "type": "string",
+                        "format": "date",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "planta_permanente_id": {
+                        "description": "planta_permanente_id",
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "deleted_at": {
+                        "description": "deleted_at",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
                     },
                     "created_at": {
                         "description": "created_at",

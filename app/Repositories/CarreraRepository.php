@@ -47,4 +47,9 @@ class CarreraRepository extends BaseRepository
     {
         return Carrera::class;
     }
+
+    public function getIncludes()
+    {
+        return ['funciones'];
+    }
 }

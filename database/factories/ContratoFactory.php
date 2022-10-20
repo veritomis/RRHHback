@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Agente;
+use App\Models\Area;
 use App\Models\Contrato;
 use App\Models\AsistenciaTipoContrato;
 use App\Models\PuestoFamilia;
@@ -33,6 +35,16 @@ class ContratoFactory extends Factory
             $asistenciaTipoContratacione = AsistenciaTipoContrato::factory()->create();
         }
 
+        $agente = Agente::first();
+        if (!$agente) {
+            $agente = Agente::factory()->create();
+        }
+
+        $area = Area::first();
+        if (!$area) {
+            $area = Area::factory()->create();
+        }
+        
         // $vinculacionesLaborale = VinculacionLaboral::first();
         // if (!$vinculacionesLaborale) {
         //     $vinculacionesLaborale = VinculacionLaboral::factory()->create();
@@ -77,8 +89,8 @@ class ContratoFactory extends Factory
             'numero_resolucion' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'estado' => $this->faker->boolean,
             'asistencia_tipo_contratacion_id' => $asistenciaTipoContratacione->id,
-            'agente_id' => $this->faker->numberBetween(0, 999),
-            'area_id' => $this->faker->numberBetween(0, 999),
+            'agente_id' => $agente->id,
+            'area_id' => $area->id,
             'titulo_orientacion_id' => $this->faker->numberBetween(0, 999),
             'puesto_grupo_id' => $puestoGrupo->id,
             'puesto_familia_id' => $puestoFamilia->id,
