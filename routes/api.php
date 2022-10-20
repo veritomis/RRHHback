@@ -74,3 +74,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 
+
+
+Route::resource('documentos', App\Http\Controllers\API\DocumentoAPIController::class);

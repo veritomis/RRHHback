@@ -1,0 +1,42 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('documentos', function (Blueprint $table) {
+            $table->id();
+            $table->string('archivo')->index();
+            $table->string('url');
+            $table->string('ext');
+            $table->integer('orden')->default(0);
+            $table->morphs('modelogable');
+            $table->date('fecha_de_carga')->index()->nullable();
+            $table->date('fecha_de_emision')->index()->nullable();
+            $table->date('fecha_de_vencimiento')->index()->nullable();
+            $table->date('fecha_de_cotejo')->index()->nullable();
+
+            $table->timestamps();
+            $table->softDeletes();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('documentos');
+    }
+};

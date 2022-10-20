@@ -10,10 +10,11 @@ use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\Support\Facades\Schema;
 use App\Exceptions\MySQLException;
 use App\Exceptions\ApiModelException;
+use App\Models\Documento;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\QueryException;
-
-
+use Illuminate\Support\Facades\Storage;
 
 abstract class BaseRepository
 {
@@ -260,10 +261,79 @@ abstract class BaseRepository
 
     protected function handleException(\Exception $e)
     {
+        dd($e);
         if ($e instanceof QueryException) {
             throw new MySQLException($e->getMessage(), $e->getCode());
         } else {
             throw new ApiModelException($e->getMessage(), $e->getCode());
+        }
+    }
+
+    /**
+     * Method to store gallery in storage
+     * @param  [type] $model        [description]
+     * @param  [type] $request      [description]
+     * @return [type] $folderName   [description]
+     */
+    protected function saveFile($model, array $documentos, string $folderName)
+    {
+        // para determinar las imagenes eliminadas
+        $requestGallery = array_column($documentos, 'archivo');
+        $currentGallery = array_column($model->documentos->toArray(), 'archivo');
+        $deletedImages = array_values(array_diff($currentGallery, $requestGallery));
+
+        // eliminar imagenes
+        foreach ($deletedImages as $deletedImage) {
+            $delete = Documento::where('archivo', $deletedImage)->first();
+            Storage::disk('public')->delete($delete->archivo);
+            $delete->delete();
+        }
+
+        // new images
+        foreach ($documentos as $key => $imageInput) {
+            if (array_key_exists('file', $imageInput)) {
+                $fileName   = time() . '.' . $imageInput['nombre_archivo'];
+                $this->saveFileFromBase64($imageInput['file'], $fileName, $folderName);
+                $input['url']      = '/storage/' . $folderName . '/' . $fileName;
+                $input['archivo'] = $fileName;
+                $input['ext'] = $imageInput['ext'];
+                $model->documentos()->create($input);
+            } else {
+                // Actualizacion de possicion de la imagen
+                $documento = Documento::findOrFail($imageInput['id']);
+                $documento->orden = isset($imageInput['orden'])? $imageInput['orden'] : 0;
+                $documento->save();
+            }
+        }
+    }
+
+    /**
+     * Method to save files in storage from base 64
+     * @param  string $base64Url [description]
+     * @param  string $fileName [description]
+     * @param  string $folderName   [description]
+     * @return void
+     */
+    public function saveFileFromBase64(string $base64Url, string $fileName, string $folderName)
+    {
+        try {
+            //get the base-64 from data
+            $base64String = substr($base64Url, strpos($base64Url, ',') + 1);
+
+            //decode base64 string
+            $image = base64_decode($base64String);
+
+            // folder path
+            $filePath = $folderName . '/' . $fileName;
+
+            // store file
+            $storagePath = Storage::disk('public')->put($filePath, $image);
+            $realPath = $storagePath . $filePath;
+
+            // return relative path from public path
+            return str_replace(public_path(), '', $realPath);
+        } catch (Exception $e) {
+            return ['error' => $e->getMessage()];
         }
     }
 }
