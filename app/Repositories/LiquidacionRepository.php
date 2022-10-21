@@ -39,4 +39,9 @@ class LiquidacionRepository extends BaseRepository
     {
         return Liquidacion::class;
     }
+
+    public function getIncludes()
+    {
+        return ['agente'];
+    }
 }
