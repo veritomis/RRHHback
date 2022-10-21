@@ -285,7 +285,7 @@ abstract class BaseRepository
         // eliminar imagenes
         foreach ($deletedDocumentos as $deletedDocumento) {
             $delete = Documento::where('archivo', $deletedDocumento)->first();
-            Storage::disk('public')->delete($delete->archivo);
+            Storage::disk('public')->delete($folderName.'/'.$delete->archivo);
             $delete->delete();
         }
 

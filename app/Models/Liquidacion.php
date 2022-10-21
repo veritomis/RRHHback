@@ -123,4 +123,12 @@ class Liquidacion extends Model
     {
         return $this->belongsTo(\App\Models\Agente::class, 'agente_id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\morphMany
+     **/
+    public function documentos()
+    {
+        return $this->morphMany(Documento::class, 'modelogable');
+    }
 }
