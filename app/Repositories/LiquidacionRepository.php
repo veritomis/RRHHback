@@ -62,7 +62,7 @@ class LiquidacionRepository extends BaseRepository
             $model = $query->findOrFail($id);
             $model->fill($input);
             $model->save();
-            $this->saveFile($model,$input['documentos'],'liquidaciones');
+            $this->saveFile($model, $input['documentos'], 'liquidaciones');
             DB::commit();
             return $model;
         } catch (\Throwable $th) {
