@@ -315,6 +315,14 @@ class PlantaPermanente extends Model
         return $this->hasOne(\App\Models\Suplemento::class, 'planta_permanente_id');
     }
     
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\morphMany
+     **/
+    public function documentos()
+    {
+        return $this->morphMany(Documento::class, 'modelogable');
+    }
+    
 }
 
 
