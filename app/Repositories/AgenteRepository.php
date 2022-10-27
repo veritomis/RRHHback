@@ -49,7 +49,7 @@ class AgenteRepository extends BaseRepository
 
     public function getIncludes()
     {
-        return ['contratos','contratos.funciones','grupo'];
+        return ['contratos','contratos.funciones','grupo','liquidaciones','liquidaciones.documentos'];
     }
 
 }
