@@ -9,7 +9,7 @@ use App\Repositories\BaseRepository;
  * Class AgenteRepository
  * @package App\Repositories
  * @version July 18, 2022, 4:35 pm -03
-*/
+ */
 
 class AgenteRepository extends BaseRepository
 {
@@ -49,7 +49,6 @@ class AgenteRepository extends BaseRepository
 
     public function getIncludes()
     {
-        return ['contratos','contratos.funciones','grupo','liquidaciones','liquidaciones.documentos'];
+        return ['contratos', 'contratos.funciones', 'grupo', 'liquidaciones', 'liquidaciones.documentos', 'asistenciaMedicas', 'asistenciaMedicas.documentos'];
     }
-
 }
