@@ -92,13 +92,29 @@ class ContratoRepository extends BaseRepository
             $model->fill($input);
             $model->save();
             $model->funciones()->sync($funciones);
+            DB::commit();
+            return $model;
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $this->handleException($th);
+        }
+    }
 
-            // foreach ($archivos as $archivo) {
-            //     if (isset($archivo['file'])) {
-            //         $this->saveFile($archivo, $model);
-            //     }
-            // }
-
+    /**
+     * Create model record
+     *
+     * @param array $input
+     *
+     * @return Model
+     */
+    public function create($input)
+    {
+        try {
+            DB::beginTransaction();
+            $model = $this->model->newInstance($input);
+            $funciones = $this->createFuncion($input['funciones']);
+            $model->save();
+            $model->funciones()->sync($funciones);
             DB::commit();
             return $model;
         } catch (\Throwable $th) {
