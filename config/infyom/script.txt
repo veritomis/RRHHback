@@ -40,3 +40,4 @@ sail artisan infyom:api Asitencia               --fromTable --tableName=asistenc
 sail artisan infyom:api AsistenciaMedica        --fromTable --tableName=asistencia_medicas             --skip=migrations
 sail artisan infyom:api Legajo                  --fromTable --tableName=legajos                        --skip=migrations
 sail artisan infyom:api Liquidacion             --fromTable --tableName=liquidaciones                  --skip=migrations
+sail artisan infyom:api Documento               --fromTable --tableName=documentos                     --skip=migrations

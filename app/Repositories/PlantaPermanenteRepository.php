@@ -68,7 +68,7 @@ class PlantaPermanenteRepository extends BaseRepository
 
     public function getIncludes()
     {
-        return ['capacitacion','evaluaciones','suplemento'];
+        return ['capacitacion','evaluaciones','suplemento', 'documentos'];
     }
 
     /**
@@ -100,6 +100,7 @@ class PlantaPermanenteRepository extends BaseRepository
                 $model->evaluaciones()->updateOrCreate(['id' => $value['id']],$value);
             }
 
+            $this->saveFile($model,$input['documentos'],'plantaPermanente');
             DB::commit();
             return $model;
         } catch (\Throwable $th) {
