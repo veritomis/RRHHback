@@ -4338,7 +4338,7 @@
                     "observacion",
                     "otro_requisito",
                     "reportar",
-                    "competetencias_laborales_especificas",
+                    "competencias_laborales_especificas",
                     "denominacion_funcion"
                 ],
                 "properties": {
@@ -4390,8 +4390,8 @@
                         "readOnly": false,
                         "nullable": false
                     },
-                    "competetencias_laborales_especificas": {
-                        "description": "competetencias_laborales_especificas",
+                    "competencias_laborales_especificas": {
+                        "description": "competencias_laborales_especificas",
                         "type": "string",
                         "readOnly": false,
                         "nullable": false

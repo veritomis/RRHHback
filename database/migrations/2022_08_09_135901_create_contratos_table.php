@@ -43,7 +43,7 @@ return new class extends Migration
             $table->text('observacion')->nullable();
             $table->text('otro_requisito')->nullable();
             $table->text('reportar')->nullable();
-            $table->enum('competetencias_laborales_especificas', ['Deseable','Excluyente']);
+            $table->enum('competencias_laborales_especificas', ['Deseable','Excluyente']);
             $table->text('denominacion_funcion')->nullable();
 
             //relaciones

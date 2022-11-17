@@ -22,7 +22,7 @@ class ContratoRepository extends BaseRepository
         'tipo_alta',
         'caracter_contrato',
         'nivel_categoria',
-        'competetencias_laborales_especificas',
+        'competencias_laborales_especificas',
         'tipo_servicio',
         'objetivo_general',
         'objetivo_especifico',
