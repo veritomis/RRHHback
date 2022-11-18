@@ -31,8 +31,6 @@ return new class extends Migration
             $table->foreignId('profesion_id')->constrained('profesiones');
             $table->foreignId('titulo_id')->constrained('titulos');
 
-            //$table->unsignedBigInteger('id_profesiones');
-            // $table->unsignedBigInteger('id_titulos');
             $table->timestamps();
             $table->softDeletes();
         });

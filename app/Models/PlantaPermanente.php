@@ -250,7 +250,9 @@ class PlantaPermanente extends Model
         'nivel_funcion_ejecutiva',
         'puesto_agente',
         'es_ejecutivo',
-        'es_titular'
+        'es_titular',
+        'nivel_funcion_ejecutiva',
+        'nivel_funcion_ejecutiva_otro'
     ];
 
     /**
@@ -271,6 +273,8 @@ class PlantaPermanente extends Model
         'puesto_agente' => 'string',
         'es_ejecutivo' => 'boolean',
         'es_titular' => 'boolean',
+        'nivel_funcion_ejecutiva' => 'string',
+        'nivel_funcion_ejecutiva_otro' => 'string'
     ];
 
     /**
@@ -290,6 +294,8 @@ class PlantaPermanente extends Model
         'puesto_agente' => 'required|string|max:255',
         'es_ejecutivo' => 'required|boolean',
         'es_titular' => 'required|boolean',
+        'nivel_funcion_ejecutiva' => 'nullable|string|max:255',
+        'nivel_funcion_ejecutiva_otro' => 'nullable|string'
     ];
 
     /**

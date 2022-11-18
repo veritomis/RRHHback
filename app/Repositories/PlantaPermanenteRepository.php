@@ -45,7 +45,9 @@ class PlantaPermanenteRepository extends BaseRepository
         'corrimiento_grado',
         'numero_expediente_grado',
         'corrimiento_agrupamiento',
-        'numero_expediente_agrupacion'
+        'numero_expediente_agrupacion',
+        'nivel_funcion_ejecutiva',
+        'nivel_funcion_ejecutiva_otro'
     ];
 
     /**

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('modalidad_vinculacion');
             $table->string('asistencia');
             $table->string('nivel_funcion_ejecutiva')->nullable();
+            $table->string('nivel_funcion_ejecutiva_otro')->nullable();
             $table->string('puesto_agente');
             $table->boolean('es_ejecutivo')->default(0);
             $table->boolean('es_titular')->default(0);
