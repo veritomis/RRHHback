@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('carreras', function (Blueprint $table) {
             $table->id('id'); 
-            $table->unsignedBigInteger('id_agente'); 
+            $table->unsignedBigInteger('id_agente');
             $table->date('fecha');
             $table->date('fecha_inicial');
             $table->date('fecha_fin');
@@ -24,8 +24,10 @@ return new class extends Migration
             $table->date('antiguedad_total');
             $table->string('letra_nivel')->nullable();
             $table->string('numero_grado')->nullable();
-            
+
             $table->string('compensacion_transitoria'); // ver que es...
+            $table->enum('nivel_educativo',['Primario incompleto','Primario completo','Secundario incompleto','Secundario completo','Terciario incompleto','Terciario completo','Universitario incompleto','Universitario completo','Otro'])->default('Primario completo');
+            $table->string('nivel_educativo_otro')->index()->nullable();
             $table->foreignId('profesion_id')->constrained('profesiones');
             $table->foreignId('titulo_id')->constrained('titulos');
 
