@@ -127,7 +127,7 @@ class ContratoRepository extends BaseRepository
     {
         $arrary = [];
         foreach ($inputs as $key => $value) {
-            $arrary[] = Funcion::updateOrCreate(['id' => $value['id']],$value)->id;
+            $arrary[] = Funcion::updateOrCreate(['nombre' => $value['nombre']],$value)->id;
         }
 
         return $arrary;
