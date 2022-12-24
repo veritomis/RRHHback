@@ -18,7 +18,10 @@ require __DIR__.'/auth.php';
 
 
 
-
+Route::get('/demo-url',  function  (Request $request)  {
+    return response()->json(['Laravel CORS Demo']);
+ });
+ 
 /**
  * Private EndPoints
  */
