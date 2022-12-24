@@ -113,6 +113,12 @@ class ContratoRepository extends BaseRepository
             DB::beginTransaction();
             $model = $this->model->newInstance($input);
             $funciones = $this->createFuncion($input['funciones']);
+
+            //
+            if (is_null($input['tipo_alta'])) {
+                unset($input['tipo_alta']);
+            }
+
             $model->save();
             $model->funciones()->sync($funciones);
             DB::commit();
@@ -127,7 +133,12 @@ class ContratoRepository extends BaseRepository
     {
         $arrary = [];
         foreach ($inputs as $key => $value) {
-            $arrary[] = Funcion::updateOrCreate(['nombre' => $value['nombre']],$value)->id;
+            try {
+                $arrary[] = Funcion::updateOrCreate(['nombre' => $value['value']['value']],$value)->id;
+            } catch (\Throwable $th) {
+                DB::rollBack();
+                $this->handleException($th);
+            }
         }
 
         return $arrary;

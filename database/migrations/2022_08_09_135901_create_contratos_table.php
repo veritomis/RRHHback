@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('contratos', function (Blueprint $table) {
             $table->id();
-            $table->enum('tipo_alta', ['Pura', 'Renovacion','Adenda','Cambio de Nivel','Movilidad Interna'])->default('Pura');
+            $table->enum('tipo_alta', ['Pura', 'Renovacion','Adenda','Cambio de Nivel','Movilidad Interna'])->nullable();
             $table->enum('caracter_contrato', ['Estacional', 'Transitorio']);
             $table->enum('nivel_categoria', ['A','B','C','D','E','F']);
             $table->string('tipo_servicio');
