@@ -18,7 +18,10 @@ require __DIR__.'/auth.php';
 
 
 
-
+Route::get('/demo-url',  function  (Request $request)  {
+    return response()->json(['Laravel CORS Demo']);
+ });
+ 
 /**
  * Private EndPoints
  */
@@ -74,3 +77,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 
+
+
+Route::resource('documentos', App\Http\Controllers\API\DocumentoAPIController::class);

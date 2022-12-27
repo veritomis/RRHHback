@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Liquidacion;
 use App\Repositories\BaseRepository;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class LiquidacionRepository
@@ -38,5 +39,35 @@ class LiquidacionRepository extends BaseRepository
     public function model()
     {
         return Liquidacion::class;
+    }
+
+    public function getIncludes()
+    {
+        return ['agente','documentos'];
+    }
+
+     /**
+     * Update model record for given id
+     *
+     * @param array $input
+     * @param int $id
+     *
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|Model
+     */
+    public function update($input, $id)
+    {
+        try {
+            DB::beginTransaction();
+            $query = $this->model->newQuery();
+            $model = $query->findOrFail($id);
+            $model->fill($input);
+            $model->save();
+            $this->saveFile($model, $input['documentos'], 'liquidaciones');
+            DB::commit();
+            return $model;
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $this->handleException($th);
+        }
     }
 }

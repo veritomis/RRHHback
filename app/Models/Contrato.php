@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * @OA\Schema(
  *      schema="Contrato",
- *      required={"tipo_alta", "caracter_contrato", "tipo_servicio", "objetivo_general", "objetivo_especifico", "actividades_tarea", "resultado_parcial_final", "estandares_cualitativos_cuantitativos", "fecha_obtencion_resultados", "horario_propuesto", "nivel_educativo", "numero_nota_expediente_electronico", "numero_resolucion", "estado", "vinculacion_laboral_id", "asistencia_tipo_contratacion_id", "agente_id", "area_id", "titulo_orientacion_id", "puesto_grupo_id", "puesto_familia_id", "puesto_subfamilia_id", "puesto_nomenclatura_id","puesto_trabajo_otro","experiencia_laboral","observacion","otro_requisito","reportar","competetencias_laborales_especificas","denominacion_funcion"},
+ *      required={"tipo_alta", "caracter_contrato", "tipo_servicio", "objetivo_general", "objetivo_especifico", "actividades_tarea", "resultado_parcial_final", "estandares_cualitativos_cuantitativos", "fecha_obtencion_resultados", "horario_propuesto", "nivel_educativo", "numero_nota_expediente_electronico", "numero_resolucion", "estado", "vinculacion_laboral_id", "asistencia_tipo_contratacion_id", "agente_id", "area_id", "titulo_orientacion_id", "puesto_grupo_id", "puesto_familia_id", "puesto_subfamilia_id", "puesto_nomenclatura_id","puesto_trabajo_otro","experiencia_laboral","observacion","otro_requisito","reportar","competencias_laborales_especificas","denominacion_funcion"},
  *      @OA\Property(
  *          property="id",
  *          description="id",
@@ -67,8 +67,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          type="string"
  *      ),
  *      @OA\Property(
- *          property="competetencias_laborales_especificas",
- *          description="competetencias_laborales_especificas",
+ *          property="competencias_laborales_especificas",
+ *          description="competencias_laborales_especificas",
  *          readOnly=false,
  *          nullable=false,
  *          type="string"
@@ -270,7 +270,7 @@ class Contrato extends Model
         'tipo_alta',
         'caracter_contrato',
         'nivel_categoria',
-        'competetencias_laborales_especificas',
+        'competencias_laborales_especificas',
         'tipo_servicio',
         'objetivo_general',
         'objetivo_especifico',
@@ -334,7 +334,7 @@ class Contrato extends Model
         'observacion' => 'string',
         'otro_requisito' => 'string',
         'reportar' => 'string',
-        'competetencias_laborales_especificas'=> 'string',
+        'competencias_laborales_especificas'=> 'string',
         'denominacion_funcion'=> 'string',
     ];
 
@@ -345,7 +345,7 @@ class Contrato extends Model
      */
     public static $rules = [
         'tipo_alta' => 'nullable|string|max:255',
-        'competetencias_laborales_especificas'=> 'required|string|max:255',
+        'competencias_laborales_especificas'=> 'required|string|max:255',
         'denominacion_funcion'=> 'nullable|string|max:255',
         'caracter_contrato' => 'required|string|max:255',
         'nivel_categoria' => 'required|string|max:255',

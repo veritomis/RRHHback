@@ -22,7 +22,7 @@ class ContratoRepository extends BaseRepository
         'tipo_alta',
         'caracter_contrato',
         'nivel_categoria',
-        'competetencias_laborales_especificas',
+        'competencias_laborales_especificas',
         'tipo_servicio',
         'objetivo_general',
         'objetivo_especifico',
@@ -100,13 +100,48 @@ class ContratoRepository extends BaseRepository
         }
     }
 
+    /**
+     * Create model record
+     *
+     * @param array $input
+     *
+     * @return Model
+     */
+    public function create($input)
+    {
+        try {
+            DB::beginTransaction();
+            $model = $this->model->newInstance($input);
+            $funciones = $this->createFuncion($input['funciones']);
+
+            //
+            if (is_null($input['tipo_alta'])) {
+                unset($input['tipo_alta']);
+            }
+
+            $model->save();
+            $model->funciones()->sync($funciones);
+            DB::commit();
+            return $model;
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $this->handleException($th);
+        }
+    }
+
     public function createFuncion($inputs)
     {
         $arrary = [];
         foreach ($inputs as $key => $value) {
-            $arrary[] = Funcion::updateOrCreate(['id' => $value['id']],$value)->id;
+            try {
+                $arrary[] = Funcion::updateOrCreate(['nombre' => $value['value']['value']],$value)->id;
+            } catch (\Throwable $th) {
+                DB::rollBack();
+                $this->handleException($th);
+            }
         }
 
         return $arrary;
     }
+
 }

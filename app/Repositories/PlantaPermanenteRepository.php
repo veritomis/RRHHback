@@ -45,7 +45,9 @@ class PlantaPermanenteRepository extends BaseRepository
         'corrimiento_grado',
         'numero_expediente_grado',
         'corrimiento_agrupamiento',
-        'numero_expediente_agrupacion'
+        'numero_expediente_agrupacion',
+        'nivel_funcion_ejecutiva',
+        'nivel_funcion_ejecutiva_otro'
     ];
 
     /**
@@ -68,7 +70,7 @@ class PlantaPermanenteRepository extends BaseRepository
 
     public function getIncludes()
     {
-        return ['capacitacion','evaluaciones','suplemento'];
+        return ['capacitacion','evaluaciones','suplemento', 'documentos'];
     }
 
     /**
@@ -100,6 +102,7 @@ class PlantaPermanenteRepository extends BaseRepository
                 $model->evaluaciones()->updateOrCreate(['id' => $value['id']],$value);
             }
 
+            $this->saveFile($model,$input['documentos'],'plantaPermanente');
             DB::commit();
             return $model;
         } catch (\Throwable $th) {

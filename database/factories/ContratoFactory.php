@@ -74,7 +74,7 @@ class ContratoFactory extends Factory
         return [
             'tipo_alta' => 'Pura',
             'caracter_contrato' => 'Estacional',
-            'competetencias_laborales_especificas' => 'Deseable',
+            'competencias_laborales_especificas' => 'Deseable',
             'denominacion_funcion' => $this->faker->text($this->faker->numberBetween(5, 25)),
             'tipo_servicio' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'objetivo_general' => $this->faker->text($this->faker->numberBetween(5, 255)),

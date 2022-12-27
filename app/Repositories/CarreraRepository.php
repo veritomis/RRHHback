@@ -27,7 +27,9 @@ class CarreraRepository extends BaseRepository
         'numero_grado',
         'compensacion_transitoria',
         'profesion_id',
-        'titulo_id'
+        'titulo_id',        
+        'nivel_educativo',
+        'nivel_educativo_otro'
     ];
 
     /**

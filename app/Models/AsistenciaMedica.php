@@ -158,7 +158,7 @@ class AsistenciaMedica extends Model
         'tratamiento' => 'required|string|max:255',
         'estudio_complementario' => 'required|string|max:255',
         'numero_nota_realizada' => 'nullable|string|max:255',
-        'imagen_url' => 'required|string|max:255',
+        // 'imagen_url' => 'required|string|max:255',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
@@ -170,5 +170,13 @@ class AsistenciaMedica extends Model
     public function agente()
     {
         return $this->belongsTo(\App\Models\Agente::class, 'agente_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\morphMany
+     **/
+    public function documentos()
+    {
+        return $this->morphMany(Documento::class, 'modelogable');
     }
 }

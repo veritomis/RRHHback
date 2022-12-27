@@ -46,6 +46,7 @@ class CarreraFactory extends Factory
             'compensacion_transitoria' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'profesion_id' => $profesion->id,
             'titulo_id' => $titulo->id,
+            'nivel_educativo' => 'Primario completo',
             'created_at' => $this->faker->date('Y-m-d H:i:s'),
             'updated_at' => $this->faker->date('Y-m-d H:i:s')
         ];

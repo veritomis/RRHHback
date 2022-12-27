@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
                 PuestosSeeder::class,
             ]);
         });
-        \App\Models\Contrato::factory(10)->create();
+        \App\Models\Contrato::factory(5)->create();
         \App\Models\PlantaPermanente::factory(10)->create();
         \App\Models\Asistencia::factory(5)->create();
         \App\Models\Evaluacion::factory(5)->create();

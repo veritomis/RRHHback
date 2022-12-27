@@ -9,6 +9,7 @@
         "darkaonline/l5-swagger": "8.*",
         "directorytree/ldaprecord-laravel": "^2.6",
         "doctrine/dbal": "~2.3",
+        "fruitcake/laravel-cors": "^3.0",
         "guzzlehttp/guzzle": "^7.2",
         "infyomlabs/laravel-generator": "^4.0",
         "infyomlabs/swagger-generator": "^2.0",

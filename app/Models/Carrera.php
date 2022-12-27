@@ -103,6 +103,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          format="int32"
  *      ),
  *      @OA\Property(
+ *          property="nivel_educativo",
+ *          description="nivel_educativo",
+ *          readOnly=false,
+ *          nullable=false,
+ *          type="string"
+ *      ),
+ *      @OA\Property(
+ *          property="nivel_educativo_otro",
+ *          description="nivel_educativo_otro",
+ *          readOnly=false,
+ *          nullable=true,
+ *          type="string"
+ *      ),
+ *      @OA\Property(
  *          property="created_at",
  *          description="created_at",
  *          readOnly=true,
@@ -155,7 +169,9 @@ class Carrera extends Model
         'numero_grado',
         'compensacion_transitoria',
         'profesion_id',
-        'titulo_id'
+        'titulo_id',
+        'nivel_educativo',
+        'nivel_educativo_otro'
     ];
 
     /**
@@ -175,7 +191,9 @@ class Carrera extends Model
         'numero_grado' => 'string',
         'compensacion_transitoria' => 'string',
         'profesion_id' => 'integer',
-        'titulo_id' => 'integer'
+        'titulo_id' => 'integer',
+        'nivel_educativo' => 'string',
+        'nivel_educativo_otro' => 'string'
     ];
 
     /**
@@ -195,6 +213,8 @@ class Carrera extends Model
         'compensacion_transitoria' => 'required|string|max:255',
         'profesion_id' => 'required',
         'titulo_id' => 'required',
+        'nivel_educativo' => 'required',
+        'nivel_educativo_otro' => 'nullable|string|max:255',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
