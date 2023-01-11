@@ -33,14 +33,12 @@ class AuthenticatedSessionController extends AppBaseController
     {
         $credentials = $this->credentials($request->all());
         if (Auth::attempt($credentials)) {
-            // $request->authenticate();
 
             $token = $request->user()->createToken('token')->plainTextToken;
             $user = Auth::user();
             $group = Group::all();
             $groups = $user->ldap->groups()->get();
-            dd($groups,$group);
-            return $this->sendResponse(['Usuario' => $user,'Token' => $token], 'Acceso satisfactorio');
+            return $this->sendResponse(['usuario' => $user,'token' => $token], 'Acceso satisfactorio');
         }else{
             return $this->sendError('Usuario o Contraseña invalidos');
         }
