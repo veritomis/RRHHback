@@ -339,4 +339,63 @@ class AgenteAPIController extends AppBaseController
         //}
     }
 
+    /**
+     * @param Request $request
+     * @return Response
+     *
+     * @OA\Post(
+     *      path="/api/contrato-1109",
+     *      summary="Create Agente and Contract 1109",
+     *      tags={"Agente"},
+     *      description="Create Contrato 1109",
+     *      security={ {"sanctum": {} }},
+     *      @OA\RequestBody(
+     *        required=true,
+     *        @OA\MediaType(
+     *            mediaType="application/x-www-form-urlencoded",
+     *            @OA\Schema(
+     *                type="object",
+     *                required={""},
+     *                @OA\Property(
+     *                    property="name",
+     *                    description="desc",
+     *                    type="string"
+     *                )
+     *            )
+     *        )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @OA\Schema(
+     *              type="object",
+     *              @OA\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @OA\Property(
+     *                  property="data",
+     *                  ref="#/definitions/Agente"
+     *              ),
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function createContract(Request $request)
+    {
+        if (!$this->verifiedPermissions('crear-agentes')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
+        $input = $request->all();
+
+        $agente = $this->agenteRepository->create1109($input);
+
+        return $this->sendResponse($agente->toArray(), 'Agente saved successfully');
+    }
+
 }

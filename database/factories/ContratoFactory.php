@@ -6,6 +6,7 @@ use App\Models\Agente;
 use App\Models\Area;
 use App\Models\Contrato;
 use App\Models\AsistenciaTipoContrato;
+use App\Models\Funcion;
 use App\Models\PuestoFamilia;
 use App\Models\PuestoGrupo;
 use App\Models\PuestoNomenclatura;
@@ -45,9 +46,9 @@ class ContratoFactory extends Factory
             $area = Area::factory()->create();
         }
         
-        // $vinculacionesLaborale = VinculacionLaboral::first();
-        // if (!$vinculacionesLaborale) {
-        //     $vinculacionesLaborale = VinculacionLaboral::factory()->create();
+        // $funcion = Funcion::first();
+        // if (!$funcion) {
+        //     $funcion = Funcion::factory()->create();
         // }
 
         $puestoGrupo = PuestoGrupo::first();

@@ -3,7 +3,9 @@
 namespace App\Repositories;
 
 use App\Models\Agente;
+use App\Models\Contrato;
 use App\Repositories\BaseRepository;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class AgenteRepository
@@ -50,5 +52,21 @@ class AgenteRepository extends BaseRepository
     public function getIncludes()
     {
         return ['contratos', 'contratos.funciones', 'grupo', 'liquidaciones', 'liquidaciones.documentos', 'asistenciaMedicas', 'asistenciaMedicas.documentos'];
+    }
+
+    public function create1109($input)
+    {
+        try {
+            DB::beginTransaction();
+            $model = $this->model->newInstance($input);
+            $model->save();
+            $input['agente_id'] = $model->id;
+            Contrato::create($input);
+            DB::commit();
+            return $model;
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $this->handleException($th);
+        }
     }
 }

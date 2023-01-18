@@ -260,7 +260,6 @@ abstract class BaseRepository
 
     protected function handleException(\Exception $e)
     {
-        dd($e);
         if ($e instanceof QueryException) {
             throw new MySQLException($e->getMessage(), $e->getCode());
         } else {

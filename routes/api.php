@@ -16,20 +16,6 @@ require __DIR__.'/auth.php';
 |
 */
 
-
-
-Route::get('/demo-url',  function  (Request $request)  {
-    return response()->json(['Laravel CORS Demo']);
- });
- 
-/**
- * Private EndPoints
- */
-// Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
-
 Route::middleware('auth:sanctum')->group(function () {
     Route::resource('posts', App\Http\Controllers\API\PostAPIController::class);
     Route::resource('users', App\Http\Controllers\API\UserAPIController::class);
@@ -49,9 +35,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('puesto-nomenclaturas', App\Http\Controllers\API\PuestoNomenclaturaAPIController::class);
     Route::resource('funciones', App\Http\Controllers\API\FuncionAPIController::class);
     Route::post('borrado-agentes-masivo', 'App\Http\Controllers\API\AgenteAPIController@manyDelete');
+    Route::post('contrato-1109', 'App\Http\Controllers\API\AgenteAPIController@createContract');
     Route::resource('areas', App\Http\Controllers\API\AreaAPIController::class);
     Route::resource('legajos', App\Http\Controllers\API\LegajoAPIController::class);
     Route::resource('liquidaciones', App\Http\Controllers\API\LiquidacionAPIController::class);
+
+    //Importacion Tamesis
+    Route::get('tamesis', 'App\Http\Controllers\API\AgenteAPIController@importTamesis');
 
     // Route::resource('suplementos', App\Http\Controllers\API\SuplementoAPIController::class);
     // Route::resource('capacitacions', App\Http\Controllers\API\CapacitacionAPIController::class);
@@ -72,11 +62,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthenticatedSessionController::class, 'logout'])
                 ->name('logout');
 });
-
-
-
-
-
-
 
 Route::resource('documentos', App\Http\Controllers\API\DocumentoAPIController::class);
