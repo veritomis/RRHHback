@@ -49,6 +49,6 @@ class AgenteRepository extends BaseRepository
 
     public function getIncludes()
     {
-        return ['contratos', 'contratos.funciones', 'grupo', 'liquidaciones', 'liquidaciones.documentos', 'asistenciaMedicas', 'asistenciaMedicas.documentos'];
+        return ['contratos','plantaPermanente','contratos.funciones', 'grupo', 'liquidaciones', 'liquidaciones.documentos', 'asistenciaMedicas', 'asistenciaMedicas.documentos'];
     }
 }
