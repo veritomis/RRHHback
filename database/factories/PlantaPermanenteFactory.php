@@ -29,7 +29,7 @@ class PlantaPermanenteFactory extends Factory
         }
 
         return [
-            'agente_id' => $agente->id,
+            'agente_id' => $this->faker->numberBetween(1, 99),
             'letra_nivel' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'numero_grado' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'tramo' => $this->faker->text($this->faker->numberBetween(5, 255)),

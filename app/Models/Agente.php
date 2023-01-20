@@ -218,6 +218,11 @@ class Agente extends Model
         return $this->hasMany(\App\Models\Asistencia::class, 'agente_id');
     }
 
+    public function plantaPermanente()
+    {
+        return $this->hasOne(\App\Models\PlantaPermanente::class, 'agente_id');
+    }
+
     /**
      * Scope to search by any column
      * @param  Builder $query
