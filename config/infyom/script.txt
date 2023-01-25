@@ -41,3 +41,5 @@ sail artisan infyom:api AsistenciaMedica        --fromTable --tableName=asistenc
 sail artisan infyom:api Legajo                  --fromTable --tableName=legajos                        --skip=migrations
 sail artisan infyom:api Liquidacion             --fromTable --tableName=liquidaciones                  --skip=migrations
 sail artisan infyom:api Documento               --fromTable --tableName=documentos                     --skip=migrations
+sail artisan infyom:api TipoContrato            --fromTable --tableName=tipo_contratos                 --skip=migrations
+sail artisan infyom:api TipoTramite             --fromTable --tableName=tipo_tramites                  --skip=migrations

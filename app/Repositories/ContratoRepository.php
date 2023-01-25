@@ -48,7 +48,23 @@ class ContratoRepository extends BaseRepository
         'observacion',
         'otro_requisito',
         'reportar',
-        'denominacion_funcion'
+        'denominacion_funcion',
+        'ultimo_titulo',
+        'secretaria',
+        'funcion',
+        'nivel_funcion',
+        'unidades_retributivas_totales',
+        'unidades_retributivas_mensuales',
+        'partida',
+        'actividad',
+        'dedicacion_funcional',
+        'resolucion_corta',
+        'resolucion_larga',
+        'numero_anexo',
+        'numero_expediente_gde',
+        'numero_loys',
+        'fecha_firma_recepcion_expediente',
+        'fecha_firma_resolucion'
     ];
 
     /**

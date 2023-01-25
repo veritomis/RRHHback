@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
         \App\Models\AsistenciaTipoContrato::factory(10)->create();
         \App\Models\Grupo::factory(10)->create();
         \App\Models\Funcion::factory(5)->create();
+        \App\Models\TipoContrato::factory(5)->create();
+        \App\Models\TipoTramite::factory(5)->create();
         activity()->withoutLogs(function () {
             $this->call([
                 PermissionsSeeder::class,

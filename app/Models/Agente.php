@@ -70,6 +70,21 @@ use Illuminate\Database\Eloquent\Builder;
  *          format="date"
  *      ),
  *      @OA\Property(
+ *          property="sexo",
+ *          description="sexo",
+ *          readOnly=false,
+ *          nullable=true,
+ *          type="string"
+ *      ),
+ *      @OA\Property(
+ *          property="fecha_ingreso_ministerio",
+ *          description="fecha_ingreso_ministerio",
+ *          readOnly=false,
+ *          nullable=true,
+ *          type="string",
+ *          format="date"
+ *      ),
+ *      @OA\Property(
  *          property="letra_nivel",
  *          description="letra_nivel",
  *          readOnly=false,
@@ -141,6 +156,8 @@ class Agente extends Model
         'dni',
         'cuil',
         'fecha_nacimiento',
+        'sexo',
+        'fecha_ingreso_ministerio',
         'letra_nivel',
         'numero_grado',
         'grupo_id'
@@ -160,6 +177,8 @@ class Agente extends Model
         'dni' => 'string',
         'cuil' => 'string',
         'fecha_nacimiento' => 'date',
+        'sexo' => 'string',
+        'fecha_ingreso_ministerio' => 'date',
         'letra_nivel' => 'string',
         'numero_grado' => 'string',
         'grupo_id' => 'integer'
@@ -178,6 +197,8 @@ class Agente extends Model
         'dni' => 'nullable|string|max:255',
         'cuil' => 'nullable|string|max:255',
         'fecha_nacimiento' => 'nullable',
+        'sexo' => 'required|string|max:255',
+        'fecha_ingreso_ministerio' => 'required',
         'letra_nivel' => 'nullable|string|max:255',
         'numero_grado' => 'nullable|string|max:255',
         'grupo_id' => 'required',

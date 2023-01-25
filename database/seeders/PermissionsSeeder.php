@@ -95,7 +95,20 @@ class PermissionsSeeder extends Seeder
             ['name' => 'crear-liquidaciones', 'guard_name' => 'sanctum'],
             ['name' => 'editar-liquidaciones', 'guard_name' => 'sanctum'],
             ['name' => 'borrar-liquidaciones', 'guard_name' => 'sanctum'],
-            ['name' => 'consultar-liquidaciones', 'guard_name' => 'sanctum']
+            ['name' => 'consultar-liquidaciones', 'guard_name' => 'sanctum'],
+
+            //Tipo Contratos
+            ['name' => 'crear-tipo-contratos', 'guard_name' => 'sanctum'],
+            ['name' => 'editar-tipo-contratos', 'guard_name' => 'sanctum'],
+            ['name' => 'borrar-tipo-contratos', 'guard_name' => 'sanctum'],
+            ['name' => 'consultar-tipo-contratos', 'guard_name' => 'sanctum'],
+
+            //Tipo Tramites
+            ['name' => 'crear-tipo-tramites', 'guard_name' => 'sanctum'],
+            ['name' => 'editar-tipo-tramites', 'guard_name' => 'sanctum'],
+            ['name' => 'borrar-tipo-tramites', 'guard_name' => 'sanctum'],
+            ['name' => 'consultar-tipo-tramites', 'guard_name' => 'sanctum']
+
         ];
 
         foreach ($permisos as $permiso) {

@@ -52,7 +52,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('areas', App\Http\Controllers\API\AreaAPIController::class);
     Route::resource('legajos', App\Http\Controllers\API\LegajoAPIController::class);
     Route::resource('liquidaciones', App\Http\Controllers\API\LiquidacionAPIController::class);
-
+    Route::resource('documentos', App\Http\Controllers\API\DocumentoAPIController::class);
+    Route::resource('tipo-contratos', App\Http\Controllers\API\TipoContratoAPIController::class);
     // Route::resource('suplementos', App\Http\Controllers\API\SuplementoAPIController::class);
     // Route::resource('capacitacions', App\Http\Controllers\API\CapacitacionAPIController::class);
 
@@ -74,9 +75,4 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 
-
-
-
-
-
-Route::resource('documentos', App\Http\Controllers\API\DocumentoAPIController::class);
+Route::resource('tipo-tramites', App\Http\Controllers\API\TipoTramiteAPIController::class);
