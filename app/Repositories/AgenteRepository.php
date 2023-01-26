@@ -60,10 +60,10 @@ class AgenteRepository extends BaseRepository
     {
         try {
             DB::beginTransaction();
-            $model = $this->model->newInstance($input);
+            $model = $this->model->newInstance($input['agente']);
             $model->save();
-            $input['agente_id'] = $model->id;
-            Contrato::create($input);
+            $input['contrato']['agente_id'] = $model->id;
+            Contrato::create($input['contrato']);
             DB::commit();
             return $model;
         } catch (\Throwable $th) {
