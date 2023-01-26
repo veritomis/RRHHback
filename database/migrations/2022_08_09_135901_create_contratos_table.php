@@ -32,6 +32,8 @@ return new class extends Migration
             $table->boolean('estado')->nullable();
             $table->foreignId('asistencia_tipo_contratacion_id')->constrained('asistencia_tipo_contrataciones');
             $table->foreignId('agente_id')->constrained('agentes');
+            $table->foreignId('tipo_contrato_id')->constrained('tipo_contratos');
+            $table->foreignId('tipo_tramite_id')->constrained('tipo_tramites');
             $table->foreignId('area_id')->constrained('areas');
             $table->integer('titulo_orientacion_id');
             $table->foreignId('puesto_grupo_id')->constrained('puestos_grupos');
@@ -45,6 +47,23 @@ return new class extends Migration
             $table->text('reportar')->nullable();
             $table->enum('competencias_laborales_especificas', ['Deseable','Excluyente']);
             $table->text('denominacion_funcion')->nullable();
+
+            $table->string('ultimo_titulo')->nullable();                           //"adfasd",
+            $table->string('secretaria')->nullable();                             //"asdasd",
+            $table->string('funcion')->nullable();                                //"1",
+            $table->string('nivel_funcion')->nullable();                           //"2",
+            $table->string('unidades_retributivas_totales')->nullable();            //"23",
+            $table->string('unidades_retributivas_mensuales')->nullable();          //"40",
+            $table->string('partida')->nullable();                                //"ASDASD",
+            $table->string('actividad')->nullable();                              //"ASDAS",
+            $table->string('dedicacion_funcional')->nullable();                    //"ASDA",
+            $table->string('resolucion_corta')->nullable();                        //"ASD",
+            $table->string('resolucion_larga')->nullable();                        //"QWE3",
+            $table->string('numero_anexo')->nullable();                            //"asdasd",
+            $table->string('numero_expediente_gde')->nullable();                    //"asdasd",
+            $table->string('numero_loys')->nullable();                             //"asdasd",
+            $table->date('fecha_firma_recepcion_expediente')->nullable();          //"2023-01-23",
+            $table->date('fecha_firma_resolucion')->nullable();                   //"2023-01-18"
 
             //relaciones
             // $table->integer('vinculacion_laboral_id');

@@ -43,6 +43,9 @@ Route::middleware('auth:sanctum')->group(function () {
     //Importacion Tamesis
     Route::get('tamesis', 'App\Http\Controllers\API\AgenteAPIController@importTamesis');
 
+    Route::resource('documentos', App\Http\Controllers\API\DocumentoAPIController::class);
+    Route::resource('tipo-contratos', App\Http\Controllers\API\TipoContratoAPIController::class);
+    Route::resource('tipo-tramites', App\Http\Controllers\API\TipoTramiteAPIController::class);
     // Route::resource('suplementos', App\Http\Controllers\API\SuplementoAPIController::class);
     // Route::resource('capacitacions', App\Http\Controllers\API\CapacitacionAPIController::class);
 
@@ -62,5 +65,3 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthenticatedSessionController::class, 'logout'])
                 ->name('logout');
 });
-
-Route::resource('documentos', App\Http\Controllers\API\DocumentoAPIController::class);
