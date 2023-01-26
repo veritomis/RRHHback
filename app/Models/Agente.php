@@ -236,7 +236,7 @@ class Agente extends Model
 
     public function carreras()
     {
-        return $this->hasMany(\App\Models\Carrera::class, 'agente_id');
+        return $this->hasOne(\App\Models\Carrera::class, 'agente_id');
     }
 
     public function asistencias()
