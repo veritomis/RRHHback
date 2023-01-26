@@ -35,7 +35,7 @@ class CarreraFactory extends Factory
         }
 
         return [
-            'id_agente' => $this->faker->unique()->numberBetween(0, 99),
+            'agente_id' => $this->faker->unique()->numberBetween(1, 100),
             'fecha' => $this->faker->date('Y-m-d'),
             'fecha_inicial' => $this->faker->date('Y-m-d'),
             'fecha_fin' => $this->faker->date('Y-m-d'),

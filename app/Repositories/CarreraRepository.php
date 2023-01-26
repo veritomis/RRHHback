@@ -17,7 +17,7 @@ class CarreraRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'id_agente',
+        'agente_id',
         'fecha',
         'fecha_inicial',
         'fecha_fin',

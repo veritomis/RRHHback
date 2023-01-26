@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('carreras', function (Blueprint $table) {
-            $table->id('id'); 
-            $table->unsignedBigInteger('id_agente');
+            $table->id('id');
+            $table->foreignId('agente_id')->constrained('agentes');
             $table->date('fecha');
             $table->date('fecha_inicial');
             $table->date('fecha_fin');

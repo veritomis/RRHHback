@@ -4193,7 +4193,7 @@
             },
             "Carrera": {
                 "required": [
-                    "id_agente",
+                    "agente_id",
                     "fecha",
                     "fecha_inicial",
                     "fecha_fin",
@@ -4211,8 +4211,8 @@
                         "readOnly": true,
                         "nullable": false
                     },
-                    "id_agente": {
-                        "description": "id_agente",
+                    "agente_id": {
+                        "description": "agente_id",
                         "type": "integer",
                         "format": "int32",
                         "readOnly": false,

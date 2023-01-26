@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * @OA\Schema(
  *      schema="Carrera",
- *      required={"id_agente", "fecha", "fecha_inicial", "fecha_fin", "numero_gedo", "antiguedad_total", "compensacion_transitoria", "profesion_id", "titulo_id"},
+ *      required={"agente_id", "fecha", "fecha_inicial", "fecha_fin", "numero_gedo", "antiguedad_total", "compensacion_transitoria", "profesion_id", "titulo_id"},
  *      @OA\Property(
  *          property="id",
  *          description="id",
@@ -19,8 +19,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          format="int32"
  *      ),
  *      @OA\Property(
- *          property="id_agente",
- *          description="id_agente",
+ *          property="agente_id",
+ *          description="agente_id",
  *          readOnly=false,
  *          nullable=false,
  *          type="integer",
@@ -159,7 +159,7 @@ class Carrera extends Model
 
 
     public $fillable = [
-        'id_agente',
+        'agente_id',
         'fecha',
         'fecha_inicial',
         'fecha_fin',
@@ -181,7 +181,7 @@ class Carrera extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'id_agente' => 'integer',
+        'agente_id' => 'integer',
         'fecha' => 'date',
         'fecha_inicial' => 'date',
         'fecha_fin' => 'date',
@@ -202,7 +202,7 @@ class Carrera extends Model
      * @var array
      */
     public static $rules = [
-        'id_agente' => 'required',
+        'agente_id' => 'required',
         'fecha' => 'required',
         'fecha_inicial' => 'required',
         'fecha_fin' => 'required',
@@ -226,6 +226,14 @@ class Carrera extends Model
     public function profesion()
     {
         return $this->belongsTo(\App\Models\Profesione::class, 'profesion_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function agente()
+    {
+        return $this->belongsTo(\App\Models\Agente::class, 'agente_id');
     }
 
     /**
