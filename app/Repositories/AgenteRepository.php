@@ -54,6 +54,7 @@ class AgenteRepository extends BaseRepository
         return [
             'contratos',
             'plantaPermanente',
+            'plantaPermanente.vinculacionLaboral',
             'contratos.funciones',
             'grupo',
             'liquidaciones',

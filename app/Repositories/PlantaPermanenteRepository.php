@@ -70,7 +70,7 @@ class PlantaPermanenteRepository extends BaseRepository
 
     public function getIncludes()
     {
-        return ['capacitacion','evaluaciones','suplemento', 'documentos'];
+        return ['capacitacion','evaluaciones','suplemento', 'documentos','vinculacionLaboral'];
     }
 
     /**
