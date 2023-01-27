@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * @OA\Schema(
  *      schema="Carrera",
- *      required={"agente_id", "fecha", "fecha_inicial", "fecha_fin", "numero_gedo", "antiguedad_total", "compensacion_transitoria", "profesion_id", "titulo_id"},
+ *      required={"agente_id", "fecha", "fecha_inicial", "fecha_fin", "numero_gedo", "antiguedad_administracion_publica", "compensacion_transitoria", "profesion_id", "titulo_id"},
  *      @OA\Property(
  *          property="id",
  *          description="id",
@@ -58,8 +58,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          type="string"
  *      ),
  *      @OA\Property(
- *          property="antiguedad_total",
- *          description="antiguedad_total",
+ *          property="antiguedad_administracion_publica",
+ *          description="antiguedad_administracion_publica",
  *          readOnly=false,
  *          nullable=false,
  *          type="string",
@@ -164,7 +164,7 @@ class Carrera extends Model
         'fecha_inicial',
         'fecha_fin',
         'numero_gedo',
-        'antiguedad_total',
+        'antiguedad_administracion_publica',
         'letra_nivel',
         'numero_grado',
         'compensacion_transitoria',
@@ -186,7 +186,7 @@ class Carrera extends Model
         'fecha_inicial' => 'date',
         'fecha_fin' => 'date',
         'numero_gedo' => 'string',
-        'antiguedad_total' => 'date',
+        'antiguedad_administracion_publica' => 'date',
         'letra_nivel' => 'string',
         'numero_grado' => 'string',
         'compensacion_transitoria' => 'string',
@@ -207,7 +207,7 @@ class Carrera extends Model
         'fecha_inicial' => 'required',
         'fecha_fin' => 'required',
         'numero_gedo' => 'required|string|max:255',
-        'antiguedad_total' => 'required',
+        'antiguedad_administracion_publica' => 'required',
         'letra_nivel' => 'nullable|string|max:255',
         'numero_grado' => 'nullable|string|max:255',
         'compensacion_transitoria' => 'required|string|max:255',

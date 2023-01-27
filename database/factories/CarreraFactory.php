@@ -40,7 +40,7 @@ class CarreraFactory extends Factory
             'fecha_inicial' => $this->faker->date('Y-m-d'),
             'fecha_fin' => $this->faker->date('Y-m-d'),
             'numero_gedo' => $this->faker->text($this->faker->numberBetween(5, 255)),
-            'antiguedad_total' => $this->faker->date('Y-m-d'),
+            'antiguedad_administracion_publica' => $this->faker->date('Y-m-d'),
             'letra_nivel' => $this->faker->numberBetween(1, 2),
             'numero_grado' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'compensacion_transitoria' => $this->faker->text($this->faker->numberBetween(5, 255)),

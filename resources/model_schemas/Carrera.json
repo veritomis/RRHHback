@@ -72,7 +72,7 @@
         "inView": true
     },
     {
-        "name": "antiguedad_total",
+        "name": "antiguedad_administracion_publica",
         "dbType": "date",
         "htmlType": "date",
         "validations": "required",

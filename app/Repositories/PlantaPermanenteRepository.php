@@ -26,7 +26,7 @@ class PlantaPermanenteRepository extends BaseRepository
         'numero_grado',
         'tramo',
         'agrupamiento',
-        'modalidad_vinculacion',
+        'vinculacion_laboral_id',
         'estado_agente',
         'funcion',
         'ejercicio',

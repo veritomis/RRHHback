@@ -22,7 +22,7 @@ class CarreraRepository extends BaseRepository
         'fecha_inicial',
         'fecha_fin',
         'numero_gedo',
-        'antiguedad_total',
+        'antiguedad_administracion_publica',
         'letra_nivel',
         'numero_grado',
         'compensacion_transitoria',

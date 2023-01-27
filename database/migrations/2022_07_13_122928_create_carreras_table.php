@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('fecha_fin');
             $table->string('numero_gedo'); //preguntar a juan que es y si es string
             //$table->date('antiguedad_puesto'); //esto es una fecha? un numero?
-            $table->date('antiguedad_total');
+            $table->date('antiguedad_administracion_publica');
             $table->string('letra_nivel')->nullable();
             $table->string('numero_grado')->nullable();
 
