@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * @OA\Schema(
  *      schema="Carrera",
- *      required={"id_agente", "fecha", "fecha_inicial", "fecha_fin", "numero_gedo", "antiguedad_total", "compensacion_transitoria", "profesion_id", "titulo_id"},
+ *      required={"agente_id", "fecha", "fecha_inicial", "fecha_fin", "numero_gedo", "antiguedad_administracion_publica", "compensacion_transitoria", "profesion_id", "titulo_id"},
  *      @OA\Property(
  *          property="id",
  *          description="id",
@@ -19,8 +19,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          format="int32"
  *      ),
  *      @OA\Property(
- *          property="id_agente",
- *          description="id_agente",
+ *          property="agente_id",
+ *          description="agente_id",
  *          readOnly=false,
  *          nullable=false,
  *          type="integer",
@@ -58,8 +58,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          type="string"
  *      ),
  *      @OA\Property(
- *          property="antiguedad_total",
- *          description="antiguedad_total",
+ *          property="antiguedad_administracion_publica",
+ *          description="antiguedad_administracion_publica",
  *          readOnly=false,
  *          nullable=false,
  *          type="string",
@@ -159,12 +159,12 @@ class Carrera extends Model
 
 
     public $fillable = [
-        'id_agente',
+        'agente_id',
         'fecha',
         'fecha_inicial',
         'fecha_fin',
         'numero_gedo',
-        'antiguedad_total',
+        'antiguedad_administracion_publica',
         'letra_nivel',
         'numero_grado',
         'compensacion_transitoria',
@@ -181,12 +181,12 @@ class Carrera extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'id_agente' => 'integer',
+        'agente_id' => 'integer',
         'fecha' => 'date',
         'fecha_inicial' => 'date',
         'fecha_fin' => 'date',
         'numero_gedo' => 'string',
-        'antiguedad_total' => 'date',
+        'antiguedad_administracion_publica' => 'date',
         'letra_nivel' => 'string',
         'numero_grado' => 'string',
         'compensacion_transitoria' => 'string',
@@ -202,12 +202,12 @@ class Carrera extends Model
      * @var array
      */
     public static $rules = [
-        'id_agente' => 'required',
+        'agente_id' => 'required',
         'fecha' => 'required',
         'fecha_inicial' => 'required',
         'fecha_fin' => 'required',
         'numero_gedo' => 'required|string|max:255',
-        'antiguedad_total' => 'required',
+        'antiguedad_administracion_publica' => 'required',
         'letra_nivel' => 'nullable|string|max:255',
         'numero_grado' => 'nullable|string|max:255',
         'compensacion_transitoria' => 'required|string|max:255',
@@ -226,6 +226,14 @@ class Carrera extends Model
     public function profesion()
     {
         return $this->belongsTo(\App\Models\Profesione::class, 'profesion_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function agente()
+    {
+        return $this->belongsTo(\App\Models\Agente::class, 'agente_id');
     }
 
     /**

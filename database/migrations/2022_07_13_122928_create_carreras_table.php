@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('carreras', function (Blueprint $table) {
-            $table->id('id'); 
-            $table->unsignedBigInteger('id_agente');
+            $table->id('id');
+            $table->foreignId('agente_id')->constrained('agentes');
             $table->date('fecha');
             $table->date('fecha_inicial');
             $table->date('fecha_fin');
             $table->string('numero_gedo'); //preguntar a juan que es y si es string
             //$table->date('antiguedad_puesto'); //esto es una fecha? un numero?
-            $table->date('antiguedad_total');
+            $table->date('antiguedad_administracion_publica');
             $table->string('letra_nivel')->nullable();
             $table->string('numero_grado')->nullable();
 

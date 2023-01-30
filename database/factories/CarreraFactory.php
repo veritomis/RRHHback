@@ -35,13 +35,13 @@ class CarreraFactory extends Factory
         }
 
         return [
-            'id_agente' => $this->faker->unique()->numberBetween(0, 99),
+            'agente_id' => $this->faker->unique()->numberBetween(1, 100),
             'fecha' => $this->faker->date('Y-m-d'),
             'fecha_inicial' => $this->faker->date('Y-m-d'),
             'fecha_fin' => $this->faker->date('Y-m-d'),
             'numero_gedo' => $this->faker->text($this->faker->numberBetween(5, 255)),
-            'antiguedad_total' => $this->faker->date('Y-m-d'),
-            'letra_nivel' => $this->faker->text($this->faker->numberBetween(5, 255)),
+            'antiguedad_administracion_publica' => $this->faker->date('Y-m-d'),
+            'letra_nivel' => $this->faker->numberBetween(1, 2),
             'numero_grado' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'compensacion_transitoria' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'profesion_id' => $profesion->id,

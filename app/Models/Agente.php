@@ -234,6 +234,11 @@ class Agente extends Model
         return $this->hasMany(\App\Models\Liquidacion::class, 'agente_id');
     }
 
+    public function carreras()
+    {
+        return $this->hasOne(\App\Models\Carrera::class, 'agente_id');
+    }
+
     public function asistencias()
     {
         return $this->hasMany(\App\Models\Asistencia::class, 'agente_id');
