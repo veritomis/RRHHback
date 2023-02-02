@@ -72,6 +72,49 @@ class RolAPIController extends AppBaseController
      * @param Request $request
      * @return Response
      *
+     * @OA\Get(
+     *      path="/api/permissions",
+     *      summary="getPermissionsList",
+     *      tags={"Permisos"},
+     *      description="Get all Permissions",
+     *      security={ {"sanctum": {} }},
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @OA\Schema(
+     *              type="object",
+     *              @OA\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="array",
+     *                  @OA\Items(ref="#/definitions/Permission")
+     *              ),
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function indexPermissions(Request $request)
+    {
+        $permissions = $this->rolRepository->allPermissions(
+            $request->except(['skip', 'limit']),
+            $request->get('skip'),
+            $request->get('limit')
+        );
+
+        return $this->sendResponse($permissions, 'Permissions retrieved successfully');
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     *
      * @OA\Post(
      *      path="/api/roles",
      *      summary="createRol",
