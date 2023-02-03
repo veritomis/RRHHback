@@ -88,7 +88,7 @@ class RolRepository extends BaseRepository
               ['name' => 'consultar-contratos'],
 
             ],
-            'plantaPermanente' => [
+            'planta-permanente' => [
               ['name' => 'crear-planta-permanentes'],
               ['name' => 'editar-planta-permanentes'],
               ['name' => 'borrar-planta-permanentes'],
@@ -107,25 +107,25 @@ class RolRepository extends BaseRepository
               ['name' => 'borrar-legajos'],
               ['name' => 'consultar-legajos'],
             ],
-            'asistenciaMedica' => [
+            'asistencia-medica' => [
               ['name' => 'crear-asistencia-medicas'],
               ['name' => 'editar-asistencia-medicas'],
               ['name' => 'borrar-asistencia-medicas'],
               ['name' => 'consultar-asistencia-medicas'],
             ],
-            'liquidacion' => [
+            'liquidaciones' => [
               ['name' => 'crear-liquidaciones'],
               ['name' => 'editar-liquidaciones'],
               ['name' => 'borrar-liquidaciones'],
               ['name' => 'consultar-liquidaciones'],
             ],
-            'tipoContratos' => [
+            'tipo-contrato' => [
               ['name' => 'crear-tipo-contratos'],
               ['name' => 'editar-tipo-contratos'],
               ['name' => 'borrar-tipo-contratos'],
               ['name' => 'consultar-tipo-contratos'],
             ],
-            'tipoTramites' => [
+            'tipo-tramite' => [
               ['name' => 'crear-tipo-tramites'],
               ['name' => 'editar-tipo-tramites'],
               ['name' => 'borrar-tipo-tramites'],
