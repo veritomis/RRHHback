@@ -29,7 +29,7 @@ class CreateAgentesTable extends Migration
             $table->string('numero_grado')->nullable();
 
 
-            $table->foreignId('grupo_id')->constrained('grupos');
+            $table->foreignId('grupo_id')->constrained('grupos')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
