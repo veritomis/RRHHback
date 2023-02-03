@@ -20,11 +20,6 @@ class PermissionsSeeder extends Seeder
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         $permisos = [
-            ['name' => 'crear-post', 'guard_name' => 'sanctum'],
-            ['name' => 'editar-post', 'guard_name' => 'sanctum'],
-            ['name' => 'borrar-post', 'guard_name' => 'sanctum'],
-            ['name' => 'consultar-post', 'guard_name' => 'sanctum'],
-
             //Modulos
             ['name' => 'crear-modulos', 'guard_name' => 'sanctum'],
             ['name' => 'editar-modulos', 'guard_name' => 'sanctum'],
@@ -118,7 +113,7 @@ class PermissionsSeeder extends Seeder
 
         // create roles and assign existing permissions
         $role1 = Role::create(['name' => 'funsionario','guard_name' => 'sanctum']);
-        $role1->givePermissionTo('consultar-post');
+        $role1->givePermissionTo('consultar-agentes');
 
         $role2 = Role::create(['name' => 'admin','guard_name' => 'sanctum']);
         $role2->givePermissionTo(Permission::all());
