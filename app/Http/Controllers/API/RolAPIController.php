@@ -64,7 +64,6 @@ class RolAPIController extends AppBaseController
             $request->get('skip'),
             $request->get('limit')
         );
-
         return $this->sendResponse($rols->toArray(), 'Rols retrieved successfully');
     }
 
@@ -209,13 +208,12 @@ class RolAPIController extends AppBaseController
     public function show($id)
     {
         /** @var Rol $rol */
-        $rol = $this->rolRepository->find($id);
-
+        $rol = Role::find($id);
         if (empty($rol)) {
             return $this->sendError('Rol not found');
         }
 
-        return $this->sendResponse($rol->toArray(), 'Rol retrieved successfully');
+        return $this->sendResponse($rol->load('permissions')->toArray(), 'Rol retrieved successfully');
     }
 
     /**
