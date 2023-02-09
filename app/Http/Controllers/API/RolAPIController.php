@@ -9,6 +9,7 @@ use App\Repositories\RolRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use Spatie\Permission\Models\Role;
 
 /**
  * Class RolController
