@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use App\Models\Rol;
 use App\Repositories\BaseRepository;
-use Spatie\Permission\Models\Permission;
 
 /**
  * Class RolRepository
@@ -119,13 +118,13 @@ class RolRepository extends BaseRepository
               ['name' => 'borrar-liquidaciones','type' =>'borrar'],
               ['name' => 'consultar-liquidaciones','type' =>'consultar'],
             ],
-            'tipo-contrato' => [
+            'tipo-contratos' => [
               ['name' => 'crear-tipo-contratos','type' =>'crear'],
               ['name' => 'editar-tipo-contratos','type' =>'editar'],
               ['name' => 'borrar-tipo-contratos','type' =>'borrar'],
               ['name' => 'consultar-tipo-contratos','type' =>'consultar'],
             ],
-            'tipo-tramite' => [
+            'tipo-tramites' => [
               ['name' => 'crear-tipo-tramites','type' =>'crear'],
               ['name' => 'editar-tipo-tramites','type' =>'editar'],
               ['name' => 'borrar-tipo-tramites','type' =>'borrar'],
