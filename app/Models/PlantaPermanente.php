@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * @OA\Schema(
  *      schema="PlantaPermanente",
- *      required={"agente_id", "letra_nivel", "numero_grado", "tramo", "agrupamiento", "modalidad_vinculacion", "estado_agente", "funcion", "ejercicio", "numero_expediente", "estado_expediente", "numero_formulario", "nivel_formulario", "calificacion", "puntaje", "evaluador", "area_id", "unidad_analisis", "notificacion", "observacion", "corrimiento_grado", "numero_expediente_grado", "corrimiento_agrupamiento", "numero_expediente_agrupacion"},
+ *      required={"agente_id", "letra_nivel", "numero_grado", "tramo", "agrupamiento", "vinculacion_laboral_id", "estado_agente", "funcion", "ejercicio", "numero_expediente", "estado_expediente", "numero_formulario", "nivel_formulario", "calificacion", "puntaje", "evaluador", "area_id", "unidad_analisis", "notificacion", "observacion", "corrimiento_grado", "numero_expediente_grado", "corrimiento_agrupamiento", "numero_expediente_agrupacion"},
  *      @OA\Property(
  *          property="id",
  *          description="id",
@@ -55,11 +55,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          type="string"
  *      ),
  *      @OA\Property(
- *          property="modalidad_vinculacion",
- *          description="modalidad_vinculacion",
+ *          property="vinculacion_laboral_id",
+ *          description="vinculacion_laboral_id",
  *          readOnly=false,
  *          nullable=false,
- *          type="string"
+ *          type="integer"
  *      ),
  *      @OA\Property(
  *          property="estado_agente",
@@ -245,12 +245,14 @@ class PlantaPermanente extends Model
         'numero_grado',
         'tramo',
         'agrupamiento',
-        'modalidad_vinculacion',
+        'vinculacion_laboral_id',
         'asistencia',
         'nivel_funcion_ejecutiva',
         'puesto_agente',
         'es_ejecutivo',
-        'es_titular'
+        'es_titular',
+        'nivel_funcion_ejecutiva',
+        'nivel_funcion_ejecutiva_otro'
     ];
 
     /**
@@ -265,12 +267,14 @@ class PlantaPermanente extends Model
         'numero_grado' => 'string',
         'tramo' => 'string',
         'agrupamiento' => 'string',
-        'modalidad_vinculacion' => 'string',
+        'vinculacion_laboral_id' => 'integer',
         'asistencia' => 'string',
         'nivel_funcion_ejecutiva' => 'string',
         'puesto_agente' => 'string',
         'es_ejecutivo' => 'boolean',
         'es_titular' => 'boolean',
+        'nivel_funcion_ejecutiva' => 'string',
+        'nivel_funcion_ejecutiva_otro' => 'string'
     ];
 
     /**
@@ -284,12 +288,14 @@ class PlantaPermanente extends Model
         'numero_grado' => 'required|string|max:255',
         'tramo' => 'required|string|max:255',
         'agrupamiento' => 'required|string|max:255',
-        'modalidad_vinculacion' => 'required|string|max:255',
+        'vinculacion_laboral_id' => 'required|integer|max:255',
         'asistencia' => 'required|string|max:255',
         'nivel_funcion_ejecutiva' => 'nullable|string',
         'puesto_agente' => 'required|string|max:255',
         'es_ejecutivo' => 'required|boolean',
         'es_titular' => 'required|boolean',
+        'nivel_funcion_ejecutiva' => 'nullable|string|max:255',
+        'nivel_funcion_ejecutiva_otro' => 'nullable|string'
     ];
 
     /**
@@ -299,7 +305,15 @@ class PlantaPermanente extends Model
     {
         return $this->belongsTo(\App\Models\Agente::class, 'agente_id');
     }
-    
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function vinculacionLaboral()
+    {
+        return $this->belongsTo(\App\Models\VinculacionLaboral::class, 'vinculacion_laboral_id');
+    }
+
     public function evaluaciones()
     {
         return $this->hasMany(\App\Models\Evaluacion::class, 'planta_permanentes_id');

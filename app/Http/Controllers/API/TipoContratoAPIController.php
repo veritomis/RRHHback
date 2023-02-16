@@ -2,29 +2,30 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateRolAPIRequest;
-use App\Http\Requests\API\UpdateRolAPIRequest;
-use App\Models\Rol;
-use App\Repositories\RolRepository;
+use App\Http\Requests\API\CreateTipoContratoAPIRequest;
+use App\Http\Requests\API\UpdateTipoContratoAPIRequest;
+use App\Models\TipoContrato;
+use App\Repositories\TipoContratoRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
-use Illuminate\Support\Facades\DB;
+use App\Traits\VerificationRol;
 use Response;
-use Spatie\Permission\Models\Role;
 
 /**
- * Class RolController
+ * Class TipoContratoController
  * @package App\Http\Controllers\API
  */
 
-class RolAPIController extends AppBaseController
+class TipoContratoAPIController extends AppBaseController
 {
-    /** @var  RolRepository */
-    private $rolRepository;
+    use VerificationRol;
+    
+    /** @var  TipoContratoRepository */
+    private $tipoContratoRepository;
 
-    public function __construct(RolRepository $rolRepo)
+    public function __construct(TipoContratoRepository $tipoContratoRepo)
     {
-        $this->rolRepository = $rolRepo;
+        $this->tipoContratoRepository = $tipoContratoRepo;
     }
 
     /**
@@ -32,10 +33,10 @@ class RolAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/api/roles",
-     *      summary="getRolList",
-     *      tags={"Roles"},
-     *      description="Get all Rols",
+     *      path="/tipo-contratos",
+     *      summary="getTipoContratoList",
+     *      tags={"Tipo Contrato"},
+     *      description="Get all TipoContratos",
      *      security={ {"sanctum": {} }},
      *      @OA\Response(
      *          response=200,
@@ -49,7 +50,7 @@ class RolAPIController extends AppBaseController
      *              @OA\Property(
      *                  property="data",
      *                  type="array",
-     *                  @OA\Items(ref="#/definitions/Rol")
+     *                  @OA\Items(ref="#/definitions/TipoContrato")
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -61,55 +62,17 @@ class RolAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $rols = $this->rolRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
-        );
-        return $this->sendResponse($rols->toArray(), 'Rols retrieved successfully');
-    }
-
-    /**
-     * @param Request $request
-     * @return Response
-     *
-     * @OA\Get(
-     *      path="/api/permissions",
-     *      summary="getPermissionsList",
-     *      tags={"Permisos"},
-     *      description="Get all Permissions",
-     *      security={ {"sanctum": {} }},
-     *      @OA\Response(
-     *          response=200,
-     *          description="successful operation",
-     *          @OA\Schema(
-     *              type="object",
-     *              @OA\Property(
-     *                  property="success",
-     *                  type="boolean"
-     *              ),
-     *              @OA\Property(
-     *                  property="data",
-     *                  type="array",
-     *                  @OA\Items(ref="#/definitions/Permission")
-     *              ),
-     *              @OA\Property(
-     *                  property="message",
-     *                  type="string"
-     *              )
-     *          )
-     *      )
-     * )
-     */
-    public function indexPermissions(Request $request)
-    {
-        $permissions = $this->rolRepository->allPermissions(
+        if (!$this->verifiedPermissions('consultar-tipo-contratos')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+        
+        $tipoContratos = $this->tipoContratoRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
             $request->get('limit')
         );
 
-        return $this->sendResponse($permissions, 'Permissions retrieved successfully');
+        return $this->sendResponse($tipoContratos->toArray(), 'Tipo Contratos retrieved successfully');
     }
 
     /**
@@ -117,10 +80,10 @@ class RolAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Post(
-     *      path="/api/roles",
-     *      summary="createRol",
-     *      tags={"Roles"},
-     *      description="Create Rol",
+     *      path="/tipo-contratos",
+     *      summary="createTipoContrato",
+     *      tags={"Tipo Contrato"},
+     *      description="Create TipoContrato",
      *      security={ {"sanctum": {} }},
      *      @OA\RequestBody(
      *        required=true,
@@ -148,7 +111,7 @@ class RolAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/Rol"
+     *                  ref="#/definitions/TipoContrato"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -158,14 +121,17 @@ class RolAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreateRolAPIRequest $request)
+    public function store(CreateTipoContratoAPIRequest $request)
     {
+        if (!$this->verifiedPermissions('crear-tipo-contratos')) {
+            return $this->sendError('Usuario no autorizado');
+        }
 
         $input = $request->all();
 
-        $rol = $this->rolRepository->create($input);
+        $tipoContrato = $this->tipoContratoRepository->create($input);
 
-        return $this->sendResponse($rol->toArray(), 'Rol saved successfully');
+        return $this->sendResponse($tipoContrato->toArray(), 'Tipo Contrato saved successfully');
     }
 
     /**
@@ -173,14 +139,14 @@ class RolAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/api/roles/{id}",
-     *      summary="getRolItem",
-     *      tags={"Roles"},
-     *      description="Get Rol",
+     *      path="/tipo-contratos/{id}",
+     *      summary="getTipoContratoItem",
+     *      tags={"Tipo Contrato"},
+     *      description="Get TipoContrato",
      *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of Rol",
+     *          description="id of TipoContrato",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -198,7 +164,7 @@ class RolAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/Rol"
+     *                  ref="#/definitions/TipoContrato"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -210,13 +176,18 @@ class RolAPIController extends AppBaseController
      */
     public function show($id)
     {
-        /** @var Rol $rol */
-        $rol = Role::find($id);
-        if (empty($rol)) {
-            return $this->sendError('Rol not found');
+        if (!$this->verifiedPermissions('consultar-tipo-contratos')) {
+            return $this->sendError('Usuario no autorizado');
         }
 
-        return $this->sendResponse($rol->load('permissions')->toArray(), 'Rol retrieved successfully');
+        /** @var TipoContrato $tipoContrato */
+        $tipoContrato = $this->tipoContratoRepository->find($id);
+
+        if (empty($tipoContrato)) {
+            return $this->sendError('Tipo Contrato not found');
+        }
+
+        return $this->sendResponse($tipoContrato->toArray(), 'Tipo Contrato retrieved successfully');
     }
 
     /**
@@ -225,14 +196,14 @@ class RolAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Put(
-     *      path="/api/roles/{id}",
-     *      summary="updateRol",
-     *      tags={"Roles"},
-     *      description="Update Rol",
+     *      path="/tipo-contratos/{id}",
+     *      summary="updateTipoContrato",
+     *      tags={"Tipo Contrato"},
+     *      description="Update TipoContrato",
      *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of Rol",
+     *          description="id of TipoContrato",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -265,7 +236,7 @@ class RolAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/Rol"
+     *                  ref="#/definitions/TipoContrato"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -275,39 +246,24 @@ class RolAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update($id, UpdateRolAPIRequest $request)
+    public function update($id, UpdateTipoContratoAPIRequest $request)
     {
+        if (!$this->verifiedPermissions('editar-tipo-contratos')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         $input = $request->all();
 
-        /** @var Rol $rol */
-        $rol = $this->rolRepository->find($id);
+        /** @var TipoContrato $tipoContrato */
+        $tipoContrato = $this->tipoContratoRepository->find($id);
 
-        if (empty($rol)) {
-            return $this->sendError('Rol not found');
+        if (empty($tipoContrato)) {
+            return $this->sendError('Tipo Contrato not found');
         }
 
-        // $rol = $this->rolRepository->update($input, $id);
+        $tipoContrato = $this->tipoContratoRepository->update($input, $id);
 
-        try {
-            DB::beginTransaction();
-            $model = Role::findOrFail($id);
-
-            $this->removePermission($input,$model);
-
-            foreach($input['permissions'] as $value){
-                $model->givePermissionTo($value);
-            }
-
-            $model->fill($input);
-            $model->save();
-            DB::commit();
-            return $model;
-        } catch (\Exception $th) {
-            DB::rollBack();
-            $this->handleException($th);
-        }
-
-        return $this->sendResponse($model->load('permissions')->toArray(), 'Rol updated successfully');
+        return $this->sendResponse($tipoContrato->toArray(), 'TipoContrato updated successfully');
     }
 
     /**
@@ -315,14 +271,14 @@ class RolAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Delete(
-     *      path="/api/roles/{id}",
-     *      summary="deleteRol",
-     *      tags={"Roles"},
-     *      description="Delete Rol",
+     *      path="/tipo-contratos/{id}",
+     *      summary="deleteTipoContrato",
+     *      tags={"Tipo Contrato"},
+     *      description="Delete TipoContrato",
      *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of Rol",
+     *          description="id of TipoContrato",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -352,28 +308,19 @@ class RolAPIController extends AppBaseController
      */
     public function destroy($id)
     {
-        /** @var Rol $rol */
-        $rol = $this->rolRepository->find($id);
-
-        if (empty($rol)) {
-            return $this->sendError('Rol not found');
+        if (!$this->verifiedPermissions('borrar-tipo-contratos')) {
+            return $this->sendError('Usuario no autorizado');
         }
 
-        $rol->delete();
+        /** @var TipoContrato $tipoContrato */
+        $tipoContrato = $this->tipoContratoRepository->find($id);
 
-        return $this->sendSuccess('Rol deleted successfully');
-    }
-
-    public function removePermission($data,$model)
-    {
-        // para determinar las imagenes eliminadas
-        $requestPermisson = array_column($data['permissions'], 'name');
-        $currentPermisson = array_column($model->permissions->toArray(), 'name');
-        $deletedPermissons = array_values(array_diff($currentPermisson, $requestPermisson));
-
-        foreach($deletedPermissons as $delete){
-            $model->revokePermissionTo($delete);
+        if (empty($tipoContrato)) {
+            return $this->sendError('Tipo Contrato not found');
         }
 
+        $tipoContrato->delete();
+
+        return $this->sendSuccess('Tipo Contrato deleted successfully');
     }
 }

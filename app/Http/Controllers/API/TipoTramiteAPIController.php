@@ -2,29 +2,27 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateRolAPIRequest;
-use App\Http\Requests\API\UpdateRolAPIRequest;
-use App\Models\Rol;
-use App\Repositories\RolRepository;
+use App\Http\Requests\API\CreateTipoTramiteAPIRequest;
+use App\Http\Requests\API\UpdateTipoTramiteAPIRequest;
+use App\Models\TipoTramite;
+use App\Repositories\TipoTramiteRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
-use Illuminate\Support\Facades\DB;
 use Response;
-use Spatie\Permission\Models\Role;
 
 /**
- * Class RolController
+ * Class TipoTramiteController
  * @package App\Http\Controllers\API
  */
 
-class RolAPIController extends AppBaseController
+class TipoTramiteAPIController extends AppBaseController
 {
-    /** @var  RolRepository */
-    private $rolRepository;
+    /** @var  TipoTramiteRepository */
+    private $tipoTramiteRepository;
 
-    public function __construct(RolRepository $rolRepo)
+    public function __construct(TipoTramiteRepository $tipoTramiteRepo)
     {
-        $this->rolRepository = $rolRepo;
+        $this->tipoTramiteRepository = $tipoTramiteRepo;
     }
 
     /**
@@ -32,10 +30,10 @@ class RolAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/api/roles",
-     *      summary="getRolList",
-     *      tags={"Roles"},
-     *      description="Get all Rols",
+     *      path="/tipo-tramites",
+     *      summary="getTipoTramiteList",
+     *      tags={"Tipo Tramites"},
+     *      description="Get all TipoTramites",
      *      security={ {"sanctum": {} }},
      *      @OA\Response(
      *          response=200,
@@ -49,7 +47,7 @@ class RolAPIController extends AppBaseController
      *              @OA\Property(
      *                  property="data",
      *                  type="array",
-     *                  @OA\Items(ref="#/definitions/Rol")
+     *                  @OA\Items(ref="#/definitions/TipoTramite")
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -61,55 +59,17 @@ class RolAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $rols = $this->rolRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
-        );
-        return $this->sendResponse($rols->toArray(), 'Rols retrieved successfully');
-    }
+        if (!$this->verifiedPermissions('consultar-tipo-tramites')) {
+            return $this->sendError('Usuario no autorizado');
+        }
 
-    /**
-     * @param Request $request
-     * @return Response
-     *
-     * @OA\Get(
-     *      path="/api/permissions",
-     *      summary="getPermissionsList",
-     *      tags={"Permisos"},
-     *      description="Get all Permissions",
-     *      security={ {"sanctum": {} }},
-     *      @OA\Response(
-     *          response=200,
-     *          description="successful operation",
-     *          @OA\Schema(
-     *              type="object",
-     *              @OA\Property(
-     *                  property="success",
-     *                  type="boolean"
-     *              ),
-     *              @OA\Property(
-     *                  property="data",
-     *                  type="array",
-     *                  @OA\Items(ref="#/definitions/Permission")
-     *              ),
-     *              @OA\Property(
-     *                  property="message",
-     *                  type="string"
-     *              )
-     *          )
-     *      )
-     * )
-     */
-    public function indexPermissions(Request $request)
-    {
-        $permissions = $this->rolRepository->allPermissions(
+        $tipoTramites = $this->tipoTramiteRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
             $request->get('limit')
         );
 
-        return $this->sendResponse($permissions, 'Permissions retrieved successfully');
+        return $this->sendResponse($tipoTramites->toArray(), 'Tipo Tramites retrieved successfully');
     }
 
     /**
@@ -117,10 +77,10 @@ class RolAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Post(
-     *      path="/api/roles",
-     *      summary="createRol",
-     *      tags={"Roles"},
-     *      description="Create Rol",
+     *      path="/tipo-tramites",
+     *      summary="createTipoTramite",
+     *      tags={"Tipo Tramites"},
+     *      description="Create TipoTramite",
      *      security={ {"sanctum": {} }},
      *      @OA\RequestBody(
      *        required=true,
@@ -148,7 +108,7 @@ class RolAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/Rol"
+     *                  ref="#/definitions/TipoTramite"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -158,14 +118,17 @@ class RolAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreateRolAPIRequest $request)
+    public function store(CreateTipoTramiteAPIRequest $request)
     {
+        if (!$this->verifiedPermissions('crear-tipo-tramites')) {
+            return $this->sendError('Usuario no autorizado');
+        }
 
         $input = $request->all();
 
-        $rol = $this->rolRepository->create($input);
+        $tipoTramite = $this->tipoTramiteRepository->create($input);
 
-        return $this->sendResponse($rol->toArray(), 'Rol saved successfully');
+        return $this->sendResponse($tipoTramite->toArray(), 'Tipo Tramite saved successfully');
     }
 
     /**
@@ -173,14 +136,14 @@ class RolAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Get(
-     *      path="/api/roles/{id}",
-     *      summary="getRolItem",
-     *      tags={"Roles"},
-     *      description="Get Rol",
+     *      path="/tipo-tramites/{id}",
+     *      summary="getTipoTramiteItem",
+     *      tags={"Tipo Tramites"},
+     *      description="Get TipoTramite",
      *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of Rol",
+     *          description="id of TipoTramite",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -198,7 +161,7 @@ class RolAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/Rol"
+     *                  ref="#/definitions/TipoTramite"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -210,13 +173,18 @@ class RolAPIController extends AppBaseController
      */
     public function show($id)
     {
-        /** @var Rol $rol */
-        $rol = Role::find($id);
-        if (empty($rol)) {
-            return $this->sendError('Rol not found');
+        if (!$this->verifiedPermissions('consultar-tipo-tramites')) {
+            return $this->sendError('Usuario no autorizado');
         }
 
-        return $this->sendResponse($rol->load('permissions')->toArray(), 'Rol retrieved successfully');
+        /** @var TipoTramite $tipoTramite */
+        $tipoTramite = $this->tipoTramiteRepository->find($id);
+
+        if (empty($tipoTramite)) {
+            return $this->sendError('Tipo Tramite not found');
+        }
+
+        return $this->sendResponse($tipoTramite->toArray(), 'Tipo Tramite retrieved successfully');
     }
 
     /**
@@ -225,14 +193,14 @@ class RolAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Put(
-     *      path="/api/roles/{id}",
-     *      summary="updateRol",
-     *      tags={"Roles"},
-     *      description="Update Rol",
+     *      path="/tipo-tramites/{id}",
+     *      summary="updateTipoTramite",
+     *      tags={"Tipo Tramites"},
+     *      description="Update TipoTramite",
      *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of Rol",
+     *          description="id of TipoTramite",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -265,7 +233,7 @@ class RolAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/definitions/Rol"
+     *                  ref="#/definitions/TipoTramite"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -275,39 +243,24 @@ class RolAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update($id, UpdateRolAPIRequest $request)
+    public function update($id, UpdateTipoTramiteAPIRequest $request)
     {
+        if (!$this->verifiedPermissions('editar-tipo-tramites')) {
+            return $this->sendError('Usuario no autorizado');
+        }
+
         $input = $request->all();
 
-        /** @var Rol $rol */
-        $rol = $this->rolRepository->find($id);
+        /** @var TipoTramite $tipoTramite */
+        $tipoTramite = $this->tipoTramiteRepository->find($id);
 
-        if (empty($rol)) {
-            return $this->sendError('Rol not found');
+        if (empty($tipoTramite)) {
+            return $this->sendError('Tipo Tramite not found');
         }
 
-        // $rol = $this->rolRepository->update($input, $id);
+        $tipoTramite = $this->tipoTramiteRepository->update($input, $id);
 
-        try {
-            DB::beginTransaction();
-            $model = Role::findOrFail($id);
-
-            $this->removePermission($input,$model);
-
-            foreach($input['permissions'] as $value){
-                $model->givePermissionTo($value);
-            }
-
-            $model->fill($input);
-            $model->save();
-            DB::commit();
-            return $model;
-        } catch (\Exception $th) {
-            DB::rollBack();
-            $this->handleException($th);
-        }
-
-        return $this->sendResponse($model->load('permissions')->toArray(), 'Rol updated successfully');
+        return $this->sendResponse($tipoTramite->toArray(), 'TipoTramite updated successfully');
     }
 
     /**
@@ -315,14 +268,14 @@ class RolAPIController extends AppBaseController
      * @return Response
      *
      * @OA\Delete(
-     *      path="/api/roles/{id}",
-     *      summary="deleteRol",
-     *      tags={"Roles"},
-     *      description="Delete Rol",
+     *      path="/tipo-tramites/{id}",
+     *      summary="deleteTipoTramite",
+     *      tags={"Tipo Tramites"},
+     *      description="Delete TipoTramite",
      *      security={ {"sanctum": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of Rol",
+     *          description="id of TipoTramite",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -352,28 +305,19 @@ class RolAPIController extends AppBaseController
      */
     public function destroy($id)
     {
-        /** @var Rol $rol */
-        $rol = $this->rolRepository->find($id);
-
-        if (empty($rol)) {
-            return $this->sendError('Rol not found');
+        if (!$this->verifiedPermissions('borrar-tipo-tramites')) {
+            return $this->sendError('Usuario no autorizado');
         }
 
-        $rol->delete();
+        /** @var TipoTramite $tipoTramite */
+        $tipoTramite = $this->tipoTramiteRepository->find($id);
 
-        return $this->sendSuccess('Rol deleted successfully');
-    }
-
-    public function removePermission($data,$model)
-    {
-        // para determinar las imagenes eliminadas
-        $requestPermisson = array_column($data['permissions'], 'name');
-        $currentPermisson = array_column($model->permissions->toArray(), 'name');
-        $deletedPermissons = array_values(array_diff($currentPermisson, $requestPermisson));
-
-        foreach($deletedPermissons as $delete){
-            $model->revokePermissionTo($delete);
+        if (empty($tipoTramite)) {
+            return $this->sendError('Tipo Tramite not found');
         }
 
+        $tipoTramite->delete();
+
+        return $this->sendSuccess('Tipo Tramite deleted successfully');
     }
 }

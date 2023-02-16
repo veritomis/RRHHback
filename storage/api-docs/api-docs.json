@@ -4193,12 +4193,12 @@
             },
             "Carrera": {
                 "required": [
-                    "id_agente",
+                    "agente_id",
                     "fecha",
                     "fecha_inicial",
                     "fecha_fin",
                     "numero_gedo",
-                    "antiguedad_total",
+                    "antiguedad_administracion_publica",
                     "compensacion_transitoria",
                     "profesion_id",
                     "titulo_id"
@@ -4211,8 +4211,8 @@
                         "readOnly": true,
                         "nullable": false
                     },
-                    "id_agente": {
-                        "description": "id_agente",
+                    "agente_id": {
+                        "description": "agente_id",
                         "type": "integer",
                         "format": "int32",
                         "readOnly": false,
@@ -4245,8 +4245,8 @@
                         "readOnly": false,
                         "nullable": false
                     },
-                    "antiguedad_total": {
-                        "description": "antiguedad_total",
+                    "antiguedad_administracion_publica": {
+                        "description": "antiguedad_administracion_publica",
                         "type": "string",
                         "format": "date",
                         "readOnly": false,
@@ -4338,7 +4338,7 @@
                     "observacion",
                     "otro_requisito",
                     "reportar",
-                    "competetencias_laborales_especificas",
+                    "competencias_laborales_especificas",
                     "denominacion_funcion"
                 ],
                 "properties": {
@@ -4390,8 +4390,8 @@
                         "readOnly": false,
                         "nullable": false
                     },
-                    "competetencias_laborales_especificas": {
-                        "description": "competetencias_laborales_especificas",
+                    "competencias_laborales_especificas": {
+                        "description": "competencias_laborales_especificas",
                         "type": "string",
                         "readOnly": false,
                         "nullable": false
@@ -4861,7 +4861,7 @@
                     "numero_grado",
                     "tramo",
                     "agrupamiento",
-                    "modalidad_vinculacion",
+                    "vinculacion_laboral_id",
                     "estado_agente",
                     "funcion",
                     "ejercicio",
@@ -4920,8 +4920,8 @@
                         "readOnly": false,
                         "nullable": false
                     },
-                    "modalidad_vinculacion": {
-                        "description": "modalidad_vinculacion",
+                    "vinculacion_laboral_id": {
+                        "description": "vinculacion_laboral_id",
                         "type": "string",
                         "readOnly": false,
                         "nullable": false
