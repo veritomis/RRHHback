@@ -8,6 +8,7 @@ use App\Models\Rol;
 use App\Repositories\RolRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Response;
 use Spatie\Permission\Models\Role;
@@ -375,5 +376,34 @@ class RolAPIController extends AppBaseController
             $model->revokePermissionTo($delete);
         }
 
+    }
+
+    public function assignacionRoles(Request $request)
+    {
+        $input = $request->all();
+
+        $role = Role::find($input['role_id']);
+
+        if (empty($role)) {
+            return $this->sendError('Rol not found');
+        }
+
+        foreach ($input['users'] as $key => $value) {
+            $user = User::find($value);
+            $user->syncRoles($role);
+        }
+
+        return $this->sendSuccess('Successful role assignment');
+    }
+
+    public function rolesUser($id)
+    {
+        $role = User::with('roles')->get();
+
+        if (empty($role)) {
+            return $this->sendError('Rol not found');
+        }
+
+        return $this->sendResponse($role->toArray(), 'Rol retrieved successfully');
     }
 }
