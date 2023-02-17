@@ -18,11 +18,15 @@ class ModulesSeeder extends Seeder
         $modulos = [
             ['nombre' => 'Contratos',          'slug' => 'contratos'],
             ['nombre' => 'Carreras',           'slug' => 'carreras'],
-            ['nombre' => 'Asistencia',         'slug' => 'asistencia'],
+            ['nombre' => 'Asistencia',         'slug' => 'asistencias'],
             ['nombre' => 'Liquidaciones',      'slug' => 'liquidaciones'],
-            ['nombre' => 'Legajo',             'slug' => 'legajo'],
+            ['nombre' => 'Legajo',             'slug' => 'legajos'],
             ['nombre' => 'Planta Permanente',  'slug' => 'planta-permanente'],
-            ['nombre' => 'Asistencia Medica',  'slug' => 'asistencia-medica']
+            ['nombre' => 'Asistencia Medica',  'slug' => 'asistencia-medica'],
+            ['nombre' => 'Titulos',            'slug' => 'titulos'],
+            ['nombre' => 'Profesiones',        'slug' => 'profesiones'],
+            ['nombre' => 'Tipo de Contratos',  'slug' => 'tipo-contratos'],
+            ['nombre' => 'Tipo de Tramites',   'slug' => 'tipo-tramites']
         ];
 
         foreach ($modulos as $modulo) {
