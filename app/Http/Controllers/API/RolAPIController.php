@@ -368,7 +368,7 @@ class RolAPIController extends AppBaseController
     public function removePermission($data,$model)
     {
         // para determinar las imagenes eliminadas
-        $requestPermisson = array_column($data['permissions'], 'name');
+        $requestPermisson = $data['permissions'];
         $currentPermisson = array_column($model->permissions->toArray(), 'name');
         $deletedPermissons = array_values(array_diff($currentPermisson, $requestPermisson));
 
