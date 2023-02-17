@@ -71,6 +71,34 @@ class AgenteRepository extends BaseRepository
     {
         try {
             DB::beginTransaction();
+
+            foreach($input['contrato'] as $key => $value){
+                if (ctype_lower($key)) {
+                    continue;
+                } else {
+                    $input['contrato'][$this->camelCaseToSnakeCase($key)]= $input['contrato'][$key];
+                    unset($input['contrato'][$key]);
+                }
+            }
+
+            foreach($input['agente'] as $key => $value){
+                if (ctype_lower($key)) {
+                    continue;
+                } else {
+                    $input['agente'][$this->camelCaseToSnakeCase($key)]= $input['agente'][$key];
+                    unset($input['agente'][$key]);
+                }
+            }
+
+            foreach($input as $key => $value){
+                if (ctype_lower($key)) {
+                    continue;
+                } else {
+                    $input[$this->camelCaseToSnakeCase($key)]= $input[$key];
+                    unset($input[$key]);
+                }
+            }
+
             $model = $this->model->newInstance($input['agente']);
             // dd($input);
             $model->save();
@@ -82,5 +110,15 @@ class AgenteRepository extends BaseRepository
             DB::rollBack();
             $this->handleException($th);
         }
+    }
+
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    function camelCaseToSnakeCase($string)
+    {
+        return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $string));
     }
 }
