@@ -20,11 +20,6 @@ class PermissionsSeeder extends Seeder
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         $permisos = [
-            ['name' => 'crear-post', 'guard_name' => 'sanctum'],
-            ['name' => 'editar-post', 'guard_name' => 'sanctum'],
-            ['name' => 'borrar-post', 'guard_name' => 'sanctum'],
-            ['name' => 'consultar-post', 'guard_name' => 'sanctum'],
-
             //Modulos
             ['name' => 'crear-modulos', 'guard_name' => 'sanctum'],
             ['name' => 'editar-modulos', 'guard_name' => 'sanctum'],
@@ -60,12 +55,55 @@ class PermissionsSeeder extends Seeder
             ['name' => 'editar-profesiones', 'guard_name' => 'sanctum'],
             ['name' => 'borrar-profesiones', 'guard_name' => 'sanctum'],
             ['name' => 'consultar-profesiones', 'guard_name' => 'sanctum'],
-            
+
             //Contratos
             ['name' => 'crear-contratos', 'guard_name' => 'sanctum'],
             ['name' => 'editar-contratos', 'guard_name' => 'sanctum'],
             ['name' => 'borrar-contratos', 'guard_name' => 'sanctum'],
-            ['name' => 'consultar-contratos', 'guard_name' => 'sanctum']
+            ['name' => 'consultar-contratos', 'guard_name' => 'sanctum'],
+
+            //Planta Permanente
+            ['name' => 'crear-planta-permanentes', 'guard_name' => 'sanctum'],
+            ['name' => 'editar-planta-permanentes', 'guard_name' => 'sanctum'],
+            ['name' => 'borrar-planta-permanentes', 'guard_name' => 'sanctum'],
+            ['name' => 'consultar-planta-permanentes', 'guard_name' => 'sanctum'],
+
+            //Asistencias
+            ['name' => 'crear-asistencias', 'guard_name' => 'sanctum'],
+            ['name' => 'editar-asistencias', 'guard_name' => 'sanctum'],
+            ['name' => 'borrar-asistencias', 'guard_name' => 'sanctum'],
+            ['name' => 'consultar-asistencias', 'guard_name' => 'sanctum'],
+            
+            //Legajos
+            ['name' => 'crear-legajos', 'guard_name' => 'sanctum'],
+            ['name' => 'editar-legajos', 'guard_name' => 'sanctum'],
+            ['name' => 'borrar-legajos', 'guard_name' => 'sanctum'],
+            ['name' => 'consultar-legajos', 'guard_name' => 'sanctum'],
+
+            //Asistencia Medica
+            ['name' => 'crear-asistencia-medicas', 'guard_name' => 'sanctum'],
+            ['name' => 'editar-asistencia-medicas', 'guard_name' => 'sanctum'],
+            ['name' => 'borrar-asistencia-medicas', 'guard_name' => 'sanctum'],
+            ['name' => 'consultar-asistencia-medicas', 'guard_name' => 'sanctum'],
+
+            //Liquidacion
+            ['name' => 'crear-liquidaciones', 'guard_name' => 'sanctum'],
+            ['name' => 'editar-liquidaciones', 'guard_name' => 'sanctum'],
+            ['name' => 'borrar-liquidaciones', 'guard_name' => 'sanctum'],
+            ['name' => 'consultar-liquidaciones', 'guard_name' => 'sanctum'],
+
+            //Tipo Contratos
+            ['name' => 'crear-tipo-contratos', 'guard_name' => 'sanctum'],
+            ['name' => 'editar-tipo-contratos', 'guard_name' => 'sanctum'],
+            ['name' => 'borrar-tipo-contratos', 'guard_name' => 'sanctum'],
+            ['name' => 'consultar-tipo-contratos', 'guard_name' => 'sanctum'],
+
+            //Tipo Tramites
+            ['name' => 'crear-tipo-tramites', 'guard_name' => 'sanctum'],
+            ['name' => 'editar-tipo-tramites', 'guard_name' => 'sanctum'],
+            ['name' => 'borrar-tipo-tramites', 'guard_name' => 'sanctum'],
+            ['name' => 'consultar-tipo-tramites', 'guard_name' => 'sanctum']
+
         ];
 
         foreach ($permisos as $permiso) {
@@ -75,7 +113,7 @@ class PermissionsSeeder extends Seeder
 
         // create roles and assign existing permissions
         $role1 = Role::create(['name' => 'funsionario','guard_name' => 'sanctum']);
-        $role1->givePermissionTo('consultar-post');
+        $role1->givePermissionTo('consultar-agentes');
 
         $role2 = Role::create(['name' => 'admin','guard_name' => 'sanctum']);
         $role2->givePermissionTo(Permission::all());

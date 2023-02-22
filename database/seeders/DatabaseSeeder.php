@@ -19,14 +19,24 @@ class DatabaseSeeder extends Seeder
         \App\Models\VinculacionLaboral::factory(10)->create();
         \App\Models\AsistenciaTipoContrato::factory(10)->create();
         \App\Models\Grupo::factory(10)->create();
-        \App\Models\Carrera::factory(10)->create();
-        \App\Models\Contrato::factory(10)->create();
+        \App\Models\Funcion::factory(5)->create();
+        \App\Models\TipoContrato::factory(5)->create();
+        \App\Models\TipoTramite::factory(5)->create();
         activity()->withoutLogs(function () {
             $this->call([
                 PermissionsSeeder::class,
                 ModulesSeeder::class,
                 AgenteSeeder::class,
+                PuestosSeeder::class,
             ]);
         });
+        \App\Models\Carrera::factory(100)->create();
+        \App\Models\Contrato::factory(5)->create();
+        \App\Models\PlantaPermanente::factory(100)->create();
+        \App\Models\Asistencia::factory(5)->create();
+        \App\Models\Evaluacion::factory(5)->create();
+        \App\Models\AsistenciaMedica::factory(5)->create();
+        \App\Models\Legajo::factory(5)->create();
+        \App\Models\Liquidacion::factory(5)->create();
     }
 }

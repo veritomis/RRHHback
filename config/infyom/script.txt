@@ -5,6 +5,11 @@ sail artisan cache:clear
 sail artisan config:cache
 sail artisan config:clear
 -------------------------
+Example command Unit Test 
+-------------------------
+sail artisan test --filter PlantaPermanenteApiTest tests/APIs/PlantaPermanenteApiTest.php
+sail artisan test --filter AsistenciaMedicaApiTest tests/APIs/AsistenciaMedicaApiTest.php
+-------------------------
 Creation the CRUD
 -------------------------
 sail artisan infyom:api Estado                  --fromTable --tableName=estados                         --skip=migrations
@@ -18,4 +23,23 @@ sail artisan infyom:api Profesion               --fromTable --tableName=profesio
 sail artisan infyom:api Grupo                   --fromTable --tableName=grupos                          --skip=migrations
 sail artisan infyom:api VinculacionLaboral      --fromTable --tableName=vinculaciones_laborales         --skip=migrations
 sail artisan infyom:api AsistenciaTipoContrato  --fromTable --tableName=asistencia_tipo_contrataciones  --skip=migrations
-sail artisan infyom:api Contrato                --fromTable --tableName=contratos                       --skip=migrations
+
+sail artisan infyom:api PlantaPermanente        --fromTable --tableName=planta_permanentes             --skip=migrations
+
+sail artisan infyom:api PuestoGrupo             --fromTable --tableName=puestos_grupos                 --skip=migrations
+sail artisan infyom:api PuestoFamilia           --fromTable --tableName=puestos_familias               --skip=migrations
+sail artisan infyom:api PuestoSubfamilia        --fromTable --tableName=puestos_subfamilias            --skip=migrations
+sail artisan infyom:api PuestoNomenclatura      --fromTable --tableName=puestos_nomenclaturas          --skip=migrations
+
+sail artisan infyom:api Funcion                 --fromTable --tableName=funciones                      --skip=migrations
+sail artisan infyom:api Evaluacion              --fromTable --tableName=evaluaciones                   --skip=migrations
+sail artisan infyom:api Area                    --fromTable --tableName=areas                          --skip=migrations
+sail artisan infyom:api Suplemento              --fromTable --tableName=suplementos                    --skip=migrations
+sail artisan infyom:api Capacitacion            --fromTable --tableName=capacitaciones                 --skip=migrations
+sail artisan infyom:api Asitencia               --fromTable --tableName=asistencias                    --skip=migrations
+sail artisan infyom:api AsistenciaMedica        --fromTable --tableName=asistencia_medicas             --skip=migrations
+sail artisan infyom:api Legajo                  --fromTable --tableName=legajos                        --skip=migrations
+sail artisan infyom:api Liquidacion             --fromTable --tableName=liquidaciones                  --skip=migrations
+sail artisan infyom:api Documento               --fromTable --tableName=documentos                     --skip=migrations
+sail artisan infyom:api TipoContrato            --fromTable --tableName=tipo_contratos                 --skip=migrations
+sail artisan infyom:api TipoTramite             --fromTable --tableName=tipo_tramites                  --skip=migrations
