@@ -26,7 +26,7 @@ class AgenteRepository extends BaseRepository
         'dni',
         'cuil',
         'fecha_nacimiento',
-        'sexo',
+        'genero',
         'fecha_ingreso_ministerio',
         'letra_nivel',
         'numero_grado',
