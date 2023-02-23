@@ -399,6 +399,7 @@ class AgenteAPIController extends AppBaseController
                     $contrato->estado                              =  $row['estado'];
                     $contrato->baja_partir_de                      =  $row['si_es_baja_a_partir_de'];
                     $contrato->fecha_inicio_1109                   =  $row['fecha_de_ingreso_al_mdp_como_1109'];
+                    $contrato->tipo_contrato_id                    =  2;
                     $contrato->ultimo_titulo                       =  ucwords(mb_strtolower($row['ultimo_titulo_obtenido']));
 
                     $contrato->save();

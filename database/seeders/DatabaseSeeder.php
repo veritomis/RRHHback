@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\TipoContrato;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,7 +21,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\AsistenciaTipoContrato::factory(10)->create();
         \App\Models\Grupo::factory(10)->create();
         \App\Models\Funcion::factory(5)->create();
-        \App\Models\TipoContrato::factory(5)->create();
         \App\Models\TipoTramite::factory(5)->create();
         activity()->withoutLogs(function () {
             $this->call([
@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
                 ModulesSeeder::class,
                 AgenteSeeder::class,
                 PuestosSeeder::class,
+                TipoContratosSeeder::class,
             ]);
         });
         \App\Models\Carrera::factory(100)->create();

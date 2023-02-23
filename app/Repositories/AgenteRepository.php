@@ -58,6 +58,7 @@ class AgenteRepository extends BaseRepository
             'plantaPermanente',
             'plantaPermanente.vinculacionLaboral',
             'contratos.funciones',
+            'contratos.tipoContrato',
             'grupo',
             'liquidaciones',
             'liquidaciones.documentos',

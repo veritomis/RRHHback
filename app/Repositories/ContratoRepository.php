@@ -87,7 +87,7 @@ class ContratoRepository extends BaseRepository
 
     public function getIncludes()
     {
-        return ['funciones'];
+        return ['funciones','tipoContrato'];
     }
 
     /**

@@ -324,7 +324,8 @@ class Contrato extends Model
         'acto_habilitacion_sarh',
         'subsecretaria',
         'dependencia',
-        'acto_habilitacion_sarha'
+        'acto_habilitacion_sarha',
+        'tipo_contrato_id'
     ];
 
     /**
@@ -350,6 +351,7 @@ class Contrato extends Model
         'numero_resolucion' => 'string',
         'asistencia_tipo_contratacion_id' => 'integer',
         'agente_id' => 'integer',
+        'tipo_contrato_id' => 'integer',
         'area_id' => 'integer',
         'titulo_orientacion_id' => 'integer',
         'puesto_grupo_id' => 'integer',
@@ -422,6 +424,7 @@ class Contrato extends Model
         // 'titulo_orientacion_id' => 'required|integer',
         // 'puesto_grupo_id' => 'required|integer',
         'puesto_familia_id' => 'nullable|integer',
+        'tipo_contrato_id' => 'required|integer',
         'puesto_subfamilia_id' => 'nullable|integer',
         'puesto_nomenclatura_id' => 'required|integer',
         'puesto_trabajo_otro' => 'nullable|string',
@@ -468,6 +471,14 @@ class Contrato extends Model
     public function asistenciaTipoContratacion()
     {
         return $this->belongsTo(\App\Models\AsistenciaTipoContrato::class, 'asistencia_tipo_contratacion_id');
+    }
+
+/**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function tipoContrato()
+    {
+        return $this->belongsTo(TipoContrato::class, 'tipo_contrato_id');
     }
 
     public function area()

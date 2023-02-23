@@ -65,6 +65,7 @@ return new class extends Migration
             $table->date('fecha_firma_recepcion_expediente')->nullable();          //"2023-01-23",
             $table->date('fecha_firma_resolucion')->nullable();                   //"2023-01-18
 
+            // 1109
             $table->date('fecha_inicio')->nullable();
             $table->date('fecha_finalizacion')->nullable();
             $table->date('baja_partir_de')->nullable();
