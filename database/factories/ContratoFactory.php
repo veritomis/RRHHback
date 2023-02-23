@@ -90,7 +90,6 @@ class ContratoFactory extends Factory
             'nivel_educativo' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'numero_nota_expediente_electronico' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'numero_resolucion' => $this->faker->text($this->faker->numberBetween(5, 255)),
-            'estado' => $this->faker->boolean,
             'asistencia_tipo_contratacion_id' => $asistenciaTipoContratacione->id,
             'agente_id' => $agente->id,
             'area_id' => $area->id,
@@ -116,6 +115,19 @@ class ContratoFactory extends Factory
             'numero_loys' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'fecha_firma_recepcion_expediente' => $this->faker->date('Y-m-d H:i:s'),
             'fecha_firma_resolucion' => $this->faker->date('Y-m-d H:i:s'),
+
+            'fecha_inicio'=> $this->faker->date('Y-m-d H:i:s'),
+            'fecha_finalizacion'=> $this->faker->date('Y-m-d H:i:s'),
+            'estado'=> $this->faker->text($this->faker->numberBetween(5, 255)),
+            'baja_partir_de'=> $this->faker->date('Y-m-d H:i:s'),
+            'fecha_inicio_1109'=> $this->faker->date('Y-m-d H:i:s'),
+            'loys_da_488' => $this->faker->text($this->faker->numberBetween(5, 255)),
+            'loys_de_986' => $this->faker->text($this->faker->numberBetween(5, 255)),
+            'ultimo_termino_referencia' => $this->faker->text($this->faker->numberBetween(5, 255)),
+            'acto_habilitacion_sarh' => $this->faker->text($this->faker->numberBetween(5, 255)),
+            'subsecretaria' => $this->faker->text($this->faker->numberBetween(5, 255)),
+            'dependencia' => $this->faker->text($this->faker->numberBetween(5, 255)),
+            'acto_habilitacion_sarha' => $this->faker->text($this->faker->numberBetween(5, 255)),
 
             'created_at' => $this->faker->date('Y-m-d H:i:s'),
             'updated_at' => $this->faker->date('Y-m-d H:i:s')

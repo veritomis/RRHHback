@@ -3,29 +3,20 @@
 namespace App\Imports;
 
 use App\Models\Agente;
-use Maatwebsite\Excel\Concerns\ToModel;
+use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\ToCollection;
 
-class AgentsImport implements ToModel
+class AgentsImport implements ToCollection,WithHeadingRow
 {
     /**
      * @param array $row
      *
      * @return \Illuminate\Database\Eloquent\Model|null
      */
-    public function model(array $row)
+    public function collection(Collection $rows)
     {
-        return new Agente([
-            'primer_nombre'    => $row[1], //dejo el 0 libre para el id?
-            'segundo_nombre'   => $row[2],
-            'primer_apellido'  => $row[3],
-            'segundo_apellido' => $row[4],
-            'dni'              => $row[5],
-            'cuil'             => $row[6],
-            'fecha_nacimiento' => $row[7],
-            'letra_nivel'      => $row[8],
-            'numero_grado'     => $row[9],
-            //'grupo_id'         => $row[10], //lo tiene el usuario para ponerlo en su excel?
-        ]);
+        return $rows;
     }
 }
 

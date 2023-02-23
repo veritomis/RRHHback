@@ -23,12 +23,12 @@ class CreateAgentesTable extends Migration
             $table->string('dni')->nullable()->unique();
             $table->string('cuil')->nullable();
             $table->date('fecha_nacimiento')->nullable();
-            $table->string('sexo');
+            $table->string('genero');
             $table->date('fecha_ingreso_ministerio');
             $table->string('letra_nivel')->nullable();
             $table->string('numero_grado')->nullable();
 
-            $table->foreignId('grupo_id')->nullable()->constrained('grupos')->nullable();
+            $table->foreignId('grupo_id')->nullable()->constrained('grupos');
 
             $table->timestamps();
             $table->softDeletes();

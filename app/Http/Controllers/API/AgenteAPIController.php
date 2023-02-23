@@ -10,8 +10,12 @@ use App\Repositories\AgenteRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use App\Imports\AgentsImport;
+use App\Models\Contrato;
 use App\Traits\VerificationRol;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use PhpParser\Node\Stmt\TryCatch;
 use Response;
 
 /**
@@ -327,15 +331,89 @@ class AgenteAPIController extends AppBaseController
         return $this->sendSuccess('Agente deleted successfully');
     }
 
-    public function export(){
+    public function export()
+    {
         return Excel::download(new AgentsExport, 'agents.xlsx');
     
     }
 
-    public function import(){
-        return Excel::upload(new AgentsImport, 'agents.xlsx');
-    
+    public function import(Request $request)
+    {
+        $file = $request->file('file');
+        $arry = Excel::toCollection(new AgentsImport, $file);
+
+        $contrato = [];
+        $agente = [];
+        $arrayAgente = [];
+        $values = $arry[0]->ToArray();
+
+        foreach($values as $row){
+            if($row['apellidos'] == null && $row['nombres'] == null){
+                continue;
+            }
+            try {
+                DB::beginTransaction();
+                $agente['primer_apellido']                     =  ucwords(mb_strtolower($row['apellidos']));
+                $agente['primer_nombre']                       =  ucwords(mb_strtolower($row['nombres']));
+                $agente['cuil']                                =  $row['cuit'];
+                $agente['fecha_nacimiento']                    =  $row['fecha_de_nacimiento'];
+                $agente['fecha_ingreso_ministerio']            =  $row['fecha_firma_reso'];
+                $agente['genero']                              =  mb_strtolower($row['genero']) == 'masculino' ? 'M':'F';
+
+                /** @var Agente $agente */
+                $agenteId = Agente::where('cuil','=',$row['cuit'])->first();
+
+                if ($agenteId) {
+                    $arrayAgente = $agente;
+                    continue;
+                }else{
+                    $agenteF = $this->agenteRepository->create($agente);
+
+                    $contrato = New Contrato;
+                    $contrato->agente_id                           =  $agenteF->id;
+                    $contrato->secretaria                          =  ucwords(mb_strtolower($row['secretaria']));
+                    $contrato->subsecretaria                       =  ucwords(mb_strtolower($row['subsecretaria']));
+                    $contrato->dependencia                         =  ucwords(mb_strtolower($row['dependencia']));
+                    $contrato->funcion                             =  ucwords(mb_strtolower($row['funcion']));
+                    $contrato->nivel_funcion                       =  $row['nivel'];
+                    $contrato->unidades_retributivas_mensuales     =  $row['cantidad_de_ur'];
+                    $contrato->fecha_inicio                        =  $row['fecha_de_inicio'];
+                    $contrato->fecha_finalizacion                  =  $row['fecha_de_finalizacion'];
+                    $contrato->unidades_retributivas_totales       =  $row['cantidad_total_de_ur'];
+                    $contrato->partida                             =  $row['part'];
+                    $contrato->programa                            =  $row['prog'];
+                    $contrato->actividad                           =  $row['act'];
+                    $contrato->dedicacion_funcional                =  $row['ded_funcional'];
+                    $contrato->resolucion_larga                    =  $row['reso_de_aprobacion_largo'];
+                    $contrato->resolucion_corta                    =  $row['reso_de_aprobacion_corto'];
+                    $contrato->numero_anexo                        =  $row['anexo_de_aprobacion'];
+                    $contrato->numero_expediente_gde               =  $row['expediente_tramitacion'];
+                    $contrato->numero_loys                         =  $row['expediente_loys'];
+                    $contrato->loys_da_488                         =  $row['loys_da_488'];
+                    $contrato->loys_de_986                         =  $row['loys_de_986'];
+                    $contrato->ultimo_termino_referencia           =  $row['ultimo_termino_de_referencia'];
+                    $contrato->acto_habilitacion_sarha             =  $row['acto_habilitacion_sarha'];
+                    $contrato->fecha_firma_recepcion_expediente    =  $row['fecha_ingreso_expediente'];
+                    $contrato->fecha_firma_resolucion              =  $row['fecha_firma_reso'];
+                    $contrato->tipo_alta                           =  mb_strtolower($row['tipo_de_tramite']);
+                    $contrato->estado                              =  $row['estado'];
+                    $contrato->baja_partir_de                      =  $row['si_es_baja_a_partir_de'];
+                    $contrato->fecha_inicio_1109                   =  $row['fecha_de_ingreso_al_mdp_como_1109'];
+                    $contrato->ultimo_titulo                       =  ucwords(mb_strtolower($row['ultimo_titulo_obtenido']));
+
+                    $contrato->save();
+                }
+
+
+                DB::commit();
+            } catch (\Exception $th) {
+                DB::rollBack();
+                throw $th;
+            }
+        }
+        return $this->sendSuccess('Agente Import saved successfully');
     }
+
     public function manyDelete(Request $request){
         foreach ($request->all() as $key => $value){
             $agente = $this->agenteRepository->find($value);
