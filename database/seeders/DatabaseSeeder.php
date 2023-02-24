@@ -26,18 +26,18 @@ class DatabaseSeeder extends Seeder
             $this->call([
                 PermissionsSeeder::class,
                 ModulesSeeder::class,
-                AgenteSeeder::class,
+                // AgenteSeeder::class,
                 PuestosSeeder::class,
                 TipoContratosSeeder::class,
             ]);
         });
-        \App\Models\Carrera::factory(100)->create();
-        \App\Models\Contrato::factory(5)->create();
-        \App\Models\PlantaPermanente::factory(100)->create();
-        \App\Models\Asistencia::factory(5)->create();
-        \App\Models\Evaluacion::factory(5)->create();
-        \App\Models\AsistenciaMedica::factory(5)->create();
-        \App\Models\Legajo::factory(5)->create();
-        \App\Models\Liquidacion::factory(5)->create();
+        // \App\Models\Carrera::factory(100)->create();
+        // \App\Models\Contrato::factory(5)->create();
+        // \App\Models\PlantaPermanente::factory(100)->create();
+        // \App\Models\Asistencia::factory(5)->create();
+        // \App\Models\Evaluacion::factory(5)->create();
+        // \App\Models\AsistenciaMedica::factory(5)->create();
+        // \App\Models\Legajo::factory(5)->create();
+        // \App\Models\Liquidacion::factory(5)->create();
     }
 }
