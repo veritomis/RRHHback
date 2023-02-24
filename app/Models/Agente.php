@@ -191,17 +191,17 @@ class Agente extends Model
      */
     public static $rules = [
         'primer_nombre' => 'nullable|string|max:255',
-        'segundo_nombre' => 'required|string|max:255',
+        // 'segundo_nombre' => 'required|string|max:255',
         'primer_apellido' => 'nullable|string|max:255',
-        'segundo_apellido' => 'required|string|max:255',
+        // 'segundo_apellido' => 'required|string|max:255',
         'dni' => 'nullable|string|max:255',
         'cuil' => 'nullable|string|max:255',
         'fecha_nacimiento' => 'nullable',
-        'genero' => 'required|string|max:255',
-        'fecha_ingreso_ministerio' => 'required',
+        // 'genero' => 'required|string|max:255',
+        // 'fecha_ingreso_ministerio' => 'required',
         'letra_nivel' => 'nullable|string|max:255',
         'numero_grado' => 'nullable|string|max:255',
-        'grupo_id' => 'required',
+        // 'grupo_id' => 'required',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'

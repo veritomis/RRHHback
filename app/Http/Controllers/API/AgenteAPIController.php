@@ -478,6 +478,7 @@ class AgenteAPIController extends AppBaseController
      */
     public function createContract(Request $request)
     {
+
         if (!$this->verifiedPermissions('crear-agentes')) {
             return $this->sendError('Usuario no autorizado');
         }

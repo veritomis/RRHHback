@@ -79,6 +79,10 @@ class AgenteRepository extends BaseRepository
                 } else {
                     $input['contrato'][$this->camelCaseToSnakeCase($key)]= $input['contrato'][$key];
                     unset($input['contrato'][$key]);
+                    if (array_key_exists('numero_expediente_g_d_e', $input['contrato'])) {
+                        $input['contrato']['numero_expediente_gde']= $input['contrato']['numero_expediente_g_d_e'];
+                        unset($input['contrato']['numero_expediente_g_d_e']);
+                    }
                 }
             }
 
@@ -101,7 +105,7 @@ class AgenteRepository extends BaseRepository
             }
 
             $model = $this->model->newInstance($input['agente']);
-            // dd($input);
+
             $model->save();
             $input['contrato']['agente_id'] = $model->id;
             Contrato::create($input['contrato']);
