@@ -313,6 +313,19 @@ class Contrato extends Model
         'numero_loys',
         'fecha_firma_recepcion_expediente',
         'fecha_firma_resolucion',
+        'fecha_inicio',
+        'fecha_finalizacion',
+        'baja_partir_de',
+        'fecha_inicio_1109',
+        'programa',
+        'loys_da_488',
+        'loys_de_986',
+        'ultimo_termino_referencia',
+        'acto_habilitacion_sarh',
+        'subsecretaria',
+        'dependencia',
+        'acto_habilitacion_sarha',
+        'tipo_contrato_id'
     ];
 
     /**
@@ -336,9 +349,9 @@ class Contrato extends Model
         'nivel_educativo' => 'string',
         'numero_nota_expediente_electronico' => 'string',
         'numero_resolucion' => 'string',
-        'estado' => 'boolean',
         'asistencia_tipo_contratacion_id' => 'integer',
         'agente_id' => 'integer',
+        'tipo_contrato_id' => 'integer',
         'area_id' => 'integer',
         'titulo_orientacion_id' => 'integer',
         'puesto_grupo_id' => 'integer',
@@ -368,6 +381,19 @@ class Contrato extends Model
         'numero_loys' => 'string',
         'fecha_firma_recepcion_expediente' => 'date',
         'fecha_firma_resolucion' => 'date',
+        'fecha_inicio' => 'date',
+        'fecha_finalizacion' => 'date',
+        'programa' => 'string',
+        'estado' => 'string',
+        'baja_partir_de' => 'date',
+        'fecha_inicio_1109' => 'date',
+        'loys_da_488' => 'string',
+        'loys_de_986' => 'string',
+        'ultimo_termino_referencia' => 'string',
+        'acto_habilitacion_sarh' => 'string',
+        'subsecretaria' => 'string',
+        'dependencia' => 'string',
+        'acto_habilitacion_sarha' => 'string',
     ];
 
     /**
@@ -379,26 +405,26 @@ class Contrato extends Model
         'tipo_alta' => 'nullable|string|max:255',
         'competencias_laborales_especificas'=> 'required|string|max:255',
         'denominacion_funcion'=> 'nullable|string|max:255',
-        'caracter_contrato' => 'required|string|max:255',
-        'nivel_categoria' => 'required|string|max:255',
-        'tipo_servicio' => 'required|string|max:255',
-        'objetivo_general' => 'required|string|max:255',
-        'objetivo_especifico' => 'required|string|max:255',
-        'actividades_tarea' => 'required|string|max:255',
-        'resultado_parcial_final' => 'required|string|max:255',
-        'estandares_cualitativos_cuantitativos' => 'required|string|max:255',
-        'fecha_obtencion_resultados' => 'required',
-        'horario_propuesto' => 'required|string|max:255',
-        'nivel_educativo' => 'required|string|max:255',
-        'numero_nota_expediente_electronico' => 'required|string|max:255',
+        // 'caracter_contrato' => 'required|string|max:255',
+        // 'nivel_categoria' => 'required|string|max:255',
+        // 'tipo_servicio' => 'required|string|max:255',
+        // 'objetivo_general' => 'required|string|max:255',
+        // 'objetivo_especifico' => 'required|string|max:255',
+        // 'actividades_tarea' => 'required|string|max:255',
+        // 'resultado_parcial_final' => 'required|string|max:255',
+        // 'estandares_cualitativos_cuantitativos' => 'required|string|max:255',
+        // 'fecha_obtencion_resultados' => 'required',
+        // 'horario_propuesto' => 'required|string|max:255',
+        // 'nivel_educativo' => 'required|string|max:255',
+        // 'numero_nota_expediente_electronico' => 'required|string|max:255',
         'numero_resolucion' => 'nullable|string|max:255',
-        'estado' => 'nullable|boolean',
-        'asistencia_tipo_contratacion_id' => 'required',
-        'agente_id' => 'required|integer',
-        'area_id' => 'required|integer',
-        'titulo_orientacion_id' => 'required|integer',
-        'puesto_grupo_id' => 'required|integer',
+        // 'asistencia_tipo_contratacion_id' => 'required',
+        // 'agente_id' => 'required|integer',
+        // 'area_id' => 'required|integer',
+        // 'titulo_orientacion_id' => 'required|integer',
+        // 'puesto_grupo_id' => 'required|integer',
         'puesto_familia_id' => 'nullable|integer',
+        'tipo_contrato_id' => 'required|integer',
         'puesto_subfamilia_id' => 'nullable|integer',
         'puesto_nomenclatura_id' => 'required|integer',
         'puesto_trabajo_otro' => 'nullable|string',
@@ -422,6 +448,19 @@ class Contrato extends Model
         'numero_loys' => 'nullable|string',
         'fecha_firma_recepcion_expediente' => 'nullable|date',
         'fecha_firma_resolucion' => 'nullable|date',
+        'fecha_inicio' => 'nullable|date',
+        'fecha_finalizacion' => 'nullable|date',
+        'estado' => 'nullable|string',
+        'baja_partir_de' => 'nullable|date',
+        'fecha_inicio_1109' => 'nullable|date',
+        'programa' => 'nullable|string',
+        'loys_da_488' => 'nullable|string',
+        'loys_de_986' => 'nullable|string',
+        'ultimo_termino_referencia' => 'nullable|string',
+        'acto_habilitacion_sarh' => 'nullable|string',
+        'subsecretaria' => 'nullable|string',
+        'dependencia' => 'nullable|string',
+        'acto_habilitacion_sarha' => 'nullable|string',
         'created_at' => 'nullable',
         'updated_at' => 'nullable'
     ];
@@ -432,6 +471,14 @@ class Contrato extends Model
     public function asistenciaTipoContratacion()
     {
         return $this->belongsTo(\App\Models\AsistenciaTipoContrato::class, 'asistencia_tipo_contratacion_id');
+    }
+
+/**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function tipoContrato()
+    {
+        return $this->belongsTo(TipoContrato::class, 'tipo_contrato_id');
     }
 
     public function area()

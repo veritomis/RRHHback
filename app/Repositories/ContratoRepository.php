@@ -87,7 +87,7 @@ class ContratoRepository extends BaseRepository
 
     public function getIncludes()
     {
-        return ['funciones'];
+        return ['funciones','tipoContrato'];
     }
 
     /**
@@ -110,9 +110,9 @@ class ContratoRepository extends BaseRepository
             $model->funciones()->sync($funciones);
             DB::commit();
             return $model;
-        } catch (\Throwable $th) {
+        } catch (\Exception $e) {
             DB::rollBack();
-            $this->handleException($th);
+            $this->handleException($e);
         }
     }
 
@@ -151,9 +151,9 @@ class ContratoRepository extends BaseRepository
         foreach ($inputs as $key => $value) {
             try {
                 $arrary[] = Funcion::updateOrCreate(['nombre' => $value['value']['value']],$value)->id;
-            } catch (\Throwable $th) {
+            } catch (\Exception $e) {
                 DB::rollBack();
-                $this->handleException($th);
+                $this->handleException($e);
             }
         }
 

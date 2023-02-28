@@ -15,37 +15,37 @@ return new class extends Migration
     {
         Schema::create('contratos', function (Blueprint $table) {
             $table->id();
-            $table->enum('tipo_alta', ['Pura', 'Renovacion','Adenda','Cambio de Nivel','Movilidad Interna'])->nullable();
+            $table->enum('tipo_alta', ['Alta','Pura', 'Renovacion','Adenda','Cambio de Nivel','Movilidad Interna','Recategorizacion','Rectificacion','Reasignacion'])->nullable();
             $table->enum('caracter_contrato', ['Estacional', 'Transitorio']);
             $table->enum('nivel_categoria', ['A','B','C','D','E','F']);
-            $table->string('tipo_servicio');
-            $table->string('objetivo_general');
-            $table->string('objetivo_especifico');
-            $table->string('actividades_tarea');
-            $table->string('resultado_parcial_final');
-            $table->string('estandares_cualitativos_cuantitativos');
-            $table->date('fecha_obtencion_resultados');
-            $table->string('horario_propuesto');
-            $table->string('nivel_educativo');
-            $table->string('numero_nota_expediente_electronico');
+            $table->string('tipo_servicio')->nullable();
+            $table->string('objetivo_general')->nullable();
+            $table->string('objetivo_especifico')->nullable();
+            $table->string('actividades_tarea')->nullable();
+            $table->string('resultado_parcial_final')->nullable();
+            $table->string('estandares_cualitativos_cuantitativos')->nullable();
+            $table->date('fecha_obtencion_resultados')->nullable();
+            $table->string('horario_propuesto')->nullable();
+            $table->string('nivel_educativo')->nullable();
+            $table->string('numero_nota_expediente_electronico')->nullable();
             $table->string('numero_resolucion')->nullable();
-            $table->boolean('estado')->nullable();
-            $table->foreignId('asistencia_tipo_contratacion_id')->constrained('asistencia_tipo_contrataciones');
+            // $table->boolean('estado')->nullable();
+            $table->foreignId('asistencia_tipo_contratacion_id')->nullable()->constrained('asistencia_tipo_contrataciones');
             $table->foreignId('agente_id')->constrained('agentes');
-            $table->foreignId('tipo_contrato_id')->constrained('tipo_contratos');
-            $table->foreignId('tipo_tramite_id')->constrained('tipo_tramites');
-            $table->foreignId('area_id')->constrained('areas');
-            $table->integer('titulo_orientacion_id');
-            $table->foreignId('puesto_grupo_id')->constrained('puestos_grupos');
+            $table->foreignId('tipo_contrato_id')->nullable()->constrained('tipo_contratos');
+            $table->foreignId('tipo_tramite_id')->nullable()->constrained('tipo_tramites');
+            $table->foreignId('area_id')->nullable()->constrained('areas');
+            $table->integer('titulo_orientacion_id')->nullable();
+            $table->foreignId('puesto_grupo_id')->nullable()->constrained('puestos_grupos');
             $table->foreignId('puesto_familia_id')->nullable()->constrained('puestos_familias');
             $table->foreignId('puesto_subfamilia_id')->nullable()->constrained('puestos_subfamilias');
-            $table->foreignId('puesto_nomenclatura_id')->constrained('puestos_nomenclaturas');
+            $table->foreignId('puesto_nomenclatura_id')->nullable()->constrained('puestos_nomenclaturas');
             $table->string('puesto_trabajo_otro')->nullable();
             $table->text('experiencia_laboral')->nullable();
             $table->text('observacion')->nullable();
             $table->text('otro_requisito')->nullable();
             $table->text('reportar')->nullable();
-            $table->enum('competencias_laborales_especificas', ['Deseable','Excluyente']);
+            $table->enum('competencias_laborales_especificas', ['Deseable','Excluyente'])->nullable();
             $table->text('denominacion_funcion')->nullable();
 
             $table->string('ultimo_titulo')->nullable();                           //"adfasd",
@@ -63,7 +63,22 @@ return new class extends Migration
             $table->string('numero_expediente_gde')->nullable();                    //"asdasd",
             $table->string('numero_loys')->nullable();                             //"asdasd",
             $table->date('fecha_firma_recepcion_expediente')->nullable();          //"2023-01-23",
-            $table->date('fecha_firma_resolucion')->nullable();                   //"2023-01-18"
+            $table->date('fecha_firma_resolucion')->nullable();                   //"2023-01-18
+
+            // 1109
+            $table->date('fecha_inicio')->nullable();
+            $table->date('fecha_finalizacion')->nullable();
+            $table->date('baja_partir_de')->nullable();
+            $table->date('fecha_inicio_1109')->nullable();
+            $table->string('programa')->nullable();
+            $table->string('estado')->nullable();
+            $table->string('loys_da_488')->nullable();
+            $table->string('loys_de_986')->nullable();
+            $table->string('ultimo_termino_referencia')->nullable();
+            $table->string('acto_habilitacion_sarh')->nullable();
+            $table->string('subsecretaria')->nullable();
+            $table->string('dependencia')->nullable();
+            $table->string('acto_habilitacion_sarha')->nullable();
 
             //relaciones
             // $table->integer('vinculacion_laboral_id');

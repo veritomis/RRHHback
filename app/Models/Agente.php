@@ -70,8 +70,8 @@ use Illuminate\Database\Eloquent\Builder;
  *          format="date"
  *      ),
  *      @OA\Property(
- *          property="sexo",
- *          description="sexo",
+ *          property="genero",
+ *          description="genero",
  *          readOnly=false,
  *          nullable=true,
  *          type="string"
@@ -156,7 +156,7 @@ class Agente extends Model
         'dni',
         'cuil',
         'fecha_nacimiento',
-        'sexo',
+        'genero',
         'fecha_ingreso_ministerio',
         'letra_nivel',
         'numero_grado',
@@ -177,7 +177,7 @@ class Agente extends Model
         'dni' => 'string',
         'cuil' => 'string',
         'fecha_nacimiento' => 'date',
-        'sexo' => 'string',
+        'genero' => 'string',
         'fecha_ingreso_ministerio' => 'date',
         'letra_nivel' => 'string',
         'numero_grado' => 'string',
@@ -191,17 +191,17 @@ class Agente extends Model
      */
     public static $rules = [
         'primer_nombre' => 'nullable|string|max:255',
-        'segundo_nombre' => 'required|string|max:255',
+        // 'segundo_nombre' => 'required|string|max:255',
         'primer_apellido' => 'nullable|string|max:255',
-        'segundo_apellido' => 'required|string|max:255',
+        // 'segundo_apellido' => 'required|string|max:255',
         'dni' => 'nullable|string|max:255',
         'cuil' => 'nullable|string|max:255',
         'fecha_nacimiento' => 'nullable',
-        'sexo' => 'required|string|max:255',
-        'fecha_ingreso_ministerio' => 'required',
+        // 'genero' => 'required|string|max:255',
+        // 'fecha_ingreso_ministerio' => 'required',
         'letra_nivel' => 'nullable|string|max:255',
         'numero_grado' => 'nullable|string|max:255',
-        'grupo_id' => 'required',
+        // 'grupo_id' => 'required',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
