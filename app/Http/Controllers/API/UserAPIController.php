@@ -41,7 +41,9 @@ class UserAPIController extends AppBaseController
             $request->get('limit')
         );
 
-        return $this->sendResponse($posts->toArray(), 'Users retrieved successfully');
+        $users =$posts->load('roles');
+
+        return $this->sendResponse($users->toArray(), 'Users retrieved successfully');
     }
 
     /**
@@ -78,7 +80,9 @@ class UserAPIController extends AppBaseController
             return $this->sendError('User not found');
         }
 
-        return $this->sendResponse($post->toArray(), 'User retrieved successfully');
+        $user =$post->load('roles');
+
+        return $this->sendResponse($user->toArray(), 'User retrieved successfully');
     }
 
     /**

@@ -339,6 +339,7 @@ class AgenteAPIController extends AppBaseController
 
     public function import(Request $request)
     {
+        dd('hola');
         $file = $request->file('file');
         $arry = Excel::toCollection(new AgentsImport, $file);
 
@@ -488,6 +489,11 @@ class AgenteAPIController extends AppBaseController
         $agente = $this->agenteRepository->create1109($input);
 
         return $this->sendResponse($agente->toArray(), 'Agente saved successfully');
+    }
+
+    public function testing()
+    {
+        dd('testing - prueba 1');
     }
 
 }
