@@ -15,13 +15,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Profesion::factory(10)->create();
+        // \App\Models\Profesion::factory(10)->create();
         \App\Models\Titulo::factory(10)->create();
         \App\Models\VinculacionLaboral::factory(10)->create();
         \App\Models\AsistenciaTipoContrato::factory(10)->create();
         \App\Models\Grupo::factory(10)->create();
         \App\Models\Funcion::factory(5)->create();
-        \App\Models\TipoTramite::factory(5)->create();
+        // \App\Models\TipoTramite::factory(5)->create();
         activity()->withoutLogs(function () {
             $this->call([
                 PermissionsSeeder::class,
@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
                 // AgenteSeeder::class,
                 PuestosSeeder::class,
                 TipoContratosSeeder::class,
+                TipoTramitesSeeder::class,
             ]);
         });
         // \App\Models\Carrera::factory(100)->create();

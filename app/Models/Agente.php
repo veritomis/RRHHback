@@ -160,7 +160,15 @@ class Agente extends Model
         'fecha_ingreso_ministerio',
         'letra_nivel',
         'numero_grado',
-        'grupo_id'
+        'grupo_id',
+        'estado_civil',
+        'domi',
+        'cpos',
+        'loc_id',
+        'loc_descripcion',
+        'prov_id',
+        'prv_descripcion',
+        'telefono',
     ];
 
     /**
@@ -181,7 +189,15 @@ class Agente extends Model
         'fecha_ingreso_ministerio' => 'date',
         'letra_nivel' => 'string',
         'numero_grado' => 'string',
-        'grupo_id' => 'integer'
+        'grupo_id' => 'integer',
+        'estado_civil'=> 'string',
+        'domi'=> 'string',
+        'cpos'=> 'string',
+        'loc_id'=> 'string',
+        'loc_descripcion'=> 'string',
+        'prov_id'=> 'string',
+        'prv_descripcion'=> 'string',
+        'telefono'=> 'string',
     ];
 
     /**
@@ -202,6 +218,14 @@ class Agente extends Model
         'letra_nivel' => 'nullable|string|max:255',
         'numero_grado' => 'nullable|string|max:255',
         // 'grupo_id' => 'required',
+        'estado_civil'=> 'nullable|string|max:255',
+        'domi'=> 'nullable|string|max:255',
+        'cpos'=> 'nullable|string|max:255',
+        'loc_id'=> 'nullable|string|max:255',
+        'loc_descripcion'=> 'nullable|string|max:255',
+        'prov_id'=> 'nullable|string|max:255',
+        'prv_descripcion'=> 'nullable|string|max:255',
+        'telefono'=> 'nullable|string|max:255',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
