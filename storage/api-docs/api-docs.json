@@ -5069,7 +5069,7 @@
             },
             "Profesion": {
                 "required": [
-                    "nombre_profesion"
+                    "nombre"
                 ],
                 "properties": {
                     "id": {
@@ -5079,8 +5079,8 @@
                         "readOnly": true,
                         "nullable": false
                     },
-                    "nombre_profesion": {
-                        "description": "nombre_profesion",
+                    "nombre": {
+                        "description": "nombre",
                         "type": "string",
                         "readOnly": false,
                         "nullable": false

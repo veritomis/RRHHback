@@ -24,7 +24,7 @@ Route::middleware('auth:sanctum')->group(function () {
     //Route::get('agents/export', 'App\Http\Controllers\ExportController@export');
     Route::get('agents/export', [App\Http\Controllers\API\AgenteAPIController::class, 'export']);
     Route::post('agents/import', 'App\Http\Controllers\API\AgenteAPIController@import');
-    Route::get('agents/testing', 'App\Http\Controllers\API\AgenteAPIController@testing');
+    Route::post('agents/import-tamesis', 'App\Http\Controllers\API\AgenteAPIController@importTamesis');
     Route::get('permisos',  'App\Http\Controllers\API\RolAPIController@indexPermissions');
     Route::post('assignacion-roles',  'App\Http\Controllers\API\RolAPIController@assignacionRoles');
     Route::get('roles-user/{id}',  'App\Http\Controllers\API\RolAPIController@rolesUser');
