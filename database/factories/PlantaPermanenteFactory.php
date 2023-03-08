@@ -29,12 +29,12 @@ class PlantaPermanenteFactory extends Factory
         }
 
         return [
-            'agente_id' => $agente->id,
+            'agente_id' => $this->faker->numberBetween(1, 99),
             'letra_nivel' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'numero_grado' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'tramo' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'agrupamiento' => $this->faker->text($this->faker->numberBetween(5, 255)),
-            'modalidad_vinculacion' => $this->faker->text($this->faker->numberBetween(5, 255)),
+            'vinculacion_laboral_id' => $this->faker->numberBetween(1, 10),
             'asistencia' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'nivel_funcion_ejecutiva' => $this->faker->text($this->faker->numberBetween(5, 255)),
             'puesto_agente' => $this->faker->text($this->faker->numberBetween(5, 255)),

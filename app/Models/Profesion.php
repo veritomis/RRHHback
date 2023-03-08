@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * @OA\Schema(
  *      schema="Profesion",
- *      required={"nombre_profesion"},
+ *      required={"nombre"},
  *      @OA\Property(
  *          property="id",
  *          description="id",
@@ -19,8 +19,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          format="int32"
  *      ),
  *      @OA\Property(
- *          property="nombre_profesion",
- *          description="nombre_profesion",
+ *          property="nombre",
+ *          description="nombre",
  *          readOnly=false,
  *          nullable=false,
  *          type="string"
@@ -68,7 +68,7 @@ class Profesion extends Model
 
 
     public $fillable = [
-        'nombre_profesion'
+        'nombre'
     ];
 
     /**
@@ -78,7 +78,7 @@ class Profesion extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'nombre_profesion' => 'string'
+        'nombre' => 'string'
     ];
 
     /**
@@ -87,7 +87,7 @@ class Profesion extends Model
      * @var array
      */
     public static $rules = [
-        'nombre_profesion' => 'required|string|max:255',
+        'nombre' => 'required|string|max:255',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'

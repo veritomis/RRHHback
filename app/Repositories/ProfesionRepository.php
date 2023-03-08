@@ -17,7 +17,7 @@ class ProfesionRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'nombre_profesion'
+        'nombre'
     ];
 
     /**

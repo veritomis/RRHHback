@@ -17,12 +17,12 @@ class CarreraRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'id_agente',
+        'agente_id',
         'fecha',
         'fecha_inicial',
         'fecha_fin',
         'numero_gedo',
-        'antiguedad_total',
+        'antiguedad_administracion_publica',
         'letra_nivel',
         'numero_grado',
         'compensacion_transitoria',

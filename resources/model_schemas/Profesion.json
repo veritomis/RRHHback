@@ -12,7 +12,7 @@
         "inView": false
     },
     {
-        "name": "nombre_profesion",
+        "name": "nombre",
         "dbType": "string,255",
         "htmlType": "text",
         "validations": "required|string|max:255|string|max:255",

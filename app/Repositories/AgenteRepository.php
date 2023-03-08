@@ -3,7 +3,9 @@
 namespace App\Repositories;
 
 use App\Models\Agente;
+use App\Models\Contrato;
 use App\Repositories\BaseRepository;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class AgenteRepository
@@ -24,6 +26,8 @@ class AgenteRepository extends BaseRepository
         'dni',
         'cuil',
         'fecha_nacimiento',
+        'genero',
+        'fecha_ingreso_ministerio',
         'letra_nivel',
         'numero_grado',
         'grupo_id'
@@ -49,6 +53,77 @@ class AgenteRepository extends BaseRepository
 
     public function getIncludes()
     {
-        return ['contratos', 'contratos.funciones', 'grupo', 'liquidaciones', 'liquidaciones.documentos', 'asistenciaMedicas', 'asistenciaMedicas.documentos'];
+        return [
+            'contratos',
+            'plantaPermanente',
+            'plantaPermanente.vinculacionLaboral',
+            'contratos.funciones',
+            'contratos.tipoContrato',
+            'grupo',
+            'liquidaciones',
+            'liquidaciones.documentos',
+            'asistenciaMedicas',
+            'asistenciaMedicas.documentos',
+            'carreras'
+        ];
+    }
+
+    public function create1109($input)
+    {
+        try {
+            DB::beginTransaction();
+
+            foreach($input['contrato'] as $key => $value){
+                if (ctype_lower($key)) {
+                    continue;
+                } else {
+                    $input['contrato'][$this->camelCaseToSnakeCase($key)]= $input['contrato'][$key];
+                    unset($input['contrato'][$key]);
+                    if (array_key_exists('numero_expediente_g_d_e', $input['contrato'])) {
+                        $input['contrato']['numero_expediente_gde']= $input['contrato']['numero_expediente_g_d_e'];
+                        unset($input['contrato']['numero_expediente_g_d_e']);
+                    }
+                }
+            }
+
+            foreach($input['agente'] as $key => $value){
+                if (ctype_lower($key)) {
+                    continue;
+                } else {
+                    $input['agente'][$this->camelCaseToSnakeCase($key)]= $input['agente'][$key];
+                    unset($input['agente'][$key]);
+                }
+            }
+
+            foreach($input as $key => $value){
+                if (ctype_lower($key)) {
+                    continue;
+                } else {
+                    $input[$this->camelCaseToSnakeCase($key)]= $input[$key];
+                    unset($input[$key]);
+                }
+            }
+
+            $model = $this->model->newInstance($input['agente']);
+
+            $model->save();
+            $input['contrato']['agente_id'] = $model->id;
+            Contrato::create($input['contrato']);
+            DB::commit();
+            return $model;
+        } catch (\Exception $th) {
+            DB::rollBack();
+            $this->handleException($th);
+        }
+    }
+
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    function camelCaseToSnakeCase($string)
+    {
+        return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $string));
     }
 }

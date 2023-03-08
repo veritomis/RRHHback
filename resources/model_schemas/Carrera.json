@@ -12,7 +12,7 @@
         "inView": false
     },
     {
-        "name": "id_agente",
+        "name": "agente_id",
         "dbType": "bigInteger,false,true",
         "htmlType": null,
         "validations": "required",
@@ -72,7 +72,7 @@
         "inView": true
     },
     {
-        "name": "antiguedad_total",
+        "name": "antiguedad_administracion_publica",
         "dbType": "date",
         "htmlType": "date",
         "validations": "required",

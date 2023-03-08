@@ -70,6 +70,21 @@ use Illuminate\Database\Eloquent\Builder;
  *          format="date"
  *      ),
  *      @OA\Property(
+ *          property="genero",
+ *          description="genero",
+ *          readOnly=false,
+ *          nullable=true,
+ *          type="string"
+ *      ),
+ *      @OA\Property(
+ *          property="fecha_ingreso_ministerio",
+ *          description="fecha_ingreso_ministerio",
+ *          readOnly=false,
+ *          nullable=true,
+ *          type="string",
+ *          format="date"
+ *      ),
+ *      @OA\Property(
  *          property="letra_nivel",
  *          description="letra_nivel",
  *          readOnly=false,
@@ -141,9 +156,19 @@ class Agente extends Model
         'dni',
         'cuil',
         'fecha_nacimiento',
+        'genero',
+        'fecha_ingreso_ministerio',
         'letra_nivel',
         'numero_grado',
-        'grupo_id'
+        'grupo_id',
+        'estado_civil',
+        'domi',
+        'cpos',
+        'loc_id',
+        'loc_descripcion',
+        'prov_id',
+        'prv_descripcion',
+        'telefono',
     ];
 
     /**
@@ -160,9 +185,19 @@ class Agente extends Model
         'dni' => 'string',
         'cuil' => 'string',
         'fecha_nacimiento' => 'date',
+        'genero' => 'string',
+        'fecha_ingreso_ministerio' => 'date',
         'letra_nivel' => 'string',
         'numero_grado' => 'string',
-        'grupo_id' => 'integer'
+        'grupo_id' => 'integer',
+        'estado_civil'=> 'string',
+        'domi'=> 'string',
+        'cpos'=> 'string',
+        'loc_id'=> 'string',
+        'loc_descripcion'=> 'string',
+        'prov_id'=> 'string',
+        'prv_descripcion'=> 'string',
+        'telefono'=> 'string',
     ];
 
     /**
@@ -172,15 +207,25 @@ class Agente extends Model
      */
     public static $rules = [
         'primer_nombre' => 'nullable|string|max:255',
-        'segundo_nombre' => 'required|string|max:255',
+        // 'segundo_nombre' => 'required|string|max:255',
         'primer_apellido' => 'nullable|string|max:255',
-        'segundo_apellido' => 'required|string|max:255',
+        // 'segundo_apellido' => 'required|string|max:255',
         'dni' => 'nullable|string|max:255',
         'cuil' => 'nullable|string|max:255',
         'fecha_nacimiento' => 'nullable',
+        // 'genero' => 'required|string|max:255',
+        // 'fecha_ingreso_ministerio' => 'required',
         'letra_nivel' => 'nullable|string|max:255',
         'numero_grado' => 'nullable|string|max:255',
-        'grupo_id' => 'required',
+        // 'grupo_id' => 'required',
+        'estado_civil'=> 'nullable|string|max:255',
+        'domi'=> 'nullable|string|max:255',
+        'cpos'=> 'nullable|string|max:255',
+        'loc_id'=> 'nullable|string|max:255',
+        'loc_descripcion'=> 'nullable|string|max:255',
+        'prov_id'=> 'nullable|string|max:255',
+        'prv_descripcion'=> 'nullable|string|max:255',
+        'telefono'=> 'nullable|string|max:255',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
@@ -213,9 +258,19 @@ class Agente extends Model
         return $this->hasMany(\App\Models\Liquidacion::class, 'agente_id');
     }
 
+    public function carreras()
+    {
+        return $this->hasOne(\App\Models\Carrera::class, 'agente_id');
+    }
+
     public function asistencias()
     {
         return $this->hasMany(\App\Models\Asistencia::class, 'agente_id');
+    }
+
+    public function plantaPermanente()
+    {
+        return $this->hasOne(\App\Models\PlantaPermanente::class, 'agente_id');
     }
 
     /**

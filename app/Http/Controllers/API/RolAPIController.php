@@ -8,7 +8,10 @@ use App\Models\Rol;
 use App\Repositories\RolRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Response;
+use Spatie\Permission\Models\Role;
 
 /**
  * Class RolController
@@ -64,8 +67,50 @@ class RolAPIController extends AppBaseController
             $request->get('skip'),
             $request->get('limit')
         );
-
         return $this->sendResponse($rols->toArray(), 'Rols retrieved successfully');
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     *
+     * @OA\Get(
+     *      path="/api/permissions",
+     *      summary="getPermissionsList",
+     *      tags={"Permisos"},
+     *      description="Get all Permissions",
+     *      security={ {"sanctum": {} }},
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @OA\Schema(
+     *              type="object",
+     *              @OA\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="array",
+     *                  @OA\Items(ref="#/definitions/Permission")
+     *              ),
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function indexPermissions(Request $request)
+    {
+        $permissions = $this->rolRepository->allPermissions(
+            $request->except(['skip', 'limit']),
+            $request->get('skip'),
+            $request->get('limit')
+        );
+
+        return $this->sendResponse($permissions, 'Permissions retrieved successfully');
     }
 
     /**
@@ -116,6 +161,7 @@ class RolAPIController extends AppBaseController
      */
     public function store(CreateRolAPIRequest $request)
     {
+
         $input = $request->all();
 
         $rol = $this->rolRepository->create($input);
@@ -166,13 +212,12 @@ class RolAPIController extends AppBaseController
     public function show($id)
     {
         /** @var Rol $rol */
-        $rol = $this->rolRepository->find($id);
-
+        $rol = Role::find($id);
         if (empty($rol)) {
             return $this->sendError('Rol not found');
         }
 
-        return $this->sendResponse($rol->toArray(), 'Rol retrieved successfully');
+        return $this->sendResponse($rol->load('permissions')->toArray(), 'Rol retrieved successfully');
     }
 
     /**
@@ -242,9 +287,28 @@ class RolAPIController extends AppBaseController
             return $this->sendError('Rol not found');
         }
 
-        $rol = $this->rolRepository->update($input, $id);
+        // $rol = $this->rolRepository->update($input, $id);
 
-        return $this->sendResponse($rol->toArray(), 'Rol updated successfully');
+        try {
+            DB::beginTransaction();
+            $model = Role::findOrFail($id);
+
+            $this->removePermission($input,$model);
+
+            foreach($input['permissions'] as $value){
+                $model->givePermissionTo($value);
+            }
+
+            $model->fill($input);
+            $model->save();
+            DB::commit();
+            return $model;
+        } catch (\Exception $th) {
+            DB::rollBack();
+            $this->handleException($th);
+        }
+
+        return $this->sendResponse($model->load('permissions')->toArray(), 'Rol updated successfully');
     }
 
     /**
@@ -299,5 +363,47 @@ class RolAPIController extends AppBaseController
         $rol->delete();
 
         return $this->sendSuccess('Rol deleted successfully');
+    }
+
+    public function removePermission($data,$model)
+    {
+        // para determinar las imagenes eliminadas
+        $requestPermisson = $data['permissions'];
+        $currentPermisson = array_column($model->permissions->toArray(), 'name');
+        $deletedPermissons = array_values(array_diff($currentPermisson, $requestPermisson));
+
+        foreach($deletedPermissons as $delete){
+            $model->revokePermissionTo($delete);
+        }
+
+    }
+
+    public function assignacionRoles(Request $request)
+    {
+        $input = $request->all();
+
+        $role = Role::find($input['role_id']);
+
+        if (empty($role)) {
+            return $this->sendError('Rol not found');
+        }
+
+        foreach ($input['users'] as $key => $value) {
+            $user = User::find($value);
+            $user->syncRoles($role);
+        }
+
+        return $this->sendSuccess('Successful role assignment');
+    }
+
+    public function rolesUser($id)
+    {
+        $role = User::with('roles')->get();
+
+        if (empty($role)) {
+            return $this->sendError('Rol not found');
+        }
+
+        return $this->sendResponse($role->toArray(), 'Rol retrieved successfully');
     }
 }
