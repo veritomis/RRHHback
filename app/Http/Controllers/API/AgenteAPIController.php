@@ -138,7 +138,7 @@ class AgenteAPIController extends AppBaseController
 
         $agente = $this->agenteRepository->create($input);
 
-        return $this->sendResponse($agente->toArray(), 'Agente saved successfully');
+        return $this->sendResponse($agente->toArray(), 'El agente ha sido creado con éxito.');
     }
 
     /**
