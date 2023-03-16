@@ -79,7 +79,7 @@ class AgenteAPIController extends AppBaseController
             $request->get('limit')
         );
 
-        return $this->sendResponse($agentes->toArray(), 'Agentes retrieved successfully');
+        return $this->sendResponse($agentes->toArray(), 'Agentes recuperados satisfactoriamente');
     }
 
     /**
@@ -194,7 +194,7 @@ class AgenteAPIController extends AppBaseController
             return $this->sendError('Agente not found');
         }
 
-        return $this->sendResponse($agente->toArray(), 'Agente retrieved successfully');
+        return $this->sendResponse($agente->toArray(), 'Agente recuperado satisfactoriamente');
     }
 
     /**
@@ -270,7 +270,7 @@ class AgenteAPIController extends AppBaseController
 
         $agente = $this->agenteRepository->update($input, $id);
 
-        return $this->sendResponse($agente->toArray(), 'Agente updated successfully');
+        return $this->sendResponse($agente->toArray(), 'Agente actualizado satisfactoriamente');
     }
 
     /**
@@ -328,7 +328,7 @@ class AgenteAPIController extends AppBaseController
 
         $agente->delete();
 
-        return $this->sendSuccess('Agente deleted successfully');
+        return $this->sendSuccess('Agente borrado satisfactoriamente');
     }
 
     public function export()
@@ -413,7 +413,7 @@ class AgenteAPIController extends AppBaseController
                 throw $th;
             }
         }
-        return $this->sendSuccess('Agente Import saved successfully');
+        return $this->sendSuccess('Agente Importado y Guardado Satisfactoriamente');
     }
 
     public function manyDelete(Request $request){
@@ -427,7 +427,7 @@ class AgenteAPIController extends AppBaseController
         }
         //$agentes = $this->agenteRepository->all();
         //if (empty($agentes->whereIn('id',$request->all()))) {
-            return $this->sendSuccess('Agentes deleted successfully');
+            return $this->sendSuccess('Agentes borrados satisfactoriamente');
         //}
     }
 
