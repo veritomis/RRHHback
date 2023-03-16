@@ -504,10 +504,11 @@ class AgenteAPIController extends AppBaseController
         foreach($rows as $row){
             try {
                 DB::beginTransaction();
-                
+
                 $agenteId       = Agente::where('cuil','=',$row['cuil'])->first();
                 $profesion      = Profesion::where('nombre','=',$row['profesion'])->first();
-                $tipoContrato   = TipoContrato::where('nombre','=',ucwords(mb_strtolower($row['tipocontra'])))->first();
+                $tipo = ucwords(mb_strtolower($row['tipocontra'])) === 'Decr. 1184/01' ? 'Ley Marco Art 9': ucwords(mb_strtolower($row['tipocontra']));
+                $tipoContrato   = TipoContrato::where('nombre','=',$tipo)->first();
 
                 if (empty($agenteId)) {
                     $agente['primer_apellido']          = ucwords(mb_strtolower($row['apellido']));
@@ -532,18 +533,20 @@ class AgenteAPIController extends AppBaseController
                         $tipoContratoRequest = array(
                             'Birf (4212-ar)' => 'Birf (4212-ar)' ,
                             'Birf-otf (22013)' => 'Birf-otf (22013)',
-                            'Decr. 2345/08' => 'Decr. 2345/08',
                             'Circular Pnud' => 'Circular Pnud',
                             'Pnud Arg 08/001' => 'Pnud Arg 08/001',
                             'Pnud 08/024' => 'Pnud 08/024',
                             'Bid (1884/oc-ar)' => 'Bid (1884/oc-ar)',
-                            'Decr. 1184/01' => 'Decr. 1184/01',
                             'Circular Pnud - 2010' => 'Circular Pnud - 2010'
                         );
 
                     if (array_key_exists(ucwords(mb_strtolower($row['tipocontra'])), $tipoContratoRequest)) {
                         $tipoContrato = TipoContrato::where('nombre','=','Contratos por convenios con Programas y Proyectos con Financiamiento Internacional: PNUD - BID - BIRF')->first();
-                    }else{
+                    }elseif(ucwords(mb_strtolower($row['tipocontra'])) === 'Decr. 1184/01'){
+                        $tipoContrato = TipoContrato::create(['nombre' => 'Ley Marco Art 9']);
+                    }elseif(ucwords(mb_strtolower($row['tipocontra'])) === 'Decr. 2345/08'){
+                        $tipoContrato = TipoContrato::create(['nombre' => 'Decr. 2345/08']);
+                    }else {
                         $tipoContrato = TipoContrato::create(['nombre' => 'Ley 25.164']);
                     }
                 }
