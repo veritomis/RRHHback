@@ -493,7 +493,147 @@ class AgenteAPIController extends AppBaseController
 
     public function testing()
     {
+<<<<<<< HEAD
         dd('testing - prueba 1');
+=======
+        $file = $request->file('file');
+        $arry = Excel::toCollection(new AgentsImport, $file);
+
+        $contrato = [];
+        $agente = [];
+        $rows = $arry[0]->ToArray();
+
+        foreach($rows as $row){
+            try {
+                DB::beginTransaction();
+
+                $agenteId       = Agente::where('cuil','=',$row['cuil'])->first();
+                $profesion      = Profesion::where('nombre','=',$row['profesion'])->first();
+                $tipo = ucwords(mb_strtolower($row['tipocontra'])) === 'Decr. 1184/01' ? 'Ley Marco Art 9': ucwords(mb_strtolower($row['tipocontra']));
+                $tipoContrato   = TipoContrato::where('nombre','=',$tipo)->first();
+
+                if (empty($agenteId)) {
+                    $agente['primer_apellido']          = ucwords(mb_strtolower($row['apellido']));
+                    $agente['primer_nombre']            = ucwords(mb_strtolower($row['nombre']));
+                    $agente['email']                    = ucwords(mb_strtolower($row['email1']));
+                    $agente['cuil']                     = $row['cuil'];
+                    $agente['dni']                      = $row['numdoc'];
+                    $agente['fecha_nacimiento']         = $row['fenac'];
+                    $agente['estado_civil']             = ucwords(mb_strtolower($row['estadoci']));
+                    $agente['domi']                     = ucwords(mb_strtolower($row['domi']));
+                    $agente['cpos']                     = ucwords(mb_strtolower($row['cpos']));
+                    $agente['loc_id']                   = $row['id_loc'];
+                    $agente['loc_descripcion']          = ucwords(mb_strtolower($row['loc_descripcion']));
+                    $agente['prov_id']                  = $row['id_prov'];
+                    $agente['prv_descripcion']          = ucwords(mb_strtolower($row['prv_descripcion']));
+                    $agente['telefono']                 = $row['telefono'];
+                    $agenteId = $this->agenteRepository->create($agente);
+                }
+
+                if (empty($tipoContrato)) {
+
+                        $tipoContratoRequest = array(
+                            'Birf (4212-ar)' => 'Birf (4212-ar)' ,
+                            'Birf-otf (22013)' => 'Birf-otf (22013)',
+                            'Circular Pnud' => 'Circular Pnud',
+                            'Pnud Arg 08/001' => 'Pnud Arg 08/001',
+                            'Pnud 08/024' => 'Pnud 08/024',
+                            'Bid (1884/oc-ar)' => 'Bid (1884/oc-ar)',
+                            'Circular Pnud - 2010' => 'Circular Pnud - 2010'
+                        );
+
+                    if (array_key_exists(ucwords(mb_strtolower($row['tipocontra'])), $tipoContratoRequest)) {
+                        $tipoContrato = TipoContrato::where('nombre','=','Contratos por convenios con Programas y Proyectos con Financiamiento Internacional: PNUD - BID - BIRF')->first();
+                    }elseif(ucwords(mb_strtolower($row['tipocontra'])) === 'Decr. 1184/01'){
+                        $tipoContrato = TipoContrato::create(['nombre' => 'Ley Marco Art 9']);
+                    }elseif(ucwords(mb_strtolower($row['tipocontra'])) === 'Decr. 2345/08'){
+                        $tipoContrato = TipoContrato::create(['nombre' => 'Decr. 2345/08']);
+                    }else {
+                        $tipoContrato = TipoContrato::create(['nombre' => 'Ley 25.164']);
+                    }
+                }
+
+                if (empty($profesion)) {
+                    $profesion = Profesion::create(['nombre' => ucwords(mb_strtolower($row['profesion']))]);
+                }
+
+                $contrato = New Contrato;
+                $contrato->agente_id                       = $agenteId->id;
+                $contrato->secretaria_id                   = $row['idsecretaria'];
+                $contrato->secretaria                      = ucwords(mb_strtolower($row['secretaria']));
+                $contrato->centralizado                    = $row['centralizado'];
+                $contrato->descentralizado                 = $row['descentralizado'];
+                $contrato->ente_liquidacion                = $row['ente_liquidacion'];
+                $contrato->fevig                           = $row['fevig'];
+                $contrato->febaja                          = $row['febaja'];
+                $contrato->felimita                        = $row['felimita'];
+                $contrato->nivel                           = $row['nivel'];
+                $contrato->rango                           = $row['rango'];
+                $contrato->actividad                       = $row['actividad'];
+                $contrato->programa_id                     = $row['idprograma'];
+                $contrato->programa                        = ucwords(mb_strtolower($row['programa']));
+                $contrato->inciso                          = $row['inciso'];
+                $contrato->ppal                            = $row['ppal'];
+                $contrato->parc                            = $row['parc'];
+                $contrato->jurisdi                         = $row['jurisdi'];
+                $contrato->fuente                          = $row['fuente'];
+                $contrato->p_numero                        = $row['p_numero'];
+                $contrato->obra                            = $row['obra'];
+                $contrato->ubic_geo                        = $row['ubic_geo'];
+                $contrato->imbruto                         = $row['imbruto'];
+                $contrato->importe_682                     = $row['importe_682'];
+                $contrato->decr_1993                       = $row['decr1993'];
+                $contrato->impotot_92                      = $row['impotot92'];
+                $contrato->partime                         = $row['partime'];
+                $contrato->firmante                        = $row['firmante'];
+                $contrato->edificio                        = $row['edificio'];
+                $contrato->oficina                         = $row['oficina'];
+                $contrato->interno                         = $row['interno'];
+                $contrato->tipo_contrato_id                = $tipoContrato->id;
+                $contrato->saf                             = $row['saf'];
+                $contrato->codigo_act                      = $row['codigo_act'];
+                $contrato->desc_act                        = ucwords(mb_strtolower($row['desc_act']));
+                $contrato->observacion                     = $row['observacion'];
+                $contrato->id_padre                        = $row['id_padre'];
+                $contrato->primera_fecha_contratacion      = $row['primera_fecha_contratacion'];
+                $contrato->primer_fecha_tamesis            = $row['primer_fecha_tamesis'];
+                $contrato->primer_modalidad_tamesis        = $row['primer_modalidad_tamesis'];
+                $contrato->nivel_educativo                 = ucwords(mb_strtolower($row['niveduc']));
+                $contrato->estado_estudio                  = $row['estado_estudio'];
+                $contrato->profesion                       = $profesion->id;
+                $contrato->act_tipo                        = $row['act_tipo'];
+                $contrato->act_numero1                     = $row['act_numero1'];
+                $contrato->act_fecha1                      = $row['act_fecha1'];
+                $contrato->act_numero2                     = $row['act_numero2'];
+                $contrato->act_fecha2                      = $row['act_fecha2'];
+                $contrato->funcion                         = ucwords(mb_strtolower($row['funcion']));
+                $contrato->tipo_tanda_id                   = $row['id_tipotanda'];
+                $contrato->tipo_tanda                      = ucwords(mb_strtolower($row['tipotanda']));
+                $contrato->ap_excepcion                    = $row['ap_excepcion'];
+                $contrato->ap_cambio_nivel                 = $row['ap_cambio_nivel'];
+                $contrato->objetivos1                      = $row['objetivos1'];
+                $contrato->objetivos2                      = $row['objetivos2'];
+                $contrato->objetivos3                      = $row['objetivos3'];
+                $contrato->objetivos4                      = $row['objetivos4'];
+                $contrato->objetivos5                      = $row['objetivos5'];
+                $contrato->objetivos6                      = $row['objetivos6'];
+                $contrato->objetivos7                      = $row['objetivos7'];
+                $contrato->objetivos8                      = $row['objetivos8'];
+                $contrato->objetivos9                      = $row['objetivos9'];
+                $contrato->objetivos10                     = $row['objetivos10'];
+                $contrato->codigo_proa                     = $row['codigo_proa'];
+                $contrato->compensacion_transitoria        = $row['compensacion_transitoria'];
+                $contrato->primer_fecha_ley_marco          = $row['primer_fecha_ley_marco'];
+                $contrato->save();
+
+                DB::commit();
+            } catch (\Exception $th) {
+                DB::rollBack();
+                throw $th;
+            }
+        }
+        return $this->sendSuccess('Agente Import Tamesis saved successfully');
+>>>>>>> e316579964aeeed8bb62b6ccc5bf69cda991565a
     }
 
 }
