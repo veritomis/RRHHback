@@ -11,6 +11,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use App\Imports\AgentsImport;
 use App\Models\Contrato;
+use App\Models\Profesion;
+use App\Models\TipoContrato;
+use App\Models\TipoTramite;
 use App\Traits\VerificationRol;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -79,7 +82,7 @@ class AgenteAPIController extends AppBaseController
             $request->get('limit')
         );
 
-        return $this->sendResponse($agentes->toArray(), 'Agentes recuperados satisfactoriamente');
+        return $this->sendResponse($agentes->toArray(), 'Agentes retrieved successfully');
     }
 
     /**
@@ -194,7 +197,7 @@ class AgenteAPIController extends AppBaseController
             return $this->sendError('Agente not found');
         }
 
-        return $this->sendResponse($agente->toArray(), 'Agente recuperado satisfactoriamente');
+        return $this->sendResponse($agente->toArray(), 'Agente retrieved successfully');
     }
 
     /**
@@ -270,7 +273,7 @@ class AgenteAPIController extends AppBaseController
 
         $agente = $this->agenteRepository->update($input, $id);
 
-        return $this->sendResponse($agente->toArray(), 'Agente actualizado satisfactoriamente');
+        return $this->sendResponse($agente->toArray(), 'Agente updated successfully');
     }
 
     /**
@@ -328,7 +331,7 @@ class AgenteAPIController extends AppBaseController
 
         $agente->delete();
 
-        return $this->sendSuccess('Agente borrado satisfactoriamente');
+        return $this->sendSuccess('Agente deleted successfully');
     }
 
     public function export()
@@ -339,36 +342,36 @@ class AgenteAPIController extends AppBaseController
 
     public function import(Request $request)
     {
-        dd('hola');
         $file = $request->file('file');
         $arry = Excel::toCollection(new AgentsImport, $file);
 
         $contrato = [];
         $agente = [];
-        $arrayAgente = [];
-        $values = $arry[0]->ToArray();
+        $rows = $arry[0]->ToArray();
 
-        foreach($values as $row){
+        foreach($rows as $row){
             if($row['apellidos'] == null && $row['nombres'] == null){
                 continue;
             }
             try {
                 DB::beginTransaction();
-                $agente['primer_apellido']                     =  ucwords(mb_strtolower($row['apellidos']));
-                $agente['primer_nombre']                       =  ucwords(mb_strtolower($row['nombres']));
-                $agente['cuil']                                =  $row['cuit'];
-                $agente['fecha_nacimiento']                    =  $row['fecha_de_nacimiento'];
-                $agente['fecha_ingreso_ministerio']            =  $row['fecha_firma_reso'];
-                $agente['genero']                              =  mb_strtolower($row['genero']) == 'masculino' ? 'M':'F';
-
                 /** @var Agente $agente */
                 $agenteId = Agente::where('cuil','=',$row['cuit'])->first();
+                $tipoTramite = TipoTramite::where('nombre','=',ucwords(mb_strtolower($row['tipo_de_tramite'])))->first();
 
-                if ($agenteId) {
-                    $arrayAgente = $agente;
-                    continue;
-                }else{
+                if (empty($tipoTramite)) {
+                    $tipoTramite = TipoTramite::create(['nombre' => ucwords(mb_strtolower($row['tipo_de_tramite']))]);
+                }
+
+                if (empty($agenteId)) {
+                    $agente['primer_apellido']                     =  ucwords(mb_strtolower($row['apellidos']));
+                    $agente['primer_nombre']                       =  ucwords(mb_strtolower($row['nombres']));
+                    $agente['cuil']                                =  $row['cuit'];
+                    $agente['fecha_nacimiento']                    =  $row['fecha_de_nacimiento'];
+                    $agente['fecha_ingreso_ministerio']            =  $row['fecha_firma_reso'];
+                    $agente['genero']                              =  mb_strtolower($row['genero']) == 'masculino' ? 'M':'F';
                     $agenteF = $this->agenteRepository->create($agente);
+                }
 
                     $contrato = New Contrato;
                     $contrato->agente_id                           =  $agenteF->id;
@@ -397,15 +400,13 @@ class AgenteAPIController extends AppBaseController
                     $contrato->fecha_firma_recepcion_expediente    =  $row['fecha_ingreso_expediente'];
                     $contrato->fecha_firma_resolucion              =  $row['fecha_firma_reso'];
                     $contrato->tipo_alta                           =  mb_strtolower($row['tipo_de_tramite']);
+                    $contrato->tipo_tramite_id                     =  $tipoTramite->id;
                     $contrato->estado                              =  $row['estado'];
                     $contrato->baja_partir_de                      =  $row['si_es_baja_a_partir_de'];
                     $contrato->fecha_inicio_1109                   =  $row['fecha_de_ingreso_al_mdp_como_1109'];
                     $contrato->tipo_contrato_id                    =  2;
                     $contrato->ultimo_titulo                       =  ucwords(mb_strtolower($row['ultimo_titulo_obtenido']));
-
                     $contrato->save();
-                }
-
 
                 DB::commit();
             } catch (\Exception $th) {
@@ -413,7 +414,7 @@ class AgenteAPIController extends AppBaseController
                 throw $th;
             }
         }
-        return $this->sendSuccess('Agente Importado y Guardado Satisfactoriamente');
+        return $this->sendSuccess('Agente Import saved successfully');
     }
 
     public function manyDelete(Request $request){
@@ -427,7 +428,7 @@ class AgenteAPIController extends AppBaseController
         }
         //$agentes = $this->agenteRepository->all();
         //if (empty($agentes->whereIn('id',$request->all()))) {
-            return $this->sendSuccess('Agentes borrados satisfactoriamente');
+            return $this->sendSuccess('Agentes deleted successfully');
         //}
     }
 
@@ -488,14 +489,11 @@ class AgenteAPIController extends AppBaseController
 
         $agente = $this->agenteRepository->create1109($input);
 
-        return $this->sendResponse($agente->toArray(), 'Agente guardado satisfactoriamente');
+        return $this->sendResponse($agente->toArray(), 'Agente saved successfully');
     }
 
-    public function testing()
+    public function importTamesis(Request $request)
     {
-<<<<<<< HEAD
-        dd('testing - prueba 1');
-=======
         $file = $request->file('file');
         $arry = Excel::toCollection(new AgentsImport, $file);
 
@@ -506,10 +504,10 @@ class AgenteAPIController extends AppBaseController
         foreach($rows as $row){
             try {
                 DB::beginTransaction();
-
+                
                 $agenteId       = Agente::where('cuil','=',$row['cuil'])->first();
                 $profesion      = Profesion::where('nombre','=',$row['profesion'])->first();
-                $tipo = ucwords(mb_strtolower($row['tipocontra'])) === 'Decr. 1184/01' ? 'Ley Marco Art 9': ucwords(mb_strtolower($row['tipocontra']));
+                $tipo           = ucwords(mb_strtolower($row['tipocontra'])) == 'Decr. 1184/01' ? 'Ley Marco Articulo 9' : ucwords(mb_strtolower($row['tipocontra']));
                 $tipoContrato   = TipoContrato::where('nombre','=',$tipo)->first();
 
                 if (empty($agenteId)) {
@@ -545,10 +543,10 @@ class AgenteAPIController extends AppBaseController
                     if (array_key_exists(ucwords(mb_strtolower($row['tipocontra'])), $tipoContratoRequest)) {
                         $tipoContrato = TipoContrato::where('nombre','=','Contratos por convenios con Programas y Proyectos con Financiamiento Internacional: PNUD - BID - BIRF')->first();
                     }elseif(ucwords(mb_strtolower($row['tipocontra'])) === 'Decr. 1184/01'){
-                        $tipoContrato = TipoContrato::create(['nombre' => 'Ley Marco Art 9']);
+                        $tipoContrato = TipoContrato::create(['nombre' => 'Ley Marco Articulo 9']);
                     }elseif(ucwords(mb_strtolower($row['tipocontra'])) === 'Decr. 2345/08'){
                         $tipoContrato = TipoContrato::create(['nombre' => 'Decr. 2345/08']);
-                    }else {
+                    }else{
                         $tipoContrato = TipoContrato::create(['nombre' => 'Ley 25.164']);
                     }
                 }
@@ -633,7 +631,5 @@ class AgenteAPIController extends AppBaseController
             }
         }
         return $this->sendSuccess('Agente Import Tamesis saved successfully');
->>>>>>> e316579964aeeed8bb62b6ccc5bf69cda991565a
     }
-
 }
