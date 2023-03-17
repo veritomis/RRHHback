@@ -82,7 +82,7 @@ class AgenteAPIController extends AppBaseController
             $request->get('limit')
         );
 
-        return $this->sendResponse($agentes->toArray(), 'Agentes retrieved successfully');
+        return $this->sendResponse($agentes->toArray(), 'Listado de Agentes Exitoso');
     }
 
     /**
@@ -197,7 +197,7 @@ class AgenteAPIController extends AppBaseController
             return $this->sendError('Agente not found');
         }
 
-        return $this->sendResponse($agente->toArray(), 'Agente retrieved successfully');
+        return $this->sendResponse($agente->toArray(), 'Agente recuperado con éxito');
     }
 
     /**
@@ -273,7 +273,7 @@ class AgenteAPIController extends AppBaseController
 
         $agente = $this->agenteRepository->update($input, $id);
 
-        return $this->sendResponse($agente->toArray(), 'Agente updated successfully');
+        return $this->sendResponse($agente->toArray(), 'Agente actualizado con éxito');
     }
 
     /**
@@ -331,7 +331,7 @@ class AgenteAPIController extends AppBaseController
 
         $agente->delete();
 
-        return $this->sendSuccess('Agente deleted successfully');
+        return $this->sendSuccess('Agente borrado con éxito');
     }
 
     public function export()
@@ -428,7 +428,7 @@ class AgenteAPIController extends AppBaseController
         }
         //$agentes = $this->agenteRepository->all();
         //if (empty($agentes->whereIn('id',$request->all()))) {
-            return $this->sendSuccess('Agentes deleted successfully');
+            return $this->sendSuccess('Agentes borrados con éxito');
         //}
     }
 
@@ -489,7 +489,7 @@ class AgenteAPIController extends AppBaseController
 
         $agente = $this->agenteRepository->create1109($input);
 
-        return $this->sendResponse($agente->toArray(), 'Agente saved successfully');
+        return $this->sendResponse($agente->toArray(), 'Agente con contrato 1109 creado con éxito');
     }
 
     public function importTamesis(Request $request)
