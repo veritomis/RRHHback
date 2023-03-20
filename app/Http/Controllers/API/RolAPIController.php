@@ -67,7 +67,7 @@ class RolAPIController extends AppBaseController
             $request->get('skip'),
             $request->get('limit')
         );
-        return $this->sendResponse($rols->toArray(), 'Rols retrieved successfully');
+        return $this->sendResponse($rols->toArray(), 'Roles listados con éxito');
     }
 
     /**
@@ -110,7 +110,7 @@ class RolAPIController extends AppBaseController
             $request->get('limit')
         );
 
-        return $this->sendResponse($permissions, 'Permissions retrieved successfully');
+        return $this->sendResponse($permissions, 'Permisos listados con éxito');
     }
 
     /**
@@ -166,7 +166,7 @@ class RolAPIController extends AppBaseController
 
         $rol = $this->rolRepository->create($input);
 
-        return $this->sendResponse($rol->toArray(), 'Rol saved successfully');
+        return $this->sendResponse($rol->toArray(), 'Roles guardados con éxito');
     }
 
     /**
@@ -214,10 +214,10 @@ class RolAPIController extends AppBaseController
         /** @var Rol $rol */
         $rol = Role::find($id);
         if (empty($rol)) {
-            return $this->sendError('Rol not found');
+            return $this->sendError('Rol no encontrado');
         }
 
-        return $this->sendResponse($rol->load('permissions')->toArray(), 'Rol retrieved successfully');
+        return $this->sendResponse($rol->load('permissions')->toArray(), 'Rol recuperado con éxito');
     }
 
     /**
@@ -284,7 +284,7 @@ class RolAPIController extends AppBaseController
         $rol = $this->rolRepository->find($id);
 
         if (empty($rol)) {
-            return $this->sendError('Rol not found');
+            return $this->sendError('Rol no econtrado');
         }
 
         // $rol = $this->rolRepository->update($input, $id);
@@ -308,7 +308,7 @@ class RolAPIController extends AppBaseController
             $this->handleException($th);
         }
 
-        return $this->sendResponse($model->load('permissions')->toArray(), 'Rol updated successfully');
+        return $this->sendResponse($model->load('permissions')->toArray(), 'Permiso actualizado con éxito');
     }
 
     /**
@@ -357,12 +357,12 @@ class RolAPIController extends AppBaseController
         $rol = $this->rolRepository->find($id);
 
         if (empty($rol)) {
-            return $this->sendError('Rol not found');
+            return $this->sendError('Rol no encontrado');
         }
 
         $rol->delete();
 
-        return $this->sendSuccess('Rol deleted successfully');
+        return $this->sendSuccess('Rol borrado con éxito');
     }
 
     public function removePermission($data,$model)
@@ -385,7 +385,7 @@ class RolAPIController extends AppBaseController
         $role = Role::find($input['role_id']);
 
         if (empty($role)) {
-            return $this->sendError('Rol not found');
+            return $this->sendError('Rol not encontrado');
         }
 
         foreach ($input['users'] as $key => $value) {
@@ -393,7 +393,7 @@ class RolAPIController extends AppBaseController
             $user->syncRoles($role);
         }
 
-        return $this->sendSuccess('Successful role assignment');
+        return $this->sendSuccess('Asignación de roles exitosa');
     }
 
     public function rolesUser($id)
@@ -401,9 +401,9 @@ class RolAPIController extends AppBaseController
         $role = User::with('roles')->get();
 
         if (empty($role)) {
-            return $this->sendError('Rol not found');
+            return $this->sendError('Rol no econtrado');
         }
 
-        return $this->sendResponse($role->toArray(), 'Rol retrieved successfully');
+        return $this->sendResponse($role->toArray(), 'Rol recuperado con éxito');
     }
 }

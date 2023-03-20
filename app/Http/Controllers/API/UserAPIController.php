@@ -43,7 +43,7 @@ class UserAPIController extends AppBaseController
 
         $users =$posts->load('roles');
 
-        return $this->sendResponse($users->toArray(), 'Users retrieved successfully');
+        return $this->sendResponse($users->toArray(), 'Usuarios listados con éxito');
     }
 
     /**
@@ -60,7 +60,7 @@ class UserAPIController extends AppBaseController
 
         $post = $this->userRepository->create($input);
 
-        return $this->sendResponse($post->toArray(), 'User saved successfully');
+        return $this->sendResponse($post->toArray(), 'Usuario creado con éxito');
     }
 
     /**
@@ -77,12 +77,12 @@ class UserAPIController extends AppBaseController
         $post = $this->userRepository->find($id);
 
         if (empty($post)) {
-            return $this->sendError('User not found');
+            return $this->sendError('Usuario no encontrado');
         }
 
         $user =$post->load('roles');
 
-        return $this->sendResponse($user->toArray(), 'User retrieved successfully');
+        return $this->sendResponse($user->toArray(), 'Usuario recuperado con éxito');
     }
 
     /**
@@ -102,12 +102,12 @@ class UserAPIController extends AppBaseController
         $post = $this->userRepository->find($id);
 
         if (empty($post)) {
-            return $this->sendError('User not found');
+            return $this->sendError('Usuario no encontrado');
         }
 
         $post = $this->userRepository->update($input, $id);
 
-        return $this->sendResponse($post->toArray(), 'User updated successfully');
+        return $this->sendResponse($post->toArray(), 'Usuario actualizado con éxito');
     }
 
     /**
@@ -126,11 +126,11 @@ class UserAPIController extends AppBaseController
         $post = $this->userRepository->find($id);
 
         if (empty($post)) {
-            return $this->sendError('User not found');
+            return $this->sendError('Usuario no encontrado');
         }
 
         $post->forcedelete();
 
-        return $this->sendSuccess('User deleted successfully');
+        return $this->sendSuccess('Usuario borrado con éxito');
     }
 }

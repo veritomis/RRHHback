@@ -73,7 +73,7 @@ class LiquidacionAPIController extends AppBaseController
             $request->get('limit')
         );
 
-        return $this->sendResponse($liquidacions->toArray(), 'Liquidacions retrieved successfully');
+        return $this->sendResponse($liquidacions->toArray(), 'Listado de liquidaciones exitoso');
     }
 
     /**
@@ -132,7 +132,7 @@ class LiquidacionAPIController extends AppBaseController
 
         $liquidacion = $this->liquidacionRepository->create($input);
 
-        return $this->sendResponse($liquidacion->toArray(), 'Liquidacion saved successfully');
+        return $this->sendResponse($liquidacion->toArray(), 'Liquidación creada con éxito');
     }
 
     /**
@@ -185,10 +185,10 @@ class LiquidacionAPIController extends AppBaseController
         $liquidacion = $this->liquidacionRepository->find($id);
 
         if (empty($liquidacion)) {
-            return $this->sendError('Liquidacion not found');
+            return $this->sendError('Liquidación no encontrada');
         }
 
-        return $this->sendResponse($liquidacion->toArray(), 'Liquidacion retrieved successfully');
+        return $this->sendResponse($liquidacion->toArray(), 'Liquidación recuperada con éxito');
     }
 
     /**
@@ -259,12 +259,12 @@ class LiquidacionAPIController extends AppBaseController
         $liquidacion = $this->liquidacionRepository->find($id);
 
         if (empty($liquidacion)) {
-            return $this->sendError('Liquidacion not found');
+            return $this->sendError('Liquidación no encontrada');
         }
 
         $liquidacion = $this->liquidacionRepository->update($input, $id);
 
-        return $this->sendResponse($liquidacion->toArray(), 'Liquidacion updated successfully');
+        return $this->sendResponse($liquidacion->toArray(), 'Liquidación actualizada con éxito');
     }
 
     /**
@@ -317,11 +317,11 @@ class LiquidacionAPIController extends AppBaseController
         $liquidacion = $this->liquidacionRepository->find($id);
 
         if (empty($liquidacion)) {
-            return $this->sendError('Liquidacion not found');
+            return $this->sendError('Liquidación no encontrada');
         }
 
         $liquidacion->delete();
 
-        return $this->sendSuccess('Liquidacion deleted successfully');
+        return $this->sendSuccess('Liquidación borrada con éxito');
     }
 }

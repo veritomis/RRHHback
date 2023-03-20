@@ -73,7 +73,7 @@ class ContratoAPIController extends AppBaseController
         );
 
 
-        return $this->sendResponse($contratos->toArray(), 'Contratos retrieved successfully');
+        return $this->sendResponse($contratos->toArray(), 'Listado de contratos exitoso');
     }
 
     /**
@@ -132,7 +132,7 @@ class ContratoAPIController extends AppBaseController
 
         $contrato = $this->contratoRepository->create($input);
 
-        return $this->sendResponse($contrato->toArray(), 'Contrato saved successfully');
+        return $this->sendResponse($contrato->toArray(), 'Contrato guardado con éxito');
     }
 
     /**
@@ -185,10 +185,10 @@ class ContratoAPIController extends AppBaseController
         $contrato = $this->contratoRepository->find($id);
 
         if (empty($contrato)) {
-            return $this->sendError('Contrato not found');
+            return $this->sendError('Contrato no encontrado');
         }
 
-        return $this->sendResponse($contrato->toArray(), 'Contrato retrieved successfully');
+        return $this->sendResponse($contrato->toArray(), 'Contrato recuperado con éxito');
     }
 
     /**
@@ -259,12 +259,12 @@ class ContratoAPIController extends AppBaseController
         $contrato = $this->contratoRepository->find($id);
 
         if (empty($contrato)) {
-            return $this->sendError('Contrato not found');
+            return $this->sendError('Contrato no encontrado');
         }
 
         $contrato = $this->contratoRepository->update($input, $id);
 
-        return $this->sendResponse($contrato->toArray(), 'Contrato updated successfully');
+        return $this->sendResponse($contrato->toArray(), 'Contrato actualizado con éxito');
     }
 
     /**
@@ -317,11 +317,11 @@ class ContratoAPIController extends AppBaseController
         $contrato = $this->contratoRepository->find($id);
 
         if (empty($contrato)) {
-            return $this->sendError('Contrato not found');
+            return $this->sendError('Contrato no encontrado');
         }
 
         $contrato->delete();
 
-        return $this->sendSuccess('Contrato deleted successfully');
+        return $this->sendSuccess('Contrato borrado con éxito');
     }
 }

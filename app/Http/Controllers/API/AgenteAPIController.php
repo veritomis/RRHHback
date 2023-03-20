@@ -194,7 +194,7 @@ class AgenteAPIController extends AppBaseController
         $agente = $this->agenteRepository->find($id);
 
         if (empty($agente)) {
-            return $this->sendError('Agente not found');
+            return $this->sendError('Agente no encontrado');
         }
 
         return $this->sendResponse($agente->toArray(), 'Agente recuperado con éxito');
@@ -268,7 +268,7 @@ class AgenteAPIController extends AppBaseController
         $agente = $this->agenteRepository->find($id);
 
         if (empty($agente)) {
-            return $this->sendError('Agente not found');
+            return $this->sendError('Agente no encontrado');
         }
 
         $agente = $this->agenteRepository->update($input, $id);
@@ -326,7 +326,7 @@ class AgenteAPIController extends AppBaseController
         $agente = $this->agenteRepository->find($id);
 
         if (empty($agente)) {
-            return $this->sendError('Agente not found');
+            return $this->sendError('Agente no encontrado');
         }
 
         $agente->delete();
